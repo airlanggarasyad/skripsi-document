@@ -1,0 +1,43 @@
+\babel@toc {english}{}\relax 
+\babel@toc {bahasa}{}\relax 
+\contentsline {chapter}{HALAMAN PENGESAHAN}{ii}{}%
+\contentsline {chapter}{HALAMAN PERSEMBAHAN}{iii}{}%
+\contentsline {chapter}{PERNYATAAN BEBAS PLAGIASI}{iv}{}%
+\contentsline {chapter}{PRAKATA}{v}{}%
+\contentsline {chapter}{ARTI LAMBANG DAN SINGKATAN}{vi}{}%
+\contentsline {chapter}{ABSTRACT}{vii}{}%
+\contentsline {chapter}{INTISARI}{viii}{}%
+\contentsline {chapter}{DAFTAR ISI}{ix}{}%
+\contentsline {chapter}{DAFTAR GAMBAR}{x}{}%
+\contentsline {chapter}{DAFTAR TABEL}{xi}{}%
+\contentsline {chapter}{\numberline {I}PENDAHULUAN}{1}{}%
+\contentsline {section}{\numberline {1.1}Latar Belakang}{1}{}%
+\contentsline {section}{\numberline {1.2}Rumusan Masalah}{2}{}%
+\contentsline {section}{\numberline {1.3}Batasan Tugas Akhir}{2}{}%
+\contentsline {section}{\numberline {1.4}Tujuan Tugas Akhir}{2}{}%
+\contentsline {section}{\numberline {1.5}Manfaat Tugas Akhir}{2}{}%
+\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{2}{}%
+\contentsline {chapter}{\numberline {II}TINJAUAN PUSTAKA}{3}{}%
+\contentsline {section}{\numberline {2.1}Tinjauan Pustaka}{3}{}%
+\contentsline {subsection}{\numberline {2.1.1}Teknologi Pelacak}{3}{}%
+\contentsline {subsection}{\numberline {2.1.2}Transmisi Data Nirkabel}{3}{}%
+\contentsline {section}{\numberline {2.2}Dasar Teori}{4}{}%
+\contentsline {subsection}{\numberline {2.2.1}STM32 Nucleo-WL55JC1}{4}{}%
+\contentsline {subsection}{\numberline {2.2.2}Modul GNSS Teseo LIV3FL}{5}{}%
+\contentsline {subsection}{\numberline {2.2.3}Antena GPS }{5}{}%
+\contentsline {subsection}{\numberline {2.2.4}Modul LoRa(?)}{5}{}%
+\contentsline {chapter}{\numberline {III}METODE TUGAS AKHIR}{6}{}%
+\contentsline {section}{\numberline {3.1}Alat dan Bahan Tugas Akhir}{6}{}%
+\contentsline {section}{\numberline {3.2}Alur Tugas Akhir}{6}{}%
+\contentsline {section}{\numberline {3.3}Studi Literatur}{6}{}%
+\contentsline {section}{\numberline {3.4}Analisis Kebutuhan Sistem}{6}{}%
+\contentsline {section}{\numberline {3.5}Perancangan \textit {End Node}}{6}{}%
+\contentsline {section}{\numberline {3.6}Perancangan API dan Basis Data}{6}{}%
+\contentsline {section}{\numberline {3.7}Perancangan Web Penampil}{6}{}%
+\contentsline {chapter}{\numberline {IV}<<Chapter name>>}{7}{}%
+\contentsline {chapter}{\numberline {V}<<Chapter name>>}{8}{}%
+\contentsline {chapter}{DAFTAR PUSTAKA}{9}{}%
+\contentsline {chapter}{LAMPIRAN}{L-1}{}%
+\contentsline {section}{\numberline {L.1}Sample algorithm}{L-1}{}%
+\contentsline {section}{\numberline {L.2}Sample Python code}{L-2}{}%
+\contentsline {section}{\numberline {L.3}Sample Matlab code}{L-3}{}%

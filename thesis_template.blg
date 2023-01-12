@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis_template.aux
+The style file: IEEEtran.bst
+A level-1 auxiliary file: contents/chapter-1/chapter-1.aux
+A level-1 auxiliary file: contents/chapter-2/chapter-2.aux
+A level-1 auxiliary file: contents/chapter-3/chapter-3.aux
+A level-1 auxiliary file: contents/chapter-4/chapter-4.aux
+A level-1 auxiliary file: contents/chapter-5/chapter-5.aux
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty note in STMicroelectronics2022b
+
+Done.
+You've used 11 entries,
+            4087 wiz_defined-function locations,
+            894 strings with 9688 characters,
+and the built_in function-call counts, 7716 in all, are:
+= -- 629
+> -- 177
+< -- 69
++ -- 97
+- -- 29
+* -- 364
+:= -- 1190
+add.period$ -- 22
+call.type$ -- 11
+change.case$ -- 11
+chr.to.int$ -- 165
+cite$ -- 12
+duplicate$ -- 546
+empty$ -- 579
+format.name$ -- 35
+if$ -- 1767
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 90
+newline$ -- 56
+num.names$ -- 11
+pop$ -- 205
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 582
+stack$ -- 0
+substring$ -- 395
+swap$ -- 452
+text.length$ -- 14
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 11
+warning$ -- 1
+while$ -- 43
+width$ -- 13
+write$ -- 121
+(There was 1 warning)
