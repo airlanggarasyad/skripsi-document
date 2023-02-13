@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.18)  12 JAN 2023 17:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.18)  13 FEB 2023 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1262,19 +1262,31 @@ BAB II.
 
 
 ]
-<contents/chapter-2/stm32-wl55jc1.jpg, id=59, 427.5975pt x 685.56125pt>
+<contents/chapter-2/trilaterasi.png, id=59, 438.63875pt x 397.485pt>
+File: contents/chapter-2/trilaterasi.png Graphic file (type png)
+<use contents/chapter-2/trilaterasi.png>
+Package pdftex.def Info: contents/chapter-2/trilaterasi.png  used on input line
+ 22.
+(pdftex.def)             Requested size: 227.62204pt x 206.26883pt.
+
+Overfull \hbox (0.22386pt too wide) in paragraph at lines 26--27
+[]\T1/ptm/m/n/12 Trilaterasi ada-lah pro-ses me-nen-tuk-an po-si-si ber-da-sark
+-an ja-rak de-ngan meng-
+ []
+
+[4 <./contents/chapter-2/trilaterasi.png>] [5]
+<contents/chapter-2/stm32-wl55jc1.jpg, id=71, 427.5975pt x 685.56125pt>
 File: contents/chapter-2/stm32-wl55jc1.jpg Graphic file (type jpg)
 <use contents/chapter-2/stm32-wl55jc1.jpg>
 Package pdftex.def Info: contents/chapter-2/stm32-wl55jc1.jpg  used on input li
-ne 24.
+ne 124.
 (pdftex.def)             Requested size: 142.26378pt x 228.08746pt.
-) [4 <./contents/chapter-2/stm32-wl55jc1.jpg (PNG copy)>] [5]
+) [6] [7 <./contents/chapter-2/stm32-wl55jc1.jpg (PNG copy)>]
 \openout2 = `contents/chapter-3/chapter-3.aux'.
 
-
-(./contents/chapter-3/chapter-3.tex
+ (./contents/chapter-3/chapter-3.tex
 BAB III.
-) [6
+) [8
 
 
 
@@ -1284,7 +1296,7 @@ BAB III.
 
  (./contents/chapter-4/chapter-4.tex
 BAB IV.
-) [7
+) [9
 
 
 
@@ -1294,28 +1306,28 @@ BAB IV.
 
  (./contents/chapter-5/chapter-5.tex
 BAB V.
-) [8
+) [10
 
 
 
 
-] (./thesis_template.bbl
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7
-6.
+] (./thesis_template.bbl [11
+
+
+
+]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
+4.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 5091) in paragraph at lines 75--78
+Underfull \hbox (badness 5091) in paragraph at lines 93--96
 []\T1/ptm/m/n/12 STMicroelectronics, ``Mul-tip-ro-to-col LPW-AN du-al co-re 32-
 bit Arm\TS1/ptm/m/n/12 ®
  []
 
-) [9
-
-
-
-] (./contents/appendix/appendix.tex [1]
+) [12] (./contents/appendix/appendix.tex [1]
 (/usr/local/texlive/2022/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [2]
@@ -1327,26 +1339,28 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 (./contents/chapter-3/chapter-3.aux) (./contents/chapter-4/chapter-4.aux)
 (./contents/chapter-5/chapter-5.aux)) ) 
 Here is how much of TeX's memory you used:
- 35654 strings out of 478268
- 851265 string characters out of 5846346
- 1580218 words of memory out of 5000000
- 53190 multiletter control sequences out of 15000+600000
+ 35672 strings out of 478268
+ 851777 string characters out of 5846346
+ 1580340 words of memory out of 5000000
+ 53207 multiletter control sequences out of 15000+600000
  509397 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 103i,11n,105p,910b,1752s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 103i,12n,105p,910b,1752s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/font
 s/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utm
-b8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis_template.pdf (23 pages, 498094 bytes).
+amsfonts/cm/cmex10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8a.
+pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on thesis_template.pdf (26 pages, 910635 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
+ 148 PDF objects out of 1000 (max. 8388607)
+ 94 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -16,48 +16,50 @@ Database file #1: references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Name 1 in "{National Coordination Office for Space-Based Positioning}, Navigation, and Timing." has a comma at the end for entry NationalCoordinationOfficeforSpace-BasedPositioning2021
+while executing---line 2403 of file IEEEtran.bst
 Warning--empty note in STMicroelectronics2022b
 
 Done.
-You've used 11 entries,
+You've used 15 entries,
             4087 wiz_defined-function locations,
-            894 strings with 9688 characters,
-and the built_in function-call counts, 7716 in all, are:
-= -- 629
-> -- 177
-< -- 69
-+ -- 97
-- -- 29
-* -- 364
-:= -- 1190
-add.period$ -- 22
-call.type$ -- 11
-change.case$ -- 11
-chr.to.int$ -- 165
-cite$ -- 12
-duplicate$ -- 546
-empty$ -- 579
-format.name$ -- 35
-if$ -- 1767
+            918 strings with 10608 characters,
+and the built_in function-call counts, 9665 in all, are:
+= -- 781
+> -- 211
+< -- 80
++ -- 115
+- -- 35
+* -- 439
+:= -- 1498
+add.period$ -- 30
+call.type$ -- 15
+change.case$ -- 14
+chr.to.int$ -- 189
+cite$ -- 16
+duplicate$ -- 701
+empty$ -- 764
+format.name$ -- 43
+if$ -- 2218
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 90
-newline$ -- 56
-num.names$ -- 11
-pop$ -- 205
+int.to.str$ -- 15
+missing$ -- 119
+newline$ -- 68
+num.names$ -- 15
+pop$ -- 279
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 582
+skip$ -- 739
 stack$ -- 0
-substring$ -- 395
-swap$ -- 452
-text.length$ -- 14
+substring$ -- 454
+swap$ -- 565
+text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 11
+type$ -- 15
 warning$ -- 1
-while$ -- 43
-width$ -- 13
-write$ -- 121
-(There was 1 warning)
+while$ -- 51
+width$ -- 17
+write$ -- 153
+(There was 1 error message)

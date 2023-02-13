@@ -10,12 +10,112 @@ Sebuah sistem \textit{speedometer} telah dirancang oleh \cite{Najmurrokhman2021}
 
 Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of London} menggunakan mikrokontroler AT89S52 dari keluarga 8051. Digunakan modul GPS M-89 yang diatur untuk menerima isyarat transmisi satelit pada frekuensi 1575.42 MHz. Data yang diterima akan ditampilkan pada layar LCD dan dikirimkan dengan modul GSM. Kemudian, data yang telah diterima akan ditampilkan pada situs web.
 
-\subsection{Transmisi Data Nirkabel}
-
-
-Sistem dapat dikembangkan dengan banyak cara, tetapi pada penelitian ini sistem yang akan dirancang hanya fokus untuk melacak lokasi dari kendaraan, dalam kasus ini adalah bus kampus "Trans Gadjah Mada"
-
 \section{Dasar Teori}
+\subsection{Pita L}
+
+\subsection{Teknologi GNSS}
+\textit{Global Navigation Satellite System} (GNSS) adalah istilah yang digunakan untuk suatu sistem navigasi radio yang menggunakan konstelasi satelit. Salah satu contoh GNSS adalah \textit{Global Positioning System} (GPS) milik Amerika Serikat. Selain GPS terdapat lima sistem GNSS lainnya yaitu, Galileo (Uni Eropa), BeiDou (Republik Rakyat Tiongkok), GLONASS (Federasi Rusia), IRNSS (India), dan QZSS (Jepang) \cite{NationalCoordinationOfficeforSpace-BasedPositioning2021}. Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satelit \cite{TheEuropeanGlobalNavigationSatelliteSystemsAgency2021}. Satelit GNSS akan terus memancarkan isyarat radio pada pita frekuensi L.
+
+\subsubsection{Trilaterasi}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=8cm]{contents/chapter-2/trilaterasi.png}
+	\caption{Trilaterasi}
+	\label{Fig: Trilaterasi}
+\end{figure}
+Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
+
+Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D dapat didapatkan dengan menyelesaikan persamaan berikut
+\begin{equation}
+\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
+\label{eq:2-1}
+\end{equation}
+\begin{equation}
+\left(x-x_2\right)^2 + \left(y-y_2\right)^2=d_2^2
+\label{eq:2-2}
+\end{equation}
+\begin{equation}
+\left(x-x_3\right)^2 + \left(y-y_3\right)^2=d_3^2
+\label{eq:2-3}
+\end{equation}
+Persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dapat diubah menjadi persamaan linear dengan melakukan substitusi, sehingga didapat
+$$2\left(x_2-x_1\right)x +2 \left(y_2-y_1\right)y=\alpha$$
+$$2\left(x_3-x_1\right)x+ 2\left(y_3-y_1\right)y=\beta$$
+dengan
+$$\alpha=\left(d_1^2-d_2^2\right)-\left(x_1^2-x_2^2\right)-\left(y_1^2-y_2^2\right)$$
+$$\beta=\left(d_1^2-d_3^2\right)-\left(x_1^2-x_3^2\right)-\left(y_1^2-y_3^2\right).$$
+Posisi $\left(x,y\right)$ didapat dengan menyelesaikan persamaan matriks berikut
+$$x=f\left(d_1,d_2,d_3\right)=\frac{
+	\begin{vmatrix}
+			\alpha & 2Y_1^2 \\
+			\beta & 2Y_1^3 \\
+	\end{vmatrix}}
+{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 \\
+		2X_1^3 & 2Y_1^3 \\
+	\end{vmatrix}
+}$$
+$$y=g\left(d_1,d_2,d_3\right)=\frac{
+	\begin{vmatrix}
+		2X_1^2 & \alpha \\
+		2X_1^3 & \beta \\
+\end{vmatrix}}
+{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 \\
+		2X_1^3 & 2Y_1^3 \\
+	\end{vmatrix}
+}$$
+dengan $X_i^j$ dan $Y_i^j$ adalah $\left(x_i-x_j\right)$ dan $\left(y_i-y_j\right)$.
+
+Trilaterasi 3D dapat dilakukan dengan memodifikasi persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dan mengulangi langkah-langkah pada Trilaterasi 2D. Untuk menentukan posisi $\left(x,y,z\right)$ objek pada bidang tiga dimensi dapat dilakukan dengan menyelesaikan persamaan matriks berikut
+$$
+\hat{x}=\hat{f}\left(d_1,d_2,d_3\right)=\frac{
+	\begin{vmatrix}
+		\alpha & 2Y_1^2 & 2Z_1^2\\
+		\beta & 2Y_1^3 & 2Z_1^3\\
+		\gamma & 2Y_1^4 & 2Z_1^4
+\end{vmatrix}}
+{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
+		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
+		2X_1^2 & 2Y_1^4 & 2Z_1^4
+	\end{vmatrix}
+}
+$$
+$$
+\hat{y}=\hat{g}\left(d_1,d_2,d_3\right)=\frac{
+	\begin{vmatrix}
+		2X_1^2 & \alpha & Z_1^2\\
+		2X_1^3 & \beta & 2Z_1^3\\
+		2X_1^4 & \gamma & 2Z_1^4
+	\end{vmatrix}
+}
+{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
+		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
+		2X_1^2 & 2Y_1^4 & 2_1^4
+	\end{vmatrix}
+}
+$$
+$$\hat{z}=\hat{h}\left(d_1,d_2,d_3\right)=\frac{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 & \alpha\\
+		2X_1^3 & 2Y_1^3  & \beta\\
+		2X_1^4 & 2Y_1^4 & \gamma
+\end{vmatrix}}
+{
+	\begin{vmatrix}
+		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
+		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
+		2X_1^2 & 2Y_1^4 & 2+_1^4
+	\end{vmatrix}
+}
+$$
+
 \subsection{STM32 Nucleo-WL55JC1}
 STM32 Nucleo-WL55JC1 adalah \textit{development board} berbasis mikrokontroler STM32WL55 yang  dikembangkan oleh ST Microelectronics. Mikrokontroler yang digunakan adalah STM32WL55  \textit{dual-core }Arm Cortex-M4/M0+ dengan \textit{clock speed} 48 MHz \cite{STMicroelectronics2022a}.
 
@@ -23,7 +123,7 @@ STM32 Nucleo-WL55JC1 adalah \textit{development board} berbasis mikrokontroler S
 	\centering
 	\includegraphics[width=5cm]{contents/chapter-2/stm32-wl55jc1.jpg}
 	\caption{\textit{Development Board} STM32 Nucleo-WL55JC1}
-	\label{Fig: STM32 Nucleo-WL55JC1}
+	\label{Fig: STM32 Nucleo-WL55JC1}ß
 \end{figure}
 
 Perangkat ini sudah terintegrasi dengan STLINK-V3E, sehingga tidak dibutuhkan perangkat tambahan untuk memrogram dan melakukan \textit{debugging} pada perangkat \cite{STMicroelectronics2022}. Selain itu, perangkat ini juga mendukung penggunaan \textit{expansion board} Arduino dan ST morpho. \textit{Development board} STM32 Nucleo-WL55JC1 ditunjukan oleh Gambar \ref{Fig: STM32 Nucleo-WL55JC1}.
@@ -31,7 +131,3 @@ Perangkat ini sudah terintegrasi dengan STLINK-V3E, sehingga tidak dibutuhkan pe
 Mikrokontroler STM32WL55 memiliki \textit{clock speed} 48 MHz jika dibandingkan dengan Arduino Mega yang hanya 16 MHz. Selain itu, STM32WL55 memiliki SRAM dengan kapasitas 64 KB atau delapan kali lipat dari yang dimiliki oleh Arduino Mega \cite{STMicroelectronics2022b}.
 
 Karena performa tinggi dengan konsumsi daya rendah, maka digunakan mikrokontroler STM32WL55. Selain itu, STM32 juga memiliki komunitas yang tidak kalah luas dengan komunitas Arduino dan ESP-32.
-
-\subsection{Modul GNSS Teseo LIV3FL}
-\subsection{Antena GPS }
-\subsection{Modul LoRa(?)}
