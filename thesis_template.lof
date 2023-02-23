@@ -2,8 +2,11 @@
 \babel@toc {bahasa}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Trilaterasi\relax }}{4}{}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {Development Board} STM32 Nucleo-WL55JC1\relax }}{7}{}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit {Segmen GNSS}\relax }}{4}{}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Trilaterasi\relax }}{5}{}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Struktur pesan C/A NAV GNSS\relax }}{7}{}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces \textit {Development board} STM32 Nucleo-WL55JC1\relax }}{8}{}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces \textit {Pinout} Teseo-LIV3FL \cite {STMicroelectronics2022a}\relax }}{9}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

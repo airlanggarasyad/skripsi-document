@@ -404,8 +404,8 @@
 				\vfill
 				\begin{center}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
-						\vspace{0.3cm} & \vspace{0.3cm} & \vspace{0.3cm}\\
+						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{0.5cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
+						\vspace{0.3cm} & \vspace{0.5cm} & \vspace{0.5cm}\\
 						\textbf{\underline{\getsupervisor{1}{1}}}& &
 						\textbf{\underline{\getsupervisor{2}{1}}} \\
 						\textbf{\getsupervisor{1}{2}} & & \textbf{\getsupervisor{2}{2}}\\

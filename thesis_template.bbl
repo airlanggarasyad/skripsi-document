@@ -21,6 +21,9 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{STMicroelectronics2022a}
+STMicroelectronics, ``{STM32WL55JC},'' jul 2022.
+
 \bibitem{Rohani2013}
 M.~M. Rohani, D.~C. Wijeyesekera, and A.~T.~A. Karim, ``{Bus Operation, Quality
   Service and The Role of Bus Provider and Driver},'' \emph{Procedia
@@ -83,8 +86,9 @@ H.~Seo and H.~Kim, ``{Four Anchor Sensor Nodes Based Localization Algorithm
   communication convergence engineering}, vol.~10, no.~4, pp. 349--358, dec
   2012.
 
-\bibitem{STMicroelectronics2022a}
-STMicroelectronics, ``{STM32WL55JC},'' jul 2022.
+\bibitem{Lenhart2022}
+M.~Lenhart, ``{Distributed Relay/Replay Attacks on GNSS Signals},'' Ph.D.
+  dissertation, KTH Royal Institute of Technology, Stockholm, 2022.
 
 \bibitem{STMicroelectronics2022}
 STMicroelectronics, ``{Nucleo-WL55JC},'' oct 2022.
@@ -93,5 +97,8 @@ STMicroelectronics, ``{Nucleo-WL55JC},'' oct 2022.
 STMicroelectronics, ``{Multiprotocol LPWAN dual core 32-bit
   Arm{\textregistered} Cortex{\textregistered}-M4/M0+ LoRa{\textregistered},
   (G)FSK, (G)MSK, BPSK, up to 256KB flash, 64KB SRAM},'' 2022.
+
+\bibitem{U-blox2011}
+U-blox, ``{NEO-6 u-blox 6 GPS Modules Data Sheet},'' 2011.
 
 \end{thebibliography}

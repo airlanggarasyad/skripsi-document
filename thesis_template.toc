@@ -19,24 +19,30 @@
 \contentsline {section}{\numberline {1.6}Sistematika Penulisan}{2}{}%
 \contentsline {chapter}{\numberline {II}TINJAUAN PUSTAKA}{3}{}%
 \contentsline {section}{\numberline {2.1}Tinjauan Pustaka}{3}{}%
-\contentsline {subsection}{\numberline {2.1.1}Teknologi Pelacak}{3}{}%
+\contentsline {subsection}{\numberline {2.1.1}Sistem Pelacak}{3}{}%
 \contentsline {section}{\numberline {2.2}Dasar Teori}{3}{}%
 \contentsline {subsection}{\numberline {2.2.1}Pita L}{3}{}%
 \contentsline {subsection}{\numberline {2.2.2}Teknologi GNSS}{3}{}%
 \contentsline {subsubsection}{\numberline {2.2.2.1}Trilaterasi}{4}{}%
-\contentsline {subsection}{\numberline {2.2.3}STM32 Nucleo-WL55JC1}{6}{}%
-\contentsline {chapter}{\numberline {III}METODE TUGAS AKHIR}{8}{}%
-\contentsline {section}{\numberline {3.1}Alat dan Bahan Tugas Akhir}{8}{}%
-\contentsline {section}{\numberline {3.2}Alur Tugas Akhir}{8}{}%
-\contentsline {section}{\numberline {3.3}Studi Literatur}{8}{}%
-\contentsline {section}{\numberline {3.4}Analisis Kebutuhan Sistem}{8}{}%
-\contentsline {section}{\numberline {3.5}Perancangan \textit {End Node}}{8}{}%
-\contentsline {section}{\numberline {3.6}Perancangan API dan Basis Data}{8}{}%
-\contentsline {section}{\numberline {3.7}Perancangan Web Penampil}{8}{}%
-\contentsline {chapter}{\numberline {IV}<<Chapter name>>}{9}{}%
-\contentsline {chapter}{\numberline {V}<<Chapter name>>}{10}{}%
-\contentsline {chapter}{DAFTAR PUSTAKA}{11}{}%
+\contentsline {subsubsection}{\numberline {2.2.2.2}Penerima GNSS}{7}{}%
+\contentsline {subsection}{\numberline {2.2.3}STM32 Nucleo-WL55JC1}{7}{}%
+\contentsline {subsection}{\numberline {2.2.4}Teseo-LIV3FL}{8}{}%
+\contentsline {chapter}{\numberline {III}METODE TUGAS AKHIR}{10}{}%
+\contentsline {section}{\numberline {3.1}Alat dan Bahan Tugas Akhir}{10}{}%
+\contentsline {section}{\numberline {3.2}Alur Tugas Akhir}{10}{}%
+\contentsline {section}{\numberline {3.3}Studi Literatur}{10}{}%
+\contentsline {section}{\numberline {3.4}Persiapan Perangkat Keras dan Perangkat Lunak}{10}{}%
+\contentsline {chapter}{\numberline {IV}Hasil dan Pembahasan}{11}{}%
+\contentsline {section}{\numberline {4.1}Persiapan Pengujian}{11}{}%
+\contentsline {section}{\numberline {4.2}Pengujian Jumlah Konstelasi}{11}{}%
+\contentsline {section}{\numberline {4.3}Pengujian \textit {Low Power}}{11}{}%
+\contentsline {section}{\numberline {4.4}Pengujian Akurasi dan Geofence}{11}{}%
+\contentsline {chapter}{\numberline {V}Kesimpulan dan Saran}{12}{}%
+\contentsline {section}{\numberline {5.1}Kesimpulan}{12}{}%
+\contentsline {section}{\numberline {5.2}Saran}{12}{}%
+\contentsline {chapter}{DAFTAR PUSTAKA}{13}{}%
 \contentsline {chapter}{LAMPIRAN}{L-1}{}%
 \contentsline {section}{\numberline {L.1}Sample algorithm}{L-1}{}%
 \contentsline {section}{\numberline {L.2}Sample Python code}{L-2}{}%
 \contentsline {section}{\numberline {L.3}Sample Matlab code}{L-3}{}%
+%

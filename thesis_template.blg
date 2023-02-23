@@ -13,53 +13,62 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
+Repeated entry---line 1647 of file references.bib
+ : @unpublished{STMicroelectronics2022
+ :                                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1665 of file references.bib
+ : @unpublished{STMicroelectronics2022a
+ :                                     ,
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Name 1 in "{National Coordination Office for Space-Based Positioning}, Navigation, and Timing." has a comma at the end for entry NationalCoordinationOfficeforSpace-BasedPositioning2021
 while executing---line 2403 of file IEEEtran.bst
 Warning--empty note in STMicroelectronics2022b
+Warning--empty note in U-blox2011
 
 Done.
-You've used 15 entries,
+You've used 17 entries,
             4087 wiz_defined-function locations,
-            918 strings with 10608 characters,
-and the built_in function-call counts, 9665 in all, are:
-= -- 781
-> -- 211
+            932 strings with 10824 characters,
+and the built_in function-call counts, 10302 in all, are:
+= -- 845
+> -- 219
 < -- 80
-+ -- 115
-- -- 35
-* -- 439
-:= -- 1498
-add.period$ -- 30
-call.type$ -- 15
-change.case$ -- 14
++ -- 119
+- -- 37
+* -- 464
+:= -- 1643
+add.period$ -- 34
+call.type$ -- 17
+change.case$ -- 16
 chr.to.int$ -- 189
-cite$ -- 16
-duplicate$ -- 701
-empty$ -- 764
-format.name$ -- 43
-if$ -- 2218
+cite$ -- 19
+duplicate$ -- 747
+empty$ -- 813
+format.name$ -- 45
+if$ -- 2354
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 119
-newline$ -- 68
-num.names$ -- 15
-pop$ -- 279
+int.to.str$ -- 17
+missing$ -- 129
+newline$ -- 74
+num.names$ -- 17
+pop$ -- 295
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 739
+skip$ -- 791
 stack$ -- 0
-substring$ -- 454
-swap$ -- 565
+substring$ -- 456
+swap$ -- 596
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 15
-warning$ -- 1
-while$ -- 51
-width$ -- 17
-write$ -- 153
-(There was 1 error message)
+type$ -- 17
+warning$ -- 2
+while$ -- 53
+width$ -- 19
+write$ -- 170
+(There were 3 error messages)
