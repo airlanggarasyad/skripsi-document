@@ -59,6 +59,7 @@
 \LoadClass[12pt]{report}  % this class is based on the report class
 \usepackage{geometry}% easy layouting
 %\usepackage{hyperref}% hyperlink
+\usepackage{tabulary}
 \usepackage{subcaption} % subfigure
 \usepackage{tocloft}% edit font toc
 \usepackage{fancyhdr}% page number
@@ -81,6 +82,8 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
 \usetikzlibrary{calc}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
@@ -88,6 +91,13 @@
 \bibliographystyle{IEEEtran}
 \usepackage[version=3]{mhchem}
 
+\usepackage[normalem]{ulem}
+\usepackage{tabularray}
+
+\DefTblrTemplate{contfoot-text}{normal}{Dilanjutkan pada halaman selanjutnya}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{(Lanjutan)}
+\SetTblrTemplate{conthead-text}{normal}
 % Page break for equation
 \allowdisplaybreaks
 

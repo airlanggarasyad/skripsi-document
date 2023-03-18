@@ -12,22 +12,48 @@ Masalah serupa juga terjadi di India. Berdasarkan  \cite{Sutar2016}, masyarakat 
 \textit{Global Positioning System} atau GPS adalah teknologi sistem navigasi berbasis satelit yang dapat menunjukan posisi secara akurat. Dengan adanya sistem pelacak lokasi bus Trans Gadjah Mada berbasis GPS, diharapkan dapat membantu civitas akademika Universitas Gadjah Mada untuk mengestimasi waktu kedatangan bus.
 
 \section{Rumusan Masalah}
-\section{Batasan Tugas Akhir}
-Batasan masalah pada tugas akhir ini adalah:
+Adapun rumusan masalah dari penelitian ini sebagai berikut:
 \begin{enumerate}
-	\item Hanya digunakan satu buah \textit{end node} dan pengambilan data dilakukan pada satu putaran Trans Gadjah Mada dimulai dari Halte 0 (Perpustakaan Universitas Gadjah Mada) sampai kembali ke Halte 0.
-	\item Penelitian ini difokuskan pada pengembangan \textit{firmware} pada \textit{platform} STM32.
-	\item Aspek perangkat keras \textit{node} dan \textit{gateway} bukan merupakan fokus pada penelitian ini.
+	\item Bagaimana pengaruh penggunaan \textit{multi-constellation} jika dibandingkan dengan penggunaan konstelasi GPS saja?
+	\item Bagaimana pengaruh dari modul GNSS jika algoritma \textit{low power mode} diaktifkan?
+	\item Bagaimana akuisisi data dari modul GNSS untuk menentukan letak posisi modul GNSS terhadap \textit{geofencing} yang telah diatur sebelumnya?
 \end{enumerate}
-\section{Tujuan Tugas Akhir}
-\section{Manfaat Tugas Akhir}
+
+\section{Tujuan Penelitian}
+Tujuan dari penelitian ini adalah mengembangkan \textit{firmware} pada sisi mikrokontroler dan modul GNSS. Modul GNSS diharapkan dapat memberikan posisi dari aset secara akurat, tetapi dengan konsumsi daya serendah mungkin untuk kemudian diproses oleh mikrokontroler untuk dikirimkan ke \textit{network server}.	
+
+\section{Batasan Penelitian}
+Dalam penelitian ini terdapat beberapa ruang lingkup atau batasan masalah, diantaranya:
+\begin{enumerate}
+	\item Objek Penelitian: Studi kinerja \textit{firmware} pelacak bus Trans Gadjah Mada di lingkungan Universitas Gadjah Mada.
+	\item Metode Penelitian: Penelitian pengembangan \textit{firmware} untuk melacak posisi bus kampus.
+	\item Waktu dan Tempat Penelitian: Waktu penelitian adalah November 2022 s.d. Maret 2023 di lingkungan Universitas Gadjah Mada.
+	\item Populasi dan Sampel: Populasi adalah rute keseluruhan Trans Gadjah Mada dan sampel diambil pada rute Trans Gadjah Mada di Fakultas Teknik.
+	\item Variabel: Variabel bebas adalah jumlah konstelasi GNSS yang digunakan dan variabel terikat adalah nilai \textit{dilution of precision} yang didapat.
+	\item Hipotesis: Bahwa pengembangan \textit{firmware} dengan \textit{multi-constellation} dapat meningkatkan akurasi dari hasil pembacaan GNSS.
+	\item Keterbatasan Penelitian: Keterbatasan penelitian adalah 
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+\textit{Firmware} yang dikembangkan diharapkan dapat menerima data lokasi dari modul GNSS dan mengirimkan data tersebut ke \textit{network server}.
+
 \section{Sistematika Penulisan}
 \textbf{BAB I}
 
+Bab ini membahas mengenai latar belakang, rumusan masalah, batasan masalah, tujuan, manfaat, dan sistematika penulisan penelitian.
+
 \textbf{BAB II}
+
+Bab ini membahas hasil tinjauan pustaka dan landasan teori. Tinjauan pustaka menjelaskan penelitian-penelitian sebelumnya yang terkait dengan penelitian ini.
 
 \textbf{BAB III}
 
+Bab ini membahas mengenai alat dan bahan yang digunakan dalam penelitian, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi data dari modul GNSS hingga dikirimkan ke \textit{network server}.
+
 \textbf{BAB VI}
 
+Bab ini membahas mengenai persiapan pengujian, hasil pengujian, dan kelebihan serta kekurangan sistem yang telah dirancang. Hasil pengujian meliputi pengujian mode daya rendah, \textit{multi-constellation}, dan pengiriman data ke \textit{network server} oleh \textit{end node}.
+
 \textbf{BAB V}
+
+Bab ini membahas mengenai kesimpulan dari penelitian yang telah dilakukan dan saran untuk penelitian selanjutnya.

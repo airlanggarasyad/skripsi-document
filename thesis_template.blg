@@ -13,62 +13,73 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
-Repeated entry---line 1647 of file references.bib
- : @unpublished{STMicroelectronics2022
- :                                    ,
+Repeated entry---line 397 of file references.bib
+ : @misc{STMicroelectronics2022a
+ :                              ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1665 of file references.bib
- : @unpublished{STMicroelectronics2022a
- :                                     ,
+Repeated entry---line 413 of file references.bib
+ : @misc{STMicroelectronics2022
+ :                             ,
 I'm skipping whatever remains of this entry
+Warning--entry type for "EXAR2005" isn't style-file defined
+--line 755 of file references.bib
+Warning--entry type for "Rui2015" isn't style-file defined
+--line 819 of file references.bib
+Warning--entry type for "STMicroelectronics2023" isn't style-file defined
+--line 837 of file references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty note in STMicroelectronics2022a
+Warning--missing publisher in Langley1999
 Name 1 in "{National Coordination Office for Space-Based Positioning}, Navigation, and Timing." has a comma at the end for entry NationalCoordinationOfficeforSpace-BasedPositioning2021
 while executing---line 2403 of file IEEEtran.bst
+Warning--empty booktitle in Tahsin2015
+Warning--empty booktitle in Pratama2020
+Warning--empty booktitle in Mahmoud2016
+Warning--empty note in STMicroelectronics2022
 Warning--empty note in STMicroelectronics2022b
-Warning--empty note in U-blox2011
 
 Done.
-You've used 17 entries,
+You've used 29 entries,
             4087 wiz_defined-function locations,
-            932 strings with 10824 characters,
-and the built_in function-call counts, 10302 in all, are:
-= -- 845
-> -- 219
-< -- 80
-+ -- 119
-- -- 37
-* -- 464
-:= -- 1643
-add.period$ -- 34
-call.type$ -- 17
-change.case$ -- 16
-chr.to.int$ -- 189
-cite$ -- 19
-duplicate$ -- 747
-empty$ -- 813
-format.name$ -- 45
-if$ -- 2354
+            1007 strings with 13158 characters,
+and the built_in function-call counts, 18471 in all, are:
+= -- 1456
+> -- 443
+< -- 136
++ -- 236
+- -- 80
+* -- 841
+:= -- 2831
+add.period$ -- 60
+call.type$ -- 29
+change.case$ -- 28
+chr.to.int$ -- 315
+cite$ -- 36
+duplicate$ -- 1357
+empty$ -- 1522
+format.name$ -- 98
+if$ -- 4284
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 129
-newline$ -- 74
-num.names$ -- 17
-pop$ -- 295
+int.to.str$ -- 29
+missing$ -- 244
+newline$ -- 110
+num.names$ -- 31
+pop$ -- 597
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 791
+skip$ -- 1414
 stack$ -- 0
-substring$ -- 456
-swap$ -- 596
-text.length$ -- 17
+substring$ -- 760
+swap$ -- 1065
+text.length$ -- 31
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 17
-warning$ -- 2
-while$ -- 53
-width$ -- 19
-write$ -- 170
+type$ -- 29
+warning$ -- 7
+while$ -- 90
+width$ -- 31
+write$ -- 273
 (There were 3 error messages)

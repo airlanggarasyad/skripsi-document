@@ -21,8 +21,28 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{EXAR2005}
+EXAR, ``St16c550 uart with 16-byte fifo's.'' 2005.
+
+\bibitem{STMicroelectronics2023}
+STMicroelectronics, ``Stm32 32-bit arm cortex mcus,'' 2023.
+
 \bibitem{STMicroelectronics2022a}
-STMicroelectronics, ``{STM32WL55JC},'' jul 2022.
+STMicroelectronics, ``{Teseo-LIV3FL Datasheet},'' 2022.
+
+\bibitem{Li2019}
+X.~Li, K.~Zhang, F.~Ma, W.~Zhang, Q.~Zhang, Y.~Qin, H.~Zhang, Y.~Meng, and
+  L.~Bian, ``Integrated precise orbit determination of multi-gnss and large leo
+  constellations,'' \emph{Remote Sensing}, vol.~11, p. 2514, 10 2019.
+
+\bibitem{Bury2019}
+G.~Bury, K.~Sośnica, and R.~Zajdel, ``Multi-gnss orbit determination using
+  satellite laser ranging,'' \emph{Journal of Geodesy}, vol.~93, pp.
+  2447--2463, 12 2019.
+
+\bibitem{Langley1999}
+R.~B. Langley, \emph{{The Development of Survey Instrument}}, 5th~ed., 1999,
+  vol.~10.
 
 \bibitem{Rohani2013}
 M.~M. Rohani, D.~C. Wijeyesekera, and A.~T.~A. Karim, ``{Bus Operation, Quality
@@ -90,15 +110,53 @@ H.~Seo and H.~Kim, ``{Four Anchor Sensor Nodes Based Localization Algorithm
 M.~Lenhart, ``{Distributed Relay/Replay Attacks on GNSS Signals},'' Ph.D.
   dissertation, KTH Royal Institute of Technology, Stockholm, 2022.
 
+\bibitem{Tahsin2015}
+M.~Tahsin, S.~Sultana, T.~Reza, and M.~Hossam-E-Haider, ``Analysis of dop and
+  its preciseness in gnss position estimation.''\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 5 2015, pp. 1--6.
+
+\bibitem{Hofmann-Wellenhof2008}
+B.~Hofmann-Wellenhof, H.~Lichtenegger, and E.~Wasle, \emph{{Bernhard
+  Hofmann-Wellenhof , Herbert Lichtenegger , Elmar Wasle}}.\hskip 1em plus
+  0.5em minus 0.4em\relax Wien: Springer-Verlag, 2008.
+
+\bibitem{Sari2021}
+M.~W. Sari, B.~Santoso, and M.~N.~A. Azman, ``Implementing geo positioning
+  system for children tracking location monitoring based on android,''
+  \emph{Scientific Journal of Informatics}, vol.~8, pp. 161--167, 5 2021.
+
+\bibitem{Rui2015}
+R.~Diogo~de Sousa~Morais, ``Securetracking: secure position monitoring of
+  children and people with mental disabilities,'' pp. 5--6, 2015.
+
+\bibitem{Pratama2020}
+E.~R. Pratama, F.~Renaldi, F.~R. Umbara, and E.~C. Djamal, ``Geofencing
+  technology in monitoring of geriatric patients suffering from dementia and
+  alzheimer.''\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 9 2020, pp.
+  106--111.
+
+\bibitem{Feng2013}
+T.~Feng and H.~J. Timmermans, ``{Transportation mode recognition using GPS and
+  accelerometer data},'' \emph{Transportation Research Part C: Emerging
+  Technologies}, vol.~37, pp. 118--130, dec 2013.
+
+\bibitem{Omatu2013}
+S.~Omatu, J.~Neves, J.~M.~C. Rodriguez, J.~F.~P. Santana, and S.~R. Gonzalez,
+  \emph{Distributed Computing and Artificial Intelligence}, S.~Omatu, J.~Neves,
+  J.~M.~C. Rodriguez, J.~F.~P. Santana, and S.~R. Gonzalez, Eds.\hskip 1em plus
+  0.5em minus 0.4em\relax Springer International Publishing, 2013, vol. 217.
+
+\bibitem{Mahmoud2016}
+H.~Mahmoud and N.~Akkari, ``Shortest path calculation: A comparative study for
+  location-based recommender system.''\hskip 1em plus 0.5em minus 0.4em\relax
+  IEEE, 3 2016, pp. 1--5.
+
 \bibitem{STMicroelectronics2022}
-STMicroelectronics, ``{Nucleo-WL55JC},'' oct 2022.
+STMicroelectronics, ``{Hardware specifications for Teseo-LIV3FL},'' 2022.
 
 \bibitem{STMicroelectronics2022b}
 STMicroelectronics, ``{Multiprotocol LPWAN dual core 32-bit
   Arm{\textregistered} Cortex{\textregistered}-M4/M0+ LoRa{\textregistered},
   (G)FSK, (G)MSK, BPSK, up to 256KB flash, 64KB SRAM},'' 2022.
-
-\bibitem{U-blox2011}
-U-blox, ``{NEO-6 u-blox 6 GPS Modules Data Sheet},'' 2011.
 
 \end{thebibliography}

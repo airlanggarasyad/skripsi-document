@@ -1,8 +1,6 @@
 \chapter{TINJAUAN PUSTAKA}
 
 \section{Tinjauan Pustaka}
-\label{sec: Tinjauan_Pustaka}
-\subsection{Sistem Pelacak}
 Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak aset dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}.
 
 Tim peneliti dari \textit{Vidyalankar Institute of Technology} telah merancang suatu sistem yang dapat mendeteksi lokasi dari kendaraan dan juga emisi \ce{CO} yang dihasilkan. Pada sistem yang dirancang, digunakan \textit{development board} Arduino Uno yang berbasis mikrokontroler ATmega328. Ketika kandungan gas \ce{CO} sudah melebihi ambang batas, sistem akan memutus pengiriman bahan bakar dan kemudian mengirimkan data koordinat dari modul GPS ke \textit{server} Apache yang telah dirancang \cite{Asha2022}.
@@ -11,8 +9,20 @@ Sebuah sistem \textit{speedometer} telah dirancang oleh \cite{Najmurrokhman2021}
 
 Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of London} menggunakan mikrokontroler AT89S52 dari keluarga 8051. Digunakan modul GPS M-89 yang diatur untuk menerima isyarat transmisi satelit pada frekuensi 1575.42 MHz. Data yang diterima akan ditampilkan pada layar LCD dan dikirimkan dengan modul GSM. Kemudian, data yang telah diterima akan ditampilkan pada situs web.
 
+Berdasarkan penelitian-penelitian di atas, belum ada pembahasan mengenai perancangan sistem pelacak GNSS dengan konfigurasi \textit{multi-constellation} berbasis LoRa. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak GNSS \textit{multi-constellation} menggunakan teknologi LoRa.
+
 \section{Dasar Teori}
-\subsection{Pita L}
+\subsection{\textit{Firmware}}
+\textit{Firmware} adalah suatu perangkat lunak yang memberikan akses untuk kendali level rendah untuk satu komputer khusus. Perangkat lunak tersebut dapat berupa sistem operasi untuk menangani perangkat lunak lain atau untuk komputasi dengan tujuan yang lebih spesifik. \textit{Firmware} dapat dijumpai di berbagai perangkat keras seperti komputer, sistem tertanam, periferal, dan lain-lain.
+
+Letak \textit{firmware} berada di memori \textit{non-volatile}. ROM BIOS adalah contoh \textit{firmware} yang berfungsi untuk inisialisasi perangkat keras ketika komputer dihidupkan dan memungkinkan untuk menambah program lain dengan level yang lebih tinggi di masa depan. Di sisi lain, \textit{firmware} pada sistem tertanam adalah satu-satunya perangkat lunak yang berjalan di sistem tersebut.
+
+\subsubsection{Bahasa Pemrograman C}
+Bahasa C (dibaca "si") adalah bahasa pemrograman \textit{general-purpose} tingkat tinggi yang dikembangkan oleh Dennis Ritchie pada tahun 1972. Hingga saat ini, bahasa C adalah salah satu bahasa pemrograman yang paling banyak digunakan untuk bergai macam pengembangan seperti \textit{firmware} sistem tertanam. Kepopuleran tersebut karena bahasa C adalah bahasa yang fleksibel, ringkas, dan efisien.
+
+Pada awalnya, bahasa C hanya dirancang untuk implementasi di sistem operasi, tetapi dengan adanya mekanisme \textit{data abstraction} maka dimungkinkan untuk pengembangan aplikasi level tinggi maupun rendah. Sebagai contoh, anggota \textit{struct} dapat ditata sedemikian rupa agar sesuai dengan alamat \textit{port} dari perangkat keras. Selain itu, pada bahasa C juga terdapat operasi tingkat rendah seperti \textit{bit shift}, logika AND, dan lainnya.
+
+Pada penelitian ini digunakan bahasa pemrograman C dan pustaka \textit{Hardware Abstraction Layers} (HAL) untuk pengembangan \textit{firmware} pada platform STM32.
 
 \subsection{Teknologi GNSS}
 \textit{Global Navigation Satellite System} (GNSS) adalah istilah yang digunakan untuk suatu sistem navigasi radio yang menggunakan konstelasi satelit. Salah satu contoh GNSS adalah \textit{Global Positioning System} (GPS) milik Amerika Serikat. Selain GPS terdapat lima sistem GNSS lainnya yaitu, Galileo (Uni Eropa), BeiDou (Republik Rakyat Tiongkok), GLONASS (Federasi Rusia), IRNSS (India), dan QZSS (Jepang) \cite{NationalCoordinationOfficeforSpace-BasedPositioning2021}. Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satelit \cite{TheEuropeanGlobalNavigationSatelliteSystemsAgency2021}. Satelit GNSS akan terus memancarkan isyarat radio pada pita frekuensi L.
@@ -20,11 +30,54 @@ Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of Lon
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=8cm]{contents/chapter-2/gnss_segment.jpg}
-	\caption{\textit{Segmen GNSS}}
+	\caption{Segmen GNSS}
 	\label{Fig: gnss_segment}
 \end{figure}
 
 Setiap GNSS terdiri dari tiga buah segmen, yaitu segmen satelit sebagai pemancar isyarat, segmen kendali untuk injeksi data dan memantau performa satelit, dan segmen pengguna. Hubungan dari ketiga segmen GNSS ditunjukan oleh Gambar \ref{Fig: gnss_segment}. 
+
+\subsubsection{Orbit GNSS}
+Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut memengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjuka oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
+	\caption{Struktur Internal UART ST16C550 \cite{EXAR2005}}
+	\label{Fig: alt-comp}
+\end{figure}
+
+\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit Planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
+\begin{enumerate}
+	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
+	\item \textit{Big} LEO adalah sistem yang beroperasi pada Pita L dengan frekuensi 1.6 GHz s.d. 2.5 GHz dengan kapabilitas teleponi seperti suara, data, dan faksimili.
+	\item \textit{Super} LEO adalah sistem yang beroperasi pada Pita Ka dengan frekuensi 20 GHz s.d. 30 GHz.
+\end{enumerate}
+
+\textbf{\textit{Medium Earth Orbit} (MEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 10.000 s.d. 20.000 km. Satelit dengan orbit MEO membutuhkan jumlah satelit yang lebih sedikit untuk jangkauan seluruh dunia jika dibandingkan dengan orbit LEO.
+
+\textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit Geo adalah secara teoretis hanya membutuhkan tiga hingga empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
+
+Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
+
+\begin{table}[H]
+	\caption{Orbit dan Ketinggian setiap Konstelasi \cite{Li2019} \cite{Bury2019}}
+	\vspace{0.5em}
+	\centering
+	\begin{tabular}{ccccc}
+		\hline
+		\textbf{GNSS} &\textbf{Tipe Orbit} & \textbf{Ketinggian (km)} & \textbf{Satelit} & \textbf{Total Satelit}\\
+		\hline 
+		\textbf{GPS} & MEO & 20.180 & 24 & 24\\
+		\textbf{GLONASS} & MEO & 19.100 & 24 & 24\\
+		\textbf{GALILEO} & MEO & 23.220 & 30 & 30\\
+		\textbf{Beidou} & GEO & 35.786 & 3\\
+		& IGSO & 35.786 & 3 & 30\\
+		& MEO& 21.528 & 24\\
+		\textbf{QZSS} & IGSO &32.000 s.d. 40.000 & 5 & 5\\
+		\hline
+	\end{tabular}
+	\label{Tab: gnss-orbit}
+\end{table}
 
 \subsubsection{Trilaterasi}
 \begin{figure}[ht]
@@ -135,9 +188,155 @@ Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh s
 	\label{Fig: gnss_message_structure}
 \end{figure}
 
-Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12.5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}.
+Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12.5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
 
-\subsection{STM32 Nucleo-WL55JC1}
+\subsection{Ketelitian GNSS}
+Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. Akurasi adalah tingkat kedekatan hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel (Novatel, 2003). Perbedaan tingkat akurasi dan presisi ditunjukan oleh Gambar \ref{Fig: acc-and-prec-diff}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/acc.png}
+	\caption{Ilustrasi Perbedaan Tingkat Akurasi dan Presisi}
+	\label{Fig: acc-and-prec-diff}
+\end{figure}
+
+Pada penelitian ini performa GNSS akan ditinjau berdasarkan nilai \textit{Dilution of Precision} (DOP) dan \textit{Circular Error Probability} (CEP).
+
+\subsubsection{\textit{Dilution of Precision}}
+\textit{Dilution of Precision} atau DOP adalah suatu konsep sederhana yang banyak digunakan untuk mengukur efektivitas dari suatu pengukuran. Nilai DOP dapat diestimasi menggunakan perhitungan yang telah dlakukan pada penelitian \cite{Tahsin2015} . Semakin kecil nilai DOP maka semakin baik \cite{Hofmann-Wellenhof2008}. Klasifikasi nilai DOP menurut \cite{Langley1999} ditunjukan oleh Tabel \ref{Tab: Nilai_DOP}.
+
+\begin{table}[H]
+	\caption{Klasifikasi Nilai DOP \cite{Langley1999}}
+	\vspace{0.5em}
+	\centering
+	\begin{tabulary}{1.0\textwidth}{p{.1\textwidth} p{.2\textwidth} p{.6\textwidth} }
+		\hline
+		\multicolumn{1}{c}{\textbf{DOP}} & \multicolumn{1}{c}{\textbf{Klasifikasi}} & \multicolumn{1}{c}{\textbf{Keterangan}}\\
+		\hline 
+		
+		\multicolumn{1}{c}{< 1} & 
+		\multicolumn{1}{c}{Ideal} & 
+		Dapat digunakan untuk aplikasi yang membutuhkan ketelitian tinggi.\\
+		
+		\multicolumn{1}{c}{1 - 2} & 
+		\multicolumn{1}{c}{Sangat Baik} & 
+		Hasil pengukuran posisi sudah cukup untuk aplikasi yang sensitif terhadap ketelitian.\\
+		
+		\multicolumn{1}{c}{2 - 5} & 
+		\multicolumn{1}{c}{Cukup} &
+		Standar minimal hasil pengukuran. \\ 
+		
+		\multicolumn{1}{c}{5 - 10} & 
+		\multicolumn{1}{c}{Sedang} & 
+		Hasil pengukuran posisi sudah dapat digunakan, tetapi kualitas \textit{fix}-nya masih harus diperbaiki.\\
+
+		\multicolumn{1}{c}{10 - 20} & 
+		\multicolumn{1}{c}{Buruk}  & 
+		Estimasi posisi hanya dapat digunakan untuk estimasi saja.\\ 
+
+		\multicolumn{1}{c}{> 20} & 
+		\multicolumn{1}{c}{Sangat Buruk} & 
+		Hasil pengukuran tidak dapat digunakan.
+		
+		\\ \hline
+	\end{tabulary}
+	\label{Tab: Nilai_DOP}
+\end{table}
+
+Terdapat tiga nilai DOP, yaitu
+\begin{enumerate}
+	\item \textbf{\textit{Horizontal Dilution of Precision} (HDOP)}: Mendeskripsikan efek dari nilai DOP pada bidang horizontal. Semakin rendah nilai HDOP maka semakin akurat posisi garis bujur dan garis lintang yang didapat.
+	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebar, sehingga akurasi yang didapat semakin besar.
+	\item \textbf{\textit{Vertical Dilution of Precision} (VDOP)}: Mendeskripsikan efek dari nilai DOP pada posisi vertikal. Semakin rendah nilai VDOP maka semakin akurat nilai ketinggian yang didapat.
+\end{enumerate}
+
+\subsubsection{\textit{Circular Error Probability} (CEP)}
+\textit{Circular Error Probability} atau CEP adalah nilai yang digunakan untuk meninjau tingkat kepresisian dari suatu modul GNSS. Nilai CEP didefinisikan sebagai jari-jari dari lingkaran yang berisi 50\% dari hasil pengukuran dengan jari-jari di nilai rata-ratanya.
+
+Nilai CEP dapat dihitung dengan menggunakan Persamaan 2-4.
+
+\begin{equation}
+CEP = 0.62 \sigma_y + 0.56 \sigma_x
+\label{eq:2-4}
+\end{equation}
+
+dengan $\sigma_x$ adalah standar deviasi garis bujur dan $\sigma_y$ adalah standar deviasi garis lintang. Nilai CEP dapat digunakan untuk meninjau tingkat ketelitian dari modul GNSS.
+
+\subsection{\textit{Geofence}}
+\textit{Geofence} adalah batasan maya untuk memantau objek di dalam suatu area tertentu \cite{Sari2021}. Jika objek melintasi daerah di luar batasan tersebut maka sistem akan mengirimkan notifikasi bahwa objek berada di luar daerah yang telah ditentukan. Tiga teknik yang dapat digunakan untuk mendefinisikan area \textit{geofence} \cite{Rui2015} adalah:
+
+\begin{enumerate}
+	\item \textbf{Poligon}: Daerah \textit{geofence} didefinisikan pada sebuah poligon dengan verteks berupa titik-titik koordinat.
+	\item \textbf{\textit{Point of Interest}}: Daerah \textit{geofence} dideskripsikan sebagai suatu lingkaran dengan jari-jari tertentu dan titik pusat lingkaran berupa suatu titik koordinat.
+	\item \textbf{Rute}: Daerah \textit{geofence} berada di sekitar rute yang telah ditentukan.
+\end{enumerate}
+
+Untuk kasus \textit{point of interest}, jarak dari koordinat titik pusat lingkaran ke satu titik lainnya dapat dihitung dengan Persamaan Haversine \cite{Pratama2020}.
+
+\subsubsection{Persamaan Haversine}
+Persamaan Haversine adalah salah satu persamaan penting dalam bidang Navigasi. Masukan persamaan Haversine berupa dua titik koordinat garis lintang dan garis bujur dari kedua titik \cite{Hofmann-Wellenhof2008}\cite{Feng2013}.  Misalkan sudut pusat antara dua titik adalah $\theta = \frac{d}{r}$ maka fungsi Haversin didefinisikan sebagai
+
+$$\text{hav}(\theta) = \sin^2{\left(\frac{\theta}{2}\right)}$$
+
+Asumsikan bahwa Planet Bumi berbentuk bola sempurna dengan jari-jari $R=6.367,45$km. Misalkan dua titik di permukaan bumi dengan koordinat masing-masing adalah $(lat_1, lon_1)$ dan $(lat_2, lon_2)$ dalam satuan radian. Selisih dari titik koordinat garis bujur dan garis lintangnya adalah
+
+$$
+\begin{aligned}
+	\Delta lat &= lat_1 - lat_2 \\
+	\Delta lon &= lon_1 - lon_2
+\end{aligned}
+$$
+
+Persamaan Haversin untuk dua buah titik di permukaan suatu bola didefinisikan sebagai
+
+$$
+h = \mathrm{hav}\left(\frac{d}{R}\right) = \mathrm{hav}\left(\Delta lat\right) + \cos{\left(lat_1\right)} \cos{\left(lat_2\right)} \mathrm{hav}\left(\Delta lon\right)
+$$
+
+dengan $d$ adalah jarak dari dua titik dan $R$ adalah jari-jari dari bola.
+
+Maka jarak $d$ dari kedua titik tersebut didapat dengan mengalikan jari-jari Planet Bumi $r$ dengan invers dari fungsi Haversin \cite{Omatu2013}
+
+$$
+\begin{aligned}
+	d &= r \text{ }\mathrm{archav}(h) = 2r \arcsin{\left(\sqrt{h}\right)} \\
+	&= 2r \arcsin{\sqrt{\sin^2{\left(\frac{\Delta lat}{2}\right)}  \cos{(lat_1)}\cos{(lat_2)} +\sin^2{\left(\frac{\Delta lon}{2}\right)}}}
+\end{aligned} 
+$$
+
+Komputasi menggunakan Persamaan Haversin lebih sederhana dan ringan jika dibandingkan dengan Metode Vincenty dengan persentase galat sebesar 0-0,334\% \cite{Mahmoud2016}.
+
+\subsection{STM32}
+STM32 merupakan mikrokontroler 32-bit yang dikembangkan oleh perusahaan STMicroelectronics. Mikrokontroler STM32 berbasis arsitektur ARM Cortex-M. Keluarga mikrokontroler STM32 dapat dibagi menjadi lima kelompok, yaitu \textit{Mainstream}, \textit{High Performance}, \textit{Ultra-low-power}, dan \textit{Wireless}. Gambar \ref{Fig: stm32-groups} menunjukan pembagian mikrokontroler STM32.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/stm-32-groups.png}
+	\caption{Pembagian Mikrokontroler STM32 \cite{STMicroelectronics2023}}
+	\label{Fig: stm32-groups}
+\end{figure}
+
+Terdapat berbagai seri STM32 dengan arsitektur yang juga berbagai macam. Tabel \ref{Tab: stm-arch-table} menunjukan arsitektur yang digunakan oleh setiap seri STM32.
+
+\begin{table}[H]
+	\caption{Jenis STM32 dan Arsitekturnya}
+	\vspace{0.5em}
+	\centering
+	\begin{tabular}{cc}
+		\hline
+		\textbf{Arsitektur} & \textbf{Seri STM32} \\
+		\hline 
+		Cortex-M3 & F1, F2, dan L1\\
+		Cortex-M4F & F3, F4, G4, L4, L4+, WB, dan WL\\
+		Cortex-M0 & F0\\ 
+		Cortex-M0+ & G0 dan L0\\
+		Cortex-M7F & F7 dan H7\\ 
+		Cortex-M33F & L5 dan U5\\ \hline
+	\end{tabular}
+	\label{Tab: stm-arch-table}
+\end{table}
+
+\subsubsection{STM32 Nucleo-WL55JC1}
 STM32 Nucleo-WL55JC1 adalah \textit{development board} berbasis mikrokontroler STM32WL55 yang  dikembangkan oleh ST Microelectronics. Mikrokontroler yang digunakan adalah STM32WL55  \textit{dual-core }Arm Cortex-M4/M0+ dengan \textit{clock speed} 48 MHz \cite{STMicroelectronics2022a}.
 
 \begin{figure}[ht]
@@ -153,9 +352,39 @@ Mikrokontroler STM32WL55 memiliki \textit{clock speed} 48 MHz jika dibandingkan 
 
 Karena performa tinggi dengan konsumsi daya rendah, maka digunakan mikrokontroler STM32WL55. Selain itu, STM32 juga memiliki komunitas yang tidak kalah luas dengan komunitas Arduino dan ESP-32.
 
+\subsubsection{STLINK-V3}
+STLINK-V3 adalah perangkat yang digunakan untuk memrogram dan \textit{debugging} pada mikrokontroler STM32 dan STM8. Modul STLINK-V3 menggunakan antarmuka JTAG atau \textit{Serial Wire Debugging} (SWD) untuk melakukan komunikasi dengan mikrokontroler. Pada STM32 Nucleo-WL55JC1, STLINK-V3 sudah tertanam di \textit{development board}. Gambar X menunjukan letak STLINK-V3 di \textit{development board} STM32 Nucleo-WL55JC1 (ditandai oleh kotak berwarna merah).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=8cm]{contents/chapter-2/stlink-in-wl55.jpg}
+	\caption{Letak STLINK-V3 pada STM32 Nucleo-WL55JC1}
+	\label{Fig: stlink-in-wl55}
+\end{figure}
+
+\subsubsection{STM32Cube IDE}
+STM32Cube IDE adalah \textit{platform} untuk pengembangan \textit{firmware} mikrokontroler STM32 berbasis C/C++. IDE ini terdiri dari aplikasi untuk konfigurasi periferal, menyediakan kerangka kode, \textit{compiler}, dan beberapa fitur untuk melakukan \textit{debugging}. Gambar \ref{Fig: stm32-ide} menunjukan tampilan dari STM32 Cube IDE.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-2/stm32-ide.png}
+	\caption{Tampilan STM32Cube IDE}
+	\label{Fig: stm32-ide}
+\end{figure}
+
+Konfigurasi dari konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-2/stm32-mx.png}
+	\caption{Konfigurasi Periferal pada STM32Cube IDE}
+	\label{Fig: stm32-mx}
+\end{figure}
+
 \subsection{Teseo-LIV3FL}
-Teseo-LIV3FL adalah modul GNSS yang diproduksi oleh STMicroelectronics. Modul ini mendukung berbagai konstelasi (GPS, GLONASS, Galileo, QZSS, dan BeiDou) \cite{STMicroelectronics2022}. 
-Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF. Modul Teseo-LIV3FL mendukung komunikasi secara UART dan I2C seperti yang ditunjukan pada Gambar \ref{Fig: teseo_pinout}.
+Teseo-LIV3FL adalah modul GNSS yang diproduksi oleh STMicroelectronics. Modul ini mendukung berbagai konstelasi (GPS, GLONASS, Galileo, QZSS, dan BeiDou) \cite{STMicroelectronics2022}.
+Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF. Modul Teseo-LIV3FL mendukung komunikasi secara UART dan I2C seperti yang ditunjukan pada Gambar \ref{Fig: teseo_pinout}. Dibutuhkan tegangan 3.3 V untuk mengoperasikan modul Teseo-LIV3FL.
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/teseo_pinout.png}
@@ -163,4 +392,72 @@ Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengur
 	\label{Fig: teseo_pinout}
 \end{figure}
 
-Kelebihan dari modul Teseo-LIV3FL adalah membutuhkan daya rendah untuk mengoperasikannya (8$\mu$A mode \textit{standby} dan 45mA mode akuisisi). Nilai tersebut lebih kecil jika dibandingkan dengan modul GNSS lainnya (u- blox Neo-6M) yang membutuhkan 11 s.d. 47mA \cite{U-blox2011}. Selain itu, modul Teseo-LIV3FL juga terintegerasi dengan aplikasi Teseo-Suite yang memudahkan pengguna untuk mengunggah pengaturan modul GNSS.
+Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi tetap mempretahankan akurasinya. ]Daya yang dibutuhkan untuk mengoperasikannya modul Teseo-LIV3FL termasuk rendah, yaitu (8$\mu$A mode \textit{standby} dan 45mA mode akuisisi).
+
+Modul Teseo-LIV3FL memiliki kustomisasi yang sangat luas. Untuk memodifikasi pengaturan modul GNSS dapat dilakukan dengan mengirimkan perintah melalui \textit{serial port} atau dengan bantuan aplikasi Teeo-Suite.
+
+\subsubsection{Teseo-Suite}
+Teseo-Suite adalah aplikasi khusus untuk mengatur seluruh fitur yang terdapat pada perangkat GNSS Teseo milik STMicroelectronics. Aplikasi Teseo-Suite memiliki kemampuan untuk membaca, menyunting, dan menyimpan konfigurasi pada perangkat GNSS Teseo. Selain itu, Teseo-Suite juga dapat melakukan \textit{logging} dan analisis pesan NMEA. Tampilan dari aplikasi Teseo-Suite ditunjukan oleh Gambar \ref{Fig: teseo-suite-ss}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=13cm]{contents/chapter-2/teseo-suite.jpeg}
+	\caption{Tampilan dari Aplikasi Teseo-Suite}
+	\label{Fig: teseo-suite-ss}
+\end{figure}
+
+Pada aplikasi Teseo-Suite juga disediakan fitur untuk visualisasi satelit yang dapat dideteksi oleh modul GNSS seperti nilai PRN, \textit{azimuth}, \textit{elevation}, dan pita frekuensi dari setiap satelit. Visualisasi tersebut dalam bentuk \textit{bar chart} dan juga \textit{sky plot} yang menunjukan letak satelit di langit. Selain itu, pengguna juga dapat melihat titik koordinat pada OpenStreetMap.
+
+\subsection{Taoglas CGGP.18.2.A.02}
+Taoglas CGGP.18.2.A.02 adalah antena aktif jenis \textit{patch} yang dirancang untuk menerima isyarat dari berbagai konstelasi GNSS seperti GPS, GLONASS, dan Galileo. Antena ini memiliki dimensi yang kecil, yaitu 18x18x2 mm. Dengan dimensi kecil maka antena ini banyak digunakan pada sistem tertanam dan IoT seperti transportasi, navigasi, dan pertahanan.
+
+Antena Taoglas CGGP.18.2.A.02 telah diuji pada konstelasi GPS 1.575,42 MHz dengan \textit{gain} 3.23 dBi dan GLONASS 1.602 MHz dengan \textit{gain} 3.53 dBi. Selain itu, antena Taoglas CGGP 18 2 A 02 tahan terhadap berbagai kondisi lingkungan dengan perlindungan IP67 terhadap debu dan air.
+
+Untuk dapat beroperasi secara efektif, antena Taoglas CGGP.18.2.A.02 harus dipasang pada tempat dengan kondisi langit sebaik mungkin, sehingga dapat menerima istarat GNSS dengan baik. Antena ini memiliki penguat untuk memperkuat isyarat GNSS dan memberikan isyarat GNSS yang akurat.
+
+\subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
+\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk dilakukan komunikasi.
+
+ Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/uart-format.png}
+	\caption{Format Data pada Komunikasi UART}
+	\label{Fig: uart-format}
+\end{figure}
+
+Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (pengirim) dan RX (penerima). Pin TX disambungkan ke RX dan sebaliknya. Dua buah UART dapat berkomunikasi secara langsung dengan isyarat TTL dengan perangkay yang memenuhi standar ELD seperti RS-232, RS-485, dan RS-422.
+
+\iffalse
+\subsection{LoRa}
+Teknologi \textit{Long Range} (LoRa) adalah protokol komunikasi pada lapiran fisik yang memungkinkan untuk mentransmisikan isyarat pada jarak jauh dengan konsumsi daya seminimal mungkin. LoRa diperkenalkan oleh Semtech pada tahun 2012 \cite{Oliveira2017}. Pada teknologi LoRa digunakan frekuensi \textit{sub-GHZ} 433 MHz di Asia. Indonesia menggunakan standar frekuensi 920-923MHz (AS923-2) \cite{LoRa2020}.
+
+Tiga alasan yang membuat teknologi LoRa banyak digunakan dalam industri:
+
+\begin{enumerate}
+	\item Menurut penelitian \cite{Petajajarvi2016} dan \cite{Haxhibeqiri2017}, pada kondisi tanpa halangan dimungkinkan untuk mentransmisikan jarak pada radius 2-5 km. Pada kondisi dengan penghalang seperti gedung dan pepohonan dimungkinkan untuk transmisi data hingga 2 km \cite{Rida2019}.
+	\item Perangkat LoRa dibuat sesederhana mungkin. Kompleksivitas yang rendah memungkinkan untuk menekan biaya manufaktur.
+	\item Teknologi LoRa menggunakan daya sebesar 120-150mW sehingga dapat memperpanjang umur dari perangkat hingga 2-5 tahun.
+\end{enumerate}
+
+\subsubsection{LoRaWAN}
+LoRa dan LoRaWAN adalah dua hal yang berbeda. Lora adalah teknik modulasi yang digunakan untuk komunikasi antar \textit{end node} atau \textit{end node} dengan \textit{gateway}, sedangkan LoRaWAN adalah arsitektur jaringan yang memungkinkan perangkat LoRaWAN untuk mengirimkan data ke \textit{server} LoRaWAN \cite{Zhou2019}. Arsitektur LoRaWAN ditunjukan oleh Gambar \ref{Fig: lorawan-architecure}.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=13cm]{contents/chapter-2/lorawan-architecture.png}
+	\caption{Arsitektur Jaringan LoRaWAN \cite{Montagny2022}}
+	\label{Fig: lorawan-architecure}
+\end{figure}
+
+Lapisan fisik LoRa adalah teknologi yang dimiliki oleh Semtech, sedangkan LoRaWAN adalah standar umum yang dikelola oleh Lora Alliance \cite{Augustin2016}. 
+
+\subsubsection{Metode Aktivasi}
+Terdapat dua metode aktivasi pada perangkat \textit{end node}, yaitu \textit{Over the Air Activation} (OTAA) dan \textit{Activation by Personalization} (ABP).
+
+\textbf{\textit{Over the Air Activation} (OTAA)} adalah metode aktivasi yang hanya membutuhkan AppEUI, DevEUI, dan AppKey. Pada metode aktivasi OTAA, alamat perangkat DevAddr diberikan ke perangkat \textit{end device} dengan \textit{root keys} untuk membuat \textit{session keys}. Oleh karena itu, DevAddr dan \textit{session keys} berubah setiap \textit{session} baru dibuat \cite{LoRa2017}. Pada penelitian ini digunakan metode aktivasi OTAA karena metode aktivasi OTAA lebih aman jika dibandingkan dengan ABP.
+
+EUI atau \textit{Extended Unique Identifier} berperan sebagai identifikasi dengan panjang 64-bit. DevEUI bersifat unik untuk setiap perangkat. AppKey atau \textit{root key} memiliki panjang 128-bit digunakan untuk menghasilkan \textit{Message Integrity Code} (MIC) sebagai verifikasi integritas pesan. Nilai AppKey harus disimpan pada \textit{end node} dan \textit{network server}.
+
+\textbf{\textit{Activation by Personalization} (ABP)} adalah metode aktivasi yang lebih sederhana dibandingkan dengan OTAA. Pada metode aktivasi ABP, nilai DevAddr dan \textit{session keys} bersifat statik.
+\fi
