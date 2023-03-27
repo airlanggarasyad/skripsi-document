@@ -73,6 +73,8 @@
 \usepackage{algpseudocode}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{inconsolata}
+\usepackage[htt]{hyphenat}
 \usepackage{url}
 \usepackage{ifthen}
 \usepackage{forloop}
@@ -94,10 +96,10 @@
 \usepackage[normalem]{ulem}
 \usepackage{tabularray}
 
-\DefTblrTemplate{contfoot-text}{normal}{Dilanjutkan pada halaman selanjutnya}
-\SetTblrTemplate{contfoot-text}{normal}
-\DefTblrTemplate{conthead-text}{normal}{(Lanjutan)}
-\SetTblrTemplate{conthead-text}{normal}
+\DefTblrTemplate{contfoot-text}{default}{}
+\DefTblrTemplate{conthead-text}{default}{}
+\DefTblrTemplate{conthead}{default}{}
+\DefTblrTemplate{capcont}{default}{}
 % Page break for equation
 \allowdisplaybreaks
 

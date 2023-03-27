@@ -21,65 +21,64 @@ Repeated entry---line 413 of file references.bib
  : @misc{STMicroelectronics2022
  :                             ,
 I'm skipping whatever remains of this entry
-Warning--entry type for "EXAR2005" isn't style-file defined
---line 755 of file references.bib
 Warning--entry type for "Rui2015" isn't style-file defined
 --line 819 of file references.bib
-Warning--entry type for "STMicroelectronics2023" isn't style-file defined
---line 837 of file references.bib
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty note in STMicroelectronics2022a
+Warning--empty author and editor in ti2010
 Warning--missing publisher in Langley1999
 Name 1 in "{National Coordination Office for Space-Based Positioning}, Navigation, and Timing." has a comma at the end for entry NationalCoordinationOfficeforSpace-BasedPositioning2021
 while executing---line 2403 of file IEEEtran.bst
+Warning--empty author and editor in Novatel2023
 Warning--empty booktitle in Tahsin2015
+Warning--empty booktitle in Chin1983
 Warning--empty booktitle in Pratama2020
 Warning--empty booktitle in Mahmoud2016
 Warning--empty note in STMicroelectronics2022
 Warning--empty note in STMicroelectronics2022b
 
 Done.
-You've used 29 entries,
+You've used 39 entries,
             4087 wiz_defined-function locations,
-            1007 strings with 13158 characters,
-and the built_in function-call counts, 18471 in all, are:
-= -- 1456
-> -- 443
-< -- 136
-+ -- 236
-- -- 80
-* -- 841
-:= -- 2831
-add.period$ -- 60
-call.type$ -- 29
-change.case$ -- 28
-chr.to.int$ -- 315
-cite$ -- 36
-duplicate$ -- 1357
-empty$ -- 1522
-format.name$ -- 98
-if$ -- 4284
+            1073 strings with 15251 characters,
+and the built_in function-call counts, 24061 in all, are:
+= -- 1913
+> -- 536
+< -- 166
++ -- 285
+- -- 97
+* -- 1122
+:= -- 3757
+add.period$ -- 82
+call.type$ -- 39
+change.case$ -- 36
+chr.to.int$ -- 366
+cite$ -- 49
+duplicate$ -- 1799
+empty$ -- 2026
+format.name$ -- 120
+if$ -- 5569
 int.to.chr$ -- 0
-int.to.str$ -- 29
-missing$ -- 244
-newline$ -- 110
-num.names$ -- 31
-pop$ -- 597
+int.to.str$ -- 39
+missing$ -- 323
+newline$ -- 154
+num.names$ -- 38
+pop$ -- 782
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1414
+skip$ -- 1846
 stack$ -- 0
-substring$ -- 760
-swap$ -- 1065
-text.length$ -- 31
+substring$ -- 895
+swap$ -- 1392
+text.length$ -- 44
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 29
-warning$ -- 7
-while$ -- 90
-width$ -- 31
-write$ -- 273
+type$ -- 39
+warning$ -- 10
+while$ -- 109
+width$ -- 41
+write$ -- 379
 (There were 3 error messages)

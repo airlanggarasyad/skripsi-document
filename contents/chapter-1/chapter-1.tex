@@ -5,11 +5,11 @@ Salah satu moda transportasi dalam kota paling populer di Indonesia adalah bus. 
 
 Pada awal bulan Maret tahun 2022, Rektor Universitas Gadjah Mada, Prof. Ir. Panut Mulyono, M.Eng., D.Eng., meluncurkan dua buah bus listrik untuk transportasi internal kampus. Kedua bus ini adalah inovasi dari UGM untuk memudahkan mobilisasi mahasiswa di area kampus seluas 183.36 hektar ini dan mengurangi penggunaan energi fosil secara bersamaan. Setiap bus akan memutari UGM sebanyak sepuluh kali dengan setiap putaran membutuhkan satu jam. Dengan adanya fasilitas bus kampus Trans Gadjah Mada diharapkan dapat membuat lingkungan kampus menjadi lebih nyaman dan kondusif.
 
-Salah satu masalah yang banyak dikeluhkan oleh civitas akademika UGM adalah ketidakpastian waktu kedatangan Trans Gadjah Mada. Meskipun sudah diberikan jadwal estimasi kedatangan bus, terkadang waktu kedatangan bus tidak sesuai dikarenakan faktor cuaca, lalu lintas di sekitar Jalan Persatuan yang padat, dan faktor lainnya. Oleh karena itu, dibutuhkan suatu sistem untuk melacak posisi dari bus kampus agar calon penumpang dapat mengestimasi kapan bus yang akan ditumpangi datang.
+Salah satu masalah yang banyak dikeluhkan oleh civitas akademika UGM adalah ketidakpastian waktu kedatangan Trans Gadjah Mada. Meskipun sudah diberikan jadwal estimasi kedatangan bus, terkadang waktu kedatangan bus tidak sesuai dikarenakan faktor cuaca, lalu lintas, dan faktor lainnya.
 
 Masalah serupa juga terjadi di India. Berdasarkan  \cite{Sutar2016}, masyarakat India hanya mengetahui waktu kedatangan berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Penelitian yang dilakukan oleh \cite{Sneha2014} menunjukan bahwa sistem pelacak berbasis GPS telah diimplementasikan di beberapa negara, tetapi belum diimplementasikan di Indonesia, khususnya di lingkungan Universitas Gadjah Mada.
 
-\textit{Global Positioning System} atau GPS adalah teknologi sistem navigasi berbasis satelit yang dapat menunjukan posisi secara akurat. Dengan adanya sistem pelacak lokasi bus Trans Gadjah Mada berbasis GPS, diharapkan dapat membantu civitas akademika Universitas Gadjah Mada untuk mengestimasi waktu kedatangan bus.
+\textit{Global Navigartion Satellite System} atau GNSS adalah teknologi sistem navigasi berbasis satelit yang dapat menunjukan posisi secara akurat. Dengan dikembangkannya \textit{firmware} sistem pelacak lokasi bus Trans Gadjah Mada berbasis GNSS, diharapkan dapat membantu untuk melacak posisi Bus Trans Gadjah Mada.
 
 \section{Rumusan Masalah}
 Adapun rumusan masalah dari penelitian ini sebagai berikut:
@@ -20,7 +20,7 @@ Adapun rumusan masalah dari penelitian ini sebagai berikut:
 \end{enumerate}
 
 \section{Tujuan Penelitian}
-Tujuan dari penelitian ini adalah mengembangkan \textit{firmware} pada sisi mikrokontroler dan modul GNSS. Modul GNSS diharapkan dapat memberikan posisi dari aset secara akurat, tetapi dengan konsumsi daya serendah mungkin untuk kemudian diproses oleh mikrokontroler untuk dikirimkan ke \textit{network server}.	
+Tujuan dari penelitian ini adalah mengembangkan \textit{firmware} pada sisi mikrokontroler dan modul GNSS. Modul GNSS diharapkan dapat memberikan posisi dari aset secara akurat, tetapi dengan konsumsi daya serendah mungkin untuk kemudian dilakukan proses ektrasi dan pemrosesan data oleh mikrokontroler.
 
 \section{Batasan Penelitian}
 Dalam penelitian ini terdapat beberapa ruang lingkup atau batasan masalah, diantaranya:
@@ -31,11 +31,11 @@ Dalam penelitian ini terdapat beberapa ruang lingkup atau batasan masalah, diant
 	\item Populasi dan Sampel: Populasi adalah rute keseluruhan Trans Gadjah Mada dan sampel diambil pada rute Trans Gadjah Mada di Fakultas Teknik.
 	\item Variabel: Variabel bebas adalah jumlah konstelasi GNSS yang digunakan dan variabel terikat adalah nilai \textit{dilution of precision} yang didapat.
 	\item Hipotesis: Bahwa pengembangan \textit{firmware} dengan \textit{multi-constellation} dapat meningkatkan akurasi dari hasil pembacaan GNSS.
-	\item Keterbatasan Penelitian: Keterbatasan penelitian adalah 
+	\item Keterbatasan Penelitian: Keterbatasan penelitian adalah fokus utamanya pada pengembangan perangkat lunak dan konfigurasi modul GNSS saja.
 \end{enumerate}
 
 \section{Manfaat Penelitian}
-\textit{Firmware} yang dikembangkan diharapkan dapat menerima data lokasi dari modul GNSS dan mengirimkan data tersebut ke \textit{network server}.
+\textit{Firmware} yang dikembangkan dapat menerima data pesan NMEA dari modul GNSS dan kemudian dilakukan \textit{parsing} untuk mengekstrak data-data esensial dari pesan NMEA yang didapat.
 
 \section{Sistematika Penulisan}
 \textbf{BAB I}
@@ -48,11 +48,11 @@ Bab ini membahas hasil tinjauan pustaka dan landasan teori. Tinjauan pustaka men
 
 \textbf{BAB III}
 
-Bab ini membahas mengenai alat dan bahan yang digunakan dalam penelitian, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi data dari modul GNSS hingga dikirimkan ke \textit{network server}.
+Bab ini membahas mengenai alat dan bahan yang digunakan dalam penelitian, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi pesan NMEA dari modul GNSS hingga ekstrasi data dari pesan NMEA yang didapat.
 
 \textbf{BAB VI}
 
-Bab ini membahas mengenai persiapan pengujian, hasil pengujian, dan kelebihan serta kekurangan sistem yang telah dirancang. Hasil pengujian meliputi pengujian mode daya rendah, \textit{multi-constellation}, dan pengiriman data ke \textit{network server} oleh \textit{end node}.
+Bab ini membahas mengenai persiapan pengujian, hasil pengujian, dan kelebihan serta kekurangan sistem yang telah dirancang. Hasil pengujian meliputi pengujian mode daya rendah, pengujian \textit{rapid static survey}, dan pengujian bergerak pada Bus Trans Gadjah Mada.
 
 \textbf{BAB V}
 

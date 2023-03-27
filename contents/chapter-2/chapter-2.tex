@@ -9,7 +9,7 @@ Sebuah sistem \textit{speedometer} telah dirancang oleh \cite{Najmurrokhman2021}
 
 Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of London} menggunakan mikrokontroler AT89S52 dari keluarga 8051. Digunakan modul GPS M-89 yang diatur untuk menerima isyarat transmisi satelit pada frekuensi 1575.42 MHz. Data yang diterima akan ditampilkan pada layar LCD dan dikirimkan dengan modul GSM. Kemudian, data yang telah diterima akan ditampilkan pada situs web.
 
-Berdasarkan penelitian-penelitian di atas, belum ada pembahasan mengenai perancangan sistem pelacak GNSS dengan konfigurasi \textit{multi-constellation} berbasis LoRa. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak GNSS \textit{multi-constellation} menggunakan teknologi LoRa.
+Berdasarkan penelitian-penelitian di atas, belum ada pembahasan mengenai perancangan sistem pelacak GNSS dengan konfigurasi \textit{multi-constellation} dan \textit{geofencing}. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multiconstellation} dengan menggunakan modul GNSS Teseo-LIV3FL dan mikrokontroler STM32 WL55JC1.
 
 \section{Dasar Teori}
 \subsection{\textit{Firmware}}
@@ -17,12 +17,14 @@ Berdasarkan penelitian-penelitian di atas, belum ada pembahasan mengenai peranca
 
 Letak \textit{firmware} berada di memori \textit{non-volatile}. ROM BIOS adalah contoh \textit{firmware} yang berfungsi untuk inisialisasi perangkat keras ketika komputer dihidupkan dan memungkinkan untuk menambah program lain dengan level yang lebih tinggi di masa depan. Di sisi lain, \textit{firmware} pada sistem tertanam adalah satu-satunya perangkat lunak yang berjalan di sistem tersebut.
 
+Beberapa orang menganggap \textit{firmware} dan sistem operasi adalah satu hal yang sama. Padahal, terdapat perbedaan yang cukup signifikan antara dua hal tersebut. Sistem operasi adalah suatu perangkat lunak yang berjalan di atas \textit{firmware}, sedangkan \textit{firmware} adalah perangkat lunak yang bertanggung jawab untuk kendali fungsi dasar pada perangkat keras \cite{Davidson1978}.
+
 \subsubsection{Bahasa Pemrograman C}
-Bahasa C (dibaca "si") adalah bahasa pemrograman \textit{general-purpose} tingkat tinggi yang dikembangkan oleh Dennis Ritchie pada tahun 1972. Hingga saat ini, bahasa C adalah salah satu bahasa pemrograman yang paling banyak digunakan untuk bergai macam pengembangan seperti \textit{firmware} sistem tertanam. Kepopuleran tersebut karena bahasa C adalah bahasa yang fleksibel, ringkas, dan efisien.
+Bahasa C (dibaca "si") adalah bahasa pemrograman \textit{general-purpose} tingkat tinggi yang dikembangkan oleh Dennis Ritchie pada tahun 1972. Hingga saat ini, bahasa C adalah salah satu bahasa pemrograman yang paling banyak digunakan \cite{SO2022} untuk bergai macam pengembangan seperti \textit{firmware} sistem tertanam. Kepopuleran tersebut karena bahasa C adalah bahasa yang fleksibel, ringkas, dan efisien.
 
-Pada awalnya, bahasa C hanya dirancang untuk implementasi di sistem operasi, tetapi dengan adanya mekanisme \textit{data abstraction} maka dimungkinkan untuk pengembangan aplikasi level tinggi maupun rendah. Sebagai contoh, anggota \textit{struct} dapat ditata sedemikian rupa agar sesuai dengan alamat \textit{port} dari perangkat keras. Selain itu, pada bahasa C juga terdapat operasi tingkat rendah seperti \textit{bit shift}, logika AND, dan lainnya.
+Pada awalnya, bahasa C hanya dirancang untuk implementasi di sistem operasi \cite{Ritchie1993}, tetapi dengan adanya mekanisme \textit{data abstraction} maka dimungkinkan untuk pengembangan aplikasi level tinggi maupun rendah. Sebagai contoh, anggota \textit{struct} dapat ditata sedemikian rupa agar sesuai dengan alamat \textit{port} dari perangkat keras. Selain itu, pada bahasa C juga terdapat operasi tingkat rendah seperti \textit{bit shift}, logika AND, dan lainnya.
 
-Pada penelitian ini digunakan bahasa pemrograman C dan pustaka \textit{Hardware Abstraction Layers} (HAL) untuk pengembangan \textit{firmware} pada platform STM32.
+Bahasa C banyak digunakan dalam pengembangan \textit{firmware} pada mikrokontroler karena memungkinkan pengembang untuk melakukan pemrograman pada tingkat register dan memori. Kendali langsung terhadap perangkat keras memungkinkan pengembang untuk merancang program dengan performa tinggi dan efisien.
 
 \subsection{Teknologi GNSS}
 \textit{Global Navigation Satellite System} (GNSS) adalah istilah yang digunakan untuk suatu sistem navigasi radio yang menggunakan konstelasi satelit. Salah satu contoh GNSS adalah \textit{Global Positioning System} (GPS) milik Amerika Serikat. Selain GPS terdapat lima sistem GNSS lainnya yaitu, Galileo (Uni Eropa), BeiDou (Republik Rakyat Tiongkok), GLONASS (Federasi Rusia), IRNSS (India), dan QZSS (Jepang) \cite{NationalCoordinationOfficeforSpace-BasedPositioning2021}. Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satelit \cite{TheEuropeanGlobalNavigationSatelliteSystemsAgency2021}. Satelit GNSS akan terus memancarkan isyarat radio pada pita frekuensi L.
@@ -37,27 +39,7 @@ Pada penelitian ini digunakan bahasa pemrograman C dan pustaka \textit{Hardware 
 Setiap GNSS terdiri dari tiga buah segmen, yaitu segmen satelit sebagai pemancar isyarat, segmen kendali untuk injeksi data dan memantau performa satelit, dan segmen pengguna. Hubungan dari ketiga segmen GNSS ditunjukan oleh Gambar \ref{Fig: gnss_segment}. 
 
 \subsubsection{Orbit GNSS}
-Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut memengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjuka oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
-	\caption{Struktur Internal UART ST16C550 \cite{EXAR2005}}
-	\label{Fig: alt-comp}
-\end{figure}
-
-\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit Planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
-\begin{enumerate}
-	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
-	\item \textit{Big} LEO adalah sistem yang beroperasi pada Pita L dengan frekuensi 1.6 GHz s.d. 2.5 GHz dengan kapabilitas teleponi seperti suara, data, dan faksimili.
-	\item \textit{Super} LEO adalah sistem yang beroperasi pada Pita Ka dengan frekuensi 20 GHz s.d. 30 GHz.
-\end{enumerate}
-
-\textbf{\textit{Medium Earth Orbit} (MEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 10.000 s.d. 20.000 km. Satelit dengan orbit MEO membutuhkan jumlah satelit yang lebih sedikit untuk jangkauan seluruh dunia jika dibandingkan dengan orbit LEO.
-
-\textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit Geo adalah secara teoretis hanya membutuhkan tiga hingga empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
-
-Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
+Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut memengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
 
 \begin{table}[H]
 	\caption{Orbit dan Ketinggian setiap Konstelasi \cite{Li2019} \cite{Bury2019}}
@@ -78,6 +60,26 @@ Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \re
 	\end{tabular}
 	\label{Tab: gnss-orbit}
 \end{table}
+
+\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit Planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
+	\caption{Ilustrasi Orbit Satelit GNSS}
+	\label{Fig: alt-comp}
+\end{figure}
+
+
+\begin{enumerate}
+	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
+	\item \textit{Big} LEO adalah sistem yang beroperasi pada Pita L dengan frekuensi 1.6 GHz s.d. 2.5 GHz dengan kapabilitas teleponi seperti suara, data, dan faksimili.
+	\item \textit{Super} LEO adalah sistem yang beroperasi pada Pita Ka dengan frekuensi 20 GHz s.d. 30 GHz.
+\end{enumerate}
+
+\textbf{\textit{Medium Earth Orbit} (MEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 10.000 s.d. 20.000 km. Satelit dengan orbit MEO membutuhkan jumlah satelit yang lebih sedikit untuk jangkauan seluruh dunia jika dibandingkan dengan orbit LEO.
+
+\textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit Geo adalah secara teoretis hanya membutuhkan tiga hingga empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
 
 \subsubsection{Trilaterasi}
 \begin{figure}[ht]
@@ -181,6 +183,8 @@ $$
 \subsubsection{Penerima GNSS}
 Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh satelit berisi efemeris, almanak, dan komponen lainnya seperti tanggal dan status satelit.
 
+Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12.5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
+
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/gnss_msg_structure.png}
@@ -188,10 +192,8 @@ Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh s
 	\label{Fig: gnss_message_structure}
 \end{figure}
 
-Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12.5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
-
 \subsection{Ketelitian GNSS}
-Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. Akurasi adalah tingkat kedekatan hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel (Novatel, 2003). Perbedaan tingkat akurasi dan presisi ditunjukan oleh Gambar \ref{Fig: acc-and-prec-diff}.
+Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. Akurasi adalah tingkat kedekatan hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel \cite{Novatel2023}. Perbedaan tingkat akurasi dan presisi ditunjukan oleh Gambar \ref{Fig: acc-and-prec-diff}.
 
 \begin{figure}[H]
 	\centering
@@ -199,8 +201,6 @@ Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. 
 	\caption{Ilustrasi Perbedaan Tingkat Akurasi dan Presisi}
 	\label{Fig: acc-and-prec-diff}
 \end{figure}
-
-Pada penelitian ini performa GNSS akan ditinjau berdasarkan nilai \textit{Dilution of Precision} (DOP) dan \textit{Circular Error Probability} (CEP).
 
 \subsubsection{\textit{Dilution of Precision}}
 \textit{Dilution of Precision} atau DOP adalah suatu konsep sederhana yang banyak digunakan untuk mengukur efektivitas dari suatu pengukuran. Nilai DOP dapat diestimasi menggunakan perhitungan yang telah dlakukan pada penelitian \cite{Tahsin2015} . Semakin kecil nilai DOP maka semakin baik \cite{Hofmann-Wellenhof2008}. Klasifikasi nilai DOP menurut \cite{Langley1999} ditunjukan oleh Tabel \ref{Tab: Nilai_DOP}.
@@ -251,9 +251,7 @@ Terdapat tiga nilai DOP, yaitu
 \end{enumerate}
 
 \subsubsection{\textit{Circular Error Probability} (CEP)}
-\textit{Circular Error Probability} atau CEP adalah nilai yang digunakan untuk meninjau tingkat kepresisian dari suatu modul GNSS. Nilai CEP didefinisikan sebagai jari-jari dari lingkaran yang berisi 50\% dari hasil pengukuran dengan jari-jari di nilai rata-ratanya.
-
-Nilai CEP dapat dihitung dengan menggunakan Persamaan 2-4.
+\textit{Circular Error Probability} atau CEP adalah nilai yang digunakan untuk meninjau tingkat kepresisian dari suatu modul GNSS. Nilai CEP didefinisikan sebagai jari-jari dari lingkaran yang berisi 50\% dari hasil pengukuran dengan jari-jari di nilai rata-ratanya. Nilai CEP dapat dihitung dengan menggunakan Persamaan 2-4.
 
 \begin{equation}
 CEP = 0.62 \sigma_y + 0.56 \sigma_x
@@ -261,6 +259,8 @@ CEP = 0.62 \sigma_y + 0.56 \sigma_x
 \end{equation}
 
 dengan $\sigma_x$ adalah standar deviasi garis bujur dan $\sigma_y$ adalah standar deviasi garis lintang. Nilai CEP dapat digunakan untuk meninjau tingkat ketelitian dari modul GNSS.
+
+CEP adalah metode yang untuk melakukan analisis data terkait dengan tingkat probabilitas tertentu dan tidak terdistorsi dengan kesalahan besar \cite{Chin1983}. Kekurangan dari CEP adalah hanya meninjau 50\% data saja dan tidak memberikan informasi apapun terkait 50\% lainnya \cite{Sathish2016}.
 
 \subsection{\textit{Geofence}}
 \textit{Geofence} adalah batasan maya untuk memantau objek di dalam suatu area tertentu \cite{Sari2021}. Jika objek melintasi daerah di luar batasan tersebut maka sistem akan mengirimkan notifikasi bahwa objek berada di luar daerah yang telah ditentukan. Tiga teknik yang dapat digunakan untuk mendefinisikan area \textit{geofence} \cite{Rui2015} adalah:
@@ -309,14 +309,14 @@ Komputasi menggunakan Persamaan Haversin lebih sederhana dan ringan jika dibandi
 \subsection{STM32}
 STM32 merupakan mikrokontroler 32-bit yang dikembangkan oleh perusahaan STMicroelectronics. Mikrokontroler STM32 berbasis arsitektur ARM Cortex-M. Keluarga mikrokontroler STM32 dapat dibagi menjadi lima kelompok, yaitu \textit{Mainstream}, \textit{High Performance}, \textit{Ultra-low-power}, dan \textit{Wireless}. Gambar \ref{Fig: stm32-groups} menunjukan pembagian mikrokontroler STM32.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{contents/chapter-2/stm-32-groups.png}
+	\includegraphics[width=11cm]{contents/chapter-2/stm-32-groups.png}
 	\caption{Pembagian Mikrokontroler STM32 \cite{STMicroelectronics2023}}
 	\label{Fig: stm32-groups}
 \end{figure}
 
-Terdapat berbagai seri STM32 dengan arsitektur yang juga berbagai macam. Tabel \ref{Tab: stm-arch-table} menunjukan arsitektur yang digunakan oleh setiap seri STM32.
+Terdapat berbagai seri STM32 dengan arsitektur yang juga berbagai macam. Seri STM32 menggunakan enam jenis arsitektur ARM Cortex. Adapun Tabel \ref{Tab: stm-arch-table} menunjukan pembagian arsitektur yang digunakan oleh setiap seri STM32.
 
 \begin{table}[H]
 	\caption{Jenis STM32 dan Arsitekturnya}
@@ -357,42 +357,56 @@ STLINK-V3 adalah perangkat yang digunakan untuk memrogram dan \textit{debugging}
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=8cm]{contents/chapter-2/stlink-in-wl55.jpg}
+	\includegraphics[width=10cm]{contents/chapter-2/stlink-in-wl55.jpg}
 	\caption{Letak STLINK-V3 pada STM32 Nucleo-WL55JC1}
 	\label{Fig: stlink-in-wl55}
 \end{figure}
 
-\subsubsection{STM32Cube IDE}
-STM32Cube IDE adalah \textit{platform} untuk pengembangan \textit{firmware} mikrokontroler STM32 berbasis C/C++. IDE ini terdiri dari aplikasi untuk konfigurasi periferal, menyediakan kerangka kode, \textit{compiler}, dan beberapa fitur untuk melakukan \textit{debugging}. Gambar \ref{Fig: stm32-ide} menunjukan tampilan dari STM32 Cube IDE.
+STLINK-V3 dilengkapi dengan antarmuka USB 2.0 untuk melakukan \textit{software debugging} atau pemrograman dengan menggunakan aplikasi STM32Cube IDE. Perangkat ini juga dapat digunakan untuk meninjau isyarat pada mikrokontroler dengan menggunakan fitur \textit{debug}. Beberapa fitur pada STLINK-V3 adalah \cite{STMicroelectronics2023a}:
 
-\begin{figure}[ht]
+\begin{enumerate}
+	\item Mode \textit{Serial Wire Output} (SWO) dengan kecepatan 16 MHz.
+	\item Mode \textit{debug} JTAG atau SWD.
+	\item Komunikasi UART dengan antarmuka USB.
+	\item Pemaharuan \textit{firmware} dan konfigurasi dengan aplikasi STLINK \textit{Utility}.
+	\item Pengukuran profil sistem dengan \textit{energy profiling}.
+\end{enumerate}
+
+\subsubsection{STM32Cube IDE}
+STM32Cube IDE adalah \textit{platform} untuk pengembangan \textit{firmware} mikrokontroler STM32 berbasis C/C++. IDE ini terdiri dari aplikasi untuk konfigurasi periferal, menyediakan kerangka kode, \textit{compiler}, dan beberapa fitur untuk melakukan \textit{debugging}. Gambar \ref{Fig: stm32-ide} menunjukan tampilan dari STM32 Cube IDE. STM32Cube IDE juga dilengkapi dengan berbagai pustaka untuk mendukung pengembangan dalam berbagai aplikasi.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{contents/chapter-2/stm32-ide.png}
+	\includegraphics[width=12cm]{contents/chapter-2/stm32-ide.png}
 	\caption{Tampilan STM32Cube IDE}
 	\label{Fig: stm32-ide}
 \end{figure}
 
-Konfigurasi dari konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}.
+Konfigurasi dari konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX. STM32Cube MX adalah perangkat lunak untuk mempermudah dalam melakukan konfigurasi pada mikrokontroler STM32. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}. Konfigurasi tersebut akan disimpan dalam berkas dengan ekstensi \textit{ioc}. File \textit{ioc} dapat digunakan untuk \textit{generate} kerangka kerja yang siap untuk digunakan sehingga pengguna hanya perlu memikirkan pada sisi aplikasinya saja.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{contents/chapter-2/stm32-mx.png}
+	\includegraphics[width=12cm]{contents/chapter-2/stm32-mx.png}
 	\caption{Konfigurasi Periferal pada STM32Cube IDE}
 	\label{Fig: stm32-mx}
 \end{figure}
+
+STM32Cube IDE adalah program dengan berbagai alat pengembangan yang lengkap seperti \textit{text editor}, \textit{debugger}, \textit{simulator}, dan \textit{programmer}. Dengan adanya perangkat STM32Cube IDE dapat mempermudah pengembangan \textit{firmware} pada mikrokontroler STM32. Pustaka perangkat lunak yang lengkap dapat membantu sebagai referensi dalam mengembangkan \textit{firmware}.
 
 \subsection{Teseo-LIV3FL}
 Teseo-LIV3FL adalah modul GNSS yang diproduksi oleh STMicroelectronics. Modul ini mendukung berbagai konstelasi (GPS, GLONASS, Galileo, QZSS, dan BeiDou) \cite{STMicroelectronics2022}.
 Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF. Modul Teseo-LIV3FL mendukung komunikasi secara UART dan I2C seperti yang ditunjukan pada Gambar \ref{Fig: teseo_pinout}. Dibutuhkan tegangan 3.3 V untuk mengoperasikan modul Teseo-LIV3FL.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/teseo_pinout.png}
 	\caption{\textit{Pinout} Teseo-LIV3FL \cite{STMicroelectronics2022a}}
 	\label{Fig: teseo_pinout}
 \end{figure}
 
-Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi tetap mempretahankan akurasinya. ]Daya yang dibutuhkan untuk mengoperasikannya modul Teseo-LIV3FL termasuk rendah, yaitu (8$\mu$A mode \textit{standby} dan 45mA mode akuisisi).
+Antarmuka UART yang dimiliki oleh modul Teseo-LIV3FL dapat digunakan untuk komunikasi dengan perangkat lain seperti mikrokontroler. Modul ini juga memiliki fitur \textit{anti-jamming} yang dapat mengurangi interferensi seperti \textit{jamming} atau isyarat radio.
+
+Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi tetap mempretahankan akurasinya. Daya yang dibutuhkan untuk mengoperasikannya modul Teseo-LIV3FL termasuk rendah, yaitu (8$\mu$A mode \textit{standby} dan 45mA mode akuisisi).
 
 Modul Teseo-LIV3FL memiliki kustomisasi yang sangat luas. Untuk memodifikasi pengaturan modul GNSS dapat dilakukan dengan mengirimkan perintah melalui \textit{serial port} atau dengan bantuan aplikasi Teeo-Suite.
 
@@ -408,26 +422,33 @@ Teseo-Suite adalah aplikasi khusus untuk mengatur seluruh fitur yang terdapat pa
 
 Pada aplikasi Teseo-Suite juga disediakan fitur untuk visualisasi satelit yang dapat dideteksi oleh modul GNSS seperti nilai PRN, \textit{azimuth}, \textit{elevation}, dan pita frekuensi dari setiap satelit. Visualisasi tersebut dalam bentuk \textit{bar chart} dan juga \textit{sky plot} yang menunjukan letak satelit di langit. Selain itu, pengguna juga dapat melihat titik koordinat pada OpenStreetMap.
 
-\subsection{Taoglas CGGP.18.2.A.02}
-Taoglas CGGP.18.2.A.02 adalah antena aktif jenis \textit{patch} yang dirancang untuk menerima isyarat dari berbagai konstelasi GNSS seperti GPS, GLONASS, dan Galileo. Antena ini memiliki dimensi yang kecil, yaitu 18x18x2 mm. Dengan dimensi kecil maka antena ini banyak digunakan pada sistem tertanam dan IoT seperti transportasi, navigasi, dan pertahanan.
-
-Antena Taoglas CGGP.18.2.A.02 telah diuji pada konstelasi GPS 1.575,42 MHz dengan \textit{gain} 3.23 dBi dan GLONASS 1.602 MHz dengan \textit{gain} 3.53 dBi. Selain itu, antena Taoglas CGGP 18 2 A 02 tahan terhadap berbagai kondisi lingkungan dengan perlindungan IP67 terhadap debu dan air.
-
-Untuk dapat beroperasi secara efektif, antena Taoglas CGGP.18.2.A.02 harus dipasang pada tempat dengan kondisi langit sebaik mungkin, sehingga dapat menerima istarat GNSS dengan baik. Antena ini memiliki penguat untuk memperkuat isyarat GNSS dan memberikan isyarat GNSS yang akurat.
-
-\subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
-\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk dilakukan komunikasi.
-
- Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
+\subsection{Antena \textit{Patch}}
+Antena \textit{patch} adalah salah satu jenis antena yang digunakan dalam aplikasi sistem komunikasi nirkabel seperti GNSS, Wi-Fi, Bluetooth, dan sebagainya. Antena jenis ini terdiri dari sebuah \textit{patch} logam yang diletakan di atas permukaan bahan isolator. \textit{Patch} logam tersebut kemudian dihubungkan dengan kabel koaksial atau disolder langsung pada \textit{Printed Circuit Board} (PCB). Struktur dari antena \textit{patch} ditunjukan oleh Gambar \ref{Fig: patc-antenna}.
 
 \begin{figure}[ht]
 	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/patch-antena.jpg}
+	\caption{Struktur dari Antena \textit{Patch} \cite{Chowdhury2019}}
+	\label{Fig: patc-antenna}
+\end{figure}
+
+Keunggulan dari antena \textit{patch} adalah bentuknya ringkas dan ringan sehingga memungkinkan untuk digunakan pada aplikasi dengan dimensi kecil. Karena bentuknya kecil maka antena jenis ini hanya membutuhkan biaya yang rendah dalam manufakturnya. Selain itu, antena \textit{patch} juga memiliki \textit{gain} dan efisiensi yang tinggi \cite{Ding2020}.
+
+Antena \textit{patch} adalah salah satu antena yang paling populer untuk aplikasi GNSS seperti pelacak, peta digital, dan navigasi kendaraan bermotor. Penggunaan antena \textit{patch} bertujuan untuk mendapatkan informasi isyarat satelit GNSS untuk kemudian diolah pada modul GNSS dengan akurasi yang tinggi.
+
+\subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
+\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk dilakukan komunikasi.
+
+ Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/uart-format.png}
-	\caption{Format Data pada Komunikasi UART}
+	\caption{Format Data pada Komunikasi UART \cite{ti2010}}
 	\label{Fig: uart-format}
 \end{figure}
 
-Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (pengirim) dan RX (penerima). Pin TX disambungkan ke RX dan sebaliknya. Dua buah UART dapat berkomunikasi secara langsung dengan isyarat TTL dengan perangkay yang memenuhi standar ELD seperti RS-232, RS-485, dan RS-422.
+Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (pengirim) dan RX (penerima). Pin TX disambungkan ke RX dan sebaliknya. Dua buah UART dapat berkomunikasi secara langsung dengan isyarat TTL dengan perangkat yang memenuhi standar ELD seperti RS-232, RS-485, dan RS-422.
 
 \iffalse
 \subsection{LoRa}
