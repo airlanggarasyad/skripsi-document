@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.18)  26 MAR 2023 23:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.18)  31 MAR 2023 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -460,19 +460,7 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \zifour@ocount=\count310
 )
-(/usr/local/texlive/2022/texmf-dist/tex/latex/hyphenat/hyphenat.sty
-Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
-
-
-Package hyphenat Warning: *******************************
-(hyphenat)                * You have used the htt option.
-(hyphenat)                * You are likely to get many Font Warning messages.
-(hyphenat)                * These can usually be ignored.
-(hyphenat)                *******************************.
-
-\langwohyphens=\language88
-LaTeX Info: Redefining \_ on input line 43.
-) (/usr/local/texlive/2022/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -507,7 +495,19 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@count@id=\count316
 \enitdp@description=\count317
 )
-(/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2022/texmf-dist/tex/latex/hyphenat/hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+
+
+Package hyphenat Warning: *******************************
+(hyphenat)                * You have used the htt option.
+(hyphenat)                * You are likely to get many Font Warning messages.
+(hyphenat)                * These can usually be ignored.
+(hyphenat)                *******************************.
+
+\langwohyphens=\language88
+LaTeX Info: Redefining \_ on input line 43.
+) (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/local/texlive/2022/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2022/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
@@ -1753,113 +1753,113 @@ te-lah di-ran-cang oleh [[]14[]]. Sis-tem ter-se-but meng-
 
 
 ] [5]
-<contents/chapter-2/gnss_segment.jpg, id=401, 563.10374pt x 409.53pt>
+<contents/chapter-2/gnss_segment.jpg, id=409, 563.10374pt x 409.53pt>
 File: contents/chapter-2/gnss_segment.jpg Graphic file (type jpg)
 <use contents/chapter-2/gnss_segment.jpg>
 Package pdftex.def Info: contents/chapter-2/gnss_segment.jpg  used on input lin
-e 34.
+e 36.
 (pdftex.def)             Requested size: 227.62204pt x 165.54004pt.
  [6 <./contents/chapter-2/gnss_segment.jpg>]
-<contents/chapter-2/alt-comp.png, id=418, 529.7391pt x 333.1647pt>
+<contents/chapter-2/alt-comp.png, id=426, 529.7391pt x 333.1647pt>
 File: contents/chapter-2/alt-comp.png Graphic file (type png)
 <use contents/chapter-2/alt-comp.png>
-Package pdftex.def Info: contents/chapter-2/alt-comp.png  used on input line 68
+Package pdftex.def Info: contents/chapter-2/alt-comp.png  used on input line 70
 .
 (pdftex.def)             Requested size: 284.52756pt x 178.95052pt.
  [7 <./contents/chapter-2/alt-comp.png>]
-<contents/chapter-2/trilaterasi.png, id=427, 438.63875pt x 397.485pt>
+<contents/chapter-2/trilaterasi.png, id=435, 438.63875pt x 397.485pt>
 File: contents/chapter-2/trilaterasi.png Graphic file (type png)
 <use contents/chapter-2/trilaterasi.png>
 Package pdftex.def Info: contents/chapter-2/trilaterasi.png  used on input line
- 87.
+ 89.
 (pdftex.def)             Requested size: 227.62204pt x 206.26883pt.
 
-Overfull \hbox (0.22386pt too wide) in paragraph at lines 91--92
+Overfull \hbox (0.22386pt too wide) in paragraph at lines 93--94
 []\T1/ptm/m/n/12 Trilaterasi ada-lah pro-ses me-nen-tuk-an po-si-si ber-da-sark
 -an ja-rak de-ngan meng-
  []
 
 [8 <./contents/chapter-2/trilaterasi.png>] [9] [10]
-<contents/chapter-2/gnss_msg_structure.png, id=461, 944.52875pt x 586.19pt>
+<contents/chapter-2/gnss_msg_structure.png, id=469, 944.52875pt x 586.19pt>
 File: contents/chapter-2/gnss_msg_structure.png Graphic file (type png)
 <use contents/chapter-2/gnss_msg_structure.png>
 Package pdftex.def Info: contents/chapter-2/gnss_msg_structure.png  used on inp
-ut line 190.
+ut line 192.
 (pdftex.def)             Requested size: 369.88582pt x 229.5613pt.
-<contents/chapter-2/acc.png, id=464, 794.97pt x 794.97pt>
+<contents/chapter-2/acc.png, id=472, 794.97pt x 794.97pt>
 File: contents/chapter-2/acc.png Graphic file (type png)
 <use contents/chapter-2/acc.png>
-Package pdftex.def Info: contents/chapter-2/acc.png  used on input line 200.
+Package pdftex.def Info: contents/chapter-2/acc.png  used on input line 202.
 (pdftex.def)             Requested size: 341.43306pt x 341.44228pt.
  [11 <./contents/chapter-2/gnss_msg_structure.png>] [12 <./contents/chapter-2/a
 cc.png>]
-Overfull \hbox (0.8251pt too wide) in paragraph at lines 250--251
+Overfull \hbox (0.8251pt too wide) in paragraph at lines 252--253
 []\T1/ptm/b/it/12 Vertical Di-lu-tion of Pre-ci-sion \T1/ptm/b/n/12 (VDOP)\T1/p
 tm/m/n/12 : Men-desk-ri-psik-an efek da-ri ni-lai DOP
  []
 
 [13] [14]
-<contents/chapter-2/stm-32-groups.png, id=517, 632.3625pt x 700.6175pt>
+<contents/chapter-2/stm-32-groups.png, id=525, 632.3625pt x 700.6175pt>
 File: contents/chapter-2/stm-32-groups.png Graphic file (type png)
 <use contents/chapter-2/stm-32-groups.png>
 Package pdftex.def Info: contents/chapter-2/stm-32-groups.png  used on input li
-ne 314.
+ne 316.
 (pdftex.def)             Requested size: 312.9803pt x 346.76932pt.
  [15] [16 <./contents/chapter-2/stm-32-groups.png>]
-<contents/chapter-2/stm32-wl55jc1.jpg, id=533, 427.5975pt x 685.56125pt>
+<contents/chapter-2/stm32-wl55jc1.jpg, id=541, 427.5975pt x 685.56125pt>
 File: contents/chapter-2/stm32-wl55jc1.jpg Graphic file (type jpg)
 <use contents/chapter-2/stm32-wl55jc1.jpg>
 Package pdftex.def Info: contents/chapter-2/stm32-wl55jc1.jpg  used on input li
-ne 344.
+ne 346.
 (pdftex.def)             Requested size: 142.26378pt x 228.08746pt.
  [17 <./contents/chapter-2/stm32-wl55jc1.jpg (PNG copy)>]
-<contents/chapter-2/stlink-in-wl55.jpg, id=544, 4047.12pt x 3035.34pt>
+<contents/chapter-2/stlink-in-wl55.jpg, id=552, 4047.12pt x 3035.34pt>
 File: contents/chapter-2/stlink-in-wl55.jpg Graphic file (type jpg)
 <use contents/chapter-2/stlink-in-wl55.jpg>
 Package pdftex.def Info: contents/chapter-2/stlink-in-wl55.jpg  used on input l
-ine 360.
+ine 362.
 (pdftex.def)             Requested size: 284.52756pt x 213.3755pt.
  [18 <./contents/chapter-2/stlink-in-wl55.jpg>]
-<contents/chapter-2/stm32-ide.png, id=557, 1440.38126pt x 1002.74625pt>
+<contents/chapter-2/stm32-ide.png, id=565, 1440.38126pt x 1002.74625pt>
 File: contents/chapter-2/stm32-ide.png Graphic file (type png)
 <use contents/chapter-2/stm32-ide.png>
 Package pdftex.def Info: contents/chapter-2/stm32-ide.png  used on input line 3
-80.
+82.
 (pdftex.def)             Requested size: 341.43306pt x 237.68039pt.
-<contents/chapter-2/stm32-mx.png, id=559, 1440.38126pt x 1002.74625pt>
+<contents/chapter-2/stm32-mx.png, id=567, 1440.38126pt x 1002.74625pt>
 File: contents/chapter-2/stm32-mx.png Graphic file (type png)
 <use contents/chapter-2/stm32-mx.png>
-Package pdftex.def Info: contents/chapter-2/stm32-mx.png  used on input line 38
-9.
+Package pdftex.def Info: contents/chapter-2/stm32-mx.png  used on input line 39
+1.
 (pdftex.def)             Requested size: 341.43306pt x 237.68039pt.
  [19 <./contents/chapter-2/stm32-ide.png>]
-<contents/chapter-2/teseo_pinout.png, id=567, 749.80125pt x 290.08376pt>
+<contents/chapter-2/teseo_pinout.png, id=575, 749.80125pt x 290.08376pt>
 File: contents/chapter-2/teseo_pinout.png Graphic file (type png)
 <use contents/chapter-2/teseo_pinout.png>
 Package pdftex.def Info: contents/chapter-2/teseo_pinout.png  used on input lin
-e 402.
+e 404.
 (pdftex.def)             Requested size: 369.88582pt x 143.10278pt.
  [20 <./contents/chapter-2/stm32-mx.png>]
-<contents/chapter-2/teseo-suite.jpeg, id=576, 1501.86093pt x 852.93657pt>
+<contents/chapter-2/teseo-suite.jpeg, id=584, 1501.86093pt x 852.93657pt>
 File: contents/chapter-2/teseo-suite.jpeg Graphic file (type jpg)
 <use contents/chapter-2/teseo-suite.jpeg>
 Package pdftex.def Info: contents/chapter-2/teseo-suite.jpeg  used on input lin
-e 418.
+e 420.
 (pdftex.def)             Requested size: 369.88582pt x 210.05801pt.
  [21 <./contents/chapter-2/teseo_pinout.png>]
-<contents/chapter-2/patch-antena.jpg, id=583, 853.1875pt x 385.44pt>
+<contents/chapter-2/patch-antena.jpg, id=591, 853.1875pt x 385.44pt>
 File: contents/chapter-2/patch-antena.jpg Graphic file (type jpg)
 <use contents/chapter-2/patch-antena.jpg>
 Package pdftex.def Info: contents/chapter-2/patch-antena.jpg  used on input lin
-e 430.
+e 432.
 (pdftex.def)             Requested size: 341.43306pt x 154.24973pt.
  [22 <./contents/chapter-2/teseo-suite.jpeg> <./contents/chapter-2/patch-antena
 .jpg>]
-<contents/chapter-2/uart-format.png, id=594, 670.505pt x 324.21124pt>
+<contents/chapter-2/uart-format.png, id=603, 670.505pt x 324.21124pt>
 File: contents/chapter-2/uart-format.png Graphic file (type png)
 <use contents/chapter-2/uart-format.png>
 Package pdftex.def Info: contents/chapter-2/uart-format.png  used on input line
- 446.
+ 448.
 (pdftex.def)             Requested size: 341.43306pt x 165.09325pt.
  [23 <./contents/chapter-2/uart-format.png>]) [24]
 \openout2 = `contents/chapter-3/chapter-3.aux'.
@@ -1872,7 +1872,7 @@ BAB III.
 
 
 ]
-<contents/chapter-3/diagram-alir-penelitian.png, id=625, 619.113pt x 936.3783pt
+<contents/chapter-3/diagram-alir-penelitian.png, id=633, 619.113pt x 936.3783pt
 >
 File: contents/chapter-3/diagram-alir-penelitian.png Graphic file (type png)
 <use contents/chapter-3/diagram-alir-penelitian.png>
@@ -1880,21 +1880,26 @@ Package pdftex.def Info: contents/chapter-3/diagram-alir-penelitian.png  used o
 n input line 38.
 (pdftex.def)             Requested size: 298.75394pt x 451.85686pt.
  [26] [27 <./contents/chapter-3/diagram-alir-penelitian.png>]
-<contents/chapter-3/system-overview.png, id=640, 474.573pt x 549.9747pt>
+<contents/chapter-3/system-overview.png, id=648, 474.573pt x 549.9747pt>
 File: contents/chapter-3/system-overview.png Graphic file (type png)
 <use contents/chapter-3/system-overview.png>
 Package pdftex.def Info: contents/chapter-3/system-overview.png  used on input 
 line 51.
 (pdftex.def)             Requested size: 256.0748pt x 296.76372pt.
  [28 <./contents/chapter-3/system-overview.png>]
-<contents/chapter-3/purwarupa.jpg, id=647, 2853.66125pt x 2139.995pt>
+Overfull \hbox (3.76407pt too wide) in paragraph at lines 62--63
+[]\T1/ptm/m/n/12 Pada pe-ne-li-ti-an ini, mo-dul Teseo-LIV3FL dan an-te-na Abra
+-con APARM1804-
+ []
+
+<contents/chapter-3/purwarupa.jpg, id=655, 2853.66125pt x 2139.995pt>
 File: contents/chapter-3/purwarupa.jpg Graphic file (type jpg)
 <use contents/chapter-3/purwarupa.jpg>
 Package pdftex.def Info: contents/chapter-3/purwarupa.jpg  used on input line 6
 6.
 (pdftex.def)             Requested size: 256.0748pt x 192.00348pt.
- [29 <./contents/chapter-3/purwarupa.jpg>]
-<contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png, id=658, 864.981
+[29 <./contents/chapter-3/purwarupa.jpg>]
+<contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png, id=666, 864.981
 57pt x 268.00125pt>
 File: contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png Graphic fil
 e (type png)
@@ -1902,7 +1907,7 @@ e (type png)
 Package pdftex.def Info: contents/chapter-3/setting-konstelasi/sebelum-konfigur
 asi.png  used on input line 88.
 (pdftex.def)             Requested size: 398.33858pt x 123.417pt.
-<contents/chapter-3/setting-konstelasi/pilih-konfigurasi.png, id=660, 623.32875
+<contents/chapter-3/setting-konstelasi/pilih-konfigurasi.png, id=668, 623.32875
 pt x 581.17125pt>
 File: contents/chapter-3/setting-konstelasi/pilih-konfigurasi.png Graphic file 
 (type png)
@@ -1910,9 +1915,8 @@ File: contents/chapter-3/setting-konstelasi/pilih-konfigurasi.png Graphic file
 Package pdftex.def Info: contents/chapter-3/setting-konstelasi/pilih-konfiguras
 i.png  used on input line 97.
 (pdftex.def)             Requested size: 284.52756pt x 265.28465pt.
-
-[30 <./contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png>]
-<contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png, id=668, 785.93625
+ [30 <./contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png>]
+<contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png, id=676, 785.93625
 pt x 732.7375pt>
 File: contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png Graphic file 
 (type png)
@@ -1926,7 +1930,7 @@ Overfull \hbox (2.39595pt too wide) in paragraph at lines 119--120
 LIV3FL ak-an meng-
  []
 
-<contents/chapter-3/setting-konstelasi/setelah-konfigurasi.png, id=676, 862.723
+<contents/chapter-3/setting-konstelasi/setelah-konfigurasi.png, id=684, 862.723
 13pt x 264.23718pt>
 File: contents/chapter-3/setting-konstelasi/setelah-konfigurasi.png Graphic fil
 e (type png)
@@ -1936,7 +1940,7 @@ asi.png  used on input line 123.
 (pdftex.def)             Requested size: 398.33858pt x 122.00215pt.
 [32 <./contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png> <./contents
 /chapter-3/setting-konstelasi/setelah-konfigurasi.png>]
-<contents/chapter-3/firmware-diagram.png, id=684, 330.9966pt x 439.4016pt>
+<contents/chapter-3/firmware-diagram.png, id=692, 330.9966pt x 439.4016pt>
 File: contents/chapter-3/firmware-diagram.png Graphic file (type png)
 <use contents/chapter-3/firmware-diagram.png>
 Package pdftex.def Info: contents/chapter-3/firmware-diagram.png  used on input
@@ -1984,7 +1988,7 @@ T1/ptm/m/it/12 multi-
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 [34]
-<contents/chapter-3/diagram-parser.png, id=698, 367.1316pt x 737.6358pt>
+<contents/chapter-3/diagram-parser.png, id=706, 367.1316pt x 737.6358pt>
 File: contents/chapter-3/diagram-parser.png Graphic file (type png)
 <use contents/chapter-3/diagram-parser.png>
 Package pdftex.def Info: contents/chapter-3/diagram-parser.png  used on input l
@@ -2003,7 +2007,7 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) [37]
 [38] [39] [40]
-<contents/chapter-3/geofence-map.png, id=799, 1454.43375pt x 925.4575pt>
+<contents/chapter-3/geofence-map.png, id=809, 1454.43375pt x 925.4575pt>
 File: contents/chapter-3/geofence-map.png Graphic file (type png)
 <use contents/chapter-3/geofence-map.png>
 Package pdftex.def Info: contents/chapter-3/geofence-map.png  used on input lin
@@ -2015,7 +2019,7 @@ e 374.
 
 (./contents/chapter-4/chapter-4.tex
 BAB IV.
-<contents/chapter-4/low-power.jpg, id=832, 4047.12pt x 3035.34pt>
+<contents/chapter-4/low-power.jpg, id=842, 4047.12pt x 3035.34pt>
 File: contents/chapter-4/low-power.jpg Graphic file (type jpg)
 <use contents/chapter-4/low-power.jpg>
 Package pdftex.def Info: contents/chapter-4/low-power.jpg  used on input line 2
@@ -2027,7 +2031,7 @@ Package pdftex.def Info: contents/chapter-4/low-power.jpg  used on input line 2
 
 
 ]
-<contents/chapter-4/low-power-result.jpg, id=841, 6678.9525pt x 2409.0pt>
+<contents/chapter-4/low-power-result.jpg, id=851, 6678.9525pt x 2409.0pt>
 File: contents/chapter-4/low-power-result.jpg Graphic file (type jpg)
 <use contents/chapter-4/low-power-result.jpg>
 Package pdftex.def Info: contents/chapter-4/low-power-result.jpg  used on input
@@ -2074,7 +2078,7 @@ Overfull \hbox (6.18886pt too wide) in paragraph at lines 102--102
  []
 
 [45] [46]
-<contents/chapter-4/1-skenario-basement/keadaan.jpg, id=857, 4047.12pt x 3035.3
+<contents/chapter-4/1-skenario-basement/keadaan.jpg, id=867, 4047.12pt x 3035.3
 4pt>
 File: contents/chapter-4/1-skenario-basement/keadaan.jpg Graphic file (type jpg
 )
@@ -2083,7 +2087,7 @@ Package pdftex.def Info: contents/chapter-4/1-skenario-basement/keadaan.jpg  us
 ed on input line 142.
 (pdftex.def)             Requested size: 284.52756pt x 213.3755pt.
  [47]
-<contents/chapter-4/1-skenario-basement/sats_dop.png, id=869, 388.0899pt x 614.
+<contents/chapter-4/1-skenario-basement/sats_dop.png, id=879, 388.0899pt x 614.
 5359pt>
 File: contents/chapter-4/1-skenario-basement/sats_dop.png Graphic file (type pn
 g)
@@ -2093,7 +2097,7 @@ sed on input line 151.
 (pdftex.def)             Requested size: 341.43306pt x 540.69011pt.
  [48 <./contents/chapter-4/1-skenario-basement/keadaan.jpg>]
 [49 <./contents/chapter-4/1-skenario-basement/sats_dop.png>]
-<contents/chapter-4/1-skenario-basement/skyplot.png, id=879, 340.3917pt x 297.5
+<contents/chapter-4/1-skenario-basement/skyplot.png, id=889, 340.3917pt x 297.5
 115pt>
 File: contents/chapter-4/1-skenario-basement/skyplot.png Graphic file (type png
 )
@@ -2102,14 +2106,14 @@ Package pdftex.def Info: contents/chapter-4/1-skenario-basement/skyplot.png  us
 ed on input line 160.
 (pdftex.def)             Requested size: 312.9803pt x 273.56409pt.
  [50 <./contents/chapter-4/1-skenario-basement/skyplot.png>]
-<contents/chapter-4/2-skenario-indoor/keadaan.jpg, id=886, 4047.12pt x 3035.34p
+<contents/chapter-4/2-skenario-indoor/keadaan.jpg, id=896, 4047.12pt x 3035.34p
 t>
 File: contents/chapter-4/2-skenario-indoor/keadaan.jpg Graphic file (type jpg)
 <use contents/chapter-4/2-skenario-indoor/keadaan.jpg>
 Package pdftex.def Info: contents/chapter-4/2-skenario-indoor/keadaan.jpg  used
  on input line 192.
 (pdftex.def)             Requested size: 284.52756pt x 213.3755pt.
-<contents/chapter-4/2-skenario-indoor/sats_dop.png, id=888, 380.622pt x 614.535
+<contents/chapter-4/2-skenario-indoor/sats_dop.png, id=898, 380.622pt x 614.535
 9pt>
 File: contents/chapter-4/2-skenario-indoor/sats_dop.png Graphic file (type png)
 
@@ -2119,7 +2123,7 @@ d on input line 202.
 (pdftex.def)             Requested size: 341.43306pt x 551.29556pt.
  [51 <./contents/chapter-4/2-skenario-indoor/keadaan.jpg>] [52 <./contents/chap
 ter-4/2-skenario-indoor/sats_dop.png>]
-<contents/chapter-4/2-skenario-indoor/sky_plot.png, id=899, 340.3917pt x 297.51
+<contents/chapter-4/2-skenario-indoor/sky_plot.png, id=909, 340.3917pt x 297.51
 15pt>
 File: contents/chapter-4/2-skenario-indoor/sky_plot.png Graphic file (type png)
 
@@ -2128,7 +2132,7 @@ Package pdftex.def Info: contents/chapter-4/2-skenario-indoor/sky_plot.png  use
 d on input line 212.
 (pdftex.def)             Requested size: 341.43306pt x 298.43231pt.
 [53 <./contents/chapter-4/2-skenario-indoor/sky_plot.png>]
-<contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg, id=908, 493.3632pt x 3
+<contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg, id=918, 493.3632pt x 3
 70.0224pt>
 File: contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg Graphic file (type
  jpg)
@@ -2137,7 +2141,7 @@ Package pdftex.def Info: contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg
   used on input line 242.
 (pdftex.def)             Requested size: 284.52756pt x 213.39923pt.
  [54 <./contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg>]
-<contents/chapter-4/3-skenario-semioutdoor/sats_dop.png, id=914, 380.622pt x 61
+<contents/chapter-4/3-skenario-semioutdoor/sats_dop.png, id=924, 380.622pt x 61
 4.5359pt>
 File: contents/chapter-4/3-skenario-semioutdoor/sats_dop.png Graphic file (type
  png)
@@ -2146,7 +2150,7 @@ Package pdftex.def Info: contents/chapter-4/3-skenario-semioutdoor/sats_dop.png
   used on input line 252.
 (pdftex.def)             Requested size: 327.20668pt x 528.33116pt.
  [55 <./contents/chapter-4/3-skenario-semioutdoor/sats_dop.png>]
-<contents/chapter-4/3-skenario-semioutdoor/sky_plot.png, id=921, 340.3917pt x 2
+<contents/chapter-4/3-skenario-semioutdoor/sky_plot.png, id=932, 340.3917pt x 2
 97.5115pt>
 File: contents/chapter-4/3-skenario-semioutdoor/sky_plot.png Graphic file (type
  png)
@@ -2161,7 +2165,7 @@ gan peng-ha-lang yang
  []
 
 [56 <./contents/chapter-4/3-skenario-semioutdoor/sky_plot.png>]
-<contents/chapter-4/4-skenario-outdoor/keadaan.jpg, id=929, 3571.3425pt x 2678.
+<contents/chapter-4/4-skenario-outdoor/keadaan.jpg, id=940, 3571.3425pt x 2678.
 005pt>
 File: contents/chapter-4/4-skenario-outdoor/keadaan.jpg Graphic file (type jpg)
 
@@ -2170,7 +2174,7 @@ Package pdftex.def Info: contents/chapter-4/4-skenario-outdoor/keadaan.jpg  use
 d on input line 294.
 (pdftex.def)             Requested size: 284.52756pt x 213.3458pt.
  [57 <./contents/chapter-4/4-skenario-outdoor/keadaan.jpg>]
-<contents/chapter-4/4-skenario-outdoor/sky_plot.png, id=937, 340.3917pt x 297.5
+<contents/chapter-4/4-skenario-outdoor/sky_plot.png, id=947, 340.3917pt x 297.5
 115pt>
 File: contents/chapter-4/4-skenario-outdoor/sky_plot.png Graphic file (type png
 )
@@ -2178,7 +2182,7 @@ File: contents/chapter-4/4-skenario-outdoor/sky_plot.png Graphic file (type png
 Package pdftex.def Info: contents/chapter-4/4-skenario-outdoor/sky_plot.png  us
 ed on input line 303.
 (pdftex.def)             Requested size: 341.43306pt x 298.43231pt.
-<contents/chapter-4/4-skenario-outdoor/sats_dop.png, id=939, 380.622pt x 614.53
+<contents/chapter-4/4-skenario-outdoor/sats_dop.png, id=949, 380.622pt x 614.53
 59pt>
 File: contents/chapter-4/4-skenario-outdoor/sats_dop.png Graphic file (type png
 )
@@ -2188,7 +2192,7 @@ ed on input line 312.
 (pdftex.def)             Requested size: 341.43306pt x 551.29556pt.
  [58 <./contents/chapter-4/4-skenario-outdoor/sky_plot.png>] [59 <./contents/ch
 apter-4/4-skenario-outdoor/sats_dop.png>]
-<contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg, id=952, 325.8172
+<contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg, id=962, 325.8172
 5pt x 323.40825pt>
 File: contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg Graphic file
  (type jpg)
@@ -2196,7 +2200,7 @@ File: contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg Graphic file
 Package pdftex.def Info: contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-
 1B.jpg  used on input line 324.
 (pdftex.def)             Requested size: 284.52756pt x 282.42387pt.
-<contents/chapter-4/pengujian-bergerak/moving-dop.jpg, id=954, 4035.075pt x 331
+<contents/chapter-4/pengujian-bergerak/moving-dop.jpg, id=964, 4035.075pt x 331
 2.375pt>
 File: contents/chapter-4/pengujian-bergerak/moving-dop.jpg Graphic file (type j
 pg)
@@ -2205,7 +2209,7 @@ Package pdftex.def Info: contents/chapter-4/pengujian-bergerak/moving-dop.jpg
 used on input line 333.
 (pdftex.def)             Requested size: 341.43306pt x 280.25931pt.
  [60 <./contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg>]
-<contents/chapter-4/pengujian-bergerak/lp-streetview.png, id=960, 1032.85875pt 
+<contents/chapter-4/pengujian-bergerak/lp-streetview.png, id=970, 1032.85875pt 
 x 731.73375pt>
 File: contents/chapter-4/pengujian-bergerak/lp-streetview.png Graphic file (typ
 e png)
@@ -2215,7 +2219,7 @@ g  used on input line 342.
 (pdftex.def)             Requested size: 284.52756pt x 201.56795pt.
 
 [61 <./contents/chapter-4/pengujian-bergerak/moving-dop.jpg>]
-<contents/chapter-4/pengujian-bergerak/moving-sats.jpg, id=967, 4035.075pt x 33
+<contents/chapter-4/pengujian-bergerak/moving-sats.jpg, id=977, 4035.075pt x 33
 12.375pt>
 File: contents/chapter-4/pengujian-bergerak/moving-sats.jpg Graphic file (type 
 jpg)
@@ -2240,12 +2244,12 @@ BAB V.
 
 ] [66]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-09.
+13.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 5091) in paragraph at lines 208--211
+Underfull \hbox (badness 5091) in paragraph at lines 212--215
 []\T1/ptm/m/n/12 STMicroelectronics, ``Mul-tip-ro-to-col LPW-AN du-al co-re 32-
 bit Arm\TS1/ptm/m/n/12 ®
  []
@@ -2272,10 +2276,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 46585 strings out of 478268
- 1056207 string characters out of 5846346
- 1768304 words of memory out of 5000000
- 63480 multiletter control sequences out of 15000+600000
+ 46595 strings out of 478268
+ 1056307 string characters out of 5846346
+ 1768379 words of memory out of 5000000
+ 63482 multiletter control sequences out of 15000+600000
  508869 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  103i,12n,110p,910b,1918s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2292,10 +2296,10 @@ ve/2022/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/te
 xmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2022/texmf-dist/
 fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
 1/urw/times/utmri8a.pfb>
-Output written on thesis_template.pdf (85 pages, 20802832 bytes).
+Output written on thesis_template.pdf (85 pages, 20804556 bytes).
 PDF statistics:
- 1436 PDF objects out of 1440 (max. 8388607)
- 1235 compressed objects within 13 object streams
- 448 named destinations out of 1000 (max. 500000)
+ 1447 PDF objects out of 1728 (max. 8388607)
+ 1246 compressed objects within 13 object streams
+ 456 named destinations out of 1000 (max. 500000)
  804 words of extra memory for PDF output out of 10000 (max. 10000000)
 

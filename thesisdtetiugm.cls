@@ -74,13 +74,13 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{inconsolata}
-\usepackage[htt]{hyphenat}
 \usepackage{url}
 \usepackage{ifthen}
 \usepackage{forloop}
 \usepackage{longtable}
 \usepackage{enumitem}
 \usepackage[labelsep=period]{caption} % use period as label separator
+\usepackage[htt]{hyphenat}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgf-pie}

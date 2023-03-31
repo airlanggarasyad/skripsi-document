@@ -57,9 +57,9 @@ Modul GNSS yang digunakan adalah Teseo-LIV3FL milik STMicroelectronics. Komunika
 
 \textit{Development board} yang digunakan adalah STM32 Nucleo-WL55JC1 dengan mikrokontroler STM32WL55. \textit{Development board} ini sudah terintegrasi dengan STLINK-V3 sehingga untuk mengunggah \textit{firmware} dapat dilakukan langsung dengan menggunakan \textit{micro} USB pada \textit{development board}.
 
-Untuk dapat menentukan posisi, modul Teseo-LIV3FL perlu untuk mengetahui informasi satelit. Informasi tersebut didapat dari isyarat GNSS yang ditangkap oleh antena. Adapun antena yang digunakan pada penelitian ini adalah \textcolor{red}{Abracon XXX}. 
+Untuk dapat menentukan posisi, modul Teseo-LIV3FL perlu untuk mengetahui informasi satelit. Informasi tersebut didapat dari isyarat GNSS yang ditangkap oleh antena. Adapun antena yang digunakan pada penelitian ini adalah Abracon APARM1804-SG3.
 
-Pada penelitian ini, modul Teseo-LIV3FL dan antena \textcolor{red}{Abracon XXX} sudah disolder dalam satu papan yang disediakan oleh PT Lunar Inovasi Teknologi. Purwarupa dari perangkat keras ditunjukan oleh Gambar \ref{Fig: purwarupa-alat}
+Pada penelitian ini, modul Teseo-LIV3FL dan antena Abracon APARM1804-SG3 sudah disolder dalam satu papan yang disediakan oleh PT Lunar Inovasi Teknologi. Purwarupa dari perangkat keras ditunjukan oleh Gambar \ref{Fig: purwarupa-alat}
 
 \begin{figure}[H]
 	\centering
@@ -337,7 +337,7 @@ Koordinat yang didapat dari proses penguraian pada bagian sebelumnya masih dalam
 \begin{equation}
 	dd = deg + \frac{min}{60} 
 \end{equation}
-Jika arah dari koordinat garis lintang berada di bagian selatan (S) maka hasil konversi dikalikan dengan -1. Hal yang sama juga dilakukan jika arah dari koordinat garis bujur berada di bagian barat (W).
+Jika arah dari koordinat garis lintang berada di bagian selatan (S) maka hasil konversi dikalikan dengan -1. Hal yang sama juga dilakukan jika arah dari koordinat garis bujur berada di bagian barat (W) \cite{AlHindawi2012}.
 
 Konversi koordinat pada \textit{firmware} berada di dalam fungsi \texttt{Convert\_to\_Degree}. Fungsi ini menerima argumen \texttt{numeral} dengan tipe data \textit{floating point} dalam format \texttt{ddmm.mmm} dan argumen \texttt{sign} sebagai arah dari koordinat hasil penguraian. Implementasi dari fungsi \texttt{Convert\_to\_Degree} ditunjukan oleh kode sumber di bawah
 \begin{lstlisting}[language=c]

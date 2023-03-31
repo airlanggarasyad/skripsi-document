@@ -100,6 +100,10 @@ M.~Mukhtar, ``{GPS based Advanced Vehicle Tracking and Vehicle Control
   System},'' \emph{International Journal of Intelligent Systems and
   Applications}, vol.~7, no.~3, pp. 1--12, 2015.
 
+\bibitem{Widya2016}
+A.~R. Widya, ``Perancangan sistem tracking bus kota berbasis wireless sensor
+  network untuk mendukung framework smart transportation,'' 2016.
+
 \bibitem{Davidson1978}
 \BIBentryALTinterwordspacing
 S.~Davidson and B.~Shriver, ``An overview of firmware engineering,''
@@ -228,5 +232,10 @@ X.~An, X.~Meng, and W.~Jiang, ``Multi-constellation {GNSS} precise point
   Navigation}, vol.~1, no.~1, Feb. 2020. [Online]. Available:
   \url{https://doi.org/10.1186/s43020-020-0009-x}
 \BIBentrySTDinterwordspacing
+
+\bibitem{AlHindawi2012}
+A.~M.~J. Al-Hindawi and I.~Talib, ``Experimentally evaluation of gps/gsm based
+  system design,'' \emph{Journal of Electronic Systems}, vol.~2, no.~2, p.~68,
+  Jun 2012.
 
 \end{thebibliography}
