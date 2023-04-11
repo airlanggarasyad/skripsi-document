@@ -60,6 +60,7 @@
 \usepackage{geometry}% easy layouting
 %\usepackage{hyperref}% hyperlink
 \usepackage{tabulary}
+\usepackage{adjustbox}
 \usepackage{subcaption} % subfigure
 \usepackage{tocloft}% edit font toc
 \usepackage{fancyhdr}% page number

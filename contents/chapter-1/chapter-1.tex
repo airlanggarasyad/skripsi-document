@@ -1,15 +1,15 @@
 \chapter{PENDAHULUAN}
 
 \section{Latar Belakang}
-Salah satu moda transportasi dalam kota paling populer di Indonesia adalah bus. Daerah Istimewa Yogyakarta juga telah menyediakan dua buah layanan bus publik seperti Trans Jogja dan Teman Bus. Salah satu faktor yang membuat penggunaan bus cukup populer adalah cakupan wilayahnya luas dan juga murah \cite{Rohani2013}. Selain itu, lalu lintas yang padat dan lahan parkir yang terbatas juga menjadi motivasi beberapa orang untuk menggunakan transportasi publik. Jika peningkatan jumlah pada suatu daerah sangat tinggi maka dibutuhkan fasilitas transportasi umum yang layak seperti bus \cite{Sutandi2015}.
+Salah satu moda transportasi dalam kota yang paling populer di Indonesia adalah bus. Daerah Istimewa Yogyakarta telah menyediakan dua layanan bus publik, yaitu Trans Jogja dan Teman Bus. Salah satu faktor yang membuat penggunaan bus cukup populer adalah cakupan wilayahnya yang luas dan biayanya yang terjangkau \cite{Rohani2013}. Selain itu, lalu lintas yang padat dan lahan parkir yang terbatas juga menjadi motivasi beberapa orang untuk menggunakan transportasi publik. Jika peningkatan jumlah penduduk pada suatu daerah sangat tinggi, maka dibutuhkan fasilitas transportasi umum yang layak seperti bus \cite{Sutandi2015}.
 
-Pada awal bulan Maret tahun 2022, Rektor Universitas Gadjah Mada, Prof. Ir. Panut Mulyono, M.Eng., D.Eng., meluncurkan dua buah bus listrik untuk transportasi internal kampus. Kedua bus ini adalah inovasi dari UGM untuk memudahkan mobilisasi mahasiswa di area kampus seluas 183.36 hektar ini dan mengurangi penggunaan energi fosil secara bersamaan. Setiap bus akan memutari UGM sebanyak sepuluh kali dengan setiap putaran membutuhkan satu jam. Dengan adanya fasilitas bus kampus Trans Gadjah Mada diharapkan dapat membuat lingkungan kampus menjadi lebih nyaman dan kondusif.
+Pada awal bulan Maret 2022, Rektor Universitas Gadjah Mada, Prof. Ir. Panut Mulyono, M.Eng., D.Eng., meluncurkan dua buah bus listrik untuk transportasi internal kampus. Kedua bus ini merupakan inovasi dari UGM untuk memudahkan mobilisasi mahasiswa di area kampus seluas 183,36 hektar dan mengurangi penggunaan energi fosil secara bersamaan. Setiap bus akan memutari UGM sebanyak sepuluh kali dengan setiap putaran membutuhkan satu jam. Dengan adanya fasilitas bus kampus Trans Gadjah Mada diharapkan dapat membuat lingkungan kampus menjadi lebih nyaman dan kondusif.
 
 Salah satu masalah yang banyak dikeluhkan oleh civitas akademika UGM adalah ketidakpastian waktu kedatangan Trans Gadjah Mada. Meskipun sudah diberikan jadwal estimasi kedatangan bus, terkadang waktu kedatangan bus tidak sesuai dikarenakan faktor cuaca, lalu lintas, dan faktor lainnya.
 
-Masalah serupa juga terjadi di India. Berdasarkan  \cite{Sutar2016}, masyarakat India hanya mengetahui waktu kedatangan berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Penelitian yang dilakukan oleh \cite{Sneha2014} menunjukan bahwa sistem pelacak berbasis GPS telah diimplementasikan di beberapa negara, tetapi belum diimplementasikan di Indonesia, khususnya di lingkungan Universitas Gadjah Mada.
+Masalah serupa juga terjadi di India. Berdasarkan penelitian \cite{Sutar2016}, masyarakat India hanya mengetahui waktu kedatangan bus berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Penelitian yang dilakukan oleh \cite{Sneha2014} menunjukkan bahwa sistem pelacak berbasis GPS telah diimplementasikan di beberapa negara, tetapi belum diimplementasikan di Indonesia, khususnya di lingkungan Universitas Gadjah Mada.
 
-\textit{Global Navigartion Satellite System} atau GNSS adalah teknologi sistem navigasi berbasis satelit yang dapat menunjukan posisi secara akurat. Dengan dikembangkannya \textit{firmware} sistem pelacak lokasi bus Trans Gadjah Mada berbasis GNSS, diharapkan dapat membantu untuk melacak posisi Bus Trans Gadjah Mada.
+Untuk mengatasi masalah ketidakpastian waktu kedatangan Trans Gadjah Mada, dibutuhkan sistem pelacakan yang akurat dan terpercaya. Salah satu teknologi sistem navigasi berbasis satelit yang dapat menunjukkan posisi secara akurat adalah Global Navigation Satellite System (GNSS). Dengan dikembangkannya firmware sistem pelacak lokasi bus Trans Gadjah Mada berbasis GNSS, diharapkan dapat membantu untuk melacak posisi bus secara akurat dan meningkatkan kepuasan pengguna.
 
 \section{Rumusan Masalah}
 Adapun rumusan masalah dari penelitian ini sebagai berikut:
@@ -44,16 +44,17 @@ Bab ini membahas mengenai latar belakang, rumusan masalah, batasan masalah, tuju
 
 \textbf{BAB II}
 
-Bab ini membahas hasil tinjauan pustaka dan landasan teori. Tinjauan pustaka menjelaskan penelitian-penelitian sebelumnya yang terkait dengan penelitian ini.
+Bab ini membahas hasil tinjauan pustaka dan landasan teori yang relevan dengan penelitian ini. Tinjauan pustaka menjelaskan penelitian-penelitian sebelumnya yang terkait dengan penelitian ini, serta teori-teori yang digunakan dalam pengembangan sistem.
 
 \textbf{BAB III}
 
-Bab ini membahas mengenai alat dan bahan yang digunakan dalam penelitian, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi pesan NMEA dari modul GNSS hingga ekstrasi data dari pesan NMEA yang didapat.
+Bab ini membahas metode penelitian yang digunakan dalam penelitian ini, termasuk alat dan bahan yang digunakan, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi kalimat NMEA dari modul GNSS hingga ekstraksi data dari kalimat NMEA yang didapat. Bab ini juga menjelaskan tahapan pengembangan sistem, seperti perancangan sistem, implementasi sistem, hingga pengujian sistem. Metode pengolahan data hasil pengujian juga dibahas dalam bab ini.  
 
 \textbf{BAB VI}
 
-Bab ini membahas mengenai persiapan pengujian, hasil pengujian, dan kelebihan serta kekurangan sistem yang telah dirancang. Hasil pengujian meliputi pengujian mode daya rendah, pengujian \textit{rapid static survey}, dan pengujian bergerak pada Bus Trans Gadjah Mada.
+Bab ini membahas hasil pengujian sistem yang telah dilakukan, meliputi pengujian mode daya rendah, pengujian \textit{rapid static survey}, dan pengujian bergerak pada Bus Trans Gadjah Mada. Selain itu, pada bab ini juga dilakukan analisis terhadap hasil pengujian dan evaluasi terhadap sistem yang telah dikembangkan.
 
+\newpage
 \textbf{BAB V}
 
 Bab ini membahas mengenai kesimpulan dari penelitian yang telah dilakukan dan saran untuk penelitian selanjutnya.

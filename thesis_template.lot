@@ -2,16 +2,16 @@
 \babel@toc {bahasa}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Orbit dan Ketinggian setiap Konstelasi \cite {Li2019} \cite {Bury2019}\relax }}{7}{table.caption.9}%
-\contentsline {table}{\numberline {2.2}{\ignorespaces Klasifikasi Nilai DOP \cite {Langley1999}\relax }}{13}{table.caption.14}%
-\contentsline {table}{\numberline {2.3}{\ignorespaces Jenis STM32 dan Arsitekturnya\relax }}{16}{table.caption.16}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces Orbit dan Ketinggian setiap Konstelasi \cite {Li2019} \cite {Bury2019}\relax }}{9}{table.caption.9}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Klasifikasi Nilai DOP \cite {Langley1999}\relax }}{17}{table.caption.14}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Jenis STM32 dan Arsitekturnya\relax }}{22}{table.caption.16}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{Struktur Pesan \$GNGSA}}{34}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{Struktur Pesan \$GPGGA}}{34}{table.3.2}%
+\contentsline {table}{\numberline {3.1}{Struktur Pesan \$GNGSA}}{43}{table.3.1}%
+\contentsline {table}{\numberline {3.2}{Struktur Pesan \$GPGGA}}{44}{table.3.2}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{Argumen pada Perintah \$PSTMLOWPOWERONOFF}}{45}{table.4.1}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Hasil Pengujian Skenario \textit {Basement}\relax }}{47}{table.caption.37}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Hasil Pengujian Dalam Ruangan\relax }}{51}{table.caption.41}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Hasil Pengujian di Ruangan Semi Terbuka\relax }}{54}{table.caption.45}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Hasil Pengujian Ruangan Terbuka\relax }}{57}{table.caption.49}%
+\contentsline {table}{\numberline {4.1}{Argumen pada Perintah \$PSTMLOWPOWERONOFF}}{66}{table.4.1}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Hasil Pengujian Skenario \textit {Basement}\relax }}{70}{table.caption.39}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Hasil Pengujian Dalam Ruangan\relax }}{74}{table.caption.44}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Hasil Pengujian di Ruangan Semi Terbuka\relax }}{78}{table.caption.49}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Hasil Pengujian Ruangan Terbuka\relax }}{82}{table.caption.54}%
 \addvspace {10\p@ }

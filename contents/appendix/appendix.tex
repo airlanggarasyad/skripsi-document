@@ -1,70 +1,129 @@
-\section{Sample algorithm}
-\begin{algorithm}
-	\caption{Kruskal's Algorithm}\label{alg:kruskal}
-	\begin{algorithmic}[1]
-		\Procedure{MakeSet}{$v$}
-			\State Create new set containing $v$
-		\EndProcedure \\
+\section{Proses Utama pada \textit{Firmware}}
+\begin{lstlisting}[language=c]
+/**
+******************************************************************************
+* @file    app_gnss.c
+* @author  Airlangga Fidiyanto
+* @date    2023
+* @brief   GNSS process code
+******************************************************************************
+**/
+
+/* Includes ------------------------------------------------------------------*/
+#include "app_gnss.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+
+#include "custom_board_conf.h"
+#include "teseo_liv3f_conf.h"
+
+#include "custom_gnss.h"
+#include "stm32wlxx_nucleo.h"
+#include "gnss_feature_cfg_data.h"
+
+#define GNSS_READABLE 0
+
+static GNSSParser_Data_t GNSSParser_Data;
+static uint8_t msg[256];
+
+void MX_GNSS_Init(void)
+{
+	/* Initialize the peripherals and the teseo device */
+	if(BSP_COM_Init(COM1) != BSP_ERROR_NONE)
+	{
+		Error_Handler();
+	}
+}
+
+void MX_GNSS_Process(void)
+{
+	GNSSParser_Status_t status, check;
+	const CUSTOM_GNSS_Msg_t *gnssMsg;
+	
+	CUSTOM_GNSS_Init();
+	
+	GNSS_PARSER_Init(&GNSSParser_Data);
+	
+	for(;;)
+	{
+		gnssMsg = CUSTOM_GNSS_GetMessage();
 		
-		\Function{FindSet}{$v$} 
-			\State\Return a set containing $v$
-		\EndFunction \\
+		if(gnssMsg == NULL)
+		{
+			continue;
+		}
 		
-		\Procedure{Union}{$u$,$v$}
-			\State Unites the set that contain $u$ and $v$ into a new set
-		\EndProcedure \\
+		check = GNSS_PARSER_CheckSanity((uint8_t *)gnssMsg->buf, gnssMsg->len);
 		
-		\Function{Kruskal}{$V,E,w$}
-			\State $A \gets \{\}$
-			\For {each vertex $v$ in $V$}
-				\State MakeSet($v$)
-			\EndFor
-			\State Arrange $E$ in increasing costs, ordered by $w$
-			\For {each ($u$,$v$) taken from the sorted list}
-				\If {FindSet($u$) $\neq$ FindSet($v$)}
-					\State $A \gets A \cup \{(u,v)\}$
-					\State Union($u,v$)
-				\EndIf
-			\EndFor
-			\State \Return A
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
+		if(check != GNSS_PARSER_ERROR)
+		{
+			for(int m = 0; m < 2; m++)
+			{
+				status = GNSS_PARSER_ParseMsg(&GNSSParser_Data, (eNMEAMsg)m, (uint8_t *)gnssMsg->buf);
+				if((status != GNSS_PARSER_ERROR) && ((eNMEAMsg)m == GPGGA))
+				{
+					#if GNSS_READABLE
+					sprintf((char *)msg, "UTC  : %02d:%02d:%02d\r", GNSSParser_Data.gpgga_data.utc.hh, GNSSParser_Data.gpgga_data.utc.mm, GNSSParser_Data.gpgga_data.utc.ss);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "LAT  : %f\r", GNSSParser_Data.gpgga_data.xyz.lat);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "LON  : %f\r", GNSSParser_Data.gpgga_data.xyz.lon);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "ALT  : %f\r", GNSSParser_Data.gpgga_data.xyz.alt);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "HDOP : %.2f\r", GNSSParser_Data.gsa_data.hdop);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "SATS : %d\r", GNSSParser_Data.gpgga_data.sats);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "GEOF : %d\r\n", GNSSParser_Data.gpgga_data.xyz.is_inside_ugm);
+					GNSS_PRINT((char *)msg);
+					#else
+					sprintf((char *)msg, "%02d:%02d:%02d,", GNSSParser_Data.gpgga_data.utc.hh, GNSSParser_Data.gpgga_data.utc.mm, GNSSParser_Data.gpgga_data.utc.ss);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%f,", GNSSParser_Data.gpgga_data.xyz.lat);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%f,", GNSSParser_Data.gpgga_data.xyz.lon);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%f,", GNSSParser_Data.gpgga_data.xyz.alt);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%d,", GNSSParser_Data.gpgga_data.sats);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%.2f,", GNSSParser_Data.gsa_data.hdop);
+					GNSS_PRINT((char *)msg);
+					
+					sprintf((char *)msg, "%d\r\n", GNSSParser_Data.gpgga_data.xyz.is_inside_ugm);
+					GNSS_PRINT((char *)msg);
+					#endif
+				}
+			}
+		}
+		
+		CUSTOM_GNSS_ReleaseMessage(CUSTOM_TESEO_LIV3F, gnssMsg);
+	}
+}
 
-\newpage
-\section{Sample Python code}
-\begin{lstlisting}[language=Python]
-import numpy as np
-
-def incmatrix(genl1,genl2):
-	m = len(genl1)
-	n = len(genl2)
-	M = None #to become the incidence matrix
-	VT = np.zeros((n*m,1), int)  #dummy variable
-
-	#compute the bitwise xor matrix
-	M1 = bitxormatrix(genl1)
-	M2 = np.triu(bitxormatrix(genl2),1) 
-
-	for i in range(m-1):
-		for j in range(i+1, m):
-			[r,c] = np.where(M2 == M1[i,j])
-			for k in range(len(r)):
-				VT[(i)*n + r[k]] = 1;
-				VT[(i)*n + c[k]] = 1;
-				VT[(j)*n + r[k]] = 1;
-				VT[(j)*n + c[k]] = 1;
-
-	if M is None:
-		M = np.copy(VT)
-	else:
-		M = np.concatenate((M, VT), 1)
-
-	VT = np.zeros((n*m,1), int)
-
-	return M
+int GNSS_PRINT(char *pBuffer)
+{
+	if (HAL_UART_Transmit(&hcom_uart[COM1], (uint8_t*)pBuffer, (uint16_t)strlen((char *)pBuffer), 1000) != HAL_OK)
+	{
+		return 1;
+	}
+	fflush(stdout);
+	
+	return 0;
+}
 \end{lstlisting}
-
-\newpage
-\section{Sample Matlab code}
-\lstinputlisting[language=Octave]{sample/sample-code.m}

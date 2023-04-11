@@ -102,7 +102,7 @@ M.~Mukhtar, ``{GPS based Advanced Vehicle Tracking and Vehicle Control
 
 \bibitem{Widya2016}
 A.~R. Widya, ``Perancangan sistem tracking bus kota berbasis wireless sensor
-  network untuk mendukung framework smart transportation,'' 2016.
+  network untuk mendukung framework smart transportation,'' pp. 41--43, 2016.
 
 \bibitem{Davidson1978}
 \BIBentryALTinterwordspacing
@@ -123,6 +123,10 @@ D.~M. Ritchie, ``The development of the c language,'' \emph{{ACM} {SIGPLAN}
   Notices}, vol.~28, no.~3, pp. 201--208, Mar. 1993. [Online]. Available:
   \url{https://doi.org/10.1145/155360.155580}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Deitel2016}
+P.~J. Deitel and H.~M. Deitel, \emph{C how to program: With an introduction to
+  C++}.\hskip 1em plus 0.5em minus 0.4em\relax Pearson, 2016.
 
 \bibitem{NationalCoordinationOfficeforSpace-BasedPositioning2021}
 N.~{National Coordination Office for Space-Based Positioning} and Timing.,
@@ -237,5 +241,26 @@ X.~An, X.~Meng, and W.~Jiang, ``Multi-constellation {GNSS} precise point
 A.~M.~J. Al-Hindawi and I.~Talib, ``Experimentally evaluation of gps/gsm based
   system design,'' \emph{Journal of Electronic Systems}, vol.~2, no.~2, p.~68,
   Jun 2012.
+
+\bibitem{lauer2019static}
+\BIBentryALTinterwordspacing
+I.~Lauer, ``Static {GPS/GNSS} survey methods manual,'' pp. 2--3, January 2019.
+  [Online]. Available:
+  \url{https://www.isu.edu/media/libraries/geosciences/2019-GPS-Surveying-Manual.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{gnssca_apn029}
+\BIBentryALTinterwordspacing
+G.~World, ``{GPS} position accuracy measures,'' GNSS Application Notes,
+  February 2017, accessed: April 5, 2023. [Online]. Available:
+  \url{https://www.gnss.ca/app_notes/APN-029_GPS_Position_Accuracy_Measures_Application_Note.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Lu2018}
+\BIBentryALTinterwordspacing
+D.~Lu, S.~Jiang, B.~Cai, W.~Shangguan, X.~Liu, and J.~Luan, ``Quantitative
+  analysis of {GNSS} performance under railway obstruction environment,'' Apr.
+  2018. [Online]. Available: \url{https://doi.org/10.1109/plans.2018.8373489}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
