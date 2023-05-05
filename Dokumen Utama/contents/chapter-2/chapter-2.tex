@@ -1,17 +1,19 @@
 \chapter{TINJAUAN PUSTAKA}
 
 \section{Tinjauan Pustaka}
-Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak kendaraan dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS Tracker.
+Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak kendaraan dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}. Selain itu pelacak GPS juga dapat digunakan untuk aplikasi pada kapal kargo dan juga pada alat berat \cite{Zhang2013}\cite{Rani2021}. Pada penelitian ini, firmware GNSS \textit{tracker} yang dikembang difokuskan untuk melacak posisi bus kampus Trans Gadjah Mada.
 
 Tim peneliti dari \textit{Vidyalankar Institute of Technology} telah merancang suatu sistem yang dapat mendeteksi lokasi dari kendaraan dan juga emisi \ce{CO} yang dihasilkan. Pada sistem yang dirancang, digunakan \textit{development board} Arduino Uno yang berbasis mikrokontroler ATmega328. Ketika kandungan gas \ce{CO} sudah melebihi ambang batas, sistem akan memutus pengiriman bahan bakar dan kemudian mengirimkan data koordinat dari modul GPS ke \textit{server} Apache yang telah dirancang \cite{Asha2022}.
 
-Sebuah sistem \textit{speedometer} telah dirancang oleh \cite{Najmurrokhman2021}. Sistem tersebut menggunakan modul GPS untuk menghitung kecepatan dan koordinat lokasi kendaraan. Data kecepatan kendaraan didapat dari menghitung waktu yang dibutuhkan oleh kendaraan untuk berpindah dari satu titik ke titik lainnya. Data yang didapat dikirimkan dengan API Adafruit IO menggunakan modul SIM808.
+Sebuah sistem \textit{speedometer} telah dirancang oleh \cite{Najmurrokhman2021}. Sistem tersebut menggunakan modul GPS untuk menghitung kecepatan dan koordinat lokasi kendaraan. Data kecepatan kendaraan didapat dari menghitung waktu yang dibutuhkan oleh kendaraan untuk berpindah dari satu titik ke titik lainnya. Jika dibandingkan dengan \textit{speedometer} pada aplikasi Google Maps, rata-rata dari selisih perhitungan kecepatan yang didapat adalah 3,9 km/jam. Selain itu, akurasi posisi yang didapat juga sudah cukup tinggi.
 
 Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of London} menggunakan mikrokontroler AT89S52 dari keluarga 8051. Digunakan modul GPS M-89 yang diatur untuk menerima isyarat transmisi satelit pada frekuensi 1575.42 MHz. Data yang diterima akan ditampilkan pada layar LCD dan dikirimkan dengan modul GSM. Kemudian, data yang telah diterima akan ditampilkan pada situs web.
 
 Sistem yang dirancang pada penelitian \cite{Widya2016} menggunakan modul GPS u-Blox Neo 6m. Penelitian ini memiliki kesamaan, yaitu objek yang akan dilacak adalah kendaraan bus. Sama seperti penelitian-penelitian sebelumnya, pada penelitian ini hanya digunakan satu buah konstelasi GNSS, yaitu GPS.
 
-Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo-LIV3FL dan mikrokontroler STM32 WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak. Dengan begitu, penelitian ini diharapkan dapat memberikan kontribusi yang signifikan pada pengembangan sistem pelacak kendaraan berbasis GNSS.
+Terakhir, penelitian \cite{Priono2017} membahas mengenai implementasi \textit{geofencing} untuk mengawasi pengiriman kendaraan pada perusahaan ekspedisi. Pada sistem yang dirancang, terdapat beberapa titik \textit{geofencing} di sepanjang rute perjalanan paket. Fitur serupa dapat diimplementasikan pada sistem pelacak Bus Trans Gadjah Mada. Sebagai contoh, sistem \textit{geofencing} untuk menentukan posisi halte saat ini.
+
+Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo-LIV3FL dan mikrokontroler STM32 WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
 
 \section{Dasar Teori}
 \subsection{\textit{Firmware}}
@@ -87,106 +89,6 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 
 \textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit Geo adalah secara teoretis hanya membutuhkan tiga hingga empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
 
-\subsubsection{Trilaterasi}
-Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=8cm]{contents/chapter-2/trilaterasi.png}
-	\caption{Trilaterasi}
-	\label{Fig: Trilaterasi}
-\end{figure}
-
-Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D dapat didapatkan dengan menyelesaikan persamaan berikut
-\begin{equation}
-	\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
-	\label{eq:2-1}
-\end{equation}
-\begin{equation}
-	\left(x-x_2\right)^2 + \left(y-y_2\right)^2=d_2^2
-	\label{eq:2-2}
-\end{equation}
-\begin{equation}
-	\left(x-x_3\right)^2 + \left(y-y_3\right)^2=d_3^2
-	\label{eq:2-3}
-\end{equation}
-Persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dapat diubah menjadi persamaan linear dengan melakukan substitusi, sehingga didapat
-$$2\left(x_2-x_1\right)x +2 \left(y_2-y_1\right)y=\alpha$$
-$$2\left(x_3-x_1\right)x+ 2\left(y_3-y_1\right)y=\beta$$
-dengan
-$$\alpha=\left(d_1^2-d_2^2\right)-\left(x_1^2-x_2^2\right)-\left(y_1^2-y_2^2\right)$$
-$$\beta=\left(d_1^2-d_3^2\right)-\left(x_1^2-x_3^2\right)-\left(y_1^2-y_3^2\right).$$
-Posisi $\left(x,y\right)$ didapat dengan menyelesaikan persamaan matriks berikut
-$$x=f\left(d_1,d_2,d_3\right)=\frac{
-	\begin{vmatrix}
-		\alpha & 2Y_1^2 \\
-		\beta & 2Y_1^3 \\
-\end{vmatrix}}
-{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 \\
-		2X_1^3 & 2Y_1^3 \\
-	\end{vmatrix}
-}$$
-$$y=g\left(d_1,d_2,d_3\right)=\frac{
-	\begin{vmatrix}
-		2X_1^2 & \alpha \\
-		2X_1^3 & \beta \\
-\end{vmatrix}}
-{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 \\
-		2X_1^3 & 2Y_1^3 \\
-	\end{vmatrix}
-}$$
-dengan $X_i^j$ dan $Y_i^j$ adalah $\left(x_i-x_j\right)$ dan $\left(y_i-y_j\right)$.
-
-Trilaterasi 3D dapat dilakukan dengan memodifikasi persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dan mengulangi langkah-langkah pada Trilaterasi 2D. Untuk menentukan posisi $\left(x,y,z\right)$ objek pada bidang tiga dimensi dapat dilakukan dengan menyelesaikan persamaan matriks berikut
-$$
-\hat{x}=\hat{f}\left(d_1,d_2,d_3\right)=\frac{
-	\begin{vmatrix}
-		\alpha & 2Y_1^2 & 2Z_1^2\\
-		\beta & 2Y_1^3 & 2Z_1^3\\
-		\gamma & 2Y_1^4 & 2Z_1^4
-\end{vmatrix}}
-{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
-		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
-		2X_1^2 & 2Y_1^4 & 2Z_1^4
-	\end{vmatrix}
-}
-$$
-$$
-\hat{y}=\hat{g}\left(d_1,d_2,d_3\right)=\frac{
-	\begin{vmatrix}
-		2X_1^2 & \alpha & Z_1^2\\
-		2X_1^3 & \beta & 2Z_1^3\\
-		2X_1^4 & \gamma & 2Z_1^4
-	\end{vmatrix}
-}
-{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
-		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
-		2X_1^2 & 2Y_1^4 & 2_1^4
-	\end{vmatrix}
-}
-$$
-$$\hat{z}=\hat{h}\left(d_1,d_2,d_3\right)=\frac{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 & \alpha\\
-		2X_1^3 & 2Y_1^3  & \beta\\
-		2X_1^4 & 2Y_1^4 & \gamma
-\end{vmatrix}}
-{
-	\begin{vmatrix}
-		2X_1^2 & 2Y_1^2 & 2Z_1^2\\
-		2X_1^2 & 2Y_1^3 & 2Z_1^3\\
-		2X_1^2 & 2Y_1^4 & 2+_1^4
-	\end{vmatrix}
-}
-$$
 \subsubsection{Penerima GNSS}
 Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh satelit berisi efemeris, almanak, dan komponen lainnya seperti tanggal dan status satelit.
 
@@ -211,8 +113,148 @@ Seiring berjalannya waktu, standar ini sudah mengalami berbagai macam revisi. Be
 	\item \texttt{\$GPGGA} berisi informasi yang hampir sama dengan kalimat \textit{\$GPRMC} dengan perbedaan terdapat informasi mengenai \textit{fix} saat ini dan visibilitas satelit.
 \end{enumerate}
 
+\subsection{Lokalisasi}
+Berdasarkan penelitian X, lokalisasi adalah suatu teknik untuk menghitung posisi dari suatu titik saat ini berdasarkan komunikasi antar simpul yang lokasinya telah diketahui. Posisi saat ini dihitung berdasarkan rata-rata jarak dan sudut antara dua simpul. Beberapa konsep lokalisasi adalah sebagai berikut \cite{Alrajeh2013}:
+
+\begin{enumerate}
+	\item \textbf{Laterasi} terjadi ketika jarak antar dua simpul digunakan untuk mengestimasi posisi saat ini.
+	\item \textbf{Angulasi} hampir sama dengan laterasi, tetapi pada angulasi, sudut antara dua simpul digunakan untuk mengestimasi posisi saat ini.
+	\item \textbf{Trilaterasi} adaqlah teknik untuk mengestimasi posisi saat ini dengan menggunakan tiga buah simpul. Pada trilaterasi, digunakan perpotongan antara tiga buah lingkaran yang akan memberikan satu titik berisi posisi saat ini.
+	\item \textbf{Multilaterasi} hampir sama dengan trilaterasi, tetapi pada multilaterasi, jumlah simpul yang digunakan lebih dari empat buah.
+	\item \textbf{Triangulasi} adalah teknik untuk mengestimasi posisi saat ini menggunakan sudut antara dua impul. Digunakan hukum sinus dan kosinus untuk mengestimasi posisi saat ini.
+\end{enumerate}
+
+Selain itu, lokalisasi juga dapat dibagi menjadi GNSS \textit{based} dan GNSS \textit{free}. GNSS \textit{based} adalah suatu mekanisme suatu simpul menggunakan GNSS untuk menentukan posisi saat ini. Di sisi lain, GNSS \textit{free} tidak menggunakan GNSS untuk menentukan posisi saat ini, melainkan relatif terhadap jaringan lokal.
+
+\subsubsection{Trilaterasi}
+Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm]{contents/chapter-2/trilaterasi.png}
+	\caption{Trilaterasi}
+	\label{Fig: Trilaterasi}
+\end{figure}
+
+Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D dapat didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit.
+
+\begin{equation}
+	\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
+	\label{eq:2-1}
+\end{equation}
+\begin{equation}
+	\left(x-x_2\right)^2 + \left(y-y_2\right)^2=d_2^2
+	\label{eq:2-2}
+\end{equation}
+\begin{equation}
+	\left(x-x_3\right)^2 + \left(y-y_3\right)^2=d_3^2
+	\label{eq:2-3}
+\end{equation}
+
+Bagian kuadrat dari Persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dapat diekspansikan sehingga didapat:
+
+\begin{equation}
+	x^2-2x_1x+x_1^2+y^2-2y_1y+y_1^2=d_1^2
+	\label{eq:2-4}
+\end{equation}
+\begin{equation}
+	x^2-2x_2x+x_2^2+y^2-2y_2y+y_2^2=d_2^2
+	\label{eq:2-5}
+\end{equation}
+\begin{equation}
+	x^2-2x_3x+x_3^2+y^2-2y_3y+y_3^2=d_1^2
+	\label{eq:2-6}
+\end{equation}
+
+Kurangi Persamaan \ref{eq:2-5} dengan  Persamaan \ref{eq:2-4}.
+
+\begin{equation}
+	2x \left(x_2-x_1\right) + 2y \left(y_2 - y_1\right) = r_1^2 - r_2^2 - x_1^2 + x_2^2- y_1^2 + y_2^2
+	\label{eq:2-7}
+\end{equation}
+
+Lakukan operasi yang sama antara Persamaan  \ref{eq:2-5} dengan Persamaan \ref{eq:2-6}.
+
+\begin{equation}
+	2x \left(x_3 -x_2\right) + 2y \left(y_3 - y_2\right) = r_2^2 - r_3^2 - x_2^2 + x_3^2- y_2^2 + y_3^2
+	\label{eq:2-8}
+\end{equation}
+
+Persamaan \ref{eq:2-7} dan Persamaan \ref{eq:2-8} dapat dituliskan kembali sebagai $A$, $B$, $C$, $D$, $E$, dan $F$ seperti ditunjukan oleh Persamaan \ref{eq:2-9} dan Persamaan \ref{eq:2-10} di bawah .
+
+\begin{equation}
+	Ax + By = C
+	\label{eq:2-9}
+\end{equation}
+
+\begin{equation}
+	Dx + Ey = F
+	\label{eq:2-10}
+\end{equation}
+
+Dua sistem persamaan linear di atas dapat ditulis kembali dalam bentuk matriks berikut:
+
+\begin{equation}
+	\begin{bmatrix}
+		A & B \\
+		D & E \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		x \\
+		y\\
+	\end{bmatrix} = 
+	\begin{bmatrix}
+		C \\
+		F \\
+	\end{bmatrix}
+	\label{eq:2-11}
+\end{equation}
+
+Maka didapat solusi berupa koordinat posisi di bidang horizontal $\left(x\right)$ dan bidang vertikal $\left(y\right)$ dari sistem persamaan linear di atas.
+
+\begin{equation}
+	x = \frac{det
+		\left(
+			\begin{bmatrix}
+				C & B \\
+				F & D\\
+			\end{bmatrix}
+		\right)
+	}{
+		det\left(\
+			\begin{bmatrix}
+				A & B \\
+				D & E\\
+			\end{bmatrix}
+		\right)
+	}
+	\label{eq:2-12}
+\end{equation}
+
+\begin{equation}
+	x = \frac{det
+		\left(
+		\begin{bmatrix}
+			A & C \\
+			D & F\\
+		\end{bmatrix}
+		\right)
+	}{
+		det\left(\
+		\begin{bmatrix}
+			A & B \\
+			D & E\\
+		\end{bmatrix}
+		\right)
+	}
+	\label{eq:2-13}
+\end{equation}
+
+
 \subsection{Ketelitian GNSS}
-Performa modul GNSS adalah hal penting dalam aplikasi navigasi, seperti navigasi pada kendaraan udara, laut, dan darat. Modul GNSS menghasilkan informasi posisi dan waktu yang akurat berdasarkan sinyal yang diterima dari satelit. Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. Akurasi mengacu pada seberapa dekat hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukkan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel \cite{Novatel2023}. Dalam aplikasi navigasi, akurasi dan presisi yang tinggi sangatlah penting. Dengan akurasi yang tinggi, pengguna dapat mengetahui posisi mereka secara tepat, sedangkan dengan presisi yang tinggi, pengguna dapat memperoleh informasi yang konsisten dan akurat meskipun dilakukan pengukuran berkali-kali pada waktu yang berbeda.
+Performa modul GNSS adalah hal penting dalam aplikasi navigasi, seperti navigasi pada kendaraan udara, laut, dan darat. Modul GNSS menghasilkan informasi posisi dan waktu yang akurat berdasarkan sinyal yang diterima dari satelit. Performa modul GNSS dapat ditinjau dari tingkat akurasi dan tingkat presisinya. Akurasi mengacu pada seberapa dekat hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukkan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel \cite{Novatel2023}. 
+
+Dalam aplikasi navigasi, akurasi dan presisi yang tinggi sangatlah penting. Dengan akurasi yang tinggi, pengguna dapat mengetahui posisi mereka secara tepat, sedangkan dengan presisi yang tinggi, pengguna dapat memperoleh informasi yang konsisten dan akurat meskipun dilakukan pengukuran berkali-kali pada waktu yang berbeda.
 
 \begin{figure}[H]
 	\centering
@@ -221,11 +263,17 @@ Performa modul GNSS adalah hal penting dalam aplikasi navigasi, seperti navigasi
 	\label{Fig: acc-and-prec-diff}
 \end{figure}
 
-\newpage
 Gambar \ref{Fig: acc-and-prec-diff} adalah ilustrasi yang menjelaskan perbedaan antara tingkat akurasi dan presisi. Lingkaran dengan radius kecil tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan presisi yang tinggi. Artinya, hasil pengukuran tersebut sangat dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel. Lingkaran dengan radius kecil yang letaknya melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang rendah namun tingkat presisi yang tinggi. Hal ini berarti hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya, namun ketika diukur berkali-kali, hasilnya akan konsisten dan akurat. Lingkaran dengan radius besar yang tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang tinggi, namun presisi yang rendah. Artinya, hasil pengukuran tersebut dekat dengan posisi sebenarnya, tetapi nilai rata-rata dari seluruh sampel cukup jauh dari hasil pengukuran. Terakhir, lingkaran dengan radius besar dan melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan presisi yang rendah. Artinya, hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel juga cukup jauh dari hasil pengukuran.
 
 \subsubsection{\textit{Dilution of Precision}}
 \textit{Dilution of Precision} atau DOP adalah suatu konsep sederhana yang banyak digunakan untuk mengukur efektivitas dari suatu pengukuran. Nilai DOP dapat diestimasi menggunakan perhitungan yang telah dlakukan pada penelitian \cite{Tahsin2015} . Semakin kecil nilai DOP maka semakin baik \cite{Hofmann-Wellenhof2008}. Klasifikasi nilai DOP menurut \cite{Langley1999} ditunjukan oleh Tabel \ref{Tab: Nilai_DOP}.
+
+Nilai DOP dapat dibagi menjadi tiga, yaitu
+\begin{enumerate}
+	\item \textbf{\textit{Horizontal Dilution of Precision} (HDOP)}: Mendeskripsikan efek dari nilai DOP pada bidang horizontal. Semakin rendah nilai HDOP maka semakin akurat posisi garis bujur dan garis lintang yang didapat.
+	\item \textbf{\textit{Vertical Dilution of Precision} (VDOP)}: Mendeskripsikan efek dari nilai DOP pada posisi vertikal. Semakin rendah nilai VDOP maka semakin akurat nilai ketinggian yang didapat.
+	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Merupakan gabungan dari HDOP dan VDOP. Selain itu, PDOP juga mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebar, sehingga akurasi yang didapat semakin besar.
+\end{enumerate}
 
 \begin{table}[H]
 	\caption{Klasifikasi Nilai DOP \cite{Langley1999}}
@@ -251,11 +299,11 @@ Gambar \ref{Fig: acc-and-prec-diff} adalah ilustrasi yang menjelaskan perbedaan 
 		\multicolumn{1}{c}{5 - 10} & 
 		\multicolumn{1}{c}{Sedang} & 
 		Hasil pengukuran posisi sudah dapat digunakan, tetapi kualitas \textit{fix}-nya masih harus diperbaiki.\\
-
+		
 		\multicolumn{1}{c}{10 - 20} & 
 		\multicolumn{1}{c}{Buruk}  & 
 		Estimasi posisi hanya dapat digunakan untuk estimasi saja.\\ 
-
+		
 		\multicolumn{1}{c}{> 20} & 
 		\multicolumn{1}{c}{Sangat Buruk} & 
 		Hasil pengukuran tidak dapat digunakan.
@@ -265,19 +313,12 @@ Gambar \ref{Fig: acc-and-prec-diff} adalah ilustrasi yang menjelaskan perbedaan 
 	\label{Tab: Nilai_DOP}
 \end{table}
 
-Terdapat tiga nilai DOP, yaitu
-\begin{enumerate}
-	\item \textbf{\textit{Horizontal Dilution of Precision} (HDOP)}: Mendeskripsikan efek dari nilai DOP pada bidang horizontal. Semakin rendah nilai HDOP maka semakin akurat posisi garis bujur dan garis lintang yang didapat.
-	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebar, sehingga akurasi yang didapat semakin besar.
-	\item \textbf{\textit{Vertical Dilution of Precision} (VDOP)}: Mendeskripsikan efek dari nilai DOP pada posisi vertikal. Semakin rendah nilai VDOP maka semakin akurat nilai ketinggian yang didapat.
-\end{enumerate}
-
 \subsubsection{\textit{Circular Error Probability} (CEP)}
-\textit{Circular Error Probability} atau CEP adalah nilai yang digunakan untuk meninjau tingkat kepresisian dari suatu modul GNSS. Nilai CEP didefinisikan sebagai jari-jari dari lingkaran yang berisi 50\% dari hasil pengukuran dengan jari-jari di nilai rata-ratanya. Nilai CEP dapat dihitung dengan menggunakan Persamaan 2-4.
+\textit{Circular Error Probability} atau CEP adalah nilai yang digunakan untuk meninjau tingkat kepresisian dari suatu modul GNSS. Nilai CEP didefinisikan sebagai jari-jari dari lingkaran yang berisi 50\% dari hasil pengukuran dengan jari-jari di nilai rata-ratanya. Nilai CEP dapat dihitung dengan menggunakan Persamaan \ref{eq:CEP}.
 
 \begin{equation}
 CEP = 0.62 \sigma_y + 0.56 \sigma_x
-\label{eq:2-4}
+\label{eq:CEP}
 \end{equation}
 
 dengan $\sigma_x$ adalah standar deviasi garis bujur dan $\sigma_y$ adalah standar deviasi garis lintang. Nilai CEP dapat digunakan untuk meninjau tingkat ketelitian dari modul GNSS.
@@ -287,11 +328,11 @@ CEP adalah metode yang untuk melakukan analisis data terkait dengan tingkat prob
 \subsubsection{\textit{Mean Absolute Deviation} (MAD)}
 Mean absolute deviation (MAD) adalah ukuran seberapa jauh data tersebar dari nilai rata-rata (mean) dalam sebuah kumpulan data. MAD sering digunakan sebagai alternatif yang lebih \textit{robust} terhadap deviasi standar (standard deviation) dalam analisis data, terutama ketika data tidak terdistribusi secara normal.
 
-MAD dihitung dengan cara mengambil selisih antara setiap data dan mean, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan (2-5). MAD memiliki unit yang sama dengan data, sehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
+MAD dihitung dengan cara mengambil selisih antara setiap data dan mean, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan \ref{eq:MAD}. MAD memiliki unit yang sama dengan data, sehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
 
 \begin{equation}
 	MAD = \frac{1}{n} \sum_{i=1}^{n} \left| x_i - m(X) \right|
-	\label{eq:2-5}
+	\label{eq:MAD}
 \end{equation}
 
 Dalam konteks pengukuran posisi menggunakan modul GNSS, MAD dapat digunakan untuk mengukur presisi dari data posisi yang diperoleh. Semakin kecil nilai MAD, semakin presisi data posisi tersebut. Namun, nilai MAD juga dapat dipengaruhi oleh faktor lain seperti jumlah data yang digunakan, kondisi atmosfer, dan kualitas isyarat GNSS yang diterima.
@@ -471,7 +512,7 @@ Keunggulan dari antena \textit{patch} adalah bentuknya ringkas dan ringan sehing
 Antena \textit{patch} adalah salah satu antena yang paling populer untuk aplikasi GNSS seperti pelacak, peta digital, dan navigasi kendaraan bermotor. Penggunaan antena \textit{patch} bertujuan untuk mendapatkan informasi isyarat satelit GNSS untuk kemudian diolah pada modul GNSS dengan akurasi yang tinggi.
 
 \subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
-\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk dilakukan komunikasi.
+\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. IC tesebut dirancang khusus untuk mengubah data paralel menjadi data serial dan menerima data serial yang dikonversi kembali menjadi data paralel. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. \textit{Baud rate} tersebut dapat dipilih dalam suatu rentang tertentu. \textit{Baud rate} yang umum dipakai adalah 110, 135, 150, 300, 600, 1200, 2400, 9600, dan 115200 (bit per detik). Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk melakukan komunikasi dengan protokol ini.
 
  Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
 

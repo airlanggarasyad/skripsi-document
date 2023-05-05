@@ -382,7 +382,8 @@ Selanjutnya, untuk menghitung bagian menit, nilai koordinat asal dikurangi denga
 
 Hasil perhitungan akan disimpan dalam variabel \texttt{ret} yang berupa \textit{floating point}. Terakhir, fungsi akan memeriksa arah dari koordinat dalam variabel \texttt{sign}. Jika nilai dari \texttt{sign} adalah S atau W maka hasil akhir koordinat akan dinegasikan atau dikalikan dengan negatif satu. Hal tersebut dikarenakan selatan dan barat berada di bagian negatif dari sistem koordinat standar.
 
-\subsection{Algoritma \textit{Geofencing} (Area UGM)}
+\section{Algoritma \textit{Geofencing}}
+\subsection{\textit{Geofencing} Area Universitas Gadjah Mada}
 Komputasi \textit{geofencing} dilakukan pada sisi mikrokontroler dengan menggunakan fungsi \texttt{Geofence\_Check()}. Fungsi ini membutuhkan dua buah argumen, yaitu \texttt{latitude} untuk koordinat garis lintang dan \texttt{longitude} untuk koordinat garis bujur. Kedua argumen dalam bentuk \textit{floating point}. Fungsi ini akan mengembalikan integer untuk menunjukan apakah koordinat yang diberikan berada di dalam lingkaran dari satu titik yang telah ditentukan. Pada penelitian ini, titik pusat lingkaran diatur pada koordinat (-7.771376, 110.377493) dengan jari-jari seribu meter seperti ditunjukan oleh daerah yang ditutupi oleh lingkaran hitam pada Gambar \ref{Fig: geofence-map}.
 
 \begin{figure}[H]
@@ -432,8 +433,7 @@ Terakhir, setelah jarak antara dua titik berhasil dihitung menggunakan persamaan
 }
 \end{lstlisting}
 
-\iffalse
-\subsection{Algoritma \textit{Geofencing} (Halte)}
+\subsection{\textit{Geofencing} (Halte)}
 Selain untuk menentukan apakah bus berada di area Universitas Gadjah Mada atau tidak, algoritma \textit{geofencing} yang telah dirancang pada bagian sebelumnya dapat dikembangkan lebih lanjut untuk menentukan apakah bus sedang berhenti di satu halte atau tidak. Untuk menentukan apakah bus sedang berhenti di satu halte atau tidak maka digunakan fungsi \texttt{Stopped\_at\_Halte}. Fungsi tersebut menerima satu argumen dengan tipe data \texttt{Coords\_t}. Fungsi ini bekerja dengan cara menghitung jarak posisi saat ini terhadap setiap koordinat halte yang ada. Jika terdapat halte yang berjarak kurang dari lima meter, maka fungsi akan mengembalikan indeks halte dengan jarak kurang dari lima meter. Sebaliknya, jika tidak ditemukan halte dengan jarak kurang dari lima meter maka fungsi akan mengembalikan negatif satu. Implementasi dari fungsi ini ditunjukan oleh potongan kode sumber di bawah:
 
 \begin{lstlisting}[language=c]
@@ -476,9 +476,10 @@ if (GNSSParser_Data.gpgga_data.xyz.stopped_at_halte < 0) {
 	}
 }
 \end{lstlisting}
-\fi
-\subsection{Menampilkan Hasil Penguraian}
+
+\section{Menampilkan Hasil Penguraian}
 Setelah proses penguraian dilakukan, tahap selanjutnya adalah menampilkan hasil penguraian pada \textit{serial monitor}. Pada \textit{firmware} ini, untuk menampilkan hasil penguraian dalam bentuk yang lebih mudah dibaca dapat dilakukan dengan mengatur nilai \texttt{GNSS\_READABLE} dengan nilai satu. Contoh keluaran jika nilai \texttt{GNSS\_READABLE} diatur menjadi satu adalah sebagai berikut:
+
 \begin{lstlisting}[language=c]
 UTC  : 02:10:30
 LAT  : -7.771091
@@ -492,10 +493,10 @@ GEOF : 1.0
 Format di atas dirancang sedemikian rupa untuk memudahkan membaca hasil penguraian oleh manusia. Di sisi lain, untuk memudahkan pengolahan data hasil pengujian, hasil penguraian ditampilkan dalam format \textit{comma seperated values} atau CSV. Untuk menampilan dalam mode CSV, nilai \texttt{GNSS\_READABLE} diatur menjadi nol. Contoh keluaran dalam format CSV adalah sebagai berikut:
 
 \begin{lstlisting}[language=c]
-02:10:30,-7.771091,110.38131,5.0,185.9,2.3,1.0
+02:10:30,-7.771091,110.38131,5.0,185.9,2.3,14,1.0
 \end{lstlisting}
 
-Setiap nilai dipisahkan oleh koma (,) dan tidak ada spasi yang digunakan. Urutan nilai yang ditampilkan adalah: waktu UTC, koordiat garis lintang, koordinat garis bujur, visibilitas satelit, ketinggian, akurasi posisi (HDOP), dan keluaran \textit{geofencing}. Format CSV digunakan karena dapat memudahkan pengolahan data hasil pengujian karena format ini memungkinkan data untuk disimpan dalam bentuk teks sederhana yang dapat dengan mudah dibaca dan diproses oleh program komputer seperti Excel atau Python.
+Setiap nilai dipisahkan oleh koma (,) dan tidak ada spasi yang digunakan. Urutan nilai yang ditampilkan adalah: waktu UTC, koordiat garis lintang, koordinat garis bujur, visibilitas satelit, ketinggian, akurasi posisi (HDOP), keluaran \textit{geofencing} halte, dan keluaran \textit{geofencing} wilayah Universitas Gadjah Mada. Format CSV digunakan karena dapat memudahkan pengolahan data hasil pengujian karena format ini memungkinkan data untuk disimpan dalam bentuk teks sederhana yang dapat dengan mudah dibaca dan diproses oleh program komputer seperti Excel atau Python.
 
 Untuk menampilkan ke \textit{serial monitor}, digunakan fungsi \texttt{GNSS\_PRINT} untuk menyederhanakan proses penampilan. Adapun implementasi dari fungsi \texttt{GNSS\_PRINT} ditunjukan oleh kode sumber di bawah:
 
@@ -671,9 +672,51 @@ for constellation in constellations:
 \fi
 
 \subsection{Pengujian Sistem}
-Pada subbab Pengembangan \textit{Firmware} bagian menampilkan hasil penguraian telah dijelaskan bahwa disediakan dua mode yang dapat diatur melalui nilai dari variabel \texttt{GNSS\_READABLE}. Untuk mempermudah proses mengolah data maka digunakan format data CSV. Pemilihan format data CSV dikarenakan formatnya yang sederhana sehingga dapat mempermudah proses eksplorasi data hasil pengujian sistem secara keseluruhan. Untuk mengatur \textit{firmware} agar keluaran data dalam bentuk CSV maka variabel \texttt{GNSS\_READABLE} diatur menjadi nol. Adapun format data yang dikirimkan adalah sebagai berikut
+Pada subbab Pengembangan \textit{Firmware} bagian menampilkan hasil penguraian telah dijelaskan bahwa disediakan dua mode yang dapat diatur melalui nilai dari variabel \texttt{GNSS\_READABLE}. Format \texttt{GNSS\_READABLE} dikhususkan untuk mempermudah pemahaman seluruh keluaran hasil perhitungan pada sistem. Contoh dari keluaran dengan mode \texttt{GNSS\_READABLE} aktif adalah sebagai berikut:
 
 \begin{lstlisting}
-time,latitude,longitude,sats,altitude,hdop,current_halte_stop,is_inside_ugm
+	UTC   : 02:01:01
+	LAT   : -7.768369
+	LON   : 110.385078
+	ALT   : 205.0
+	SATS  : 11
+	HDOP  : 0.9
+	VDOP  : 1.8
+	PDOP  : 2.0
+	HALTE : 4
+	GEOF  : 1
 \end{lstlisting}
-Selain itu, digunakan juga pustaka Folium untuk melukiskan koordinat pada peta.
+
+Untuk mempermudah proses mengolah data maka digunakan format data CSV. Pemilihan format data CSV dikarenakan formatnya yang sederhana sehingga dapat mempermudah proses eksplorasi data hasil pengujian sistem secara keseluruhan. Untuk mengatur \textit{firmware} agar keluaran data dalam bentuk CSV maka variabel \texttt{GNSS\_READABLE} diatur menjadi nol. Adapun format data yang dikirimkan adalah sebagai berikut
+
+\begin{lstlisting}
+time,latitude,longitude,altitude,sats,hdop,vdop,pdop,current_halte_stop,is_inside_ugm
+\end{lstlisting}
+
+Selain itu, digunakan juga pustaka Folium untuk melukiskan koordinat pada peta. Pustaka Folium memungkinkan untuk \textit{plot} dengan variasi warna terhadap nilai dari satu parameter yang ingin ditinjau. Kode sumber di bawah ini adalah kode untuk \textit{plot} koordinat pengujian Bus Trans Gadjah Mada Rute 1B dengan variasi warna bergantung terhadap nilai HDOP pada titik tersebut:
+
+\begin{lstlisting}[language=python]
+	lit_coordinate = [-7.769711,110.377441]
+	
+	mymap = folium.Map(location=lit_coordinate, zoom_start=15)
+	
+	for i in range(0,len(df)):
+	coords = [df.latitude[i], df.longitude[i]]
+	hdop = df.hdop[i]
+	
+	if 0<= hdop < 1: color = dop_cmap[0]
+		elif 1 <= hdop < 2: color = dop_cmap[1]
+		elif 2 <= hdop < 5: color = dop_cmap[2]
+		elif 5 <= hdop < 10: color = dop_cmap[3]
+		elif 10 <= hdop < 20: color = dop_cmap[4]
+		else: color = dop_cmap[5]
+		
+		mystr = f"{df.time[i]}, {df.hdop[i]}, {df.sats[i]}"
+		
+		iframe = folium.IFrame(mystr)
+		popup = folium.Popup(iframe, min_width=150, max_width=150, min_height=300, max_height=300)
+	
+	mymap.fit_bounds([sw, ne]) 
+	
+	mymap
+\end{lstlisting}

@@ -146,9 +146,9 @@ Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distributio
 		\hline
 		& \textbf{Minima} & \textbf{Maxima} & \textbf{Rata-rata} & \textbf{Standar Deviasi}\\
 		\hline 
-		HDOP & 1,80 & 26,80 & 8,27 & 5,36\\
-		PDOP & 2,80 & 39,30 & 10,67 & 7,30\\
+		HDOP & 1,80 & 26,80 & 6,67 & 5,03\\
 		VDOP & 2,00 & 28,80 & 8,27 & 5,36\\
+		PDOP & 2,80 & 39,30 & 10,67 & 7,30\\
 		Jumlah Satelit & 5 & 12 & 7,60 & 1,27\\
 		\hline
 		\textbf{MAD-x (m)} & & \multicolumn{2}{c}{\centering 18,89} & \\
@@ -213,8 +213,8 @@ Tabel \ref{Tab: indoor-table} menunjukan hasil pengujian pada skenario dalam rua
 		& \textbf{Minima} & \textbf{Maxima} & \textbf{Rata-rata} & \textbf{Standar Deviasi}\\
 		\hline 
 		HDOP & 1,30 & 6,80 & 2,79 & 0,68\\
-		PDOP & 2,00 & 8,40 & 3,73 & 0,74\\
 		VDOP & 1,40 & 5,50 & 2,48 & 0,94\\
+		PDOP & 2,00 & 8,40 & 3,73 & 0,74\\
 		Jumlah Satelit & 8 & 15 & 10,93 & 1,14\\
 		\hline
 		\textbf{MAD-x (m)} & & \multicolumn{2}{c}{\centering 12,14} & \\
@@ -281,8 +281,8 @@ Pada hasil pengujian yang ditunjukan oleh Tabel \ref{Tab: outdoor-table}, ditemu
 		& \textbf{Minima} & \textbf{Maxima} & \textbf{Rata-rata} & \textbf{Standar Deviasi}\\
 		\hline 
 		HDOP & 0,80 & 1,40 & 0,91 & 0,12\\
-		PDOP & 1,50	& 3,00 & 1,75 & 0,25\\
 		VDOP & 1,20	& 2,70 & 1,49 & 0,23\\
+		PDOP & 1,50	& 3,00 & 1,75 & 0,25\\
 		Jumlah Satelit & 10 & 18 & 14,32 & 1,41\\
 		\hline
 		\textbf{MAD-x (m)} & & \multicolumn{2}{c}{\centering 2,29} & \\
@@ -382,11 +382,12 @@ Gambar \ref{Fig: outdoor-dop_sats} menunjukan tren ketiga nilai DOP dan visibili
 Hasil pengujian menunjukkan bahwa skenario pengujian di ruang terbuka menghasilkan hasil pengukuran yang paling baik dibandingkan dengan tiga pengujian sebelumnya. Dari pengujian tersebut, didapatkan nilai MAD sebesar 1,21 meter atau sekitar 20\% lebih baik dari nilai yang tertera pada datasheet, yaitu 1,5 meter. Selain itu, jika dibandingkan dengan pengujian semi terbuka, tingkat presisi modul Teseo-LIV3FL meningkat sekitar 60\% dan akurasi bidang horizontal meningkat sebesar 28\%. Hal ini menunjukkan bahwa pengujian di ruang terbuka memberikan hasiil yang lebih baik dan stabil bagi modul GNSS dalam pengukuran. 
 
 \section{Pengujian \textit{Geofencing}}
-Pengujian fitur \textit{geofencing} dilakukan di wilayah Universitas Gadjah Mada. Tujuan dari pengujian ini adalah untuk meninjau apakah fitur ini dapat berfungsi dengan baik untuk menentukan status \textit{geofencing} pengguna saat ini. Dalam pengujian ini, wilayah \textit{geofencing} didefinisikan sebagai lingkaran dengan jari-jari satu kilo meter dengan pusat di titik (-7,771376; 110,377493), dan delapan belas titik acak di sekitar Universitas Gadjah Mada digunakan sebagai titik pengujian.
+\subsection{\textit{Geofencing} Wilayah Universitas Gadjah Mada}
+Tujuan dari pengujian fitur \textit{geofencing} di wilayah Universitas Gadjah Mada adalah untuk meninjau apakah fitur ini dapat berfungsi dengan baik untuk menentukan status \textit{geofencing} pengguna saat ini. Dalam pengujian ini, wilayah \textit{geofencing} didefinisikan sebagai lingkaran dengan jari-jari satu kilo meter dengan pusat di titik (-7,771376; 110,377493), dan delapan belas titik acak di sekitar Universitas Gadjah Mada digunakan sebagai titik pengujian.
 
-Dalam pengujian tersebut, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada sistem sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika sistem mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
+Dalam pengujian ini, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada sistem sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika sistem mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
 
-Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditunjukkan oleh simbol berwarna merah, dan titik berwarna hijau untuk kondisi sebaliknya. Hal ini menunjukkan bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada sudah berjalan dengan baik dan mampu mendeteksi lokasi pengguna dengan akurat. Dapat dilihat bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada berfungsi dengan baik.
+Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditunjukkan oleh simbol berwarna merah, dan titik berwarna hijau untuk kondisi sebaliknya. Hal ini menunjukkan bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada sudah berjalan dengan baik dan mampu mendeteksi status \textit{geofencing} bus di wilayah Universitas Gadjah Mada dengan baik.
 
 \begin{figure}[H]
 	\centering
@@ -395,41 +396,50 @@ Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditun
 	\label{Fig: geofencing-1}
 \end{figure}
 
-\iffalse
-\begin{longtblr}[
-	caption = {Hasil Pengujian \textit{Geofencing} Halte},
-  ]{
-	width = \linewidth,
-	colspec = {Q[129]Q[312]Q[298]Q[165]},
-	cells = {c},
-	hline{1-2,25} = {-}{},
-  }
-  \textbf{Halte} & \textbf{Waktu Jadwal} & \textbf{Waktu Aktual} & \textbf{Selisih} \\
-  14             & 08.57.00              & 08.54.00              & 3 menit          \\
-  15             & 09.02.00              & 08.59.00              & 3 menit          \\
-  16             & 09.04.00              & 09.01.00              & 3 menit          \\
-  17             & 09.06.00              & 09.01.00              & 5 menit          \\
-  18             & 09.08.00              & 09.03.00              & 5 menit          \\
-  19             & 09.10.00              & 09.04.00              & 6 menit          \\
-  20             & 09.11.00              & -                     & -                \\
-  21             & 09.11.00              & 09.06.00              & 5 menit          \\
-  22             & 09.13.00              & 09.07.00              & 6 menit          \\
-  23             & 09.15.00              & 09.12.00              & 3 menit          \\
-  0              & 09.31.00              & 09.31.00              & 0 menit          \\
-  1              & 09.34.00              & 09.35.00              & 1 menit          \\
-  2              & 09.39.00              & 09.38.00              & 1 menit          \\
-  3              & 09.41.00              & 09.40.00              & 1 menit          \\
-  4              & 09.43.00              & 09.42.00              & 1 menit          \\
-  5              & 09.44.00              & -                     & -                \\
-  7              & 09.46.00              & 09.45.00              & 1 menit          \\
-  8              & 09.48.00              & -                     & -                \\
-  9              & 09.50.00              & 09.48.00              & 2 menit          \\
-  10             & 09.52.00              & 09.50.00              & 2 menit          \\
-  11             & 09.54.00              & 09.51.00              & 3 menit          \\
-  12             & 09.55.00              & 09.52.00              & 3 menit          \\
-  13             & 09.57.0               & 09.52.00              & 5 menit          
-  \end{longtblr}
-  \fi
+\subsection{\textit{Geofencing} Halte}
+Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh Bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
+
+\begin{table}[H]
+	\caption{Koordinat Halte Pengujian \textit{Geofencing} Halte}
+	\vspace{0.5em}
+	\centering
+	\begin{tabular}{ccc}
+		\hline
+		\textbf{Halte} &\textbf{Garis Lintang} & \textbf{Garis Bujur} \\
+		\hline 
+		6 & -7.769693& 110.373557 \\
+		8 &-7.766077&110.374062\\ 
+		11 &-7.766508&110.3706700\\
+		13 & -7.766407&110.3740824\\
+		17 &-7.769712&110.385479\\ 
+		20 & -7.771089&110.381336\\
+		21 & -7.772668&110.379638\\
+		\hline
+	\end{tabular}
+	\label{Tab: geofencing-2}
+\end{table}
+
+Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasilnya dicatat. Hasil pengujian \textit{geofencing} pada halte uji ditunjukan oleh Gambar \ref{Fig: geofencing-2}. Lingkaran berwarna merah pada gambar menunjukan wilayah \textit{geofencing} setiap halte yang berupa lingkaran dengan jari-jari sepuluh meter, sedangkan lingkaran biru merupakan posisi pengamatan. Adapun hasil yang didapat adalah sebagai berikut:
+
+\begin{lstlisting}[language=c]
+02:42:05,-7.769638,110.373497,198.8,12.0,0.9,1.6,1.8,6,1.0
+02:44:50,-7.766024,110.374046,180.5,9.0,1.4,2.4,2.5,8,1.0
+02:49:50,-7.766489,110.370709,161.2,11.0,1.3,2.4,2.3,11,1.0
+02:52:05,-7.766449,110.374107,159.1,9.0,1.4,2.0,1.9,13,1.0
+02:02:20,-7.769756,110.385509,191.91,14,0.8,1.2,1.5,17,1.0
+02:05:48,-7.771065,110.381348,164.69,12,1.1,1.4,1.8,20,1.0
+02:07:08,-7.772746,110.379647,170.95,13,1.0,1.6,1.9,21,1.0
+\end{lstlisting}
+
+Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah sesuai. Jika dilihat pada Gambar \ref{Fig: geofencing-2}, titik yang terbaca juga berada di dalam wilayah geofencing setiap halte. Oleh karena itu, dapat dlihat bahwa fitur \textit{geofencing} halte sudah dapat mendeteksi posisi bus jika sedang berhenti di halte dengan baik.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-4/geofencing/halte.png}
+	\caption{Hasil Pengujian \textit{Geofencing}  Halte Trans Gadjah Mada}
+	\label{Fig: geofencing-2}
+\end{figure}
+
 \section{Pengujian di Bus Trans Gadjah Mada}
 Pengujian secara langsung di Bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam. Peta rute 1B Trans Gadjah Mada dapat dilihat pada Gambar \ref{Fig: peta-1b}.
 
@@ -458,9 +468,45 @@ Setelah itu, parameter koordinat garis lintang dan garis bujur akan di-\textit{p
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/tracked-route.png}
-	\caption{Hasil Pelacakan}
+	\caption{Hasil Pelacakan Trans Gadjah Mada Rute 1B}
 	\label{Fig: moving-tracked-route}
 \end{figure}
+
+Data yang tersedia selama perjalanan bus tidak hanya mencakup koordinat posisi, tetapi juga waktu kedatangan bus pada setiap halte. Hal ini dapat dilihat pada Tabel 4.7 yang membandingkan waktu kedatangan bus pada setiap halte berdasarkan jadwal dan pengujian.Terlihat bahwa waktu kedatangan bus selama pengujian cenderung lebih cepat dibandingkan dengan waktu pada jadwal, yaitu sekitar satu hingga enam menit lebih cepat.
+
+\begin{longtblr}[
+	caption = {Waktu Kedatangan Bus Trans Gadjah Mada Rute 1B di Setiap Halte},
+	]{
+		width = \linewidth,
+		colspec = {Q[129]Q[312]Q[298]Q[165]},
+		cells = {c},
+		hline{1-2,25} = {-}{},
+	}
+	\textbf{Halte} & \textbf{Waktu Jadwal} & \textbf{Waktu Aktual} & \textbf{Selisih} \\
+	14             & 08.57.00              & 08.54.00              & 3 menit          \\
+	15             & 09.02.00              & 08.59.00              & 3 menit          \\
+	16             & 09.04.00              & 09.01.00              & 3 menit          \\
+	17             & 09.06.00              & 09.01.00              & 5 menit          \\
+	18             & 09.08.00              & 09.03.00              & 5 menit          \\
+	19             & 09.10.00              & 09.04.00              & 6 menit          \\
+	20             & 09.11.00              & -                     & -                \\
+	21             & 09.11.00              & 09.06.00              & 5 menit          \\
+	22             & 09.13.00              & 09.07.00              & 6 menit          \\
+	23             & 09.15.00              & 09.12.00              & 3 menit          \\
+	0              & 09.31.00              & 09.31.00              & 0 menit          \\
+	1              & 09.34.00              & 09.35.00              & 1 menit          \\
+	2              & 09.39.00              & 09.38.00              & 1 menit          \\
+	3              & 09.41.00              & 09.40.00              & 1 menit          \\
+	4              & 09.43.00              & 09.42.00              & 1 menit          \\
+	5              & 09.44.00              & -                     & -                \\
+	7              & 09.46.00              & 09.45.00              & 1 menit          \\
+	8              & 09.48.00              & -                     & -                \\
+	9              & 09.50.00              & 09.48.00              & 2 menit          \\
+	10             & 09.52.00              & 09.50.00              & 2 menit          \\
+	11             & 09.54.00              & 09.51.00              & 3 menit          \\
+	12             & 09.55.00              & 09.52.00              & 3 menit          \\
+	13             & 09.57.0               & 09.52.00              & 5 menit          
+\end{longtblr}
 
 \subsection{Analisis Kolerasi}
 
@@ -474,54 +520,66 @@ Analisis korelasi dapat memberikan wawasan yang lebih dalam mengenai hubungan at
 		\hline
 		\textbf{Nilai $r$} & \textbf{Korelasi}\\
 		\hline 
-		$-0,5 \leq r \leq 0,5$ & Lemah \\
-		$ -0,8 \le r \le -0,5 \bigcup 0,5 \le r \le 0,8$ & Sedang \\
-		$r \leq -0,8 \bigcup r \geq 0,8$ & Kuat \\
+		$-0,5 \leq r \leq 0,5$ & Lemah \\ 
+		$ -0,7 \le r \le -0,5 \bigcup 0,5 \le r \le 0,7$ & Sedang \\
+		$r \leq -0,7 \bigcup r \geq 0,7$ & Kuat \\
 		\hline
 	\end{tabular}
 	\label{Tab: korelasi-table}
 \end{table}
 
-Nilai korelasi antara tiga parameter visibilitas satelit, ketinggian, dan HDOP ditunjukan oleh Gambar \ref{Fig: moving-corr}. Korelasi visibilitas satelit dengan ketinggian adalah sebesar -0,35 yang menunjukan terdapat hubungan negatif antara ketinggian dengan visibilitas. Namun, hubungan tersebut cenderung rendah karena nilai korelasi $r$-nya berada pada rentang -0,5 s.d. 0,5. Hal yang sama juga terjadi pada korelasi HDOP dengan ketinggian dengan nilai korelasi $r$ sebesar 0,35. Terakhir, korelasi HDOP dengan visibilitas satelit adalah sebesar -0,81. Nilai tersebut menunjukan terdapat hubungan negatif yang kuat antara visibilitas satelit dengan HDOP. Hubungan antara HDOP dengan visibilitas satelit akan dibahas lebih lanjut pada bagian selanjutnya.
+Nilai korelasi dari lima parameter, yaitu visibilitas satelit, ketinggian, HDOP, VDOP dan PDOP ditunjukan oleh Gambar \ref{Fig: moving-corr}. Korelasi ketinggian dengan empat parameter lainnya menunjukan tingkat korelasi yang rendah, sehingga parameter ketinggian tidak berdampak dengan hasil pengujian.  Visibilitas satelit dengan HDOP, VDOP, dan PDOP memiliki hubungan korelasi negatif. Korelasi visibilitas satelit dengan HDOP menunjukan korelasi yang kuat, sedangkan korelasi visibilitas satelit dengan dua nilai DOP lainnya menunjukan tingkat korelasi sedang. Hal tersebut menunjukan bahwa semakin banyak visibilitas satelit maka ketiga nilai DOP akan cenderung menurun. Terakhir, parameter PDOP dengan HDOP dan VDOP memiliki tingkat korelasi yang tinggi. Hal tersebut diakibatkan karena nilai PDOP adalah tingkat akurasi pada tiga dimensi, sehingga nilai PDOP akan dipengaruhi oleh HDOP dan VDOP yang merupakan tingkat akurasi pada bidang horizontal dan vertikal.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{contents/chapter-4/pengujian-bergerak/corr.png}
+	\includegraphics[width=11cm]{contents/chapter-4/pengujian-bergerak/corr.png}
 	\caption{Korelasi Setiap Parameter}
 	\label{Fig: moving-corr}
 \end{figure}
 
-\subsection{HDOP dan Visibilitas Satelit}
+Berdasarkan analisis korelasi di atas, parameter dengan korelasi paling tinggi adalah visibilitas satelit dengan ketiga nilai DOP dan antar ketiga nilai DOP. Oleh karena itu, pada bagian selanjutnya akan dibahas lebih lanjut mengenai HDOP, VDOP, PDOP, dan visibilitas satelit. 
 
-Berdasarkan pembahasan pada bagian sebelumnya, pasangan variabel yang memiliki korelasi kuat adalah HDOP dengan visibilitas satelit dengan nilai korelasi $r$ -0,81. Nilai tersebut menunjukan bahwa dua variabel tersebut memiliki korelasi negatif yang kuat. Korelasi negatif menunjukan ketika visibilitas satelit meningkat maka nilai HDOP akan cenderung menurun. Begitu juga sebaliknya, ketika visibilitas satelit menurun maka nilai HDOP akan meningkat.
+\subsection{HDOP, VDOP, PDOP, dan Visibilitas Satelit}
 
-Gambar \ref{Fig: moving-dop} menunjukan nilai DOP di setiap titik yang direpresentasikan oleh kode warna di sebelah kanan. Jika warna dari poin semakin mendekati warna merah maka nilai DOP-nya semakin buruk (mendekati 99). 
+Berdasarkan pembahasan pada bagian sebelumnya, pasangan variabel yang memiliki korelasi negatif adalah visibilitas satelit dengan HDOP, VDOP, dan PDOP dengan tingkat korelasi terhadap HDOP adalah tinggi, sedangkat untuk dua variabel lainnya tingkat korelasinya sedang. Di sisi lain, setiap pasangan variabel DOP memiliki korelasi positif yang kuat. Koreasi negatif menunjukan jika nilai dari salah satu variabel maka nilai dari variabel lainnya cenderung menurun dan hal sebaliknya untuk korelasi positif.
+
+Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP yang rendah menunjukkan tingkat ketelitian yang lebih baik pada bidang horizontal. Hal ini dapat dilihat pada Gambar \ref{Fig: moving-hdop} dengan setiap titik pada perjalanan Trans Gadjah Mada Rute 1B direpresentasikan dengan warna yang menunjukkan nilai HDOP pada titik tersebut. Semakin tinggi nilai HDOP, maka warna titiknya akan semakin mendekati warna merah, yang menunjukkan tingkat ketelitian yang lebih rendah. Sebaliknya, jika nilai HDOP semakin rendah, maka warna titiknya akan mendekati warna hijau, yang menunjukkan tingkat ketelitian yang lebih tinggi. Terlihat bahwa seluruh titik pada gambar tersebut direpresentasikan dengan warna hijau, yang menunjukkan bahwa tingkat akurasi pada bidang horizontalnya berada pada rentang yang baik.
+
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-dop.jpg}
-	\caption{Pengujian Skenario Dalam Ruangan}
-	\label{Fig: moving-dop}
+	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-HDOP.jpg}
+	\caption{Nilai HDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\label{Fig: moving-hdop}
 \end{figure}
 
-Terlihat bahwa nilai DOP berada di rentang sangat buruk ketika berada di sekitar Bulaksumur Residence dan Stadion Pancasila. Hal tersebut dikarenakan lingkungan di sekitar pengujian banyak ditutupi oleh pepohonan dan terdapat beberapa gedung seperti ditunjukan oleh Gambar \ref{Fig: lp-streetview}. Halangan-halangan tersebut dapat mengurangi visibilitas dari satelit sehingga mengurangi akurasi dari modul GNSS yang mengakibatkan lonjakan nilai DOP.
+Selain HDOP, parameter akurasi lain yang dapat ditinjau adalah VDOP. Parameter ini digunakan untuk mengukur tingkat akurasi pada bidang vertikal atau ketinggian. Nilai VDOP pada hasil pengujian dapat dilihat pada Gambar \ref{Fig: moving-pdop}. Semakin rendah nilai VDOP, maka titik pada gambar akan berwarna hijau. Dari gambar tersebut, terlihat bahwa seluruh titik pengamatan berwarna hijau, yang menandakan bahwa nilai VDOP-nya berada dalam rentang yang baik. Meskipun beberapa tempat tertutup oleh pepohonan atau banyak penghalang berupa gedung-gedung, akurasi sistem di bidang vertikal juga tidak terganggu secara signifikan. Oleh karena itu, dapat dilihat bahwa akurasi hasil pengukuran sistem pada bidang vertikal sudah sangat akurat.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{contents/chapter-4/pengujian-bergerak/lp-streetview.png}
-	\caption{Keadaan di Sekitar Bulaksumur Residence}
-	\label{Fig: lp-streetview}
+	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-VDOP.jpg}
+	\caption{Nilai VDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\label{Fig: moving-vdop}
 \end{figure}
 
-Visibilitas satelit di setiap titik ditunjukan oleh Gambar \ref{Fig: moving-sats}. Semakin banyak satelit yang digunakan maka warna pada poin akan semakin mendekati warna hijau. Visibilitas satelit terbaik didapat ketika berada di lingkungan Fakultas Teknik, Grha Sabha Pramana, dan Bundaran Universitas Gadjah Mada. Tiga lokasi tersebut memiliki penghalang yang lebih sedikit jika dibandingkan dengan lokasi-lokasi lainnya.
-
-Lokasi dengan visibilitas satelit paling buruk adalah Stadion Pancasila dan Bulaksumur Residence. Gambar \ref{Fig: moving-dop} menunjukan bahwa daerah tersebut juga memiliki nilai DOP paling buruk yang ditandai oleh poin berwarna merah. Terlihat bahwa visibilitas satelit dapat mempengaruhi nilai DOP. Berdasarkan data yang diperoleh, terlihat bahwa lokasi Stadion Pancasila dan Bulaksumur Residence memiliki visibilitas satelit paling buruk dibandingkan dengan lokasi lainnya. Hal ini dibuktikan oleh Gambar \ref{Fig: moving-dop} yang menunjukkan bahwa daerah tersebut memiliki nilai DOP yang paling buruk, yang ditandai oleh poin berwarna merah. Dari gambar tersebut juga dapat dilihat bahwa visibilitas satelit memainkan peran penting dalam mempengaruhi nilai DOP. 
-
-Visibilitas satelit tidak memberikan peningkatan kualitas \textit{fix} yang signifikan ketika jumlah satelit yang digunakan setidaknya lebih dari lima buah satelit. Jika meninjau visibilitas satelit di sekitar RSUP Dr Sardjito, terlihat bahwa visibilitas satelit tidak sebaik di lingkungan Fakultas Teknik, tetapi nilai DOP tetap berada dalam rentang yang cukup baik.
+Parameter PDOP merupakan gabungan dari HDOP dan VDOP. Artinya, nilai dari PDOP akan merepresentasikan tingkat akurasi hasil perhitungan baik di bidang horizontal maupun vertikal. Selain itu, nilai PDOP juga menjelaskan persebaran satelit di langit. Sama seperti dua nilai DOP lainnya, semakin rendah nilai PDOP maka semakin baik. Hasil pengamatan yang ditunjukan oleh Gambar \ref{Fig: moving-pdop} menunjukan bahwa nilai PDOP pada setiap titik pengamatan sudah sangat baik. Hal tersebut merupakah hasil yang sudah diharapkan karena PDOP adalah gabungan dari VDOP dan HDOP, sehingga jika nilai HDOP dan VDOP sudah sangat baik maka nilai PDOP-nya juga akan sangat baik. Karena nilai PDOP juga bergantung pada geometri satelit, nilai tersebut juga menunjukan bahwa persebaran satelit di langit selama pengamatan sudah tersebar dengan sangat baik. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-sats.jpg}
-	\caption{Pengujian Skenario Dalam Ruangan}
+	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-PDOP.jpg}
+	\caption{Nilai PDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\label{Fig: moving-pdop}
+\end{figure}
+
+Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitungan posisi. Jumlah satelit yang digunakan tentunya akan mempengaruhi ketelitian hasil perhitungan posisi. Gambar \ref{Fig: moving-sats} menunjukan visibilitas satelit di setiap titik pada perjalanan Trans Gadjah Mada Rute 1B. Semakin tinggi visibilitas satelit maka warna titiknya akan mendekati warna hijau dan mendekati warna merah jika visibilitas satelitnya mendekati nol. Secara teoretis, visibilitas satelit yang dibutuhkan untuk mendapatkan 2D \textit{fix} adalah sebanyak tiga buah dan empat buah untuk mendapatkan 3D \textit{fix}. Visibilitas satelit lebih dari empat akan memperbaiki kualitas \textit{fix} yang ditunjukan dengan nilai HDOP yang menurun. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-SATS.jpg}
+	\caption{Visibilitas Satelit Pengujian Trans Gadjah Mada Rute 1B}
 	\label{Fig: moving-sats}
 \end{figure}
+
+Pada hasil pengamatan dapat dilihat bahwa tidak semua titik memiliki visibilitas satelit lebih dari sepuluh atau direpresentasikan dengan titik berwarna hijau. Visibilitas satelit paling rendah pada pengujian ini adalah sebanyak enam buah satelit yang ditunjukan oleh titik berwarna merah. Salah satu titik dengan visibilitas terendah adalah di sekitar halte Rumah Sakit Dr. Sardjito. Hal tersebut dapat diakibatkan oleh banyaknya gedung dan pepohonan yang dapat menghalangi atau menyebabkan \textit{multipath} pada isyarat GNSS. Selain itu, lingkungan tersebut juga merupakan lingkungan yang padat dengan berbagai macam kendaraan dan orang-orang yang lalu-lalang.
+
+Meskipun terdapat beberapa titik dengan visibilitas satelit sejumlah enam buah, nilai HDOP, VDOP, dan PDOP pada lokasi tersebut tetap berwarna hijau tua atau baik. Hal tersebut dikarenakan visibilitas satelit yang dimiliki sudah melebihi batas minimal visibilitas satelit untuk mendapat 3D \textit{fix}, yaitu empat buah satelit. Angka visibilitas satelit yang lebih banyak tentunya dapat menurunkan nilai DOP hingga mendekati nol seperti ditunjukan pada titik di depan Rumah Sakit Panti Rapih. Visibilitas satelit pada titik tersebut sebanyak tujuh belas buah dengan nilai HDOP 0,7; VDOP; 1,1; dan PDOP 1,2.

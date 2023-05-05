@@ -3,16 +3,37 @@
 \section{Kesimpulan}
 Berdasarkan penelitian yang telah dilakukan, dapat ditarik beberapa kesimpulan sebagai berikut:
 \begin{enumerate}
-	\item Penggunaan multi-constellation pada modul Teseo-LIV3FL dapat memperbaiki performa sistem dalam berbagai kondisi seperti ditunjukan pada pengujian Rapid Static Survey pada skenario basement. Untuk mendapat performa terbaik sistem maka posisi paling idealnya adalah berada di kondisi ruang terbuka dengan halangan seminimal mungkin.
+	\item Penggunaan multi-constellation pada modul Teseo-LIV3FL dapat memperbaiki performa sistem dalam berbagai kondisi. Adapun hasil pengujian \textit{Rapid Static Survey} untuk setiap skenario adalah sebagai berikut:
+	\begin{enumerate}
+		\item Skenario \textit{basement} menunjukan hasil paling buruk jika dibandingkan dengan tiga skenario lainnya. Pada skenario ini, tingkat presisi dari modul GNSS adalah sebesar 24,11 meter; nilai HDOP rata-rata sebesar 8,27; nilai PDOP rata-rata sebesar 10,67; nilai VDOP rata-rata sebesar 8,27; dan visibilitas satelit rata-rata sebanyak 7,60 satelit.
+		\item Skenario dalam ruangan menunjukan hasil yang sedikit lebih baik jika dibandingkan dengan skenario sebelumnya, yaitu dengan tingkat presisi 8,46 meter; nilai HDOP rata-rata sebesar 2,79; nilai VDOP rata-rata sebesar 2,48; nilai PDOP rata-rata sebesar 3,73; dan visibilitas satelit rata-rata sebanyak 10,93 satelit.
+		\item Skenario ruangan semi terbuka kembali menunjukan hasil yang lebih baik dibandingkan dua skenario sebelumnya. Adapun hasil yang didapat adalah tingkat presisi 3,06 meter;  nilai HDOP rata-rata sebesar 0,91; nilai VDOP rata-rata sebesar 1,49; nilai PDOP rata-rata sebesar 1,49; dan visibilitas satelit rata-rata sebanyak 14,32 satelit.
+		\item Skenario ruangan terbuka menunjukan hasil paling baik dari seluruh skenario yang diuji, yaitu dengan tingkat presisi 1,21 meter;  nilai HDOP rata-rata sebesar 0,65; nilai VDOP rata-rata sebesar 1,30; nilai PDOP rata-rata sebesar 1,12; dan visibilitas satelit rata-rata sebanyak 21,14 satelit.
+	\end{enumerate}
 	\item Algoritma mode daya rendah pada modul Teseo-LIV3FL memungkingkan modul untuk bekerja dengan efisien dan dapat digunakan dalam penggunaan jangka panjang. Arus yang mengalir pada modul adalah sebesar 7uA pada mode stand by dan 50mA pada mode akuisisi.
-	\item Berdasarkan pengujian secara langsung, firmware dapat melacak posisi Bus dengan baik. Adapun visibilitas satelit yang didapat berada dalam rentang empat s.d. dua belas dan nilai HDOP berada pada rentang 0.4 s.d 2. Meskipun sempat tidak dapat menerima isyarat GNSS di daerah tertentu, sistem dapat melakukan pemulihan dan melanjutkan pelacakan kembali.
+	\item Berdasarkan pengujian secara langsung, firmware dapat melacak posisi Bus dengan baik. Nilai HDOP, VDOP, dan PDOP yang didapat berada dalam rentang baik hingga sangat baik dan visibilitas satelit paling rendah sudah cukup untuk mendapatan 3D \textit{fix}.  Performa dari sistem ditunjukan oleh Tabel \ref{Tab: performa-tgm-1b}.
+	
+	\begin{table}[H]
+		\caption{Performa Sistem pada Pengujian Trans Gadjah Mada Rute 1B}
+		\vspace{0.5em}
+		\centering
+		\begin{tabular}{ccccc}
+			\hline
+			& \textbf{Minima} & \textbf{Maxima} & \textbf{Rata-rata} & \textbf{Standar Deviasi}\\
+			\hline 
+			HDOP & 0,70 & 2,40 & 1,12 & 0,34\\
+			VDOP & 0,90	& 2,90 & 1,72 & 0,43\\
+			PDOP & 1,10	& 3,60 & 1,98 & 0,54\\
+			Jumlah Satelit & 6 & 8 & 9,98 & 2,37\\
+			\hline
+		\end{tabular}
+		\label{Tab: performa-tgm-1b}
+	\end{table}
 \end{enumerate}
 
 \section{Saran}
 Adapun saran untuk penelitian lebih lanjut adalah sebagai berikut:
 \begin{enumerate}
-	\item Perlu dilakukan pengujian lebih lanjut dalam kondisi berbeda seperti kondisi langit tidak ideal ketika cuaca buruk.
-	\item Perlu ditambahkan basis data untuk menyimpan data pelacakan dan mekanisme penyimpanan seperti penggunaan REST API.
-	\item Untuk mempermudah visualisasi hasil pelacakan Bus dapat dikembangkan sebuah aplikasi yang dapat berjalan di berbagai macam gawai seperti aplikasi berbasis web atau PWA.
+	\item Perlunya penelitian lebih lanjut mengenai performa modul Teseo-LIV3FL jika dilakukan pengamatan dengan berbagai kombinasi dua atau tiga konstelasi secara bersamaan.
 \end{enumerate}
 
