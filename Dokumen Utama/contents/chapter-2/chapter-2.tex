@@ -1,7 +1,7 @@
 \chapter{TINJAUAN PUSTAKA}
 
 \section{Tinjauan Pustaka}
-Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak kendaraan dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}. Selain itu pelacak GPS juga dapat digunakan untuk aplikasi pada kapal kargo dan juga pada alat berat \cite{Zhang2013}\cite{Rani2021}. Pada penelitian ini, firmware GNSS \textit{tracker} yang dikembang difokuskan untuk melacak posisi bus kampus Trans Gadjah Mada.
+Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak untuk berbagai aplikasi dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}. Selain itu pelacak GPS juga dapat digunakan untuk aplikasi pada kapal kargo dan juga pada alat berat \cite{Zhang2013}\cite{Rani2021}. Pada penelitian ini, firmware GNSS \textit{tracker} yang dikembang difokuskan untuk melacak posisi bus kampus Trans Gadjah Mada.
 
 Tim peneliti dari \textit{Vidyalankar Institute of Technology} telah merancang suatu sistem yang dapat mendeteksi lokasi dari kendaraan dan juga emisi \ce{CO} yang dihasilkan. Pada sistem yang dirancang, digunakan \textit{development board} Arduino Uno yang berbasis mikrokontroler ATmega328. Ketika kandungan gas \ce{CO} sudah melebihi ambang batas, sistem akan memutus pengiriman bahan bakar dan kemudian mengirimkan data koordinat dari modul GPS ke \textit{server} Apache yang telah dirancang \cite{Asha2022}.
 
@@ -28,14 +28,16 @@ Bahasa C (dibaca "si") adalah bahasa pemrograman \textit{general-purpose} tingka
 
 Pada awalnya, Bahasa C hanya dirancang untuk implementasi pada sistem operasi \cite{Ritchie1993}. Namun, dengan mekanisme \textit{data abstraction}, memungkinkan pengembangan aplikasi pada level tinggi maupun rendah. Sebagai contoh, anggota \textit{struct} dapat ditata sedemikian rupa agar sesuai dengan alamat \textit{port} dari perangkat keras. Selain itu, bahasa C juga menawarkan operasi tingkat rendah seperti \textit{bit shift}, logika AND, dan lainnya.
 
-Bahasa C sering digunakan dalam pengembangan \textit{firmware} pada mikrokontroler karena memungkinkan pengembang untuk melakukan pemrograman pada tingkat register dan memori. Kendali langsung terhadap perangkat keras memungkinkan pengembang untuk merancang program dengan performa tinggi dan efisien. Bahasa C juga dapat diandalkan dalam mengakses perangkat keras yang terdapat dalam sistem tertanam. Selain itu, bahasa C juga populer untuk pengembangan aplikasi tingkat rendah seperti sistem operasi, perangkat lunak sistem, dan program pengontrol perangkat keras lainnya.
+Bahasa C sering digunakan dalam pengembangan \textit{firmware} pada mikrokontroler karena memungkinkan pengembang untuk melakukan pemrograman pada tingkat register dan memori. Kendali langsung terhadap perangkat keras memungkinkan pengembang untuk merancang program dengan performa tinggi dan efisien. Bahasa C juga dapat diandalkan dalam mengakses perangkat keras yang terdapat dalam sistem tertanam. Selain itu, bahasa C juga populer untuk pengembangan aplikasi tingkat rendah seperti sistem operasi, perangkat lunak sistem, dan program pengendali perangkat keras lainnya.
 
-Saat ini, bahasa C terus digunakan dan dianggap sebagai bahasa pemrograman yang esensial bagi pengembang perangkat lunak. Bahasa C sangat fleksibel, ringkas, dan efisien sehingga dapat digunakan dalam berbagai proyek perangkat lunak yang kompleks \cite{Deitel2016}. Kepopuleran bahasa C juga didukung oleh adanya \textit{compiler} yang tersedia untuk berbagai \textit{platform} sistem operasi, sehingga bahasa ini dapat digunakan pada berbagai sistem operasi seperti Windows, Linux, macOS, dan sebagainya.
+Saat ini, bahasa C terus digunakan dan dianggap sebagai bahasa pemrograman yang esensial bagi pengembang perangkat lunak. Bahasa C sangat fleksibel, ringkas, dan efisien sehingga dapat digunakan dalam berbagai proyek perangkat lunak yang kompleks \cite{Deitel2016}. Kepopuleran bahasa C juga didukung oleh adanya \textit{compiler} yang tersedia untuk berbagai \textit{platform} sistem operasisehingga bahasa ini dapat digunakan pada berbagai sistem operasi seperti Windows, Linux, macOS, dan sebagainya.
 
 \subsection{Teknologi GNSS}
-\textit{Global Navigation Satellite System} (GNSS) adalah teknologi yang sangat penting dan telah digunakan secara luas dalam berbagai aplikasi. Sistem ini digunakan untuk menentukan posisi di permukaan bumi dengan menggunakan konstelasi satelit sebagai referensi. Contoh GNSS yang paling terkenal adalah \textit{Global Positioning System} (GPS) milik Amerika Serikat, namun terdapat lima sistem GNSS lainnya yang dikembangkan oleh negara-negara lain, yaitu Galileo (Uni Eropa), BeiDou (Republik Rakyat Tiongkok), GLONASS (Federasi Rusia), IRNSS (India), dan QZSS (Jepang) \cite{NationalCoordinationOfficeforSpace-BasedPositioning2021}.
+\textit{Global Navigation Satellite System} (GNSS) adalah teknologi yang sangat penting dan telah digunakan secara luas dalam berbagai aplikasi. Sistem ini digunakan untuk menentukan posisi di permukaan bumi dengan menggunakan konstelasi satelit sebagai referensi. Contoh GNSS yang paling terkenal adalah \textit{Global Positioning System} (GPS) milik Amerika Serikat. Namun, terdapat lima sistem GNSS lainnya yang dikembangkan oleh negara-negara lain, yaitu Galileo (Uni Eropa), BeiDou (Republik Rakyat Tiongkok), GLONASS (Federasi Rusia), IRNSS (India), dan QZSS (Jepang) \cite{NationalCoordinationOfficeforSpace-BasedPositioning2021}.
 
 Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satelit menggunakan isyarat radio pada pita frekuensi L \cite{TheEuropeanGlobalNavigationSatelliteSystemsAgency2021}. Satelit GNSS akan terus memancarkan isyarat radio pada pita frekuensi L yang dapat diterima oleh penerima GNSS. Isyarat tersebut kemudian dihitung waktu tempuhnya oleh penerima GNSS untuk menentukan jarak antara penerima dan satelit. 
+
+Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segmen kendali, dan segmen pengguna. Segmen satelit bertanggung jawab sebagai pemancar isyarat yang diterima oleh segmen pengguna untuk menentukan posisi dan waktu, sedangkan segmen kendali mengawasi dan mengontrol kinerja satelit dengan memastikan akurasi sinyal yang diterima oleh pengguna. Ketiga segmen ini saling berkaitan dan dibutuhkan untuk memastikan keakuratan dan keandalan sistem GNSS. Gambar \ref{Fig: gnss_segment} memperlihatkan hubungan antara ketiga segmen GNSS tersebut.
 
 \begin{figure}[H]
 	\centering
@@ -44,13 +46,11 @@ Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satel
 	\label{Fig: gnss_segment}
 \end{figure}
 
-Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segmen kendali, dan segmen pengguna. Segmen satelit bertanggung jawab sebagai pemancar sinyal, yang diterima oleh segmen pengguna untuk menentukan posisi dan waktu. Sedangkan, segmen kendali mengawasi dan mengontrol kinerja satelit dengan memastikan akurasi sinyal yang diterima oleh pengguna. Ketiga segmen ini saling berkaitan dan dibutuhkan untuk memastikan keakuratan dan keandalan sistem GNSS. Gambar \ref{Fig: gnss_segment} memperlihatkan hubungan antara ketiga segmen GNSS tersebut.
-
 \subsubsection{Orbit GNSS}
-Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut memengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
+Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut mempengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
 
 \begin{table}[H]
-	\caption{Orbit dan Ketinggian setiap Konstelasi \cite{Li2019} \cite{Bury2019}}
+	\caption{Orbit dan Ketinggian Setiap Konstelasi GNSS \cite{Li2019} \cite{Bury2019}}
 	\vspace{0.5em}
 	\centering
 	\begin{tabular}{ccccc}
@@ -74,7 +74,7 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
-	\caption{Ilustrasi Orbit Satelit GNSS}
+	\caption{Orbit Satelit GNSS}
 	\label{Fig: alt-comp}
 \end{figure}
 
@@ -85,14 +85,14 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 	\item \textit{Super} LEO adalah sistem yang beroperasi pada Pita Ka dengan frekuensi 20 GHz s.d. 30 GHz.
 \end{enumerate}
 
-\textbf{\textit{Medium Earth Orbit} (MEO)} adalah jenis satelit buatan yang mengorbit Bumi pada ketinggian antara 10.000 hingga 20.000 km di atas permukaan Bumi. Satelit MEO memiliki ciri khas orbitnya yang berada di antara orbit satelit LEO dan GEO. Keuntungan dari satelit MEO adalah jangkauannya yang cukup luas, sehingga hanya membutuhkan jumlah satelit yang relatif lebih sedikit untuk memberikan layanan seluruh dunia.
+\textbf{\textit{Medium Earth Orbit} (MEO)} adalah jenis satelit buatan yang mengorbit Bumi pada ketinggian antara 10.000 hingga 20.000 km di atas permukaan Bumi. Satelit MEO memiliki ciri khas orbitnya yang berada di antara orbit satelit LEO dan GEO. Keuntungan dari satelit MEO adalah jangkauannya yang cukup luassehingga hanya membutuhkan jumlah satelit yang relatif lebih sedikit untuk memberikan layanan seluruh dunia.
 
 \textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit Geo adalah secara teoretis hanya membutuhkan tiga hingga empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
 
 \subsubsection{Penerima GNSS}
 Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh satelit berisi efemeris, almanak, dan komponen lainnya seperti tanggal dan status satelit.
 
-Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12.5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
+Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12,5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
 
 \begin{figure}[ht]
 	\centering
@@ -104,7 +104,7 @@ Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada
 \subsubsection{Standar NMEA 0813}
 Standar NMEA 0813 adalah standar yang dimiliki oleh sebuah organisasi di Amerika Serikat dengan nama \textit{National Marine Electronics Association} sebagai wadah untuk keperluan di bidang elektronika maritim seperti pengembangan industri dan pendidikan. Organisasi ini adalah organisasi nirlaba yang dibangun oleh pelaku-pelaku pada pasar pada bidang elektronika maritim seperti manufaktur, penjual, distributor, dan institut pendidikan.
 
-Ide dasar dari standar NMEA 0183 adalah mengirimkan data sebanyak satu baris dalam bentuk teks ASCII termasuk dengan \textit{carriage return} dan \textit{line feed} yang dikirimkan dalam \textit{baudrate} tertentu. Setiap data dikirimkan dengan kalimat yang diawali oleh simbol dollar ('\$'), dua huruf sebagai \textit{talker} ID, tiga huruf \textit{sentence} ID, data yang dipisahkan oleh tanda koma,, dan diakhiri oleh \textit{checksum} untuk integritas data. Bagian \textit{checksum} dipisahkan oleh tanda asteris ('*') dan dua digit heksadesimal yang ditunjuka dalam bentuk operasi XOR dari sluruh karakter di antara tanda dollar dan asteris.
+Ide dasar dari standar NMEA 0183 adalah mengirimkan data sebanyak satu baris dalam bentuk teks ASCII termasuk dengan \textit{carriage return} dan \textit{line feed} yang dikirimkan dalam \textit{baudrate} tertentu. Setiap data dikirimkan dengan kalimat yang diawali oleh simbol dollar ('\$'), dua huruf sebagai \textit{talker} ID, tiga huruf \textit{sentence} ID, data yang dipisahkan oleh tanda koma, dan diakhiri oleh \textit{checksum} untuk integritas data. Bagian \textit{checksum} dipisahkan oleh tanda asteris ('*') dan dua digit heksadesimal yang ditunjukan dalam bentuk operasi XOR dari seluruh karakter di antara tanda dollar dan asteris.
 
 Seiring berjalannya waktu, standar ini sudah mengalami berbagai macam revisi. Berbagai merek juga memiliki kalimat \textit{proprietary}-nya masing-masing seperti \texttt{\$PSTM} pada modul GNSS Teseo-LIV3FL yang diproduksi oleh STMicroelectronics. Standar NMEA menyajikan data-data dari modul GNSS dalam berbagai format kalimat. Beberapa contoh kalimat NMEA adalah sebagai berikut:
 \begin{enumerate}
@@ -114,7 +114,7 @@ Seiring berjalannya waktu, standar ini sudah mengalami berbagai macam revisi. Be
 \end{enumerate}
 
 \subsection{Lokalisasi}
-Berdasarkan penelitian X, lokalisasi adalah suatu teknik untuk menghitung posisi dari suatu titik saat ini berdasarkan komunikasi antar simpul yang lokasinya telah diketahui. Posisi saat ini dihitung berdasarkan rata-rata jarak dan sudut antara dua simpul. Beberapa konsep lokalisasi adalah sebagai berikut \cite{Alrajeh2013}:
+Lokalisasi adalah suatu teknik untuk menghitung posisi dari suatu titik saat ini berdasarkan komunikasi antar simpul yang lokasinya telah diketahui. Posisi saat ini dihitung berdasarkan rata-rata jarak dan sudut antara dua simpul. Beberapa konsep lokalisasi adalah sebagai berikut \cite{Alrajeh2013}:
 
 \begin{enumerate}
 	\item \textbf{Laterasi} terjadi ketika jarak antar dua simpul digunakan untuk mengestimasi posisi saat ini.
@@ -136,7 +136,7 @@ Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan
 	\label{Fig: Trilaterasi}
 \end{figure}
 
-Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D dapat didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit.
+Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit.
 
 \begin{equation}
 	\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
@@ -213,40 +213,12 @@ Dua sistem persamaan linear di atas dapat ditulis kembali dalam bentuk matriks b
 Maka didapat solusi berupa koordinat posisi di bidang horizontal $\left(x\right)$ dan bidang vertikal $\left(y\right)$ dari sistem persamaan linear di atas.
 
 \begin{equation}
-	x = \frac{det
-		\left(
-			\begin{bmatrix}
-				C & B \\
-				F & D\\
-			\end{bmatrix}
-		\right)
-	}{
-		det\left(\
-			\begin{bmatrix}
-				A & B \\
-				D & E\\
-			\end{bmatrix}
-		\right)
-	}
+	x = \frac{CE-FB}{EA-BD}
 	\label{eq:2-12}
 \end{equation}
 
 \begin{equation}
-	x = \frac{det
-		\left(
-		\begin{bmatrix}
-			A & C \\
-			D & F\\
-		\end{bmatrix}
-		\right)
-	}{
-		det\left(\
-		\begin{bmatrix}
-			A & B \\
-			D & E\\
-		\end{bmatrix}
-		\right)
-	}
+	y = \frac{CD-AF}{EA-BD}
 	\label{eq:2-13}
 \end{equation}
 
@@ -259,11 +231,11 @@ Dalam aplikasi navigasi, akurasi dan presisi yang tinggi sangatlah penting. Deng
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/acc.png}
-	\caption{Ilustrasi Perbedaan Tingkat Akurasi dan Presisi}
+	\caption{Perbedaan Tingkat Akurasi dan Presisi}
 	\label{Fig: acc-and-prec-diff}
 \end{figure}
 
-Gambar \ref{Fig: acc-and-prec-diff} adalah ilustrasi yang menjelaskan perbedaan antara tingkat akurasi dan presisi. Lingkaran dengan radius kecil tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan presisi yang tinggi. Artinya, hasil pengukuran tersebut sangat dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel. Lingkaran dengan radius kecil yang letaknya melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang rendah namun tingkat presisi yang tinggi. Hal ini berarti hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya, namun ketika diukur berkali-kali, hasilnya akan konsisten dan akurat. Lingkaran dengan radius besar yang tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang tinggi, namun presisi yang rendah. Artinya, hasil pengukuran tersebut dekat dengan posisi sebenarnya, tetapi nilai rata-rata dari seluruh sampel cukup jauh dari hasil pengukuran. Terakhir, lingkaran dengan radius besar dan melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan presisi yang rendah. Artinya, hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel juga cukup jauh dari hasil pengukuran.
+Gambar \ref{Fig: acc-and-prec-diff} adalah ilustrasi yang menjelaskan perbedaan antara tingkat akurasi dan presisi. Lingkaran dengan radius kecil tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan kepresisian yang tinggi. Artinya, hasil pengukuran tersebut sangat dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel. Lingkaran dengan radius kecil yang letaknya melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang rendah, tetapi dengan tingkat kepresisian yang tinggi. Hal ini berarti hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya, tetapi ketika diukur berkali-kali, hasilnya akan konsisten dan akurat. Lingkaran dengan radius besar yang tepat pada titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi yang tinggi, tetapi presisi yang rendah. Artinya, hasil pengukuran tersebut dekat dengan posisi sebenarnya, tetapi nilai rata-rata dari seluruh sampel cukup jauh dari hasil pengukuran. Terakhir, lingkaran dengan radius besar dan melenceng dari titik tengah mewakili hasil pengukuran yang memiliki tingkat akurasi dan presisi yang rendah. Artinya, hasil pengukuran tersebut tidak dekat dengan posisi sebenarnya dan nilai rata-rata dari seluruh sampel juga cukup jauh dari hasil pengukuran.
 
 \subsubsection{\textit{Dilution of Precision}}
 \textit{Dilution of Precision} atau DOP adalah suatu konsep sederhana yang banyak digunakan untuk mengukur efektivitas dari suatu pengukuran. Nilai DOP dapat diestimasi menggunakan perhitungan yang telah dlakukan pada penelitian \cite{Tahsin2015} . Semakin kecil nilai DOP maka semakin baik \cite{Hofmann-Wellenhof2008}. Klasifikasi nilai DOP menurut \cite{Langley1999} ditunjukan oleh Tabel \ref{Tab: Nilai_DOP}.
@@ -272,7 +244,7 @@ Nilai DOP dapat dibagi menjadi tiga, yaitu
 \begin{enumerate}
 	\item \textbf{\textit{Horizontal Dilution of Precision} (HDOP)}: Mendeskripsikan efek dari nilai DOP pada bidang horizontal. Semakin rendah nilai HDOP maka semakin akurat posisi garis bujur dan garis lintang yang didapat.
 	\item \textbf{\textit{Vertical Dilution of Precision} (VDOP)}: Mendeskripsikan efek dari nilai DOP pada posisi vertikal. Semakin rendah nilai VDOP maka semakin akurat nilai ketinggian yang didapat.
-	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Merupakan gabungan dari HDOP dan VDOP. Selain itu, PDOP juga mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebar, sehingga akurasi yang didapat semakin besar.
+	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Merupakan gabungan dari HDOP dan VDOP. Selain itu, PDOP juga mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebarsehingga akurasi yang didapat semakin besar.
 \end{enumerate}
 
 \begin{table}[H]
@@ -320,15 +292,14 @@ Nilai DOP dapat dibagi menjadi tiga, yaitu
 CEP = 0.62 \sigma_y + 0.56 \sigma_x
 \label{eq:CEP}
 \end{equation}
-
 dengan $\sigma_x$ adalah standar deviasi garis bujur dan $\sigma_y$ adalah standar deviasi garis lintang. Nilai CEP dapat digunakan untuk meninjau tingkat ketelitian dari modul GNSS.
 
-CEP adalah metode yang untuk melakukan analisis data terkait dengan tingkat probabilitas tertentu dan tidak terdistorsi dengan kesalahan besar \cite{Chin1983}. Kekurangan dari CEP adalah hanya meninjau 50\% data saja dan tidak memberikan informasi apapun terkait 50\% lainnya \cite{Sathish2016}. Perlu diperhatikan bahwa nilai CEP hanya dapat digunakan jika data yang dimiliki terdistribusi normal.
+CEP adalah metode yang untuk melakukan analisis data terkait dengan tingkat probabilitas tertentu dan tidak terdistorsi dengan kesalahan besar \cite{Chin1983}. Kekurangan dari CEP adalah hanya meninjau 50\% data saja dan tidak memberikan informasi apapun terkait 50\% lainnya \cite{Sathish2016}.
 
 \subsubsection{\textit{Mean Absolute Deviation} (MAD)}
-Mean absolute deviation (MAD) adalah ukuran seberapa jauh data tersebar dari nilai rata-rata (mean) dalam sebuah kumpulan data. MAD sering digunakan sebagai alternatif yang lebih \textit{robust} terhadap deviasi standar (standard deviation) dalam analisis data, terutama ketika data tidak terdistribusi secara normal.
+Mean absolute deviation (MAD) adalah ukuran seberapa jauh data tersebar dari nilai rata-rata (mean) dalam sebuah kumpulan data. MAD sering digunakan sebagai alternatif yang lebih \textit{robust} terhadap standar deviasi dalam analisis data, terutama ketika data tidak terdistribusi secara normal.
 
-MAD dihitung dengan cara mengambil selisih antara setiap data dan mean, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan \ref{eq:MAD}. MAD memiliki unit yang sama dengan data, sehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
+MAD dihitung dengan cara mengambil selisih antara setiap data dan mean, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan \ref{eq:MAD}. MAD memiliki unit yang sama dengan datasehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
 
 \begin{equation}
 	MAD = \frac{1}{n} \sum_{i=1}^{n} \left| x_i - m(X) \right|
@@ -338,7 +309,7 @@ MAD dihitung dengan cara mengambil selisih antara setiap data dan mean, kemudian
 Dalam konteks pengukuran posisi menggunakan modul GNSS, MAD dapat digunakan untuk mengukur presisi dari data posisi yang diperoleh. Semakin kecil nilai MAD, semakin presisi data posisi tersebut. Namun, nilai MAD juga dapat dipengaruhi oleh faktor lain seperti jumlah data yang digunakan, kondisi atmosfer, dan kualitas isyarat GNSS yang diterima.
 
 \subsection{\textit{Geofence}}
-\textit{Geofence} atau batasan maya adalah suatu teknologi yang digunakan untuk memantau objek di dalam suatu area tertentu \cite{Sari2021}. Penggunaan teknologi ini semakin populer dan diterapkan pada berbagai sektor, mulai dari sektor transportasi, industri, hingga sektor keamanan. Dalam sistem geofence, jika objek yang dipantau melintasi daerah di luar batasan yang telah ditentukan, maka sistem akan mengirimkan notifikasi sebagai tanda bahwa objek tersebut berada di luar daerah yang telah ditentukan. Terdapat tiga teknik yang dapat digunakan untuk mendefinisikan area \textit{geofence} \cite{Rui2015}, yaitu:
+\textit{Geofence} atau batasan maya adalah suatu teknologi yang digunakan untuk memantau objek di dalam suatu area tertentu \cite{Sari2021}. Penggunaan teknologi ini semakin populer dan diterapkan pada berbagai sektor, mulai dari sektor transportasi, industri, hingga sektor keamanan. Dalam sistem \textit{geofence}, jika objek yang dipantau melintasi daerah di luar batasan yang telah ditentukan maka sistem akan mengirimkan notifikasi sebagai tanda bahwa objek tersebut berada di luar daerah yang telah ditentukan. Terdapat tiga teknik yang dapat digunakan untuk mendefinisikan area \textit{geofence} \cite{Rui2015}, yaitu:
 
 \begin{enumerate}
 	\item \textbf{Poligon}: Daerah \textit{geofence} didefinisikan pada sebuah poligon dengan verteks berupa titik-titik koordinat.
@@ -349,24 +320,31 @@ Dalam konteks pengukuran posisi menggunakan modul GNSS, MAD dapat digunakan untu
 Pada teknik \textit{point of interest}, jarak antara koordinat titik pusat lingkaran ke satu titik lainnya dapat dihitung menggunakan Persamaan Haversine  \cite{Pratama2020}. Persamaan Haversine digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola seperti Bumi. Persamaan ini sangat berguna dalam aplikasi \textit{geofence} untuk menghitung jarak objek dari titik pusat lingkaran.
 
 \subsubsection{Persamaan Haversine}
-Persamaan Haversine pertama kali diciptakan oleh Prof. James Inman pada tabun 1835 untuk persamaan astronomi \textit{nautical} dan menghitung jarak antara dua bintang. Persamaan ini adalah sebuah persamaan matematika paling penting dalam bidang Navigasi. Persamaan ini digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola, khususnya pada Planet Bumi \cite{Hofmann-Wellenhof2008}\cite{Feng2013}. Persamaan Haversine menggunakan dua titik koordinat garis lintang dan garis bujur dari kedua titik tersebut. Jika sudut pusat antara kedua titik adalah $\theta = \frac{d}{r}$, maka fungsi Haversin dapat didefinisikan sebagai:
+Persamaan Haversine pertama kali diciptakan oleh Prof. James Inman pada tabun 1835 untuk persamaan astronomi \textit{nautical} dan menghitung jarak antara dua bintang. Persamaan ini adalah salah satu persamaan matematika paling penting dalam bidang navigasi. Persamaan ini digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola, khususnya pada Planet Bumi \cite{Hofmann-Wellenhof2008}\cite{Feng2013}. Persamaan Haversine menggunakan dua titik koordinat garis lintang dan garis bujur dari kedua titik tersebut. Jika sudut pusat antara kedua titik adalah $\theta = \frac{d}{r}$, maka fungsi Haversine dapat didefinisikan sebagai:
 
-$$\text{hav}(\theta) = \sin^2{\left(\frac{\theta}{2}\right)}$$
-
+\begin{equation}
+	\text{hav}(\theta) = \sin^2{\left(\frac{\theta}{2}\right)}
+	\label{eq:haversine}
+\end{equation}
 Asumsikan bahwa Planet Bumi berbentuk bola sempurna dengan jari-jari $R=6.367,45$km. Selain itu, efek elipsoidal dan ketinggian juga akan diabaikan. Misalkan dua titik di permukaan bumi dengan koordinat masing-masing adalah $(lat_1, lon_1)$ dan $(lat_2, lon_2)$ dalam satuan radian. Selisih dari titik koordinat garis bujur dan garis lintangnya adalah
 
-$$
-\begin{aligned}
-	\Delta lat &= lat_1 - lat_2 \\
-	\Delta lon &= lon_1 - lon_2
-\end{aligned}
-$$
+\begin{equation}
+	\Delta lat = lat_1 - lat_2
+	\label{eq:delt-lat}
+\end{equation}
+
+\begin{equation}
+	\Delta lon = lon_1 - lon_2
+	\label{eq:delt-lon}
+\end{equation}
+
 
 Persamaan Haversin untuk dua buah titik di permukaan suatu bola didefinisikan sebagai
 
-$$
-h = \mathrm{hav}\left(\frac{d}{R}\right) = \mathrm{hav}\left(\Delta lat\right) + \cos{\left(lat_1\right)} \cos{\left(lat_2\right)} \mathrm{hav}\left(\Delta lon\right)
-$$
+\begin{equation}
+	h = \mathrm{hav}\left(\frac{d}{R}\right) = \mathrm{hav}\left(\Delta lat\right) + \cos{\left(lat_1\right)} \cos{\left(lat_2\right)} \mathrm{hav}\left(\Delta lon\right)
+	\label{eq:haversine2}
+\end{equation}
 dengan $d$ adalah jarak dari dua titik dan $R$ adalah jari-jari dari bola.
 
 Maka jarak $d$ dari kedua titik tersebut didapat dengan mengalikan jari-jari Planet Bumi $r$ dengan invers dari fungsi Haversin \cite{Omatu2013}
@@ -378,7 +356,7 @@ $$
 \end{aligned} 
 $$
 
-Metode komputasi menggunakan Persamaan Haversine terbukti lebih sederhana dan ringan dibandingkan dengan Metode Vincenty, dengan persentase galat yang sangat kecil, yaitu 0-0,334\% \cite{Mahmoud2016}. Dalam dunia navigasi, Persamaan Haversine memiliki peran yang sangat penting dalam menghitung jarak antara dua titik koordinat pada permukaan bola.
+Metode komputasi menggunakan Persamaan Haversine terbukti lebih sederhana dan ringan dibandingkan dengan Metode Vincenty dengan persentase galat yang sangat kecil, yaitu 0-0,334\% \cite{Mahmoud2016}. Dalam dunia navigasi, Persamaan Haversine memiliki peran yang sangat penting dalam menghitung jarak antara dua titik koordinat pada permukaan bola.
 
 \subsection{STM32}
 STM32 adalah salah satu jenis mikrokontroler 32-bit yang sangat populer di industri saat ini. Dikembangkan oleh perusahaan teknologi STMicroelectronics, STM32 merupakan mikrokontroler berbasis arsitektur ARM Cortex-M yang memiliki performa tinggi dan konsumsi daya yang rendah. Keluarga mikrokontroler STM32 dapat dibagi menjadi lima kelompok, yaitu \textit{Mainstream}, \textit{High Performance}, \textit{Ultra-low-power}, dan \textit{Wireless}. Setiap kelompok ditujukan untuk aplikasi yang berbeda-beda dengan kebutuhan yang berbeda pula. Pembagian kelompok mikrokontroler STM32 dapat dilihat pada Gambar \ref{Fig: stm32-groups}.
@@ -410,28 +388,28 @@ Tabel \ref{Tab: stm-arch-table} menunjukkan jenis arsitektur yang digunakan oleh
 	\label{Tab: stm-arch-table}
 \end{table}
 
-Salah satu \textit{development board} yang menggunakan mikrokontroler STM32 adalah STM32 Nucleo-WL55JC1. Papan pengembangan ini dirancang untuk memudahkan pengembang dalam membuat prototipe aplikasi wireless dengan menggunakan mikrokontroler STM32WL55. Mikrokontroler ini merupakan versi \textit{dual-core} dari STM32 yang menggabungkan arsitektur Arm Cortex-M4 dan M0+ dengan kecepatan clock hingga 48 MHz.
+Salah satu \textit{development board} yang menggunakan mikrokontroler STM32 adalah STM32 Nucleo-WL55JC1. Papan pengembangan ini dirancang untuk memudahkan pengembang dalam membuat prototipe aplikasi \textit{wireless} dengan menggunakan mikrokontroler STM32WL55. Mikrokontroler ini merupakan versi \textit{dual-core} dari STM32 yang menggabungkan arsitektur ARM Cortex-M4 dan M0+ dengan kecepatan clock hingga 48 MHz.
 
 \subsubsection{STM32 Nucleo-WL55JC1}
-STM32 Nucleo-WL55JC1 adalah sebuah \textit{development board} yang menggunakan mikrokontroler STM32WL55 yang dikembangkan oleh ST Microelectronics. Mikrokontroler yang digunakan pada papan ini adalah STM32WL55 \textit{dual-core} Arm Cortex-M4/M0+ dengan kecepatan clock sebesar 48 MHz \cite{STMicroelectronics2022}.
+STM32 Nucleo-WL55JC1 adalah sebuah \textit{development board} yang menggunakan mikrokontroler STM32WL55 yang dikembangkan oleh ST Microelectronics. Mikrokontroler yang digunakan pada papan ini adalah STM32WL55 \textit{dual-core} ARM Cortex-M4/M0+ dengan kecepatan clock sebesar 48 MHz \cite{STMicroelectronics2022}.
 
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=5cm]{contents/chapter-2/stm32-wl55jc1.jpg}
-	\caption{\textit{Development board} STM32 Nucleo-WL55JC1}
+	\caption{\textit{Development Board} STM32 Nucleo-WL55JC1}
 	\label{Fig: STM32 Nucleo-WL55JC1}
 \end{figure}
 
-Keunggulan dari \textit{development board} ini adalah sudah dilengkapi dengan STLINK-V3E yang terintegrasi, sehingga tidak memerlukan perangkat tambahan untuk melakukan pemrograman dan \textit{debugging} pada perangkat \cite{STMicroelectronics2022}. Selain itu, \textit{development board} ini juga mendukung penggunaan \textit{expansion board} Arduino dan ST morpho. Tampilan papan pengembangan STM32 Nucleo-WL55JC1 dapat dilihat pada Gambar \ref{Fig: STM32 Nucleo-WL55JC1}.
+Keunggulan dari \textit{development board} ini adalah sudah dilengkapi dengan STLINK-V3E yang terintegrasisehingga tidak memerlukan perangkat tambahan untuk melakukan pemrograman dan \textit{debugging} pada perangkat \cite{STMicroelectronics2022}. Selain itu, \textit{development board} ini juga mendukung penggunaan \textit{expansion board} Arduino dan ST morpho. Tampilan \textit{development board} STM32 Nucleo-WL55JC1 dapat dilihat pada Gambar \ref{Fig: STM32 Nucleo-WL55JC1}.
 
-Mikrokontroler STM32WL55 memiliki kecepatan clock yang lebih cepat dibandingkan dengan kecepatan clock pada Arduino Mega yang hanya sebesar 16 MHz. Selain itu, STM32WL55 juga memiliki SRAM dengan kapasitas yang lebih besar, yaitu sebesar 64 KB atau delapan kali lipat lebih besar daripada kapasitas SRAM pada Arduino Mega \cite{STMicroelectronics2022b}.
+Mikrokontroler STM32WL55 memiliki kecepatan \textit{clock} yang lebih cepat dibandingkan dengan kecepatan \textit{clock} pada Arduino Mega yang hanya sebesar 16 MHz. Selain itu, STM32WL55 juga memiliki SRAM dengan kapasitas yang lebih besar, yaitu sebesar 64 KB atau delapan kali lipat lebih besar daripada kapasitas SRAM pada Arduino Mega \cite{STMicroelectronics2022b}.
 
 Selain itu, komunitas pengguna STM32 juga tidak kalah besar dibandingkan dengan komunitas pengguna Arduino dan ESP-32. Hal ini menunjukkan bahwa penggunaan papan pengembangan STM32 Nucleo-WL55JC1 dapat memberikan keuntungan bagi para pengembang yang ingin menggunakan mikrokontroler dengan performa tinggi dan dukungan komunitas yang besar.
 
 \subsubsection{STLINK-V3}
 STLINK-V3 adalah perangkat yang digunakan untuk memrogram dan \textit{debugging} pada mikrokontroler STM32 dan STM8. Modul STLINK-V3 menggunakan antarmuka JTAG atau \textit{Serial Wire Debugging} (SWD) untuk melakukan komunikasi dengan mikrokontroler. Pada STM32 Nucleo-WL55JC1, STLINK-V3 sudah tertanam di \textit{development board}. Gambar \ref{Fig: stlink-in-wl55} menunjukan letak STLINK-V3 di \textit{development board} STM32 Nucleo-WL55JC1 (ditandai oleh kotak berwarna merah).
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-2/stlink-in-wl55.jpg}
 	\caption{Letak STLINK-V3 pada STM32 Nucleo-WL55JC1}
@@ -467,12 +445,12 @@ Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupa
 	\label{Fig: stm32-mx}
 \end{figure}
 
-Dalam pengembangan \textit{firmware} pada mikrokontroler STM32, STM32Cube IDE dapat membantu pengguna untuk memudahkan pengembangan \textit{firmware} dengan menggunakan berbagai alat pengembangan yang lengkap dan pustaka perangkat lunak yang lengkap sebagai referensi. Sehingga, STM32Cube IDE menjadi pilihan yang tepat bagi pengguna yang ingin melakukan pengembangan \textit{firmware} pada mikrokontroler STM32.
+Dalam pengembangan \textit{firmware} pada mikrokontroler STM32, STM32Cube IDE dapat membantu pengguna untuk memudahkan pengembangan \textit{firmware} dengan menggunakan berbagai alat pengembangan yang lengkap dan pustaka perangkat lunak yang lengkap sebagai referensi. Sehingga, STM32Cube IDE menjadi pilihan yang tepat untuk melakukan pengembangan \textit{firmware} pada mikrokontroler STM32.
 
 \subsection{Teseo-LIV3FL}
 Teseo-LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
 
-Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3.3 V. Antarmuka UART pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
+Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Antarmuka UART pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
 
 \begin{figure}[H]
 	\centering
@@ -481,7 +459,7 @@ Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3.3 V. Anta
 	\label{Fig: teseo_pinout}
 \end{figure}
 
-Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi tetap mempertahankan akurasinya. Modul Teseo-LIV3FL dapat dioperasikan dengan efisien dan hemat energi, karena hanya membutuhkan daya rendah yaitu 8$\mu$A pada mode standby dan 45mA pada mode akuisisi.
+Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi dengan tetap mempertahankan akurasinya. Modul Teseo-LIV3FL dapat dioperasikan dengan efisien dan hemat energi, karena hanya membutuhkan daya rendah yaitu 8 $\mu$A pada mode standby dan 45 mA pada mode akuisisi.
 
 Salah satu keunggulan modul Teseo-LIV3FL adalah kustomisasi yang sangat luas. Pengguna dapat memodifikasi pengaturan modul GNSS melalui serial port atau dengan bantuan aplikasi Teeo-Suite. Hal ini memungkinkan pengguna untuk menyesuaikan modul GNSS sesuai dengan kebutuhan mereka.
 
@@ -530,12 +508,12 @@ Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (peng
 \subsubsection{Python}
 Python merupakan salah satu bahasa pemrograman tingkat yang paling populer. Kepopuleran dari bahasa pemrograman Python diakibatkan bahasa pemrograman Python memiliki sintaks yang mudah dipahami. Bahasa ini dikembangkan oleh Guido van Rossum pada tahun 1991. Python dapat digunakan untuk berbagai hal seperti pengembangan web, kecerdasan buatan, dan analisis data. Selain itu Python memiliki banyak pustaka dan kerangka kerja seperti NumPy dan Matplotlib yang dapat digunakan untuk mengakselerasi pengembangan. Selain itu, bahasa ini mendukung berbagai paradigma pemrograman berorientasi objek, prosedural, maupun fungsional.
 
-Kelebihan lain dari Python adalah kemudahan melakukan \textit{debugging} kode karena adanya kemampuan untuk mengeksekusi kode baris per baris dengan menggunakan \textit{interpreter} Python. Selain itu, Python memiliki komunitas pengguna yang besar dan aktif, sehingga memudahkan pengguna Python dalam mencari bantuan dan solusi dari masalah-masalah yang dihadapi. Oleh karena itu, Python dapat menjadi bahasa yang sangat populer di kalangan pengembang dan peneliti di berbagai bidang, terutama dalam bidang analisis dan visualisasi data.
+Kelebihan lain dari Python adalah kemudahan melakukan \textit{debugging} kode karena adanya kemampuan untuk mengeksekusi kode baris per baris dengan menggunakan \textit{interpreter} Python. Selain itu, Python memiliki komunitas pengguna yang besar dan aktif sehingga memudahkan pengguna Python dalam mencari bantuan dan solusi dari masalah-masalah yang dihadapi. Oleh karena itu, Python dapat menjadi bahasa yang sangat populer di kalangan pengembang dan peneliti di berbagai bidang, terutama dalam bidang analisis dan visualisasi data.
 
 \subsubsection{Pandas}
-Pustaka Pandas merupakan alat bantu yang sangat berguna dalam mengolah dan menganalisis data. Pustaka ini dilengkapi dengan fitur-fitur struktur data yang fleksibel dan efisien seperti data frame dan series, yang memungkinkan pengguna untuk melakukan operasi pada data dengan mudah dan cepat. Selain itu, pustaka Pandas juga mendukung berbagai format file populer seperti CSV, Excel, dan basis data SQL, sehingga memudahkan pengguna untuk memproses data dari berbagai sumber.
+Pustaka Pandas merupakan alat bantu yang sangat berguna dalam mengolah dan menganalisis data. Pustaka ini dilengkapi dengan fitur-fitur struktur data yang fleksibel dan efisien seperti \textit{data frame} dan \textit{series}, yang memungkinkan pengguna untuk melakukan operasi pada data dengan mudah dan cepat. Selain itu, pustaka Pandas juga mendukung berbagai format file populer seperti CSV, Excel, dan basis data SQL sehingga memudahkan pengguna untuk memproses data dari berbagai sumber.
 
-Secara khusus, struktur data Pandas yang disebut sebagai data frame merupakan kumpulan kolom data yang diberi nama dan jenis tertentu. Dengan adanya fitur data frame, pengguna dapat dengan mudah membaca file dan mengubahnya menjadi sebuah tabel. Data frame juga memungkinkan pengguna untuk melakukan operasi seperti \texttt{join}, \texttt{distinct}, \texttt{group by}, dan fitur lainnya yang biasa ditemukan pada SQL. Pustaka Pandas juga mendukung berbagai format file seperti .txt, .csv, .tsv, dan lainnya, sehingga memudahkan pengguna dalam mengakses berbagai jenis data.
+Secara khusus, struktur data Pandas yang disebut sebagai data frame merupakan kumpulan kolom data yang diberi nama dan jenis tertentu. Dengan adanya fitur data frame, pengguna dapat dengan mudah membaca file dan mengubahnya menjadi sebuah tabel. Data frame juga memungkinkan pengguna untuk melakukan operasi seperti \texttt{join}, \texttt{distinct}, \texttt{group by}, dan fitur lainnya yang biasa ditemukan pada SQL. Pustaka Pandas juga mendukung berbagai format file seperti .txt, .csv, .tsv, dan lainnyasehingga memudahkan pengguna dalam mengakses berbagai jenis data.
 
 \subsubsection{NumPy}
 Selain pustaka Pandas, NumPy (\textit{Numerical Python}) juga memainkan peran penting dalam pengolahan data. NumPy terutama digunakan untuk operasi numerik pada data dan menyediakan berbagai struktur data seperti larik dan matriks multidimensi, serta berbagai fungsi matematika yang sangat penting dalam pengolahan data. NumPy dikembangkan menggunakan bahasa pemrograman C, yang memungkinkan komputasi yang cepat dan optimal pada pengolahan data yang kompleks.
@@ -551,7 +529,7 @@ PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis ka
 Untuk melakukan visualisasi data yang telah diolah akan digunakan pustaka Matplotlib. Pustaka ini adalah pustaka paling populer dalam bidang visualisasi data. Secara bawaan, Matplotlib menyediakan berbagai jenis visualisasi data seperti \textit{line plot}, \textit{scatter plot}, \textit{histogram}, \textit{bar plot}, dan lain-lain secara bawaan. Seluruh jenis visualisasi tersebut dapat dikustomisasi sesuai dengan kebutuhan pengguna, mulai dari mengubah warna, ukuran, jenis garis, dan sebagainya. Bahkan pengguna dapat menambahkan elemen visual seperti judul, label sumbu, dan legenda dengan mudah.
 
 \subsubsection{Seaborn}
-Terakhir, Seaborn adalah pustaka Python yang digunakan untuk membuat plot statistik yang menarik dan informatif. Pustaka ini dibangun di atas Matplotlib, sehingga menggabungkan kekuatan dari kedua pustaka tersebut dapat menghasilkan plot yang lebih baik secara visual dan informasi. Dalam implementasinya, Seaborn dapat digabungkan dengan Matplotlib untuk menghasilkan plot yang lebih baik secara visual dan informatif. Penggunaan Seaborn dapat digunakan untuk memperbaiki plot Matplotlib standar dengan memberikan warna bawaan yang lebih baik dan meningkatkan aspek visual dari grafik.
+Terakhir, Seaborn adalah pustaka Python yang digunakan untuk membuat plot statistik yang menarik dan informatif. Pustaka ini dibangun di atas Matplotlibsehingga menggabungkan kekuatan dari kedua pustaka tersebut dapat menghasilkan plot yang lebih baik secara visual dan informasi. Dalam implementasinya, Seaborn dapat digabungkan dengan Matplotlib untuk menghasilkan plot yang lebih baik secara visual dan informatif. Penggunaan Seaborn dapat digunakan untuk memperbaiki plot Matplotlib standar dengan memberikan warna bawaan yang lebih baik dan meningkatkan aspek visual dari grafik.
 
 \iffalse
 \subsection{LoRa}

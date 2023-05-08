@@ -3,18 +3,18 @@
 \section{Latar Belakang}
 Bus adalah salah satu moda transportasi dalam kota yang paling populer di Indonesia. Daerah Istimewa Yogyakarta telah menyediakan dua layanan bus publik, yaitu Trans Jogja dan Teman Bus. Salah satu faktor yang membuat penggunaan bus cukup populer adalah cakupan wilayahnya yang luas dan biayanya yang terjangkau \cite{Rohani2013}. Selain itu, lalu lintas yang padat dan lahan parkir yang terbatas juga menjadi motivasi beberapa orang untuk menggunakan transportasi publik. Jika peningkatan jumlah penduduk pada suatu daerah sangat tinggi, maka dibutuhkan fasilitas transportasi umum yang layak seperti bus \cite{Sutandi2015}.
 
-Pada awal bulan Maret 2022, Rektor Universitas Gadjah Mada, Prof. Ir. Panut Mulyono, M.Eng., D.Eng., meluncurkan dua buah bus listrik untuk transportasi internal kampus. Kedua bus ini merupakan inovasi dari UGM untuk memudahkan mobilisasi mahasiswa di area kampus seluas 183,36 hektar dan mengurangi penggunaan energi fosil secara bersamaan. Setiap bus akan memutari UGM sebanyak sepuluh kali dengan setiap putaran membutuhkan satu jam. Dengan adanya fasilitas bus kampus Trans Gadjah Mada diharapkan dapat membuat lingkungan kampus menjadi lebih nyaman dan kondusif.
+Pada awal bulan Maret 2022, Rektor Universitas Gadjah Mada, Prof. Ir. Panut Mulyono, M.Eng., D.Eng., meluncurkan dua buah bus listrik untuk transportasi internal kampus. Kedua bus ini merupakan inovasi dari UGM untuk memudahkan mobilisasi mahasiswa di area kampus seluas 183,36 hektar dengan mengurangi penggunaan energi fosil secara bersamaan. Setiap bus akan memutari UGM sebanyak sepuluh kali dengan setiap putaran membutuhkan satu jam. Dengan adanya fasilitas bus kampus Trans Gadjah Mada diharapkan dapat membuat lingkungan kampus menjadi lebih nyaman dan kondusif.
 
-Saat ini, civitas akademika Universitas Gadjah Mada hanya dapat bergantung terhadap rute yang dipublikasi oleh Direktorat Pengelolaan dan Pemeliharaan Aset Universitas Gadjah Mada. Padahal, kondisi di lapangan menunjukan bahwa waktu kedatangan Bus Trans Gadjah Mada tidak selalu tepat waktu. Sebagai contoh, jika lalu lintas lancar maka waktu kedatangan Bus bisa lebih cepat hingga lima menit dari waktu pada jadwal. 
+Saat ini, civitas akademika Universitas Gadjah Mada hanya dapat bergantung terhadap rute yang telah dipublikasikan oleh Direktorat Pengelolaan dan Pemeliharaan Aset Universitas Gadjah Mada. Padahal, kondisi di lapangan menunjukan bahwa waktu kedatangan Bus Trans Gadjah Mada tidak selalu tepat waktu. Sebagai contoh, jika lalu lintas lancar maka waktu kedatangan Bus bisa lebih cepat hingga 5 menit dari waktu pada jadwal. 
 
-Masalah serupa juga terjadi di India. Berdasarkan penelitian \cite{Sutar2016}, masyarakat India hanya mengetahui waktu kedatangan bus berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Penelitian yang dilakukan oleh \cite{Sneha2014} menunjukkan bahwa sistem pelacak berbasis GPS telah diimplementasikan di beberapa negara, tetapi belum diimplementasikan di Indonesia, khususnya di lingkungan Universitas Gadjah Mada.
+Masalah serupa juga terjadi di India. Berdasarkan penelitian \cite{Sutar2016}, masyarakat India hanya mengetahui waktu kedatangan bus berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Penelitian yang dilakukan oleh \cite{Sneha2014} menunjukkan bahwa sistem pelacak berbasis GNSS telah diimplementasikan di beberapa negara, tetapi belum diimplementasikan di Indonesia, khususnya di lingkungan Universitas Gadjah Mada.
 
-Untuk mengatasi masalah ketidakpastian waktu kedatangan Trans Gadjah Mada, dibutuhkan sistem pelacakan yang akurat dan terpercaya. Salah satu teknologi sistem navigasi berbasis satelit yang dapat menunjukkan posisi secara akurat adalah Global Navigation Satellite System (GNSS). Dengan dikembangkannya firmware sistem pelacak lokasi bus Trans Gadjah Mada berbasis GNSS, diharapkan dapat membantu untuk melacak posisi bus secara akurat dan meningkatkan kepuasan pengguna.
+Untuk mengatasi masalah ketidakpastian waktu kedatangan Bus Trans Gadjah Mada, dibutuhkan sistem pelacakan yang akurat dan terpercaya. Salah satu teknologi sistem navigasi berbasis satelit yang dapat menunjukkan posisi secara akurat adalah Global Navigation Satellite System (GNSS). Dengan dikembangkannya firmware sistem pelacak lokasi bus Trans Gadjah Mada berbasis GNSS, diharapkan dapat membantu untuk melacak posisi bus secara akurat dan meningkatkan kepuasan pengguna.
 
 \section{Rumusan Masalah}
 Adapun rumusan masalah dari penelitian ini sebagai berikut:
 \begin{enumerate}
-	\item Bagaimana pengaruh penggunaan \textit{multi-constellation} terhadap berbagai skenario?
+	\item Bagaimana pengaruh penggunaan \textit{multi-constellation} terhadap berbagai skenario pengujian?
 	\item Bagaimana pengaruh dari modul GNSS jika algoritma \textit{low power mode} diaktifkan?
 	\item Bagaimana performa dari sistem dalam menentukan letak posisi Bus Trans Gadjah Mada?
 \end{enumerate}
@@ -25,17 +25,17 @@ Tujuan dari penelitian ini adalah mengembangkan \textit{firmware} pada sisi mikr
 \section{Batasan Penelitian}
 Dalam penelitian ini terdapat beberapa ruang lingkup atau batasan masalah, diantaranya:
 \begin{enumerate}
-	\item Objek Penelitian: Studi kinerja \textit{firmware} pelacak bus Trans Gadjah Mada di lingkungan Universitas Gadjah Mada.
-	\item Metode Penelitian: Penelitian pengembangan \textit{firmware} untuk melacak posisi bus kampus.
-	\item Waktu dan Tempat Penelitian: Waktu penelitian adalah November 2022 s.d. Maret 2023 di lingkungan Universitas Gadjah Mada.
-	\item Populasi dan Sampel: Populasi adalah lingkungan Universitas Gadjah Mada dan sampel diambil pada Rute 1B Trans Gadjah Mada.
-	\item Variabel: Variabel bebas adalah jumlah konstelasi GNSS yang digunakan dan variabel terikat adalah nilai \textit{dilution of precision} dan visibilitas satelit yang didapat.
-	\item Hipotesis: Bahwa pengembangan \textit{firmware} dengan \textit{multi-constellation} dapat meningkatkan akurasi dari hasil pembacaan GNSS.
-	\item Keterbatasan Penelitian: Keterbatasan penelitian adalah fokus utamanya pada pengembangan perangkat lunak dan konfigurasi modul GNSS saja.
+	\item Objek Penelitian: Pengembangan \textit{firmware} pelacak Bus Trans Gadjah Mada di lingkungan Universitas Gadjah Mada dengan menggunakan \textit{platform} STM32.
+	\item Metode Penelitian: Penelitian pengembangan \textit{firmware} untuk melacak posisi bus kampus dengan menggunakan STM32CubeIDE. Aplikasi Teseo-Suite digunakan untuk mengunggah konfigurasi modul GNSS. Setelah itu algoritma \textit{geofencing} dan performa GNSS akan dievaluasi.
+	\item Waktu dan Tempat Penelitian: Waktu penelitian adalah November 2022 s.d. April 2023 di lingkungan Universitas Gadjah Mada.
+	\item Populasi dan Sampel: Populasi adalah lingkungan Universitas Gadjah Mada dan sekitarnya. Sampel diambil pada Rute 1B Trans Gadjah Mada, dua puluh empat titik pengujian di lingkungan Universitas Gadjah Mada, dan enam titik pengujian di luar lingkungan Universitas Gadjah Mada.
+	\item Variabel: Variabel bebas meliputi konstelasi GNSS yang digunakan dan variabel terikat adalah nilai \textit{dilution of precision}, \textit{circular error probability}, \textit{mean average deviation}, dan visibilitas satelit yang didapat.
+	\item Hipotesis: Pengembangan \textit{firmware} dengan konfigurasi \textit{multi-constellation} dapat meningkatkan kinerja pembacaan modul GNSS.
+	\item Keterbatasan Penelitian: Keterbatasan penelitian adalah fokus utamanya pada pengembangan algoritma \textit{geofencing}, \textit{parsing} data, dan studi kinerja modul GNSS saja.
 \end{enumerate}
 
 \section{Manfaat Penelitian}
-\textit{Firmware} yang dikembangkan dapat menerima data pesan NMEA dari modul GNSS dan kemudian dilakukan \textit{parsing} untuk mengekstrak data-data esensial dari pesan NMEA yang didapat.
+\textit{Firmware} yang dikembangkan dapat menerima data pesan NMEA dari modul GNSS dan kemudian dilakukan \textit{parsing} untuk mengekstrak data-data esensial dari pesan NMEA yang didapat. Selain itu, fitur \textit{geofencing} yang dikembangkan diharapkan dapat menentukan halte yang sedang disinggahi oleh bus dan juga mengawasi bus agar selalu berada di dalam lingkungan Universitas Gadjah Mada.
 
 \section{Sistematika Penulisan}
 \textbf{BAB I}

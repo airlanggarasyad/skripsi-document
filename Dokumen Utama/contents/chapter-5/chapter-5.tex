@@ -5,12 +5,12 @@ Berdasarkan penelitian yang telah dilakukan, dapat ditarik beberapa kesimpulan s
 \begin{enumerate}
 	\item Penggunaan multi-constellation pada modul Teseo-LIV3FL dapat memperbaiki performa sistem dalam berbagai kondisi. Adapun hasil pengujian \textit{Rapid Static Survey} untuk setiap skenario adalah sebagai berikut:
 	\begin{enumerate}
-		\item Skenario \textit{basement} menunjukan hasil paling buruk jika dibandingkan dengan tiga skenario lainnya. Pada skenario ini, tingkat presisi dari modul GNSS adalah sebesar 24,11 meter; nilai HDOP rata-rata sebesar 8,27; nilai PDOP rata-rata sebesar 10,67; nilai VDOP rata-rata sebesar 8,27; dan visibilitas satelit rata-rata sebanyak 7,60 satelit.
-		\item Skenario dalam ruangan menunjukan hasil yang sedikit lebih baik jika dibandingkan dengan skenario sebelumnya, yaitu dengan tingkat presisi 8,46 meter; nilai HDOP rata-rata sebesar 2,79; nilai VDOP rata-rata sebesar 2,48; nilai PDOP rata-rata sebesar 3,73; dan visibilitas satelit rata-rata sebanyak 10,93 satelit.
-		\item Skenario ruangan semi terbuka kembali menunjukan hasil yang lebih baik dibandingkan dua skenario sebelumnya. Adapun hasil yang didapat adalah tingkat presisi 3,06 meter;  nilai HDOP rata-rata sebesar 0,91; nilai VDOP rata-rata sebesar 1,49; nilai PDOP rata-rata sebesar 1,49; dan visibilitas satelit rata-rata sebanyak 14,32 satelit.
-		\item Skenario ruangan terbuka menunjukan hasil paling baik dari seluruh skenario yang diuji, yaitu dengan tingkat presisi 1,21 meter;  nilai HDOP rata-rata sebesar 0,65; nilai VDOP rata-rata sebesar 1,30; nilai PDOP rata-rata sebesar 1,12; dan visibilitas satelit rata-rata sebanyak 21,14 satelit.
+		\item Skenario \textit{basement} menunjukan hasil paling buruk jika dibandingkan dengan tiga skenario lainnya. Pada skenario ini, nilai MAD dari modul GNSS adalah sebesar 24,11 meter; nilai CEP rata-rata 32,69 meter; nilai HDOP rata-rata sebesar 8,27; nilai PDOP rata-rata sebesar 10,67; nilai VDOP rata-rata sebesar 8,27; dan visibilitas satelit rata-rata sebanyak 7,60 satelit.
+		\item Skenario dalam ruangan menunjukan hasil yang sedikit lebih baik jika dibandingkan dengan skenario sebelumnya, yaitu dengan nilai MAD 8,46 meter; ; nilai CEP rata-rata 12,14 meter; nilai HDOP rata-rata sebesar 2,79; nilai VDOP rata-rata sebesar 2,48; nilai PDOP rata-rata sebesar 3,73; dan visibilitas satelit rata-rata sebanyak 10,93 satelit.
+		\item Skenario ruangan semi terbuka kembali menunjukan hasil yang lebih baik dibandingkan dua skenario sebelumnya. Adapun hasil yang didapat adalah nilai MAD sebesar 3,06 meter; ; nilai CEP rata-rata 13,83 meter; nilai HDOP rata-rata sebesar 0,91; nilai VDOP rata-rata sebesar 1,49; nilai PDOP rata-rata sebesar 1,49; dan visibilitas satelit rata-rata sebanyak 14,32 satelit.
+		\item Skenario ruangan terbuka menunjukan hasil paling baik dari seluruh skenario yang diuji, yaitu dengan niai MAD 1,21 meter; ; nilai CEP rata-rata 6,12 meter; nilai HDOP rata-rata sebesar 0,65; nilai VDOP rata-rata sebesar 1,30; nilai PDOP rata-rata sebesar 1,12; dan visibilitas satelit rata-rata sebanyak 21,14 satelit.
 	\end{enumerate}
-	\item Algoritma mode daya rendah pada modul Teseo-LIV3FL memungkingkan modul untuk bekerja dengan efisien dan dapat digunakan dalam penggunaan jangka panjang. Arus yang mengalir pada modul adalah sebesar 7uA pada mode stand by dan 50mA pada mode akuisisi.
+	\item Algoritma mode daya rendah pada modul Teseo-LIV3FL memungkingkan modul untuk bekerja dengan efisien dan dapat digunakan dalam penggunaan jangka panjang. Arus yang mengalir pada modul adalah sebesar 7$\mu$A pada mode stand by dan 50mA pada mode akuisisi.
 	\item Berdasarkan pengujian secara langsung, firmware dapat melacak posisi Bus dengan baik. Nilai HDOP, VDOP, dan PDOP yang didapat berada dalam rentang baik hingga sangat baik dan visibilitas satelit paling rendah sudah cukup untuk mendapatan 3D \textit{fix}.  Performa dari sistem ditunjukan oleh Tabel \ref{Tab: performa-tgm-1b}.
 	
 	\begin{table}[H]
@@ -35,5 +35,7 @@ Berdasarkan penelitian yang telah dilakukan, dapat ditarik beberapa kesimpulan s
 Adapun saran untuk penelitian lebih lanjut adalah sebagai berikut:
 \begin{enumerate}
 	\item Perlunya penelitian lebih lanjut mengenai performa modul Teseo-LIV3FL jika dilakukan pengamatan dengan berbagai kombinasi dua atau tiga konstelasi secara bersamaan.
+	\item Perlunya penelitian lebih lanjut untuk pengembangan aplikasi dasbor visualisasi data atau integrasi dengan aplikasi yang sudah ada.
+	\item Perlunya penelitian lebih lanjut untuk transmisi data secara nirkabel.
 \end{enumerate}
 
