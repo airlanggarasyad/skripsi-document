@@ -47,25 +47,20 @@ Penelitian ini dilakukan melalui beberapa tahapan. Diagram alir dari tahapan pen
 Tahap studi literatur merupakan bagian penting dalam proses penelitian, karena melalui tahap ini penulis dapat memperoleh pemahaman yang lebih baik mengenai topik penelitian. Studi literatur dilakukan dengan mengumpulkan berbagai materi sebagai acuan dalam melakukan penelitian, seperti artikel dan jurnal ilmiah, laporan penelitian sebelumnya, situs \textit{web}, dan dokumentasi perangkat yang digunakan. Dalam tahapan ini, penulis juga berusaha memperoleh informasi terbaru dan relevan terhadap topik penelitian. Selain itu, tahap studi literatur juga dapat membantu penulis memperoleh keahlian yang diperlukan untuk melakukan penelitian, terutama dalam memahami dan menggunakan perangkat atau alat yang digunakan dalam penelitian. 
 
 \section{Perancangan Perangkat Keras}
-Rancangan purwarupa sistem digambarkan ditunjukan oleh ikhtisar sistem pada gambar Gambar  \ref{Fig: system-overview}. Fokus penelitian ini adalah pada perancangan firmware di STM32 saja. 
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=9cm]{contents/chapter-3/system-overview.png}
+	\includegraphics[width=11cm]{contents/chapter-3/system-overview.png}
 	\caption{Ikhtisar Sistem}
 	\label{Fig: system-overview}
 \end{figure}
 
-Modul GNSS Teseo-LIV3FL yang digunakan pada penelitian ini memiliki kemampuan yang sangat baik dalam menangkap isyarat satelit dan memproses informasi lokasi. Hal ini didukung oleh teknologi GNSS multi-konstelasi yang diterapkan pada modul ini, yaitu GPS, GLONASS, Galileo, BeiDou, dan QZSS. Dengan teknologi ini, modul Teseo-LIV3FL dapat menangkap isyarat satelit dari berbagai konstelasi dan meningkatkan akurasi posisi secara signifikan.
+Rancangan purwarupa sistem digambarkan ditunjukan oleh ikhtisar sistem pada gambar Gambar  \ref{Fig: system-overview}. Fokus penelitian ini adalah pada perancangan firmware di STM32 saja.  Modul GNSS Teseo-LIV3FL yang digunakan pada penelitian ini memiliki kemampuan yang sangat baik dalam menangkap isyarat satelit dan memproses informasi lokasi. Hal ini didukung oleh teknologi GNSS multi-konstelasi yang diterapkan pada modul ini, yaitu GPS, GLONASS, Galileo, BeiDou, dan QZSS. Dengan teknologi ini, modul Teseo-LIV3FL dapat menangkap isyarat satelit dari berbagai konstelasi dan meningkatkan akurasi posisi secara signifikan.
 
 Komunikasi antara modul Teseo-LIV3FL dan mikrokontroler dilakukan menggunakan protokol UART dengan \textit{baud rate} 9600 bps. Protokol UART dipilih karena implementasinya yang sederhana dan umum digunakan pada berbagai perangkat mikrokontroler. Selain itu, \textit{baud rate} yang dipilih juga disesuaikan dengan konfigurasi modul Teseo-LIV3FL dalam mengirimkan data.
 
-Untuk mempermudah pengembangan dan pengujian sistem, digunakanlah development board STM32 Nucleo-WL55JC1 yang sudah terintegrasi dengan mikrokontroler STM32WL55. Development board ini juga sudah dilengkapi dengan STLINK-V3 yang memungkinkan untuk mengunggah firmware ke mikrokontroler dengan mudah melalui koneksi micro USB pada board. Hal ini mempermudah proses pengembangan dan pengujian sistem secara keseluruhan.
+Untuk mempermudah pengembangan dan pengujian sistem, digunakan development board STM32 Nucleo-WL55JC1 yang sudah terintegrasi dengan mikrokontroler STM32WL55. Development board ini juga sudah dilengkapi dengan STLINK-V3 yang memungkinkan untuk mengunggah firmware ke mikrokontroler dengan mudah melalui koneksi micro USB pada board. Hal ini mempermudah proses pengembangan dan pengujian sistem secara keseluruhan.
 
 Agar modul Teseo-LIV3FL dapat menentukan posisi dengan akurat, dibutuhkan informasi satelit yang cukup. Informasi ini diperoleh dari isyarat GNSS yang ditangkap oleh antena. Oleh karena itu, pada penelitian ini digunakan antena Abracon APARM1804-SG3.
-
-Untuk memudahkan integrasi antara modul Teseo-LIV3FL dan antena Abracon APARM1804-SG3, keduanya sudah disolder pada satu papan yang disediakan oleh PT Lunar Inovasi Teknologi. Purwarupa dari perangkat keras ditunjukkan pada Gambar 3.3, yang menunjukkan desain dan komponen-komponen yang terpasang pada papan sirkuit tersebut.
-
 
 \begin{figure}[H]
 	\centering
@@ -73,6 +68,8 @@ Untuk memudahkan integrasi antara modul Teseo-LIV3FL dan antena Abracon APARM180
 	\caption{Purwarupa Perangkat Keras}
 	\label{Fig: purwarupa-alat}
 \end{figure}
+
+Untuk memudahkan integrasi antara modul Teseo-LIV3FL dan antena Abracon APARM1804-SG3, keduanya sudah disolder pada satu papan yang disediakan oleh PT Lunar Inovasi Teknologi. Purwarupa dari perangkat keras ditunjukkan pada Gambar 3.3, yang menunjukkan desain dan komponen-komponen yang terpasang pada papan sirkuit tersebut.
 
 \section{Konfigurasi pada Modul Teseo-LIV3FL}
 Dalam pengoperasian modul Teseo-LIV3FL, konfigurasi merupakan salah satu elemen penting yang harus diperhatikan. Konfigurasi pada modul Teseo-LIV3FL dikelompokan dalam bentuk blok data yang direpresentasikan dalam tiga digit ID. Digit pertama pada setiap ID merepresentasikan tipe parameter yang terdapat pada blok tersebut, sedangkan dua digit lainnya digunakan untuk membedakan parameter lainnya dalam tipe tersebut. Selama sistem berjalan, terdapat tiga blok konfigurasi yang mungkin dijalankan. Konfigurasi tersebut adalah:
@@ -90,24 +87,30 @@ Modul Teseo-LIV3FL memiliki kemampuan untuk menerima isyarat dari lebih dari sat
  
 Keunggulan dari penggunaan \textit{multi-constellation} pada modul Teseo-LIV3FL adalah dapat meningkatkan akurasi dari data posisi dan waktu yang dihasilkan oleh modul. Hal ini disebabkan karena dengan menerima isyarat dari beberapa konstelasi GNSS, maka modul dapat memperbaiki ketidakakuratan yang terjadi pada satu konstelasi dengan menggunakan informasi dari konstelasi lain \cite{An2020}.
  
- Untuk memudahkan proses konfigurasi konstelasi pada modul Teseo-LIV3FL, pengguna dapat menggunakan aplikasi Teseo-Suite. Aplikasi ini memungkinkan pengguna untuk mengunggah konfigurasi ke \textit{non-volatile memory} pada modul Teseo-LIV3FL. Selain itu, aplikasi Teseo-Suite juga dilengkapi dengan fitur untuk meninjau isyarat GNSS yang diterima dan digunakan oleh modul Teseo-LIV3FL. Sebelum dilakukan konfigurasi, aplikasi Teseo-Suite dapat menunjukkan konstelasi mana saja yang digunakan oleh modul Teseo-LIV3FL, seperti yang ditunjukkan pada Gambar \ref{Fig: sebelum-konfigurasi} terlihat bahwa hanya GPS yang digunakan sebelum dilakukan konfiguras
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png}
+	\caption{Isyarat yang Digunakan oleh Teseo-LIV3FL Sebelum Dilakukan Konfigurasi}
+	\label{Fig: sebelum-konfigurasi}
+\end{figure}
+
+ Untuk memudahkan proses konfigurasi konstelasi pada modul Teseo-LIV3FL, pengguna dapat menggunakan aplikasi Teseo-Suite. Aplikasi ini memungkinkan pengguna untuk mengunggah konfigurasi ke \textit{non-volatile memory} pada modul Teseo-LIV3FL. Selain itu, aplikasi Teseo-Suite juga dilengkapi dengan fitur untuk meninjau isyarat GNSS yang diterima dan digunakan oleh modul Teseo-LIV3FL. Sebelum dilakukan konfigurasi, aplikasi Teseo-Suite dapat menunjukkan konstelasi mana saja yang digunakan oleh modul Teseo-LIV3FL, seperti yang ditunjukkan pada Gambar \ref{Fig: sebelum-konfigurasi} terlihat bahwa hanya GPS yang digunakan sebelum dilakukan konfigurasi.
  
  \begin{figure}[H]
- 	\centering
- 	\includegraphics[width=14cm]{contents/chapter-3/setting-konstelasi/sebelum-konfigurasi.png}
- 	\caption{Isyarat yang Digunakan oleh Teseo-LIV3FL Sebelum Dilakukan Konfigurasi}
- 	\label{Fig: sebelum-konfigurasi}
- \end{figure}
- 
-Konfigurasi konstelasi yang akan digunakan dilakukan dengan membuka menu \textit{configuration wizzards} dan memilih opsi \textit{constellation}. Akan terbuka jendela baru berisi \textit{constellation} seperti ditunjukan oleh Gambar \ref{Fig: pilih-konstelasi}. Pada penelitian ini akan digunakan empat konstelasi, yaitu GPS, BeiDou, QZSS, dan Galileo.
-
-\begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-3/setting-konstelasi/pilih-konfigurasi.png}
 	\caption{Tampilan Teseo-Suite untuk Pemilihan Konstelasi}
 	\label{Fig: pilih-konstelasi}
 \end{figure}
 
+Konfigurasi konstelasi yang akan digunakan dilakukan dengan membuka menu \textit{configuration wizzards} dan memilih opsi \textit{constellation}. Akan terbuka jendela baru berisi \textit{constellation} seperti ditunjukan oleh Gambar \ref{Fig: pilih-konstelasi}. Pada penelitian ini akan digunakan empat konstelasi, yaitu GPS, BeiDou, QZSS, dan Galileo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png}
+	\caption{Tampilan Teseo-Suite untuk Mengirimkan Konfigurasi}
+	\label{Fig: kirim-konstelasi}
+\end{figure}
 
 Setelah konfigurasi yang dipilih pada aplikasi Teseo-Suite sudah benar, langkah selanjutnya yang harus dilakukan adalah mengeklik tombol \textit{send my configuration to the device}, seperti yang ditunjukkan pada Gambar \ref{Fig: kirim-konstelasi}. Aplikasi Teseo-Suite akan mengirimkan perintah berikut ke modul GNSS.
 
@@ -122,21 +125,21 @@ Terdapat dua CDB yang akan dikonfigurasikan, yaitu CDB-ID 200 dan CDB-ID 227. CD
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{contents/chapter-3/setting-konstelasi/kirim-konfigurasi.png}
-	\caption{Tampilan Teseo-Suite untuk Mengirimkan Konfigurasi}
-	\label{Fig: kirim-konstelasi}
+	\includegraphics[width=14cm]{contents/chapter-3/setting-konstelasi/setelah-konfigurasi.png}
+	\caption{Isyarat yang Digunakan oleh Teseo-LIV3FL Setelah Dilakukan Konfigurasi}
+	\label{Fig: setelah-konfigurasi}
 \end{figure}
 
 Setelah berhasil mengunggah konfigurasi yang telah dibuat sebelumnya, modul Teseo-LIV3FL akan menggunakan tiga konstelasi tambahan yang telah diaktifkan. Konfigurasi yang telah diunggah akan memastikan bahwa modul GNSS menggunakan konstelasi yang diinginkan agar dapat memberikan data yang lebih akurat dan tepat waktu. Seperti yang ditunjukkan pada Gambar \ref{Fig: setelah-konfigurasi}, setelah konfigurasi berhasil diunggah, telihat bahwa modul Teseo-LIV3FL akan menggunakan empat buah konstelasi, yaitu GPS, BeiDou, QZSS, dan Galileo. 
 
+\section{Pengembangan \textit{Firmware} Mikrokontroler}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{contents/chapter-3/setting-konstelasi/setelah-konfigurasi.png}
-	\caption{Isyarat yang Digunakan oleh Teseo-LIV3FL Setelah Dilakukan Konfigurasi}
-	\label{Fig: setelah-konfigurasi}
-	\end{figure}
+	\includegraphics[width=6.3cm]{contents/chapter-3/firmware-diagram.png}
+	\caption{Diagram Alir \textit{Firmware}}
+	\label{Fig: flowchart-firmware}
+\end{figure}
 
-\section{Pengembangan \textit{Firmware} Mikrokontroler}
 Pengembangan \textit{firmware} dilakukan dengan menggunakan STM32Cube IDE dan menggunakan bahasa pemrograman C. Untuk mempermudah pengembangan maka tahapan pengembangan dibagi menjadi tiga bagian kecil. Tiga bagian kecil tersebut tersebut adalah:
 \begin{enumerate}
 	\item Penguraian kalimat NMEA untuk ekstraksi data dari setiap kalimat NMEA yang digunakan. Tahap ini bertujuan untuk membaca dan memproses data GPS yang diterima dari satelit dan mengubahnya menjadi informasi yang bisa diproses oleh sistem.
@@ -144,13 +147,6 @@ Pengembangan \textit{firmware} dilakukan dengan menggunakan STM32Cube IDE dan me
 	\item Algoritma \textit{geofence} untuk menentukan apakah letak bus berada di dalam area kampus UGM atau tidak. Tahap ini bertujuan untuk menentukan apakah posisi bus saat ini berada di dalam area kampus UGM atau tidak, dengan membandingkan koordinat bus dengan koordinat area kampus yang telah ditentukan sebelumnya.
 \end{enumerate}
 diagram alir \textit{firmware} secara garis besar ditunjukan oleh Gambar \ref{Fig: flowchart-firmware}.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=6.3cm]{contents/chapter-3/firmware-diagram.png}
-	\caption{Diagram Alir \textit{Firmware}}
-	\label{Fig: flowchart-firmware}
-\end{figure}
 
 Sebelum melakukan pengembangan lebih lanjut, ada beberapa langkah yang perlu dilakukan untuk mempersiapkan \textit{development board} STM32. Salah satu langkah yang penting adalah melakukan konfigurasi pin pada \textit{board} tersebut. Untuk melakukan konfigurasi ini, dapat dilakukan dengan menyunting berkas .ioc yang berbasis STM32Cube MX. Dalam proses konfigurasi ini, perlu diaktifkan USART1 agar STM32 dapat berkomunikasi dengan modul Teseo-LIV3FL dengan \textit{baud rate} 9600 Bps. Selain itu, USART2 juga perlu diaktifkan agar \textit{development board} dapat berkomunikasi dengan komputer dengan \textit{baud rate} 115200 Bps.
 
@@ -239,8 +235,6 @@ hline{1-2, 18} = {-}{},
 \texttt{chksum}     & \textit{Checksum} dalam bentuk heksadesimal   
 \end{longtblr}
 
-Proses penguraian pada penelitian ini terdiri dari beberapa tahapan. Tahapan pertama adalah inisiasi perangkat GNSS dan variabel penyimpanan hasil penguraian. Selanjutnya, dilakukan akuisisi data dari modul Teseo-LIV3FL yang mengirimkan data dalam format standar NMEA-0813. Tahapan selanjutnya adalah melakukan pengecekan \textit{sanity} untuk memeriksa integritas data yang diterima sebelum melakukan proses penguraian utama. Proses penguraian utama akan dilakukan pada data tersebut valid menurut hasil pengecekan \textit{sanity}. Terakhir, proses penguraian akan diakhiri dengan \textit{release} \textit{buffer} kalimat NMEA. Diagram alir proses penguraian dapat dilihat pada Gambar \ref{Fig: flowchart-parsing}, yang memperlihatkan tahapan-tahapan tersebut dalam bentuk diagram alir.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=6.5cm]{contents/chapter-3/diagram-parser.png}
@@ -248,44 +242,100 @@ Proses penguraian pada penelitian ini terdiri dari beberapa tahapan. Tahapan per
 	\label{Fig: flowchart-parsing}
 \end{figure}
 
+Proses penguraian pada penelitian ini terdiri dari beberapa tahapan. Tahapan pertama adalah inisiasi perangkat GNSS dan variabel penyimpanan hasil penguraian. Selanjutnya, dilakukan akuisisi data dari modul Teseo-LIV3FL yang mengirimkan data dalam format standar NMEA-0813. Tahapan selanjutnya adalah melakukan pengecekan \textit{sanity} untuk memeriksa integritas data yang diterima sebelum melakukan proses penguraian utama. Proses penguraian utama akan dilakukan pada data tersebut valid menurut hasil pengecekan \textit{sanity}. Terakhir, proses penguraian akan diakhiri dengan \textit{release} \textit{buffer} kalimat NMEA. Diagram alir proses penguraian dapat dilihat pada Gambar \ref{Fig: flowchart-parsing}, yang memperlihatkan tahapan-tahapan tersebut dalam bentuk diagram alir.
+
 \subsubsection{Inisiasi}
-Proses penguraian diawali dengan memuat pustaka-pustaka yang akan digunakan dalam pengembangan \textit{firmware}. Pustaka \texttt{<stdio.h>} menyediakan fungsi-fungsi untuk IO standar pada bahasa C, seperti \texttt{printf()} dan \texttt{scanf()}. Pustaka \texttt{<stdlib.h>} menyediakan fungsi-fungsi umum pada bahasa C, seperti alokasi memori, konversi tipe data, dan lain-lain. Pustaka \texttt{<string.h>} menyediakan fungsi-fungsi yang berkaitan dengan pengolahan string, seperti \texttt{strcpy()} dan \texttt{strlen()}. Pustaka \texttt{<stdint.h>} menyediakan tipe data integer dengan ukuran yang terdefinisi secara pasti, seperti \texttt{uint8\_t} dan \texttt{int32\_t}. Pustaka \texttt{"teseo\_liv3f\_conf.h"} berisi konfigurasi khusus untuk modul Teseo-LIV3FL. Pustaka \texttt{"custom\_gnss.h"} berisi definisi fungsi-fungsi khusus yang digunakan dalam pengolahan data GNSS, sementara \texttt{"stm32wlxx\_nucleo.h"} berisi definisi fungsi-fungsi yang digunakan untuk mengakses perangkat keras pada board \texttt{STM32WLxx Nucleo}.
+Proses penguraian diawali dengan memuat pustaka-pustaka yang akan digunakan dalam pengembangan \textit{firmware} seperti ditunjukan oleh Kode \ref{lst: 3-lib-firmware}. Pustaka \texttt{<stdio.h>} menyediakan fungsi-fungsi untuk IO standar pada bahasa C, seperti \texttt{printf()} dan \texttt{scanf()}. Pustaka \texttt{<stdlib.h>} menyediakan fungsi-fungsi umum pada bahasa C, seperti alokasi memori, konversi tipe data, dan lain-lain. Pustaka \texttt{<string.h>} menyediakan fungsi-fungsi yang berkaitan dengan pengolahan string, seperti \texttt{strcpy()} dan \texttt{strlen()}. Pustaka \texttt{<stdint.h>} menyediakan tipe data integer dengan ukuran yang terdefinisi secara pasti, seperti \texttt{uint8\_t} dan \texttt{int32\_t}. Pustaka \texttt{"teseo\_liv3f\_conf.h"} berisi konfigurasi khusus untuk modul Teseo-LIV3FL. Pustaka \texttt{"custom\_gnss.h"} berisi definisi fungsi-fungsi khusus yang digunakan dalam pengolahan data GNSS, sementara \texttt{"stm32wlxx\_nucleo.h"} berisi definisi fungsi-fungsi yang digunakan untuk mengakses perangkat keras pada board \texttt{STM32WLxx Nucleo}.
+
+\begin{lstlisting}[language=c, style=mystyle, caption={Memuat Pustaka pada \textit{Firmware}}, label={lst: 3-lib-firmware}]
+#include "app_gnss.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+
+#include <math.h>
+
+#include "custom_board_conf.h"
+#include "teseo_liv3f_conf.h"
+
+#include "custom_gnss.h"
+#include "stm32wlxx_nucleo.h"
+#include "gnss_feature_cfg_data.h"
+\end{lstlisting}
 
 Jika seluruh pustaka yang dibutuhkan telah berhasil dimuat, fungsi \texttt{CUSTOM\_GNSS\_Init} akan dijalankan. Fungsi \texttt{CUSTOM\_GNSS\_Init} akan mengembalikan nilai dari variabel \texttt{ret}. Setelah itu, fungsi ini akan memanggil \texttt{TESEO\_LIV3F\_Probe()} untuk memeriksa apakah modul Teseo-LIV3FL sudah terhubung dengan baik atau tidak. Jika modul GNSS sudah terhubung dengan baik maka fungsi akan mengembalikan nilai \texttt{BSP\_ERROR\_NONE}, sedangkan jika terdapat galat pada modul maka fungsi akan mengembalikan nilai \texttt{BSP\_ERROR\_NO\_INIT}.
 
 Setelah itu, fungsi \texttt{CUSTOM\_GNSS\_Init} digunakan untuk inisiasi struktur \texttt{GNSSParser\_Data\_t}. Pada fungsi ini, struktur \texttt{gpgga\_data} dan \texttt{gsa\_data} diatur menjadi nol untuk menghindari galat atau hal tidak terduga lainnya. Struktur \texttt{gpgga\_data} berisi informasi mengenai waktu dalam bentuk UTC, koordinat di bidang datar, ketinggian, nilai HDOP, dan jumlah satelit yang digunakan. Di sisi lain, struktur \texttt{gsa\_data} berisi nilai akurasi GNSS yang lebih detail, yaitu HDOP, PDOP, dan VDOP. Jika proses inisiasi struktur berjalan dengan lancar, maka fungsi akan mengembalikan nilai \texttt{GNSS\_PARSER\_OK}. Namun, jika terdapat galat, maka fungsi akan mengembalikan nilai \texttt{GNSS\_PARSER\_ERROR}.
 
-Apabila fungsi \texttt{CUSTOM\_GNSS\_Init} berhasil mengembalikan nilai \texttt{GNSS\_PARSER\_OK}, maka langkah selanjutnya adalah menerima data yang dikirimkan oleh modul Teseo-LIV3FL. Hal ini dapat dilakukan dengan memanggil fungsi \texttt{CUSTOM\_GNSS\_GetMessage}. Data yang diterima kemudian disimpan pada variabel \texttt{gnssMsg}, yang berisi nilai dari \textit{buffer} serta panjangnya. Variabel \texttt{gnssMsg} ini akan berisi data yang akan diolah pada tahap selanjutnya.
+Apabila fungsi \texttt{CUSTOM\_GNSS\_Init} berhasil mengembalikan nilai \texttt{GNSS\_PARSER\_OK}, maka langkah selanjutnya adalah menerima data yang dikirimkan oleh modul Teseo-LIV3FL. Hal ini dapat dilakukan dengan memanggil fungsi \texttt{CUSTOM\_GNSS\_GetMessage}. Data yang diterima kemudian disimpan pada variabel \texttt{gnssMsg}, yang berisi nilai dari \textit{buffer} serta panjangnya. Variabel \texttt{gnssMsg} ini akan berisi data yang akan diolah pada tahap selanjutnya. Proses inisiasi ditunjukan oleh Kode \ref{lst: 3-main-func}.
+
+\begin{lstlisting}[language=c, style=mystyle, caption={Memuat Pustaka pada \textit{Firmware}}, label={lst: 3-main-func}]
+GNSSParser_Status_t status, check;
+const CUSTOM_GNSS_Msg_t *gnssMsg;
+
+CUSTOM_GNSS_Init();
+
+GNSS_PARSER_Init(&GNSSParser_Data);
+
+for (;;)
+{
+	gnssMsg = CUSTOM_GNSS_GetMessage();
+
+	if (gnssMsg == NULL)
+	{
+	continue;
+	}
+
+	check = GNSS_PARSER_CheckSanity((uint8_t *)gnssMsg->buf, gnssMsg->len);
+
+	if (check != GNSS_PARSER_ERROR)
+	{
+	for (int m = 0; m < 2; m++)
+	{
+		status = GNSS_PARSER_ParseMsg(&GNSSParser_Data, (eNMEAMsg)m, (uint8_t *)gnssMsg->buf);
+		if ((status != GNSS_PARSER_ERROR) && ((eNMEAMsg)m == GPGGA))
+		{
+		// Main Process
+		}
+	}
+	}
+
+	CUSTOM_GNSS_ReleaseMessage(CUSTOM_TESEO_LIV3F, gnssMsg);
+}
+\end{lstlisting}
 
 \subsubsection{Cek Integritas Data}
 Dalam pengiriman pesan, pesan yang diterima tidak selalu dalam keadaan sempurna. Terkadang sebagian karakter pada pesan hilang atau tercampur dengan karakter lainnya. Oleh karena itu, untuk memastikan bahwa pesan yang didapat adalah benar dan dapat diproses dengan baik, digunakan fungsi \texttt{GNSS\_PARSER\_CheckSanity} untuk memeriksa integritas data yang diterima. Sebelum melakukan proses pengecekan, nilai \textit{checksum} dari kalimat NMEA masih dalam bentuk heksadesimal sehingga perlu dilakukan konversi ke bentuk integer terlebih dahulu.
 
 Setelah menerima pesan, proses pengecekan dilakukan dengan membandingkan nilai \textit{checksum} data yang diterima dengan nilai \textit{checksum} yang tertera pada kalimat NMEA. Penghitungan nilai \textit{checksum} dilakukan dengan mengenakan operasi XOR pada setiap \textit{bytes} yang berada di antara simbol "\$" dan "*". Jika hasil perhitungan \textit{checksum} pada kalimat NMEA sama dengan hasil perhitungan pada data yang diterima, maka fungsi akan mengembalikan nilai \texttt{GNSS\_PARSER\_OK} yang menandakan bahwa data telah lulus pengecekan integritas. Sebaliknya, jika terdapat perbedaan antara nilai \textit{checksum} pada kalimat NMEA dan data yang diterima, maka fungsi akan mengembalikan nilai \texttt{GNSS\_PARSER\_ERROR} yang menandakan adanya kesalahan atau ketidaksesuaian pada data yang diterima.
 
-Berikut adalah potongan kode sumber yang menunjukkan implementasi fungsi \texttt{GNSS\_PARSER\_CheckSanity} untuk melakukan proses pengecekan integritas data dari kalimat NMEA:
-\begin{lstlisting}[language=c]
+Implementasi fungsi \texttt{GNSS\_PARSER\_CheckSanity} untuk melakukan proses pengecekan integritas data dari kalimat NMEA ditunjukan oleh Kode \ref{lst: 3-nmea-checksum}.
+
+\begin{lstlisting}[language=c, style=mystyle, caption={\textit{Checksum} Kalimat NMEA}, label={lst: 3-nmea-checksum}]
 checksum = (char2int(pSentence[len-4U]) << 4) | char2int(pSentence[len-3U]);
-		
+
 for(uint64_t c = 1U; c < (len-5U); c++) {
 	check = (check ^ pSentence[c]);
 }
-		
+
 ret = (check == checksum) ? GNSS_PARSER_OK : GNSS_PARSER_ERROR;
-	
-return ret;
+
+return ret
 \end{lstlisting}
 
 \subsubsection{Proses Penguraian Utama}
-Modul GNSS Teseo-LIV3FL mengirimkan tiga belas kalimat NMEA standar dan empat kalimat NMEA milik STMicroelectronics yang diawali oleh \$PSTM. Karena pada penelitian hanya digunakan kalimat GPGGA dan GNGSA maka diperlukan suatu mekanisme untuk memeriksa apakah kalimat yang diterima termasuk di antara salah satu yang digunakan. Proses penguraian kalimat GPGGA dan GNGSA dibuat dalam dua fungsi yang berbeda untuk mempermudah pengembangan. 
+Modul GNSS Teseo-LIV3FL mengirimkan tiga belas kalimat NMEA standar dan empat kalimat NMEA milik STMicroelectronics yang diawali oleh \$PSTM. Karena pada penelitian hanya digunakan kalimat \$GPGGA dan GNGSA maka diperlukan suatu mekanisme untuk memeriksa apakah kalimat yang diterima termasuk di antara salah satu yang digunakan. Proses penguraian kalimat \$GPGGA dan \$GNGSA dibuat dalam dua fungsi yang berbeda untuk mempermudah pengembangan. 
 
-Fungsi \texttt{NMEA\_ParseGPGGA} digunakan untuk menguraikan kalimat GPGGA. Variabel \texttt{app} diinisiasikan sebagai larik yang berisi \textit{string}. Bagian perulangan dilakukan hingga \textit{line break} atau karakter \texttt{\textbackslash n}. Setelah perulangan selesai variabel \texttt{app} akan berisi seluruh bagian yang terdapat pada kalimat NMEA. 
+Fungsi \texttt{NMEA\_ParseGPGGA} digunakan untuk menguraikan kalimat \$GPGGA. Variabel \texttt{app} diinisiasikan sebagai larik yang berisi \textit{string}. Bagian perulangan dilakukan hingga \textit{line break} atau karakter \texttt{\textbackslash n}. Setelah perulangan selesai variabel \texttt{app} akan berisi seluruh bagian yang terdapat pada kalimat NMEA. 
 
 Variabel \texttt{i} digunakan sebagai indeks dari perulangan, sedangkan \texttt{j} dan \texttt{k} sebagai indeks dari variabel \texttt{app}. Nilai \texttt{valid\_msg} akan bernilai benar jika kalimat NMEA yang diterima diawali dengan \$GPGGA. Sebaliknya, perulangan akan dihentikan jika pesan NMEA yang diterima tidak diawali dengan  \$GPGGA.
 
-Jika karakter pada iterasi saat ini adalah asteris atau tanda koma maka karakter terakhir akan diatur sebagai \textit{null terminator}. Selain itu, variabel \texttt{k} akan diatur kembali menjadi nol dan \texttt{j} ditambahkan satu. Sebaliknya, jika karakter pada iterasi saat ini bukan asteris atau tanda koma maka karakter tersebut akan disimpan dalam variabel \texttt{app} dengan indeks \texttt{j} dan \texttt{k}. Bagian perulangan ditunjukan oleh kode sumber di bawah
+Jika karakter pada iterasi saat ini adalah asteris atau tanda koma maka karakter terakhir akan diatur sebagai \textit{null terminator}. Selain itu, variabel \texttt{k} akan diatur kembali menjadi nol dan \texttt{j} ditambahkan satu. Sebaliknya, jika karakter pada iterasi saat ini bukan asteris atau tanda koma maka karakter tersebut akan disimpan dalam variabel \texttt{app} dengan indeks \texttt{j} dan \texttt{k}. Bagian perulangan \textit{parsing} kalimat \$GPGGA ditunjukan oleh Kode \ref{lst: 3-parse-gpgga}.
 
-\begin{lstlisting}[language=c]
-for (int32_t i = 0, j = 0, k = 0; (NMEA[i] != (uint8_t)'\n'); i++)
+\begin{lstlisting}[language=c, style=mystyle, caption={\textit{Parsing} Kalimat \$GPGGA}, label={lst: 3-parse-gpgga}]
+for(int32_t i = 0, j = 0, k = 0; (NMEA[i] != (uint8_t)'\n'); i++)
 {
 	new_field = 0;
 	
@@ -294,8 +344,7 @@ for (int32_t i = 0, j = 0, k = 0; (NMEA[i] != (uint8_t)'\n'); i++)
 		app[j][k] = (uint8_t)'\0';
 		new_field = 1;
 		
-		if (strcmp((char *)app[0], "$GNGSA") == 0)
-		{
+		if (strcmp((char *)app[0], "$GPGGA") == 0) {
 			j++;
 			k = 0;
 			valid_msg = TRUE;
@@ -313,24 +362,28 @@ for (int32_t i = 0, j = 0, k = 0; (NMEA[i] != (uint8_t)'\n'); i++)
 }
 \end{lstlisting}
 
-Hasil akhir dari perulangan di atas masih dalam bentuk tipe data \textit{string}, sedangkat beberapa data yang dibutuhkan harus dalam berbentuk angka. Untuk menyelesaikan masalah tersebut maka harus dilakukan konversi tipe data dari \textit{string} menjadi tipe data yang diinginkan. Digunakan fungsi standar C \texttt{strtod} untuk konversi ke \textit{double floating point}, \texttt{strtof} untuk konversi ke \textit{floating point}, dan \texttt{strtol} untuk konversi ke \textit{long integer}. Proses konversi ditunjukan pada kode sumber di bawah
+Hasil akhir dari perulangan di atas masih dalam bentuk tipe data \textit{string}, sedangkat beberapa data yang dibutuhkan harus dalam berbentuk angka. Untuk menyelesaikan masalah tersebut maka harus dilakukan konversi tipe data dari \textit{string} menjadi tipe data yang diinginkan. Digunakan fungsi standar C \texttt{strtod} untuk konversi ke \textit{double floating point}, \texttt{strtof} untuk konversi ke \textit{floating point}, dan \texttt{strtol} untuk konversi ke \textit{long integer}. Proses konversi tipe data ditunjukan oleh Kode \ref{lst: 3-konversi-data}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={ \textit{Casting} Tipe Data String ke Tipe Data Lainnya}, label={lst: 3-konversi-data}]
 pGPGGAInfo->xyz.lat = strtod((char *)app[2], NULL);
+pGPGGAInfo->xyz.ns = *((uint8_t*)app[3]);
 pGPGGAInfo->xyz.lon = strtod((char *)app[4], NULL);
+pGPGGAInfo->xyz.ew = *((uint8_t*)app[5]);
 pGPGGAInfo->sats = strtol((char *)app[7], NULL, BASE);
 pGPGGAInfo->acc = strtof((char *)app[8], NULL);
 pGPGGAInfo->xyz.alt = strtof((char *)app[9], NULL);
+pGPGGAInfo->xyz.mis = *((uint8_t*)app[10]);
 pGPGGAInfo->geoid.height = strtol((char *)app[11], NULL, BASE);
+pGPGGAInfo->geoid.mis = *((uint8_t*)app[12]);
 \end{lstlisting}
 
 Hasil akhir dari perulangan di atas masih dalam bentuk tipe data \textit{string}, sedangkan beberapa data yang dibutuhkan harus dalam bentuk angka. Untuk menyelesaikan masalah tersebut, maka harus dilakukan konversi tipe data dari \textit{string} menjadi tipe data yang diinginkan.
 
 Untuk melakukan konversi ke tipe data \textit{double floating point}, digunakan fungsi standar C \texttt{strtod}. Sedangkan untuk konversi ke tipe data \textit{floating point}, digunakan fungsi \texttt{strtof}, dan untuk konversi ke tipe data \textit{long integer}, digunakan fungsi \texttt{strtol}.
 
-Proses konversi dilakukan dengan memberikan \textit{string} yang akan dikonversi sebagai argumen pertama dan alamat memori variabel tipe data yang diinginkan sebagai argumen kedua. Kode sumber di bawah ini menunjukkan proses konversi \textit{string} menjadi tipe data yang diinginkan menggunakan fungsi \texttt{strtod}, \texttt{strtof}, dan \texttt{strtol}.
+Proses konversi dilakukan dengan memberikan \textit{string} yang akan dikonversi sebagai argumen pertama dan alamat memori variabel tipe data yang diinginkan sebagai argumen kedua. Kode sumber di bawah ini menunjukkan proses konversi \textit{string} menjadi tipe data yang diinginkan menggunakan fungsi \texttt{strtol}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={Konversi Waktu UTC}, label={lst: 3-scan-utc}]
 static void scan_utc(uint8_t *pUTCStr, UTC_Info_t *pUTC)
 {
 	pUTC->utc = strtol((char *)pUTCStr,NULL,10);
@@ -353,12 +406,13 @@ Koordinat yang didapat dari proses penguraian pada bagian sebelumnya masih dalam
 \begin{equation}
 	dd = deg + \frac{min}{60} 
 \end{equation}
-dengan dd adalah nilai koordinat dalam derajat desimal, deg adalah nilai derajat, dan min adalah nilai menit.
+dengan $dd$ adalah nilai koordinat dalam derajat desimal, $deg$ adalah nilai derajat, dan $min$ adalah nilai menit.
 
 Setelah melakukan perhitungan, perlu diperhatikan arah dari koordinat garis lintang dan garis bujur. Jika garis lintang berada di bagian selatan (S), maka nilai koordinat harus dikalikan dengan -1, karena di dalam sistem koordinat geografis, garis lintang yang berada di belahan bumi selatan memiliki nilai negatif. Hal yang sama juga dilakukan jika arah dari koordinat garis bujur berada di bagian barat (W), karena garis bujur yang berada di sebelah barat dari meridian utama (Greenwich) juga memiliki nilai negatif \cite{AlHindawi2012}.
 
 Konversi koordinat pada \textit{firmware} berada di dalam fungsi \texttt{Convert\_to\_Degree}. Fungsi ini menerima argumen \texttt{numeral} dengan tipe data \textit{floating point} dalam format \texttt{ddmm.mmm} dan argumen \texttt{sign} sebagai arah dari koordinat hasil penguraian. Implementasi dari fungsi \texttt{Convert\_to\_Degree} ditunjukan oleh kode sumber di bawah
-\begin{lstlisting}[language=c]
+s
+\begin{lstlisting}[language=c, style=mystyle, caption={Konversi Koordinat Derajat Desimal Menit ke Derajat}, label={lst: 3-convert2deg}]
 float64_t Convert_to_Degree(float64_t numeral, uint8_t sign) {
 	int32_t degrees;
 	float64_t ret;
@@ -380,23 +434,23 @@ Fungsi ini dapat digunakan untuk mengonversi koordinat geografis dalam format de
 
 Selanjutnya, untuk menghitung bagian menit, nilai koordinat asal dikurangi dengan \texttt{degrees} dan dikalikan dengan seratus. Hasil dari perhitungan ini adalah bagian menit yang kemudian disimpan dalam variabel \texttt{minutes}. Setelah mendapatkan bagian menit dan derajat, maka hasil akhirnya adalah hasil penjumlahan dari \texttt{degrees} ditambah dengan hasil pembagian \texttt{minutes} dengan enam puluh. Operasi pembagian dilakukan karena dalam satu derajat terdapat enam puluh menit.
 
-Hasil perhitungan akan disimpan dalam variabel \texttt{ret} yang berupa \textit{floating point}. Terakhir, fungsi akan memeriksa arah dari koordinat dalam variabel \texttt{sign}. Jika nilai dari \texttt{sign} adalah S atau W maka hasil akhir koordinat akan dinegasikan atau dikalikan dengan negatif satu. Hal tersebut dikarenakan selatan dan barat berada di bagian negatif dari sistem koordinat standar.
+Hasil perhitungan akan disimpan dalam variabel \texttt{ret} yang berupa \textit{floating point}. Terakhir, fungsi akan memeriksa arah dari koordinat dalam variabel \texttt{sign}. Jika nilai dari \texttt{sign} adalah S atau W maka hasil akhir koordinat akan dinegasikan atau dikalikan dengan negatif satu. Hal tersebut dikarenakan sisi selatan dan barat berada di bagian negatif dari sistem koordinat standar.
 
+\newpage
 \section{Algoritma \textit{Geofencing}}
 \subsection{\textit{Geofencing} Wilayah Universitas Gadjah Mada}
-
-Perhitungan \textit{geofencing} dilakukan pada sisi mikrokontroler dengan menggunakan fungsi \texttt{Geofence\_Check()}. Fungsi ini membutuhkan dua buah argumen, yaitu \texttt{latitude} untuk koordinat garis lintang dan \texttt{longitude} untuk koordinat garis bujur. Kedua argumen dalam bentuk \textit{floating point}. Fungsi ini akan mengembalikan integer untuk menunjukan apakah koordinat yang diberikan berada di dalam lingkaran dari satu titik yang telah ditentukan. Gambar \ref{Fig: flowchart-geofencing-ugm} menunjukan diagram alir fungsi \textit{geofencing} di  wilayah Universitas Gadjah Mada. Pada penelitian ini, titik pusat lingkaran diatur pada koordinat (-7.771376, 110.377493) dengan jari-jari 1000 meter.
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{contents/chapter-3/flowchart-geofencing-ugm.png}
+	\includegraphics[width=8cm]{contents/chapter-3/flowchart-geofencing-ugm.png}
 	\caption{Diagram Alir Fungsi \textit{Geofencing} Wilayah Universitas Gadjah Mada}
 	\label{Fig: flowchart-geofencing-ugm}
 \end{figure}
 
-Tahap pertama yang dilakukan pada implementasi teknologi komputasi \textit{geofencing} adalah melakukan inisiasi struktur \texttt{ugm\_coordinate} yang berisi koordinat dari titik pusat lingkaran dan variabel \texttt{distance} yang akan digunakan untuk menyimpan hasil perhitungan jarak. Pada potongan kode sumber di bawah ini, terlihat bagaimana inisiasi koordinat titik pusat dilakukan dengan memasukkan nilai koordinat garis lintang dan garis bujur pada elemen \texttt{lat} dan \texttt{lon} struktur \texttt{ugm\_coordinate}.
+Perhitungan \textit{geofencing} dilakukan pada sisi mikrokontroler dengan menggunakan fungsi \texttt{Geofence\_Check()}. Fungsi ini membutuhkan dua buah argumen, yaitu \texttt{latitude} untuk koordinat garis lintang dan \texttt{longitude} untuk koordinat garis bujur. Kedua argumen dalam bentuk \textit{floating point}. Fungsi ini akan mengembalikan integer untuk menunjukan apakah koordinat yang diberikan berada di dalam lingkaran dari satu titik yang telah ditentukan. Gambar \ref{Fig: flowchart-geofencing-ugm} menunjukan diagram alir fungsi \textit{geofencing} di  wilayah Universitas Gadjah Mada. Pada penelitian ini, titik pusat lingkaran diatur pada koordinat (-7,771376; 110,377493) dengan jari-jari 1000 meter.
 
-\begin{lstlisting}[language=c]
+Tahap pertama yang dilakukan pada implementasi \textit{geofencing} adalah melakukan inisiasi struktur \texttt{ugm\_coordinate} yang berisi koordinat dari titik pusat lingkaran dan variabel \texttt{distance} yang akan digunakan untuk menyimpan hasil perhitungan jarak. Pada potongan kode sumber di bawah ini, terlihat bagaimana inisiasi koordinat titik pusat dilakukan dengan memasukkan nilai koordinat garis lintang dan garis bujur pada elemen \texttt{lat} dan \texttt{lon} struktur \texttt{ugm\_coordinate}.
+
+\begin{lstlisting}[language=c, style=mystyle, caption={Inisiasi Struktur \texttt{ugm\_coordinate} dan Titik Pusat Geofencing}, label={lst: 3-define-geof}]
 Coords_t ugm_coordinate;
 float64_t distance = 0;
 
@@ -404,49 +458,49 @@ ugm_coordinate.lat = -7.771376;
 ugm_coordinate.lon = 110.377493;
 \end{lstlisting}
 
-Konversi derajat ke radian diperlukan karena koordinat yang didapat dalam satuan derajat, sedangkan fungsi trigonometri seperti sin, cos, dan tan pada pustaka \texttt{math.h} menerima argumen dalam satuan radian. Fungsi  \texttt{degToRad} berfungsi untuk mengonversi sudut dari satuan derajat menjadi satuan radian. Konversi ini dilakukan dengan cara mengalikan nilai sudut dalam derajat dengan nilai $\pi$, kemudian hasilnya dibagi dengan 180$\deg$. Dalam kode program di atas, fungsi \texttt{degToRad} diimplementasikan \textit{preprocessor directive} \texttt{\#define}. Implementasi dari \texttt{degToRad} ditunjukan oleh kode sumber di bawah:
+Konversi derajat ke radian diperlukan karena koordinat yang didapat dalam satuan derajat, sedangkan fungsi trigonometri seperti \texttt{sin}, \texttt{cos}, dan \texttt{tan} pada pustaka \texttt{math.h} menerima argumen dalam satuan radian. Fungsi  \texttt{degToRad} berfungsi untuk mengonversi sudut dari satuan derajat menjadi satuan radian. Konversi ini dilakukan dengan cara mengalikan nilai sudut dalam derajat dengan nilai $\pi$, kemudian hasilnya dibagi dengan 180$\deg$. Dalam kode program di atas, fungsi \texttt{degToRad} diimplementasikan menggunakan \textit{preprocessor directive} \texttt{\#define}. Implementasi dari \texttt{degToRad} ditunjukan oleh Kode \ref{lst: 3-deg2rad}.
 
-\begin{lstlisting}[language=c]
-	#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
+\begin{lstlisting}[language=c, style=mystyle, caption={Konversi Derajat ke Radian}, label={lst: 3-deg2rad}]
+#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
 \end{lstlisting}
 
-Selanjutnya, selisih dari koordinat garis bujur dan garis lintang disimpan pada variabel \texttt{dLon} dan \texttt{dLat} seperti ditunjukan pada potongan kode sumber di bawah:
+Selanjutnya, selisih dari koordinat garis bujur dan garis lintang disimpan pada variabel \texttt{dLon} dan \texttt{dLat} seperti ditunjukan oleh Kode \ref{lst: 3-selisih-koord}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={Selisih Koordinat Garis Lintand dan Garis Bujur}, label={lst: 3-selisih-koord}]
 float64_t dLat = degToRad(ugm_coordinate.lat) - degToRad(latitude);
 float64_t dLon = degToRad(ugm_coordinate.lon) - degToRad(longitude);
 \end{lstlisting}
 
-Setelah kedua nilai selisih garis bujur dan garis lintang antara dua titik dihitung, maka dilakukan perhitungan jarak antara kedua titik menggunakan persamaan Haversine. Persamaan ini menggunakan trigonometri dan prinsip trigonometri dari segitiga bola untuk menghitung jarak antara dua titik pada permukaan bola. Persamaan Haversine menghasilkan jarak dalam satuan radiansehingga perlu dikonversi ke satuan jarak bumi dengan mengalikannya dengan jari-jari bumi. Potongan kode sumber di bawah menggunakan persamaan Haversine untuk menghitung nilai \texttt{a} yang merepresentasikan setengah kuadrat dari jarak antara dua titik pada permukaan bola. Nilai \texttt{a} kemudian digunakan untuk menghitung nilai \texttt{c} yang merepresentasikan jarak antara dua titik dalam satuan radian.
+Setelah kedua nilai selisih garis bujur dan garis lintang antara dua titik dihitung, maka dilakukan perhitungan jarak antara kedua titik menggunakan persamaan Haversine. Persamaan ini menggunakan trigonometri dan prinsip trigonometri dari segitiga bola untuk menghitung jarak antara dua titik pada permukaan bola. Persamaan Haversine menghasilkan jarak dalam satuan radian sehingga perlu dikonversi ke satuan jarak bumi dengan mengalikannya dengan jari-jari bumi. Potongan kode sumber di bawah menggunakan persamaan Haversine untuk menghitung nilai \texttt{a} yang merepresentasikan setengah kuadrat dari jarak antara dua titik pada permukaan bola. Nilai \texttt{a} kemudian digunakan untuk menghitung nilai \texttt{c} yang merepresentasikan jarak antara dua titik dalam satuan radian. Implementasi perhitungan jarak dengan persamaan Haversine ditunjukan oleh Kode \ref{lst: 3-compute-ac}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={Perhitungan Jarak Antara Dua Titik dengan Persamaan Haversine}, label={lst: 3-compute-ac}]
 float64_t a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(latitude) * cos(longitude);
 float64_t c = 2 * asin(sqrt(a));
 \end{lstlisting}
 
-Terakhir, setelah jarak antara dua titik berhasil dihitung menggunakan persamaan Haversine dan disimpan pada variabel \texttt{distance}, maka nilai jarak tersebut akan dibandingkan dengan jarak \textit{geofence} yang telah ditetapkan sebelumnya. Jika jarak antara dua titik kurang dari jarak \textit{geofence}, yang pada penelitian ini adalah 1000 meter, maka fungsi akan mengembalikan nilai satu sebagai representasi bahwa titik berada di dalam lingkaran. Sebaliknya, jika jarak antara dua titik lebih besar atau sama dengan jarak \textit{geofence}, maka fungsi akan mengembalikan nilai nol.
+Terakhir, setelah jarak antara dua titik berhasil dihitung menggunakan persamaan Haversine dan disimpan pada variabel \texttt{distance}, maka nilai jarak tersebut akan dibandingkan dengan jarak \textit{geofence} yang telah ditetapkan sebelumnya. Jika jarak antara dua titik kurang dari jarak \textit{geofence}, yang pada penelitian ini adalah 1000 meter, maka fungsi akan mengembalikan nilai satu sebagai representasi bahwa titik berada di dalam lingkaran. Sebaliknya, jika jarak antara dua titik lebih besar atau sama dengan jarak \textit{geofence}, maka fungsi akan mengembalikan nilai nol seperti ditunjukan oleh Kode \ref{lst: 3-return-geof-ugm}.
 
-\begin{lstlisting}[language=c]
- if (distance < 1000) {
+\begin{lstlisting}[language=c, style=mystyle, caption={\textit{Return Value} Fungsi \textit{Geofencing} Wilayah Universitas Gadjah Mada}, label={lst: 3-return-geof-ugm}]
+if (distance < 1000) {
 	return 1;
 } else {
 	return 0;
 }
 \end{lstlisting}
 
-\subsection{\textit{Geofencing} (Halte)}
+\subsection{\textit{Geofencing} Halte}
 Selain untuk menentukan apakah bus berada di area Universitas Gadjah Mada atau tidak, algoritma \textit{geofencing} yang telah dirancang pada bagian sebelumnya dapat dikembangkan lebih lanjut untuk menentukan apakah bus sedang berhenti di satu halte atau tidak. Untuk menentukan apakah bus sedang berhenti di satu halte atau tidak maka digunakan fungsi \texttt{Stopped\_at\_Halte}. Gambar \ref{Fig: flowchart-geofencing-halte} menunjukan diagram alir proses pada \textit{geofencing} di halte Bus Trans Gadjah Mada. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{contents/chapter-3/flowchart-geofencing-halte.png}
+	\includegraphics[width=9cm]{contents/chapter-3/flowchart-geofencing-halte.png}
 	\caption{Diagram Alir Fungsi \textit{Geofencing} Halte}
 	\label{Fig: flowchart-geofencing-halte}
 \end{figure}
 
-Fungsi tersebut menerima satu argumen dengan tipe data \texttt{Coords\_t}. Fungsi ini bekerja dengan cara menghitung jarak posisi saat ini terhadap setiap koordinat halte yang ada. Jika terdapat halte yang berjarak kurang dari lima meter, maka fungsi akan mengembalikan indeks halte dengan jarak kurang dari lima meter. Sebaliknya, jika tidak ditemukan halte dengan jarak kurang dari lima meter maka fungsi akan mengembalikan negatif satu. Implementasi dari fungsi ini ditunjukan oleh potongan kode sumber di bawah:
+Fungsi tersebut menerima satu argumen dengan tipe data \texttt{Coords\_t}. Fungsi ini bekerja dengan cara menghitung jarak posisi saat ini terhadap setiap koordinat halte yang ada. Jika terdapat halte yang berjarak kurang dari lima meter, maka fungsi akan mengembalikan indeks halte dengan jarak kurang dari lima meter. Sebaliknya, jika tidak ditemukan halte dengan jarak kurang dari lima meter maka fungsi akan mengembalikan negatif satu. Implementasi dari fungsi ini ditunjukan oleh Kode \ref{lst: 3-geof-halte}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={Implementasi \textit{Geofencing} Halte}, label={lst: 3-geof-halte}]
 int8_t Stopped_at_Halte(Coords_t current_location) {
 	float64_t distance = 0;
 	Coords_t current_halte;
@@ -466,9 +520,9 @@ int8_t Stopped_at_Halte(Coords_t current_location) {
 }
 \end{lstlisting}
 
-Untuk meminimalisasi galat dan memastikan bahwa bus benar-benar berhenti di halte , maka \textit{firmware} akan memastikan bahwa posisi \textit{fix} bus terletak dalam radius halte tiga kali berturut-turut. Adapun implementasi dari bagian ini ditunjukan oleh kode sumber di bawah:
+Untuk meminimalisasi galat dan memastikan bahwa bus benar-benar berhenti di halte , maka \textit{firmware} akan memastikan bahwa posisi \textit{fix} bus terletak dalam radius halte tiga kali berturut-turut. Adapun implementasi dari bagian ini ditunjukan oleh Kode \ref{lst: 3-geof-halte-verif}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[language=c, style=mystyle, caption={Implementasi Verifikasi Halte Saat Ini}, label={lst: 3-geof-halte-verif}]
 uint8_t prev_stopped_at_halte = -1;
 int stop_count = 0; 
 
@@ -488,9 +542,9 @@ if (GNSSParser_Data.gpgga_data.xyz.stopped_at_halte < 0) {
 \end{lstlisting}
 
 \section{Menampilkan Hasil Penguraian}
-Setelah proses penguraian dilakukan, tahap selanjutnya adalah menampilkan hasil penguraian pada \textit{serial monitor}. Pada \textit{firmware} ini, untuk menampilkan hasil penguraian dalam bentuk yang lebih mudah dibaca dapat dilakukan dengan mengatur nilai \texttt{GNSS\_READABLE} dengan nilai satu. Contoh keluaran jika nilai \texttt{GNSS\_READABLE} diatur menjadi satu adalah sebagai berikut:
+Setelah proses penguraian dilakukan, tahap selanjutnya adalah menampilkan hasil penguraian pada \textit{serial monitor}. Pada \textit{firmware} ini, untuk menampilkan hasil penguraian dalam bentuk yang lebih mudah dibaca dapat dilakukan dengan mengatur nilai \texttt{GNSS\_READABLE} dengan nilai satu. Contoh keluaran jika nilai \texttt{GNSS\_READABLE} diatur menjadi satu ditunjukan oleh Kode \ref{lst: 3-output-humanon}.
 
-\begin{lstlisting}
+\begin{lstlisting}[style=mystyle, caption={Contoh Keluaran jika Mode \texttt{GNSS\_READABLE} Diaktifkan}, label={lst: 3-output-humanon}]
 	UTC   : 02:01:01
 	LAT   : -7.768369
 	LON   : 110.385078
@@ -503,17 +557,17 @@ Setelah proses penguraian dilakukan, tahap selanjutnya adalah menampilkan hasil 
 	GEOF  : 1
 \end{lstlisting}
 
-Format di atas dirancang sedemikian rupa untuk memudahkan membaca hasil penguraian oleh manusia. Di sisi lain, untuk memudahkan pengolahan data hasil pengujian, hasil penguraian ditampilkan dalam format \textit{comma seperated values} atau CSV. Untuk menampilan dalam mode CSV, nilai \texttt{GNSS\_READABLE} diatur menjadi nol. Contoh keluaran dalam format CSV adalah sebagai berikut:
+Format di atas dirancang sedemikian rupa untuk memudahkan membaca hasil penguraian oleh manusia. Di sisi lain, untuk memudahkan pengolahan data hasil pengujian, hasil penguraian ditampilkan dalam format \textit{comma seperated values} atau CSV. Untuk menampilan dalam mode CSV, nilai \texttt{GNSS\_READABLE} diatur menjadi nol. Contoh keluaran dalam format CSV ditunjukan oleh Kode \ref{lst: 3-output-off}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[style=mystyle, caption={Contoh Keluaran jika Mode \texttt{GNSS\_READABLE} Tidak Diaktifkan}, label={lst: 3-output-off}]
 02:10:30,-7.771091,110.38131,5.0,185.9,2.3,14,1.0
 \end{lstlisting}
 
 Setiap nilai dipisahkan oleh koma (,) dan tidak ada spasi yang digunakan. Urutan nilai yang ditampilkan adalah: waktu UTC, koordiat garis lintang, koordinat garis bujur, visibilitas satelit, ketinggian, akurasi posisi (HDOP), keluaran \textit{geofencing} halte, dan keluaran \textit{geofencing} wilayah Universitas Gadjah Mada. Format CSV digunakan karena dapat memudahkan pengolahan data hasil pengujian karena format ini memungkinkan data untuk disimpan dalam bentuk teks sederhana yang dapat dengan mudah dibaca dan diproses oleh program komputer seperti Excel atau Python.
 
-Untuk menampilkan ke \textit{serial monitor}, digunakan fungsi \texttt{GNSS\_PRINT} untuk menyederhanakan proses penampilan. Adapun implementasi dari fungsi \texttt{GNSS\_PRINT} ditunjukan oleh kode sumber di bawah:
+Untuk menampilkan ke \textit{serial monitor}, digunakan fungsi \texttt{GNSS\_PRINT} untuk menyederhanakan proses penampilan. Adapun implementasi dari fungsi \texttt{GNSS\_PRINT} ditunjukan oleh Kode \ref{lst: 3-gnss-print}.
 
-\begin{lstlisting}[language=c]
+\begin{lstlisting}[style=mystyle, caption={Fungsi \texttt{GNSS\_PRINT}}, label={lst: 3-gnss-print}]
 int GNSS_PRINT(char *pBuffer)
 {
 	if (HAL_UART_Transmit(&hcom_uart[COM1], (uint8_t*)pBuffer, (uint16_t)strlen((char *)pBuffer), 1000) != HAL_OK)
@@ -538,30 +592,30 @@ Fungsi kemudian mengembalikan nilai 0 jika pengiriman data berhasil dilakukan da
 Pengolahan data dari hasil pengujian sistem adalah salah satu bagian penting untuk meninjau performa dari sistem. Dalam pengolahan data GNSS, salah satu alat yang sering digunakan adalah bahasa pemrograman Python. Bahasa pemrograman Python dipilih karena merupakan salah satu bahasa paling populer di bidang analisis data dan memiliki komunitas yang sangat besar. Hal tersebut membuat banyak pengembang merancang berbagai pustaka untuk pengolahan data termasuk data dari modul GNSS. Dengan menggunakan bahasa pemrograman Python diharapkan dapat mempermudah dan mempercepat proses pengolahan data. Pada bagian ini akan dibahas cara mengolah data baik dari modul GNSS secara langsung maupun yang telah diolah oleh \textit{firmware} yang telah dirancang pada bagian sebelumnya.
 
 \subsection{Modul GNSS}
-Hasil pengujian pada modul GNSS berupaka sekumpulan kalimat NMEA yang disimpan dalam satu \textit{file} teks. Tentunya kalimat NMEA yang didapat memuat berbagai informasi penting mengenai performa modul Teseo-LIV3FL. Pada pengolahan data pengujian ini akan digunakan enam pustaka, yaitu Pandas, NumPy, PyNMEA2, Matplotlib, dan Seaborn. Pandas digunakan untuk mengolah dan analisis data, sementara Numpy menyediakan struktur data untuk operasi numerik pada data. PyNMEA2 digunakan untuk penguraian kalimat NMEA yang dihasilkan oleh modul GNSS. Matplotlib dan Seaborn digunakan untuk pembuatan visualisasi data. Matplotlib menyediakan berbagai fungsi untuk membuat plot, termasuk plot waktu dan plot scatter. Sementara seaborn memungkinkan pembuatan plot dengan tampilan yang lebih menarik dan interaktif. Selain itu, terdapat perintah untuk mengimpor modul dari Matplotlib seperti \texttt{FuncFormatter} dan \texttt{MaxNLocator} yang digunakan untuk mengatur tampilan sumbu pada plot. Bagian memuat pustaka ditunjukan oleh potongan kode sumber di bawah:
+Hasil pengujian pada modul GNSS berupaka sekumpulan kalimat NMEA yang disimpan dalam satu \textit{file} teks. Tentunya kalimat NMEA yang didapat memuat berbagai informasi penting mengenai performa modul Teseo-LIV3FL. Pada pengolahan data pengujian ini akan digunakan enam pustaka, yaitu Pandas, NumPy, PyNMEA2, Matplotlib, dan Seaborn. Pandas digunakan untuk mengolah dan analisis data, sementara Numpy menyediakan struktur data untuk operasi numerik pada data. PyNMEA2 digunakan untuk penguraian kalimat NMEA yang dihasilkan oleh modul GNSS. Matplotlib dan Seaborn digunakan untuk pembuatan visualisasi data. Matplotlib menyediakan berbagai fungsi untuk membuat plot, termasuk plot waktu dan plot scatter. Sementara seaborn memungkinkan pembuatan plot dengan tampilan yang lebih menarik dan interaktif. Selain itu, terdapat perintah untuk mengimpor modul dari Matplotlib seperti \texttt{FuncFormatter} dan \texttt{MaxNLocator} yang digunakan untuk mengatur tampilan sumbu pada plot. Bagian memuat pustaka ditunjukan oleh Kode \ref{lst: 3-load-lib}.
 
-\begin{lstlisting}[language=python]
-	import pandas as pd
-	import pynmea2
-	import numpy as np
-	
-	import matplotlib as mpl
-	import matplotlib.pyplot as plt
-	import matplotlib.patches as mpatches
-	import matplotlib.dates as mdates
-	
-	import seaborn as sns
-	
-	import math
-	import random
-	
-	from matplotlib.ticker import FuncFormatter
-	from matplotlib.ticker import MaxNLocator
+\begin{lstlisting}[language=python, style=mystyle, caption={Memuat Pustaka yang Digunakan}, label={lst: 3-load-lib}]
+import pandas as pd
+import pynmea2
+import numpy as np
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import matplotlib.dates as mdates
+
+import seaborn as sns
+
+import math
+import random
+
+from matplotlib.ticker import FuncFormatter
+from matplotlib.ticker import MaxNLocator
 \end{lstlisting}
 
-Setelah memuat seluruh pustaka yang digunakan, langkah selanjutnya adalah melakukan konfigurasi parameter untuk visualisasi data Matplotlib. Pertama, objek \textit{formatter} dibuat dengan format tanggal dan waktu pada variabel \texttt{myFmt}. Adapun format yang digunakan adalah \%H:\%M:\%S, yang menunjukkan jam, menit, dan detik. Selanjutnya, untuk meningkatkan resolusi gambar maka resolusi DPI pada gambar dapat diatur dengan \texttt{mpl.rcParams['figure.dpi'] = 300.} Semakin tinggi nilai DPI, semakin berkualitas tampilan gambar yang dihasilkan. Terakhir, pengaturan \textit{font} dilakukan agar grafik yang didapat menggunakan \textit{font} Times New Roman. Bagian konfigurasi Matplotlib ditunjukan oleh potongan kode sumber di bawah:
+Setelah memuat seluruh pustaka yang digunakan, langkah selanjutnya adalah melakukan konfigurasi parameter untuk visualisasi data Matplotlib. Pertama, objek \textit{formatter} dibuat dengan format tanggal dan waktu pada variabel \texttt{myFmt}. Adapun format yang digunakan adalah \%H:\%M:\%S, yang menunjukkan jam, menit, dan detik. Selanjutnya, untuk meningkatkan resolusi gambar maka resolusi DPI pada gambar dapat diatur dengan \texttt{mpl.rcParams['figure.dpi'] = 300.} Semakin tinggi nilai DPI, semakin berkualitas tampilan gambar yang dihasilkan. Terakhir, pengaturan \textit{font} dilakukan agar grafik yang didapat menggunakan \textit{font} Times New Roman. Bagian konfigurasi Matplotlib ditunjukan oleh Kode {lst: 3-mpl-config}.
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python, style=mystyle, caption={Konfigurasi Tampilan Matplotlib}, label={lst: 3-mpl-config}]
 myFmt = mdates.DateFormatter('%H:%M:%S') 
 
 mpl.rcParams['figure.dpi'] = 300
@@ -573,9 +627,9 @@ Terakhir, digunakan fungsi \texttt{pd.read\_csv()} untuk membaca \textit{file} t
 " untuk menunjukan setiap kolom dipisahkan dengan spasi. Terakhir, argumen \texttt{encoding} diatur sebagai \texttt{unicode\_escape} untuk menangani karakter spesial seperti \textit{backslash}.
 
 \subsubsection{Ketelitian dari Teseo-LIV3FL}
-Pada tahap pengolahan data untuk melihat ketelitian dari modul Teseo-LIV3FL, langkah awal yang dilakukan adalah dengan inisiasi \textit{DataFrame} \texttt{teseo\_accuracy\_df} yang memiliki empat kolom, yaitu (\texttt{timestamp}, \texttt{pdop}, \texttt{hdop}, dan \texttt{vdop}). Selanjutnya, program akan melakukan iterasi pada setiap kalimat NMEA. Pada bagian ini, kalimat NMEA yang akan digunakan adalah GPGGA dan GNGSA. Implementasi dari pengolahan data ketelitian dari modul Teseo-LIV3FL ditunjukan oleh kode sumber di bawah:
+Pada tahap pengolahan data untuk melihat ketelitian dari modul Teseo-LIV3FL, langkah awal yang dilakukan adalah dengan inisiasi \textit{DataFrame} \texttt{teseo\_accuracy\_df} yang memiliki empat kolom, yaitu (\texttt{timestamp}, \texttt{pdop}, \texttt{hdop}, dan \texttt{vdop}). Selanjutnya, program akan melakukan iterasi pada setiap kalimat NMEA. Pada bagian ini, kalimat NMEA yang akan digunakan adalah GPGGA dan GNGSA. Implementasi dari pengolahan data ketelitian dari modul Teseo-LIV3FL ditunjukan oleh Kode \ref{lst: 3-gpgga-pyparse}.
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python, style=mystyle, caption={\textit{Parsing} Kalimat \$GPGGA pada Python}, label={lst: 3-gpgga-pyparse}]
 for i in range(0, GNGSA.size):
 	try:
 		parser = pynmea2.parse(GNGSA['msg'].iloc[i])
@@ -596,9 +650,9 @@ for i in range(0, GNGSA.size):
 
 Jika kalimat NMEA dimulai dengan "\$GPGGA" maka program akan menyimpan nilai waktu dari kalimat tersebut ke dalam variabel \texttt{timestamp}. Di sisi lain, jika kalimat NMEA tidak diawali dengan "\$GPGGA", maka program akan menyimpan nilai hdop, vdop, dan pdop dari kalimat tersebut ke dalam variabel \texttt{hdop}, \texttt{vdop}, dan \texttt{pdop} secara berturut-turut. Selanjutnya, program akan membuat \textit{DataFrame} sementara yang berisi nilai waktu UTC, PDOP, HDOP, dan VDOP yang didapatkan dari kalimat NMEA tersebut. \textit{DataFrame} sementara tersebut akan digabungkan dengan \textit{DataFrame} utama, yaitu \texttt{teseo\_accuracy\_df} menggunakan metode \texttt{pd.concat()}.
 
-Untuk mendapatkan nilai CEP maka diperlukan nilai standar deviasi pada kedua koordinat garis bujur dan garis lintang. Dua informasi tersebut dapat diperoleh pada kalimat NMEA GPGST. Kemudian, dilakukan iterasi sebanyak jumlah baris data di dalam objek DataFrame \texttt{sats\_gst\_raw\_df}. Pada setiap iterasi, dilakukan penguraian data NMEA dengan menggunakan fungsi \texttt{pynmea2.parse()} dan disimpan ke dalam variabel \texttt{parser}. Data-data yang diperlukan diambil dari objek parser, yaitu \texttt{std\_dev\_x} dan \texttt{std\_dev\_y }serta dihitung nilai CEP-nya. Selanjutnya, data hasil penguraian tersebut disimpan ke dalam sebuah objek \textit{DataFrame} sementara bernama \texttt{temp} dengan index yang sesuai dengan nomor iterasi. Objek \texttt{temp} tersebut kemudian digabungkan dengan objek DataFrame \texttt{sats\_gst\_df} menggunakan metode \texttt{pd.concat()} untuk menyusun \textit{DataFrame} baru. Implementasi dari perhitungan CEP ditunjukan oleh kode sumber di bawah:
+Untuk mendapatkan nilai CEP maka diperlukan nilai standar deviasi pada kedua koordinat garis bujur dan garis lintang. Dua informasi tersebut dapat diperoleh pada kalimat NMEA GPGST. Kemudian, dilakukan iterasi sebanyak jumlah baris data di dalam objek DataFrame \texttt{sats\_gst\_raw\_df}. Pada setiap iterasi, dilakukan penguraian data NMEA dengan menggunakan fungsi \texttt{pynmea2.parse()} dan disimpan ke dalam variabel \texttt{parser}. Data-data yang diperlukan diambil dari objek parser, yaitu \texttt{std\_dev\_x} dan \texttt{std\_dev\_y }serta dihitung nilai CEP-nya. Selanjutnya, data hasil penguraian tersebut disimpan ke dalam sebuah objek \textit{DataFrame} sementara bernama \texttt{temp} dengan index yang sesuai dengan nomor iterasi. Objek \texttt{temp} tersebut kemudian digabungkan dengan objek DataFrame \texttt{sats\_gst\_df} menggunakan metode \texttt{pd.concat()} untuk menyusun \textit{DataFrame} baru. Implementasi dari perhitungan CEP ditunjukan oleh Kode \ref{lst: 3-gst-pyparse}.
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python, style=mystyle, caption={\textit{Parsing} Kalimat \$GNGSA pada Python}, label={lst: 3-gst-pyparse}]
 for i in range(0, sats_gst_raw_df.size):
 	try:
 		parser = pynmea2.parse(sats_gst_raw_df.msg.iloc[i])
@@ -619,32 +673,65 @@ for i in range(0, sats_gst_raw_df.size):
 \end{lstlisting}
 
 \subsubsection{Visibilitas Satelit}
-Untuk meninjau visibilitas satelit maka digunakan kalimat NMEA GPGGA dan GNGSA. Program akan melakukan iterasi sebanyak jumlah kalimat GPGGA dan GNGSA. Jika kalimat tersebut dimulai dengan '\$GPGGA', maka waktu akan diambil dari objek \texttt{parser}. Jika tidak, maka program akan mengambil informasi mengenai PRN, \textit{azimuth}, \textit{elevation}, dan SNR dari setiap satelit. Selanjutnya, program membuat \textit{DataFrame} baru dengan kolom \texttt{timestamp}, \texttt{prn}, \texttt{azimuth}, \texttt{elevation}, dan \texttt{snr} yang diambil dari objek parser untuk empat satelit. \textit{DataFrame} baru ini akan ditambahkan ke \textit{DataFrame} \texttt{sats\_detail\_info\_df} menggunakan fungsi \texttt{concat()}. Implementasi dari penguraian data satelit ditunjukan oleh kode sumber di bawah:
+Untuk meninjau visibilitas satelit maka digunakan kalimat NMEA GPGGA dan GNGSA. Program akan melakukan iterasi sebanyak jumlah kalimat GPGGA dan GNGSA. Jika kalimat tersebut dimulai dengan '\$GPGGA', maka waktu akan diambil dari objek \texttt{parser}. Jika tidak, maka program akan mengambil informasi mengenai PRN, \textit{azimuth}, \textit{elevation}, dan SNR dari setiap satelit. Selanjutnya, program membuat \textit{DataFrame} baru dengan kolom \texttt{timestamp}, \texttt{prn}, \texttt{azimuth}, \texttt{elevation}, dan \texttt{snr} yang diambil dari objek parser untuk empat satelit. \textit{DataFrame} baru ini akan ditambahkan ke \textit{DataFrame} \texttt{sats\_detail\_info\_df} menggunakan fungsi \texttt{concat()}. Implementasi dari penguraian data satelit ditunjukan oleh Kode \ref{lst: 3-sats-parse}.
 
-\begin{lstlisting}[language=python]
-for i in range(0, GNGSA.size):
+\begin{lstlisting}[language=python, style=mystyle, caption={\textit{Parsing} Informasi Satelit pada Python}, label={lst: 3-sats-parse}]
+sats_detail_info_df = pd.DataFrame(
+{"timestamp": [], "prn": [], "elevation": [], "azimuth": [], "snr": []}
+)
+
+for i in range(0, sats_string_df.size):
 	try:
-		parser = pynmea2.parse(GNGSA['msg'].iloc[i])
+	parser = pynmea2.parse(sats_string_df.msg.iloc[i])
+	
+	if sats_string_df.msg.iloc[i].startswith("$GPGGA"):
+		time = parser.timestamp
+	else:
+		timestamp = [time] * 4
+		PRN = [
+			parser.sv_prn_num_1,
+			parser.sv_prn_num_2,
+			parser.sv_prn_num_3,
+			parser.sv_prn_num_4,
+		]
+
+		Azimuth = [
+			parser.azimuth_1,
+			parser.azimuth_2,
+			parser.azimuth_3,
+			parser.azimuth_4,
+		]
+
+		Elevation = [
+			parser.elevation_deg_1,
+			parser.elevation_deg_2,
+			parser.elevation_deg_3,
+			parser.elevation_deg_4,
+		]
+
+		SNR = [parser.snr_1, parser.snr_2, parser.snr_3, parser.snr_4]
 		
-		if GNGSA.msg.iloc[i].startswith("$GPGGA"):
-			timestamp = parser.timestamp
-		else:
-			hdop = float(parser.hdop)
-			vdop = float(parser.vdop)
-			pdop = float(parser.pdop)
-			
-			temp = pd.DataFrame({'timestamp':timestamp, 'pdop':pdop, 'hdop':hdop, 'vdop':vdop}, index=[i])
-			
-			teseo_accuracy_df = pd.concat([teseo_accuracy_df, temp], axis=0)
+		temp = pd.DataFrame(
+			{
+				"timestamp": timestamp,
+				"prn": PRN,
+				"azimuth": Azimuth,
+				"elevation": Elevation,
+				"snr": SNR,
+			}
+		)
+		
+		sats_detail_info_df = pd.concat([sats_detail_info_df, temp], axis=0)
+	
 	except Exception as e:
 		print(e)
 \end{lstlisting}
 	
 Dalam standar NMEA 3.10, setiap konstelasi memiliki rentang PRN yang berbeda-beda dan tidak tumpang tindih. Satelit pada konstelasi GPS memiliki PRN dari 1 hingga 32, SBAS memiliki PRN dari 33 hingga 51, GLONASS memiliki PRN dari 65 hingga 92, BeiDou memiliki PRN dari 141 hingga 172, QZSS memiliki PRN dari 183 hingga 197, sementara Galileo memiliki PRN dari 301 hingga 330. Untuk visualisasi jumlah satelit dan pergerakannya di \textit{sky plot} maka perlu dipisahkan setiap konstelasi berdasarkan nilai PRN-nya.
 
-Proses ini diawali dengan inisialisasi variabel \texttt{gps}, \texttt{beidou}, \texttt{qzss}, \texttt{galileo}, dan \texttt{total} dengan nilai awal sebesar nol. Selanjutnya, dilakukan pengelompokan data pada \texttt{sats\_detail\_info\_df} untuk memperoleh data satelit yang terdeteksi pada waktu tertentu dan disimpan dalam variabel \texttt{sats}. Kemudian dilakukan penghitungan jumlah satelit untuk masing-masing sistem navigasi satelit (GPS, Beidou, QZSS, Galileo) berdasarkan nomor PRN dari satelit yang terdeteksi pada waktu tersebut. Jika nomor PRN satelit berada pada rentang nilai tertentu, maka dihitung sebagai jumlah satelit pada sistem navigasi satelit tersebut. Terakhir, jumlah seluruh satelit dihitung dengan menjumlahkan jumlah satelit pada setiap konstelasi setiap waktunya. Implementasi dari pengelompokan satelit ditunjukan oleh potongan kode sumber di bawah:
+Proses ini diawali dengan inisialisasi variabel \texttt{gps}, \texttt{beidou}, \texttt{qzss}, \texttt{galileo}, dan \texttt{total} dengan nilai awal sebesar nol. Selanjutnya, dilakukan pengelompokan data pada \texttt{sats\_detail\_info\_df} untuk memperoleh data satelit yang terdeteksi pada waktu tertentu dan disimpan dalam variabel \texttt{sats}. Kemudian dilakukan penghitungan jumlah satelit untuk masing-masing sistem navigasi satelit (GPS, Beidou, QZSS, Galileo) berdasarkan nomor PRN dari satelit yang terdeteksi pada waktu tersebut. Jika nomor PRN satelit berada pada rentang nilai tertentu, maka dihitung sebagai jumlah satelit pada sistem navigasi satelit tersebut. Terakhir, jumlah seluruh satelit dihitung dengan menjumlahkan jumlah satelit pada setiap konstelasi setiap waktunya. Implementasi dari pengelompokan satelit ditunjukan oleh potongan Kode \ref{lst: 3-sats-count}.
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python, style=mystyle, caption={Menghitung Jumlah Satelit untuk Setiap Konstelasi pada Python}, label={lst: 3-sats-count}]
 for timestamp in timestamps:
 	gps, beidou, qzss, galileo, total = 0, 0, 0, 0, 0
 	
@@ -667,9 +754,9 @@ for timestamp in timestamps:
 \subsubsection{Eksplorasi SNR}
 Selain visibilitas satelit dan DOP, SNR atau \textit{Signal-to-Noise} merupakan salah satu indikator kualitas data konstelasi GNSS. Nilai SNR menunjukan rasio antara daya isyarat pembawa dengan derau. Daya isyarat pembawa merupakan isyarat yang dikirimkan oleh satelit GNSS dan diterima oleh modul GNSS, sedangkan derau merupakan gangguan atau interferensi yang terjadi dalam proses transmisi isyarat tersebut. Dapat dikatakan bahwa semakin besar nilai SNR maka semakin baik kualitas isyarat yang diterima oleh modul GNSS. Nilai SNR direpresentasikan dengan satuan desibel-Hertz atau dBHz.
 
-Untuk mendapatkan nilai PRN dari setiap konstelasi, setiap satelit akan dikelompokan berdasarkan stander NMEA 3.10 yang telah dijelaskan pada bagian sebelumnya. Proses pengelompokkan dilakukan dengan mengambil rentang nomor PRN untuk setiap konstelasi, kemudian memeriksa setiap satelit dalam \textit{DataFrame} \texttt{ sats\_detail\_info\_df} yang termasuk dalam rentang tersebut. Data satelit yang sudah dikelompokkan kemudian dihitung rata-rata, median, dan standar deviasi dari nilai SNR-nya. Hasil pengelompokkan setiap satelit berdasarkan konstelasi dan informasi rinci mengenai kualitas isyaratnya disimpan dalam variabel \texttt{grouped\_by\_prn}. Implementasi dari pengelompokan dan komputasi statistik dari nilai SNR untuk setiap konstelasi ditunjukan oleh potongan kode sumber di bawah:
+Untuk mendapatkan nilai PRN dari setiap konstelasi, setiap satelit akan dikelompokan berdasarkan stander NMEA 3.10 yang telah dijelaskan pada bagian sebelumnya. Proses pengelompokkan dilakukan dengan mengambil rentang nomor PRN untuk setiap konstelasi, kemudian memeriksa setiap satelit dalam \textit{DataFrame} \texttt{ sats\_detail\_info\_df} yang termasuk dalam rentang tersebut. Data satelit yang sudah dikelompokkan kemudian dihitung rata-rata, median, dan standar deviasi dari nilai SNR-nya. Hasil pengelompokkan setiap satelit berdasarkan konstelasi dan informasi rinci mengenai kualitas isyaratnya disimpan dalam variabel \texttt{grouped\_by\_prn}. Implementasi dari pengelompokan dan komputasi statistik dari nilai SNR untuk setiap konstelasi ditunjukan oleh Kode \ref{lst: 3-sats-prn}.
 
-\begin{lstlisting}[language=python]
+\begin{lstlisting}[language=python, style=mystyle, caption={Mengelompokan Satelit Berdasarkan PRN-nya pada Python}, label={lst: 3-sats-prn}]
 grouped_by_prn = {}
 
 for constellation in constellations:
@@ -687,49 +774,32 @@ for constellation in constellations:
 \subsection{Pengujian Sistem}
 Pada subbab Pengembangan \textit{Firmware} bagian menampilkan hasil penguraian telah dijelaskan bahwa disediakan dua mode yang dapat diatur melalui nilai dari variabel \texttt{GNSS\_READABLE}. Format \texttt{GNSS\_READABLE} dikhususkan untuk mempermudah pemahaman seluruh keluaran hasil perhitungan pada sistem. Contoh dari keluaran dengan mode \texttt{GNSS\_READABLE} aktif adalah sebagai berikut:
 
-\begin{lstlisting}
-	UTC   : 02:01:01
-	LAT   : -7.768369
-	LON   : 110.385078
-	ALT   : 205.0
-	SATS  : 11
-	HDOP  : 0.9
-	VDOP  : 1.8
-	PDOP  : 2.0
-	HALTE : 4
-	GEOF  : 1
-\end{lstlisting}
-
 Untuk mempermudah proses mengolah data maka digunakan format data CSV. Pemilihan format data CSV dikarenakan formatnya yang sederhana sehingga dapat mempermudah proses eksplorasi data hasil pengujian sistem secara keseluruhan. Untuk mengatur \textit{firmware} agar keluaran data dalam bentuk CSV maka variabel \texttt{GNSS\_READABLE} diatur menjadi nol. Adapun format data yang dikirimkan adalah sebagai berikut
 
-\begin{lstlisting}
-time,latitude,longitude,altitude,sats,hdop,vdop,pdop,current_halte_stop,is_inside_ugm
-\end{lstlisting}
+Selain itu, digunakan juga pustaka Folium untuk melukiskan koordinat pada peta. Pustaka Folium memungkinkan untuk \textit{plot} dengan variasi warna terhadap nilai dari satu parameter yang ingin ditinjau. Kode \ref{lst: 3-plot-hdop} di bawah adalah kode untuk \textit{plot} koordinat pengujian Bus Trans Gadjah Mada Rute 1B dengan variasi warna bergantung terhadap nilai HDOP pada titik tersebut.
 
-Selain itu, digunakan juga pustaka Folium untuk melukiskan koordinat pada peta. Pustaka Folium memungkinkan untuk \textit{plot} dengan variasi warna terhadap nilai dari satu parameter yang ingin ditinjau. Kode sumber di bawah ini adalah kode untuk \textit{plot} koordinat pengujian Bus Trans Gadjah Mada Rute 1B dengan variasi warna bergantung terhadap nilai HDOP pada titik tersebut:
+\begin{lstlisting}[language=python, style=mystyle, caption={\textit{Plot} Nilai HDOP di Setiap Titik Menggunakan Pustaka Folium}, label={lst: 3-plot-hdop}]
+lit_coordinate = [-7.769711,110.377441]
 
-\begin{lstlisting}[language=python]
-	lit_coordinate = [-7.769711,110.377441]
+mymap = folium.Map(location=lit_coordinate, zoom_start=15)
+
+for i in range(0,len(df)):
+coords = [df.latitude[i], df.longitude[i]]
+hdop = df.hdop[i]
+
+if 0<= hdop < 1: color = dop_cmap[0]
+	elif 1 <= hdop < 2: color = dop_cmap[1]
+	elif 2 <= hdop < 5: color = dop_cmap[2]
+	elif 5 <= hdop < 10: color = dop_cmap[3]
+	elif 10 <= hdop < 20: color = dop_cmap[4]
+	else: color = dop_cmap[5]
 	
-	mymap = folium.Map(location=lit_coordinate, zoom_start=15)
+	mystr = f"{df.time[i]}, {df.hdop[i]}, {df.sats[i]}"
 	
-	for i in range(0,len(df)):
-	coords = [df.latitude[i], df.longitude[i]]
-	hdop = df.hdop[i]
-	
-	if 0<= hdop < 1: color = dop_cmap[0]
-		elif 1 <= hdop < 2: color = dop_cmap[1]
-		elif 2 <= hdop < 5: color = dop_cmap[2]
-		elif 5 <= hdop < 10: color = dop_cmap[3]
-		elif 10 <= hdop < 20: color = dop_cmap[4]
-		else: color = dop_cmap[5]
-		
-		mystr = f"{df.time[i]}, {df.hdop[i]}, {df.sats[i]}"
-		
-		iframe = folium.IFrame(mystr)
-		popup = folium.Popup(iframe, min_width=150, max_width=150, min_height=300, max_height=300)
-	
-	mymap.fit_bounds([sw, ne]) 
-	
-	mymap
+	iframe = folium.IFrame(mystr)
+	popup = folium.Popup(iframe, min_width=150, max_width=150, min_height=300, max_height=300)
+
+mymap.fit_bounds([sw, ne]) 
+
+mymap
 \end{lstlisting}

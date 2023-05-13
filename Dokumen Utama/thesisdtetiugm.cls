@@ -136,6 +136,7 @@
 	\renewcommand{\contentsname}{DAFTAR ISI}%
 	\renewcommand{\listfigurename}{DAFTAR GAMBAR}%
 	\renewcommand{\listtablename}{DAFTAR TABEL}%
+	\renewcommand{\lstlistoflistings}{DAFTAR KODE}%
 	\renewcommand{\abstractname}{Intisari}%
 	\renewcommand{\partname}{BAGIAN}%
 	\renewcommand{\chaptername}{BAB}%
@@ -146,6 +147,7 @@
 	\renewcommand{\figurename}{Gambar}%
 	\renewcommand{\tablename}{Tabel}%
 	\renewcommand{\pagename}{Halaman}%
+	\renewcommand{\lstlistingname}{Kode}%
 }
 
 % redefine commands in babel english
@@ -154,6 +156,7 @@
 	\renewcommand{\contentsname}{CONTENTS}%
 	\renewcommand{\listfigurename}{LIST OF FIGURES}%
 	\renewcommand{\listtablename}{LIST OF TABLES}%
+	\renewcommand{\lstlistoflistings}{LIST OF CODE LISTINGS}%
 	\renewcommand{\abstractname}{\emph{Abstract}}%
 	\renewcommand{\partname}{PART}%
 	\renewcommand{\chaptername}{CHAPTER}%
@@ -751,20 +754,22 @@
 \lstdefinestyle{mystyle}{ 
 	commentstyle=\color{codegreen},
 	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{codegray},
+	numberstyle=\ttfamily\fontsize{11}{12}\color{codegray},
 	stringstyle=\color{codepurple},
-	basicstyle=\small,
+	basicstyle=\ttfamily\fontsize{11}{13}\selectfont,
 	breakatwhitespace=false,         
 	breaklines=true,                 
 	captionpos=b,                    
 	keepspaces=true,                 
 	numbers=left,                    
-	numbersep=5pt,                  
+	numbersep=5pt,  % Adjust the space between line numbers and code
 	showspaces=false,                
 	showstringspaces=false,
 	showtabs=false,                  
-	tabsize=2
+	tabsize=2,
+	frame=single,    % Add a border around the listings
 }
+
 \lstset{style=mystyle}
 
 
@@ -778,6 +783,7 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\pagestyle{fancy}
 	\setlength{\parindent}{1.25cm}
+	\renewcommand\thelstlisting{\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@lstlisting}
 }
 % depth of toc
 \setcounter{secnumdepth}{3}
@@ -874,3 +880,7 @@
 % List
 %---------------
 \setlist[enumerate]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+
+\lstset{
+	basicstyle=\fontsize{10}{12}\selectfont\ttfamily
+}

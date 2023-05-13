@@ -37,8 +37,6 @@ Saat ini, bahasa C terus digunakan dan dianggap sebagai bahasa pemrograman yang 
 
 Sistem GNSS bekerja dengan cara mengobservasi jarak antara penerima dengan satelit menggunakan isyarat radio pada pita frekuensi L \cite{TheEuropeanGlobalNavigationSatelliteSystemsAgency2021}. Satelit GNSS akan terus memancarkan isyarat radio pada pita frekuensi L yang dapat diterima oleh penerima GNSS. Isyarat tersebut kemudian dihitung waktu tempuhnya oleh penerima GNSS untuk menentukan jarak antara penerima dan satelit. 
 
-Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segmen kendali, dan segmen pengguna. Segmen satelit bertanggung jawab sebagai pemancar isyarat yang diterima oleh segmen pengguna untuk menentukan posisi dan waktu, sedangkan segmen kendali mengawasi dan mengontrol kinerja satelit dengan memastikan akurasi sinyal yang diterima oleh pengguna. Ketiga segmen ini saling berkaitan dan dibutuhkan untuk memastikan keakuratan dan keandalan sistem GNSS. Gambar \ref{Fig: gnss_segment} memperlihatkan hubungan antara ketiga segmen GNSS tersebut.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8cm]{contents/chapter-2/gnss_segment.jpg}
@@ -46,7 +44,16 @@ Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segm
 	\label{Fig: gnss_segment}
 \end{figure}
 
+Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segmen kendali, dan segmen pengguna. Segmen satelit bertanggung jawab sebagai pemancar isyarat yang diterima oleh segmen pengguna untuk menentukan posisi dan waktu, sedangkan segmen kendali mengawasi dan mengontrol kinerja satelit dengan memastikan akurasi sinyal yang diterima oleh pengguna. Ketiga segmen ini saling berkaitan dan dibutuhkan untuk memastikan keakuratan dan keandalan sistem GNSS. Gambar \ref{Fig: gnss_segment} memperlihatkan hubungan antara ketiga segmen GNSS tersebut.
+
 \subsubsection{Orbit GNSS}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
+	\caption{Orbit Satelit GNSS}
+	\label{Fig: alt-comp}
+\end{figure}
+
 Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut mempengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
 
 \begin{table}[H]
@@ -71,14 +78,6 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 
 \textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit Planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
-	\caption{Orbit Satelit GNSS}
-	\label{Fig: alt-comp}
-\end{figure}
-
-
 \begin{enumerate}
 	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
 	\item \textit{Big} LEO adalah sistem yang beroperasi pada Pita L dengan frekuensi 1.6 GHz s.d. 2.5 GHz dengan kapabilitas teleponi seperti suara, data, dan faksimili.
@@ -92,14 +91,14 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 \subsubsection{Penerima GNSS}
 Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh satelit berisi efemeris, almanak, dan komponen lainnya seperti tanggal dan status satelit.
 
-Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12,5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/gnss_msg_structure.png}
 	\caption{Struktur pesan C/A NAV GNSS}
 	\label{Fig: gnss_message_structure}
 \end{figure}
+
+Gambar \ref{Fig: gnss_message_structure} menunjukan lima \textit{sub-frame} pada pesan yang diterima. Efemeris berisi informasi keadaan satelit dan posisinya pada orbit, sedangkan almanak berisi informasi yang lebih umum mengenai posisi pada orbit \cite{Lenhart2022}. Dibutuhkan waktu 12,5 menit untuk mengunduh almanak dan 18 detik untuk mengunduh efemeris. Ketika modul GNSS diaktifkan untuk pertama kali maka ia akan mengunduh data tersebut dan melakukan fiksasi terhadap tiga (2D) atau empat (3D) buah satelit. Proses tersebut dikenal sebagai \textit{cold start}. 
 
 \subsubsection{Standar NMEA 0813}
 Standar NMEA 0813 adalah standar yang dimiliki oleh sebuah organisasi di Amerika Serikat dengan nama \textit{National Marine Electronics Association} sebagai wadah untuk keperluan di bidang elektronika maritim seperti pengembangan industri dan pendidikan. Organisasi ini adalah organisasi nirlaba yang dibangun oleh pelaku-pelaku pada pasar pada bidang elektronika maritim seperti manufaktur, penjual, distributor, dan institut pendidikan.
@@ -119,7 +118,7 @@ Lokalisasi adalah suatu teknik untuk menghitung posisi dari suatu titik saat ini
 \begin{enumerate}
 	\item \textbf{Laterasi} terjadi ketika jarak antar dua simpul digunakan untuk mengestimasi posisi saat ini.
 	\item \textbf{Angulasi} hampir sama dengan laterasi, tetapi pada angulasi, sudut antara dua simpul digunakan untuk mengestimasi posisi saat ini.
-	\item \textbf{Trilaterasi} adaqlah teknik untuk mengestimasi posisi saat ini dengan menggunakan tiga buah simpul. Pada trilaterasi, digunakan perpotongan antara tiga buah lingkaran yang akan memberikan satu titik berisi posisi saat ini.
+	\item \textbf{Trilaterasi} adalah teknik untuk mengestimasi posisi saat ini dengan menggunakan tiga buah simpul. Pada trilaterasi, digunakan perpotongan antara tiga buah lingkaran yang akan memberikan satu titik berisi posisi saat ini.
 	\item \textbf{Multilaterasi} hampir sama dengan trilaterasi, tetapi pada multilaterasi, jumlah simpul yang digunakan lebih dari empat buah.
 	\item \textbf{Triangulasi} adalah teknik untuk mengestimasi posisi saat ini menggunakan sudut antara dua impul. Digunakan hukum sinus dan kosinus untuk mengestimasi posisi saat ini.
 \end{enumerate}
@@ -127,8 +126,6 @@ Lokalisasi adalah suatu teknik untuk menghitung posisi dari suatu titik saat ini
 Selain itu, lokalisasi juga dapat dibagi menjadi GNSS \textit{based} dan GNSS \textit{free}. GNSS \textit{based} adalah suatu mekanisme suatu simpul menggunakan GNSS untuk menentukan posisi saat ini. Di sisi lain, GNSS \textit{free} tidak menggunakan GNSS untuk menentukan posisi saat ini, melainkan relatif terhadap jaringan lokal.
 
 \subsubsection{Trilaterasi}
-Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8cm]{contents/chapter-2/trilaterasi.png}
@@ -136,7 +133,9 @@ Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan
 	\label{Fig: Trilaterasi}
 \end{figure}
 
-Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit.
+Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
+
+Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit. Posisi dari setiap satelit dapat dimodelkan seperti persamaan di bawah
 
 \begin{equation}
 	\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
@@ -150,8 +149,7 @@ Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D didapatkan dengan men
 	\left(x-x_3\right)^2 + \left(y-y_3\right)^2=d_3^2
 	\label{eq:2-3}
 \end{equation}
-
-Bagian kuadrat dari Persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dapat diekspansikan sehingga didapat:
+dengan $x_n$ adalah titik pusat lingkaran $n$ di sumbu-x, $y_n$ adalah titik pusat lingkaran $n$ di sumbu-y, dan $d_n$ adalah jari-jari lingkaran $n$. Setelah itu, bagian kuadrat dari Persamaan \ref{eq:2-1}, \ref{eq:2-2}, dan \ref{eq:2-3} dapat diekspansikan sehingga didapat:
 
 \begin{equation}
 	x^2-2x_1x+x_1^2+y^2-2y_1y+y_1^2=d_1^2
@@ -180,7 +178,7 @@ Lakukan operasi yang sama antara Persamaan  \ref{eq:2-5} dengan Persamaan \ref{e
 	\label{eq:2-8}
 \end{equation}
 
-Persamaan \ref{eq:2-7} dan Persamaan \ref{eq:2-8} dapat dituliskan kembali sebagai $A$, $B$, $C$, $D$, $E$, dan $F$ seperti ditunjukan oleh Persamaan \ref{eq:2-9} dan Persamaan \ref{eq:2-10} di bawah .
+Persamaan \ref{eq:2-7} dan Persamaan \ref{eq:2-8} dapat dituliskan kembali sebagai $A = 2 \left(x_2-x_1\right)$, $B = 2 \left(y_2 - y_1\right)$, $C = r_1^2 - r_2^2 - x_1^2 + x_2^2- y_1^2 + y_2^2$, $D = 2 \left(x_3 -x_2\right)$, $E = 2 \left(y_3 - y_2\right) $, dan $F= r_2^2 - r_3^2 - x_2^2 + x_3^2- y_2^2 + y_3^2$ seperti ditunjukan oleh Persamaan \ref{eq:2-9} dan Persamaan \ref{eq:2-10} di bawah .
 
 \begin{equation}
 	Ax + By = C
@@ -244,7 +242,7 @@ Nilai DOP dapat dibagi menjadi tiga, yaitu
 \begin{enumerate}
 	\item \textbf{\textit{Horizontal Dilution of Precision} (HDOP)}: Mendeskripsikan efek dari nilai DOP pada bidang horizontal. Semakin rendah nilai HDOP maka semakin akurat posisi garis bujur dan garis lintang yang didapat.
 	\item \textbf{\textit{Vertical Dilution of Precision} (VDOP)}: Mendeskripsikan efek dari nilai DOP pada posisi vertikal. Semakin rendah nilai VDOP maka semakin akurat nilai ketinggian yang didapat.
-	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Merupakan gabungan dari HDOP dan VDOP. Selain itu, PDOP juga mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebarsehingga akurasi yang didapat semakin besar.
+	\item \textbf{\textit{Position Dilution of Precision} (PDOP)}: Merupakan gabungan dari HDOP dan VDOP. Selain itu, PDOP juga mendeskripsikan persebaran satelit di langit. Semakin kecil nilai PDOP maka posisi satelit semakin tersebar sehingga akurasi yang didapat semakin besar.
 \end{enumerate}
 
 \begin{table}[H]
@@ -359,8 +357,6 @@ $$
 Metode komputasi menggunakan Persamaan Haversine terbukti lebih sederhana dan ringan dibandingkan dengan Metode Vincenty dengan persentase galat yang sangat kecil, yaitu 0-0,334\% \cite{Mahmoud2016}. Dalam dunia navigasi, Persamaan Haversine memiliki peran yang sangat penting dalam menghitung jarak antara dua titik koordinat pada permukaan bola.
 
 \subsection{STM32}
-STM32 adalah salah satu jenis mikrokontroler 32-bit yang sangat populer di industri saat ini. Dikembangkan oleh perusahaan teknologi STMicroelectronics, STM32 merupakan mikrokontroler berbasis arsitektur ARM Cortex-M yang memiliki performa tinggi dan konsumsi daya yang rendah. Keluarga mikrokontroler STM32 dapat dibagi menjadi lima kelompok, yaitu \textit{Mainstream}, \textit{High Performance}, \textit{Ultra-low-power}, dan \textit{Wireless}. Setiap kelompok ditujukan untuk aplikasi yang berbeda-beda dengan kebutuhan yang berbeda pula. Pembagian kelompok mikrokontroler STM32 dapat dilihat pada Gambar \ref{Fig: stm32-groups}.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=11cm]{contents/chapter-2/stm-32-groups.png}
@@ -368,7 +364,7 @@ STM32 adalah salah satu jenis mikrokontroler 32-bit yang sangat populer di indus
 	\label{Fig: stm32-groups}
 \end{figure}
 
-Tabel \ref{Tab: stm-arch-table} menunjukkan jenis arsitektur yang digunakan oleh setiap seri mikrokontroler STM32. Saat ini, STM32 menggunakan enam jenis arsitektur ARM Cortex yang berbeda-beda. Setiap seri mikrokontroler STM32 menggunakan arsitektur tertentu yang dipilih berdasarkan kebutuhan aplikasi yang dituju. Sebagai contoh, seri STM32 F4, F7, dan H7 menggunakan arsitektur Cortex-M7F yang menawarkan performa tinggi dengan kecepatan clock hingga 480 MHz.
+STM32 adalah salah satu jenis mikrokontroler 32-bit yang sangat populer di industri saat ini. Dikembangkan oleh perusahaan teknologi STMicroelectronics, STM32 merupakan mikrokontroler berbasis arsitektur ARM Cortex-M yang memiliki performa tinggi dan konsumsi daya yang rendah. Keluarga mikrokontroler STM32 dapat dibagi menjadi lima kelompok, yaitu \textit{Mainstream}, \textit{High Performance}, \textit{Ultra-low-power}, dan \textit{Wireless}. Setiap kelompok ditujukan untuk aplikasi yang berbeda-beda dengan kebutuhan yang berbeda pula. Pembagian kelompok mikrokontroler STM32 dapat dilihat pada Gambar \ref{Fig: stm32-groups}.
 
 \begin{table}[H]
 	\caption{Jenis STM32 dan Arsitekturnya}
@@ -388,12 +384,14 @@ Tabel \ref{Tab: stm-arch-table} menunjukkan jenis arsitektur yang digunakan oleh
 	\label{Tab: stm-arch-table}
 \end{table}
 
+Tabel \ref{Tab: stm-arch-table} menunjukkan jenis arsitektur yang digunakan oleh setiap seri mikrokontroler STM32. Saat ini, STM32 menggunakan enam jenis arsitektur ARM Cortex yang berbeda-beda. Setiap seri mikrokontroler STM32 menggunakan arsitektur tertentu yang dipilih berdasarkan kebutuhan aplikasi yang dituju. Sebagai contoh, seri STM32 F4, F7, dan H7 menggunakan arsitektur Cortex-M7F yang menawarkan performa tinggi dengan kecepatan clock hingga 480 MHz.
+
 Salah satu \textit{development board} yang menggunakan mikrokontroler STM32 adalah STM32 Nucleo-WL55JC1. Papan pengembangan ini dirancang untuk memudahkan pengembang dalam membuat prototipe aplikasi \textit{wireless} dengan menggunakan mikrokontroler STM32WL55. Mikrokontroler ini merupakan versi \textit{dual-core} dari STM32 yang menggabungkan arsitektur ARM Cortex-M4 dan M0+ dengan kecepatan clock hingga 48 MHz.
 
 \subsubsection{STM32 Nucleo-WL55JC1}
 STM32 Nucleo-WL55JC1 adalah sebuah \textit{development board} yang menggunakan mikrokontroler STM32WL55 yang dikembangkan oleh ST Microelectronics. Mikrokontroler yang digunakan pada papan ini adalah STM32WL55 \textit{dual-core} ARM Cortex-M4/M0+ dengan kecepatan clock sebesar 48 MHz \cite{STMicroelectronics2022}.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=5cm]{contents/chapter-2/stm32-wl55jc1.jpg}
 	\caption{\textit{Development Board} STM32 Nucleo-WL55JC1}
@@ -407,14 +405,14 @@ Mikrokontroler STM32WL55 memiliki kecepatan \textit{clock} yang lebih cepat diba
 Selain itu, komunitas pengguna STM32 juga tidak kalah besar dibandingkan dengan komunitas pengguna Arduino dan ESP-32. Hal ini menunjukkan bahwa penggunaan papan pengembangan STM32 Nucleo-WL55JC1 dapat memberikan keuntungan bagi para pengembang yang ingin menggunakan mikrokontroler dengan performa tinggi dan dukungan komunitas yang besar.
 
 \subsubsection{STLINK-V3}
-STLINK-V3 adalah perangkat yang digunakan untuk memrogram dan \textit{debugging} pada mikrokontroler STM32 dan STM8. Modul STLINK-V3 menggunakan antarmuka JTAG atau \textit{Serial Wire Debugging} (SWD) untuk melakukan komunikasi dengan mikrokontroler. Pada STM32 Nucleo-WL55JC1, STLINK-V3 sudah tertanam di \textit{development board}. Gambar \ref{Fig: stlink-in-wl55} menunjukan letak STLINK-V3 di \textit{development board} STM32 Nucleo-WL55JC1 (ditandai oleh kotak berwarna merah).
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-2/stlink-in-wl55.jpg}
 	\caption{Letak STLINK-V3 pada STM32 Nucleo-WL55JC1}
 	\label{Fig: stlink-in-wl55}
 \end{figure}
+
+STLINK-V3 adalah perangkat yang digunakan untuk memrogram dan \textit{debugging} pada mikrokontroler STM32 dan STM8. Modul STLINK-V3 menggunakan antarmuka JTAG atau \textit{Serial Wire Debugging} (SWD) untuk melakukan komunikasi dengan mikrokontroler. Pada STM32 Nucleo-WL55JC1, STLINK-V3 sudah tertanam di \textit{development board}. Gambar \ref{Fig: stlink-in-wl55} menunjukan letak STLINK-V3 di \textit{development board} STM32 Nucleo-WL55JC1 (ditandai oleh kotak berwarna merah).
 
 STLINK-V3 dilengkapi dengan antarmuka USB 2.0 untuk melakukan \textit{software debugging} atau pemrograman dengan menggunakan aplikasi STM32Cube IDE. Perangkat ini juga dapat digunakan untuk meninjau isyarat pada mikrokontroler dengan menggunakan fitur \textit{debug}. Beberapa fitur pada STLINK-V3 adalah \cite{STMicroelectronics2023a}:
 
@@ -427,16 +425,14 @@ STLINK-V3 dilengkapi dengan antarmuka USB 2.0 untuk melakukan \textit{software d
 \end{enumerate}
 
 \subsubsection{STM32Cube IDE}
-STM32Cube IDE merupakan sebuah \textit{platform} yang digunakan untuk pengembangan \textit{firmware} pada mikrokontroler STM32 dengan menggunakan bahasa pemrograman C/C++. Dalam STM32Cube IDE terdapat beberapa aplikasi yang dapat digunakan untuk melakukan konfigurasi periferal, menyediakan kerangka kode, \textit{compiler}, dan fitur untuk \textit{debugging} yang dapat memudahkan pengguna dalam melakukan pengembangan \textit{firmware}. Selain itu, STM32Cube IDE juga dilengkapi dengan berbagai pustaka yang dapat mendukung pengembangan dalam berbagai aplikasi.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/stm32-ide.png}
-	\caption{Tampilan STM32Cube IDE}
+	\caption{Tampilan STM32CubeIDE}
 	\label{Fig: stm32-ide}
 \end{figure}
 
-Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupakan perangkat lunak yang digunakan untuk mempermudah dalam melakukan konfigurasi pada mikrokontroler STM32. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}. Konfigurasi tersebut akan disimpan dalam berkas dengan ekstensi \textit{ioc}. File \textit{ioc} dapat digunakan untuk \textit{generate} kerangka kerja yang siap untuk digunakan sehingga pengguna hanya perlu memikirkan pada sisi aplikasinya saja.
+STM32Cube IDE merupakan sebuah \textit{platform} yang digunakan untuk pengembangan \textit{firmware} pada mikrokontroler STM32 dengan menggunakan bahasa pemrograman C/C++. Dalam STM32Cube IDE terdapat beberapa aplikasi yang dapat digunakan untuk melakukan konfigurasi periferal, menyediakan kerangka kode, \textit{compiler}, dan fitur untuk \textit{debugging} yang dapat memudahkan pengguna dalam melakukan pengembangan \textit{firmware}. Selain itu, STM32Cube IDE juga dilengkapi dengan berbagai pustaka yang dapat mendukung pengembangan dalam berbagai aplikasi. Tampilan dari STM32CubeIDE ditunjukan oleh Gambar \ref{Fig: stm32-ide}.
 
 \begin{figure}[H]
 	\centering
@@ -445,12 +441,12 @@ Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupa
 	\label{Fig: stm32-mx}
 \end{figure}
 
+Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupakan perangkat lunak yang digunakan untuk mempermudah dalam melakukan konfigurasi pada mikrokontroler STM32. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}. Konfigurasi tersebut akan disimpan dalam berkas dengan ekstensi \textit{ioc}. File \textit{ioc} dapat digunakan untuk \textit{generate} kerangka kerja yang siap untuk digunakan sehingga pengguna hanya perlu memikirkan pada sisi aplikasinya saja.
+
 Dalam pengembangan \textit{firmware} pada mikrokontroler STM32, STM32Cube IDE dapat membantu pengguna untuk memudahkan pengembangan \textit{firmware} dengan menggunakan berbagai alat pengembangan yang lengkap dan pustaka perangkat lunak yang lengkap sebagai referensi. Sehingga, STM32Cube IDE menjadi pilihan yang tepat untuk melakukan pengembangan \textit{firmware} pada mikrokontroler STM32.
 
 \subsection{Teseo-LIV3FL}
 Teseo-LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
-
-Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Antarmuka UART pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
 
 \begin{figure}[H]
 	\centering
@@ -458,6 +454,8 @@ Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Anta
 	\caption{\textit{Pinout} Teseo-LIV3FL \cite{STMicroelectronics2022}}
 	\label{Fig: teseo_pinout}
 \end{figure}
+
+Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Antarmuka UART (Gambar \ref{Fig: teseo_pinout}) pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
 
 Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi dengan tetap mempertahankan akurasinya. Modul Teseo-LIV3FL dapat dioperasikan dengan efisien dan hemat energi, karena hanya membutuhkan daya rendah yaitu 8 $\mu$A pada mode standby dan 45 mA pada mode akuisisi.
 
@@ -476,14 +474,14 @@ Teseo-Suite adalah aplikasi yang dikembangkan khusus untuk mengatur dan memanfaa
 Tampilan dari aplikasi Teseo-Suite ditunjukkan pada Gambar \ref{Fig: teseo-suite-ss}. Pada aplikasi Teseo-Suite, pengguna dapat memvisualisasikan data satelit yang diterima oleh modul GNSS Teseo. Fitur visualisasi ini mencakup \textit{bar chart} dan \textit{sky plot} yang menunjukkan letak satelit di langit. Dengan fitur ini, pengguna dapat dengan mudah melihat satelit yang diterima oleh perangkat GNSS Teseo dan memperoleh informasi tentang nilai PRN, \textit{azimuth}, \textit{elevation}, dan pita frekuensi dari setiap satelit. Selain itu, pengguna juga dapat melihat titik koordinat pada OpenStreetMap. Fitur visualisasi ini sangat membantu pengguna dalam memahami data satelit.
 
 \subsection{Antena \textit{Patch}}
-Antena \textit{patch} adalah salah satu jenis antena yang digunakan dalam aplikasi sistem komunikasi nirkabel seperti GNSS, Wi-Fi, Bluetooth, dan sebagainya. Antena jenis ini terdiri dari sebuah \textit{patch} logam yang diletakan di atas permukaan bahan isolator. \textit{Patch} logam tersebut kemudian dihubungkan dengan kabel koaksial atau disolder langsung pada \textit{Printed Circuit Board} (PCB). Struktur dari antena \textit{patch} ditunjukan oleh Gambar \ref{Fig: patc-antenna}.
-
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/patch-antena.jpg}
 	\caption{Struktur dari Antena \textit{Patch} \cite{Chowdhury2019}}
-	\label{Fig: patc-antenna}
+	\label{Fig: patch-antenna}
 \end{figure}
+
+Antena \textit{patch} adalah salah satu jenis antena yang digunakan dalam aplikasi sistem komunikasi nirkabel seperti GNSS, Wi-Fi, Bluetooth, dan sebagainya. Antena jenis ini terdiri dari sebuah \textit{patch} logam yang diletakan di atas permukaan bahan isolator. \textit{Patch} logam tersebut kemudian dihubungkan dengan kabel koaksial atau disolder langsung pada \textit{Printed Circuit Board} (PCB). Struktur dari antena \textit{patch} ditunjukan oleh Gambar \ref{Fig: patch-antenna}.
 
 Keunggulan dari antena \textit{patch} adalah bentuknya ringkas dan ringan sehingga memungkinkan untuk digunakan pada aplikasi dengan dimensi kecil. Karena bentuknya kecil maka antena jenis ini hanya membutuhkan biaya yang rendah dalam manufakturnya. Selain itu, antena \textit{patch} juga memiliki \textit{gain} dan efisiensi yang tinggi \cite{Ding2020}.
 
@@ -492,14 +490,14 @@ Antena \textit{patch} adalah salah satu antena yang paling populer untuk aplikas
 \subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
 \textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. IC tesebut dirancang khusus untuk mengubah data paralel menjadi data serial dan menerima data serial yang dikonversi kembali menjadi data paralel. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. \textit{Baud rate} tersebut dapat dipilih dalam suatu rentang tertentu. \textit{Baud rate} yang umum dipakai adalah 110, 135, 150, 300, 600, 1200, 2400, 9600, dan 115200 (bit per detik). Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk melakukan komunikasi dengan protokol ini.
 
- Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/uart-format.png}
 	\caption{Format Data pada Komunikasi UART \cite{ti2010}}
 	\label{Fig: uart-format}
 \end{figure}
+
+ Pengiriman data pada komunikasi UART diawali dengan \textit{start bit} dan kemudian diakhiri oleh \textit{stop bit}. Data pada serial dikirimkan satu persatu melalui jalur data untuk setiap satuan waktu. Paket data diawali oleh \textit{start bit} diikuti dengan \textit{Least Significant Bit} (LSB), kemudian diikuti dengan data yang dibentuk menjadi 9-bit, dan diakhiri dengan \textit{Most Significant Bit} (MSB). Jika pengiriman data berhasil maka untuk memulai komunikasi baru dapat dilakukan dengan mengatur jalur komunikasi ke logika tinggi. Format data yang dikirimkan pada komunikasi UART ditunjukan oleh Gambar \ref{Fig: uart-format}.
 
 Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (pengirim) dan RX (penerima). Pin TX disambungkan ke RX dan sebaliknya. Dua buah UART dapat berkomunikasi secara langsung dengan isyarat TTL dengan perangkat yang memenuhi standar ELD seperti RS-232, RS-485, dan RS-422.
 

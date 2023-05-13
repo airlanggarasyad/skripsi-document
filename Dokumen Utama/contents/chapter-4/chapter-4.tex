@@ -15,8 +15,6 @@ Sebelum dilakukan pengujian perlu dilakukan perancangan purwarupa sistem yang me
 Setelah purwarupa sistem berhasil dirakit, maka langkah selanjutnya adalah menghubungkan \textit{development board} ke komputer dengan menggunakan kabel USB dan mengatur \textit{baud rate} sebesar 115200 Bps. Aplikasi yang digunakan untuk melakukan \textit{logging} dan perekaman data adalah CoolTerm. Selanjutnya, sistem akan diuji coba dengan menggunakan empat tahapan pengujian yang telah disebutkan sebelumnya untuk mengevaluasi performa dari sistem yang telah dirancang dan dirakit.
 
 \section{Pengujian Daya Rendah}
-Pada pengujian daya rendah, konfigurasi \textit{common ground} digunakan saat merangkai modul Teseo-LIV3FL dan multimeter agar keduanya dapat berbagi titik acuan yang sama. Hal ini memungkinkan pengukuran yang lebih akurat terhadap arus yang mengalir pada modul Teseo-LIV3FL. Untuk menghubungkan modul Teseo-LIV3FL dengan komputer, digunakan perangkat USB \textit{to} TTL \textit{converter} yang juga berfungsi sebagai sumber arus untuk menyalakan modul Teseo-LIV3FL. Gambar \ref{Fig: low-power-connected} menunjukkan contoh dari modul Teseo-LIV3FL yang sudah terhubung dengan multimeter dan siap untuk dilakukan pengujian daya rendah.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/low-power.jpg}
@@ -24,76 +22,72 @@ Pada pengujian daya rendah, konfigurasi \textit{common ground} digunakan saat me
 	\label{Fig: low-power-connected}
 \end{figure}
 
+Pada pengujian daya rendah, konfigurasi \textit{common ground} digunakan saat merangkai modul Teseo-LIV3FL dan multimeter agar keduanya dapat berbagi titik acuan yang sama. Hal ini memungkinkan pengukuran yang lebih akurat terhadap arus yang mengalir pada modul Teseo-LIV3FL. Untuk menghubungkan modul Teseo-LIV3FL dengan komputer, digunakan perangkat USB \textit{to} TTL \textit{converter} yang juga berfungsi sebagai sumber arus untuk menyalakan modul Teseo-LIV3FL. Gambar \ref{Fig: low-power-connected} menunjukkan contoh dari modul Teseo-LIV3FL yang sudah terhubung dengan multimeter dan siap untuk dilakukan pengujian daya rendah.
+
 Algoritma daya rendah yang digunakan pada pengujian ini adalah mode periodik. Mode periodik pada modul Teseo-LIV3FL memungkinkan modul tersebut berada dalam mode akuisisi dalam waktu tertentu hingga mendapatkan posisi \textit{fix}. Setelah modul Teseo-LIV3FL mendapatkan posisi \textit{fix}, maka modul tersebut akan beralih ke mode \textit{stand by} untuk menghemat daya. Kemudian, setelah periode waktu tertentu, modul Teseo-LIV3FL akan kembali masuk ke mode akuisisi untuk mendapatkan posisi \textit{fix} kembali. Jika modul Teseo-LIV3FL tidak dapat mendapatkan posisi \textit{fix}, maka modul tersebut akan tetap masuk ke mode \textit{stand by} dan mencoba untuk mendapatkan posisi \textit{fix} kembali setelah periode waktu tertentu. Algoritma daya rendah ini sangat penting dalam memastikan modul Teseo-LIV3FL mampu beroperasi dengan menggunakan daya yang sangat kecil namun tetap dapat mendapatkan posisi \textit{fix} dengan akurasi yang cukup baik.
 
-Perintah \$PSTMLOWPOWERONOFF digunakan untuk mengendalikan mode daya rendah pada modul Teseo-LIV3FL. Perintah ini menerima empat belas argumen dengan rincian tertentu untuk setiap mode daya rendah yang diaktifkan. Pada mode adaptif, empat argumen kedua hingga kelima digunakan untuk mengatur ambang batas untuk mode daya rendah, sedangkan pada mode \textit{cyclic}, digunakan dua argumen selanjutnya. Pada mode periodik, delapan argumen terakhir digunakan untuk mengatur frekuensi dan waktu mode daya rendah. Pada pengujian ini, digunakan mode daya rendah periodiksehingga argumen kedua hingga ketujuh harus diisi dengan angka nol. Perintah yang dikirimkan pada pengujian ini adalah sebagai berikut:
-
-\begin{verbatim}
-	$PSTMLOWPOWERONOFF,1,0,0,0,0,0,0,3,60,1,1,1,60,30
-\end{verbatim}
-
-Perintah di atas akan mengaktifkan mode daya rendah periodik pada modul Teseo-LIV3FL dengan waktu \textit{stand by} selama satu menit setelah mendapatkan tiga posisi \textit{fix}. Artinya, setelah modul menerima tiga posisi \textit{fix}, maka modul akan masuk ke mode daya rendah dan hanya akan mengambil posisi setiap satu menit. Selain itu, modul juga akan menuju mode \textit{stand by} selama tiga puluh detik jika tidak dapat mendapatkan posisi \textit{fix} selama satu menit. Detail argumen yang digunakan pada pengujian ini dapat dilihat pada Tabel 4.1.
+Perintah \$PSTMLOWPOWERONOFF digunakan untuk mengendalikan mode daya rendah pada modul Teseo-LIV3FL. Perintah ini menerima empat belas argumen dengan rincian tertentu untuk setiap mode daya rendah yang diaktifkan. Pada mode adaptif, empat argumen kedua hingga kelima digunakan untuk mengatur ambang batas untuk mode daya rendah, sedangkan pada mode \textit{cyclic}, digunakan dua argumen selanjutnya. Pada mode periodik, delapan argumen terakhir digunakan untuk mengatur frekuensi dan waktu mode daya rendah. Pada pengujian ini, digunakan mode daya rendah periodiksehingga argumen kedua hingga ketujuh harus diisi dengan angka nol. Perintah yang dikirimkan pada pengujian ini adalah \texttt{\$PSTMLOWPOWERONOFF,1,0,0,0,0,0,0,3,60,1,1,1,60,30}.
 
 \begin{longtblr}[caption = {Argumen pada Perintah \$PSTMLOWPOWERONOFF}]{
-		width = \linewidth,
-		colspec = {Q[285]Q[48]Q[608]},
-		row{1} = {c},
-		row{3} = {c},
-		row{5} = {c},
-		row{6} = {c},
-		row{7} = {c},
-		row{8} = {c},
-		row{10} = {c},
-		row{11} = {c},
-		cell{2}{1} = {c},
-		cell{2}{2} = {c},
-		cell{3}{1} = {c=3}{0.941\linewidth},
-		cell{4}{1} = {c},
-		cell{4}{2} = {c},
-		cell{4}{3} = {r=4}{},
-		cell{8}{1} = {c=3}{0.941\linewidth},
-		cell{9}{1} = {c},
-		cell{9}{2} = {c},
-		cell{9}{3} = {r=2}{},
-		cell{11}{1} = {c=3}{0.941\linewidth},
-		cell{12}{1} = {c},
-		cell{12}{2} = {c},
-		cell{13}{1} = {c},
-		cell{13}{2} = {c},
-		cell{14}{1} = {c},
-		cell{14}{2} = {c},
-		cell{15}{1} = {c},
-		cell{15}{2} = {c},
-		cell{16}{1} = {c},
-		cell{16}{2} = {c},
-		cell{17}{1} = {c},
-		cell{17}{2} = {c},
-		cell{18}{1} = {c},
-		cell{18}{2} = {c},
-		hline{1-4,8-9,11-12} = {-}{},
-	}
-	\textbf{Argumen}                               & \textbf{Nilai} & \textbf{Keterangan}                                                                                                                      \\
-	Menyalakan atau mematikan mode daya rendah     & 1              & Mode daya rendah dinyalakan                                                                                                              \\
-	Mode Adaptif                                   &               0 &                                                                                                                                          \\
-	\textit{Constellation mask}                    & 0              & Mode adaptif tidak digunakan.                                                                                                            \\
-	Batas EHPE                            &               0 &                                                                                                                                          \\
-	Satelit maksimum                               &               0 &                                                                                                                                          \\
-	Perpindahan konstelasi otomatis                &         0       &                                                                                                                                          \\
-	Mode \textit{cyclic}                           &           0     &                                                                                                                                          \\
-	Menyalakan atau mematikan \textit{duty cycle} & 0              & Mode \textit{cyclic} tidak digunakan.\\
-	Periode \textit{duty cycle}                    &         0       &                                                                                                                                          \\
-	Mode periodik                                  &                &                                                                                                                                          \\
-	Mode periodik                                  & 3              & Mode periodik \textit{stand by}                                                                                                          \\
-	FixPeriod                                      & 60             & Modul akan memasuki mode~\textit{stand by} selama enam puluh detik setelah mendapat posisi \textit{fix}                                \\
-	FixOnTime                                      & 3              & Memasuki mode \textit{stand by~setelah mendapatkan tiga posisi \textit{fix}}                                                             \\
-	Penyegaran ephemeris                           & 1              & Penyegaran ephemeris diaktifkan                                                                                                          \\
-	Kalibrasi RTC                                  & 1              & Kalibrasi RTC diaktifkan                                                                                                                 \\
-	NoFixCnt                                       & 60             & Modul akan memasuki mode \textit{stand by} jika tidak bisa mendapatkan posisi \textit{fix~setelah enam puluh detik (\textit{fix loss)}} \\
-	NoFixOff                                       & 30             & Modul memasuki \textit{stand by} selama tiga puluh detik setelah \textit{fix loss}\\
-	\hline                                                      
+	width = \linewidth,
+	colspec = {Q[285]Q[48]Q[608]},
+	row{1} = {c},
+	row{3} = {c},
+	row{5} = {c},
+	row{6} = {c},
+	row{7} = {c},
+	row{8} = {c},
+	row{10} = {c},
+	row{11} = {c},
+	cell{2}{1} = {c},
+	cell{2}{2} = {c},
+	cell{3}{1} = {c=3}{0.941\linewidth},
+	cell{4}{1} = {c},
+	cell{4}{2} = {c},
+	cell{4}{3} = {r=4}{},
+	cell{8}{1} = {c=3}{0.941\linewidth},
+	cell{9}{1} = {c},
+	cell{9}{2} = {c},
+	cell{9}{3} = {r=2}{},
+	cell{11}{1} = {c=3}{0.941\linewidth},
+	cell{12}{1} = {c},
+	cell{12}{2} = {c},
+	cell{13}{1} = {c},
+	cell{13}{2} = {c},
+	cell{14}{1} = {c},
+	cell{14}{2} = {c},
+	cell{15}{1} = {c},
+	cell{15}{2} = {c},
+	cell{16}{1} = {c},
+	cell{16}{2} = {c},
+	cell{17}{1} = {c},
+	cell{17}{2} = {c},
+	cell{18}{1} = {c},
+	cell{18}{2} = {c},
+	hline{1-4,8-9,11-12} = {-}{},
+}
+\textbf{Argumen}                               & \textbf{Nilai} & \textbf{Keterangan}                                                                                                                      \\
+Menyalakan atau mematikan mode daya rendah     & 1              & Mode daya rendah dinyalakan                                                                                                              \\
+Mode Adaptif                                   &               0 &                                                                                                                                          \\
+\textit{Constellation mask}                    & 0              & Mode adaptif tidak digunakan.                                                                                                            \\
+Batas EHPE                            &               0 &                                                                                                                                          \\
+Satelit maksimum                               &               0 &                                                                                                                                          \\
+Perpindahan konstelasi otomatis                &         0       &                                                                                                                                          \\
+Mode \textit{cyclic}                           &           0     &                                                                                                                                          \\
+Menyalakan atau mematikan \textit{duty cycle} & 0              & Mode \textit{cyclic} tidak digunakan.\\
+Periode \textit{duty cycle}                    &         0       &                                                                                                                                          \\
+Mode periodik                                  &                &                                                                                                                                          \\
+Mode periodik                                  & 3              & Mode periodik \textit{stand by}                                                                                                          \\
+FixPeriod                                      & 60             & Modul akan memasuki mode~\textit{stand by} selama enam puluh detik setelah mendapat posisi \textit{fix}                                \\
+FixOnTime                                      & 3              & Memasuki mode \textit{stand by~setelah mendapatkan tiga posisi \textit{fix}}                                                             \\
+Penyegaran ephemeris                           & 1              & Penyegaran ephemeris diaktifkan                                                                                                          \\
+Kalibrasi RTC                                  & 1              & Kalibrasi RTC diaktifkan                                                                                                                 \\
+NoFixCnt                                       & 60             & Modul akan memasuki mode \textit{stand by} jika tidak bisa mendapatkan posisi \textit{fix~setelah enam puluh detik (\textit{fix loss)}} \\
+NoFixOff                                       & 30             & Modul memasuki \textit{stand by} selama tiga puluh detik setelah \textit{fix loss}\\
+\hline                                                      
 \end{longtblr}
 
-Hasil pengukuran menunjukkan bahwa arus yang mengalir pada modul Teseo-LIV3FL adalah sebesar 46,3 mA. Namun, hal yang menarik adalah nilai arus yang diukur jauh lebih kecil daripada nilai arus yang tertera pada \textit{datasheet}, yang mencapai 65 mA. Dalam mode \textit{stand by}, modul Teseo-LIV3FL berada dalam kondisi siap dan hanya menunggu untuk melakukan pencarian posisi kembali. Oleh karena itu, arus yang mengalir pada modul Teseo-LIV3FL sudah mendekati nilai \textit{datasheet} yang hanya 10 $\mu$A, yaitu sebesar 15 $\mu$A. Hal ini menunjukkan bahwa penggunaan mode daya rendah pada modul Teseo-LIV3FL dapat menurunkan konsumsi daya yang ditunjukan dengan penurunan jumlah arus ketika berada dalam mode \textit{stand by}. Gambar \ref{Fig: low-power-result} menunjukkan hasil pengukuran multimeter ketika modul Teseo-LIV3FL berada dalam mode akuisisi (kiri) dan mode \textit{stand by} (kanan). Hasil yang didapat menunjukkan perbedaan yang signifikan dalam tingkat konsumsi daya antara kedua mode tersebut.
+Perintah tersebut akan mengaktifkan mode daya rendah periodik pada modul Teseo-LIV3FL dengan waktu \textit{stand by} selama satu menit setelah mendapatkan tiga posisi \textit{fix}. Artinya, setelah modul menerima tiga posisi \textit{fix}, maka modul akan masuk ke mode daya rendah dan hanya akan mengambil posisi setiap satu menit. Selain itu, modul juga akan menuju mode \textit{stand by} selama tiga puluh detik jika tidak dapat mendapatkan posisi \textit{fix} selama satu menit. Detail argumen yang digunakan pada pengujian ini dapat dilihat pada Tabel 4.1.
 
 \begin{figure}[H]
 	\centering
@@ -102,6 +96,8 @@ Hasil pengukuran menunjukkan bahwa arus yang mengalir pada modul Teseo-LIV3FL ad
 	\caption{Pembacaan Multimeter pada Mode Akuisisi (Kiri) dan Mode \textit{Stand By} (Kanan)}
 	\label{Fig: low-power-result}
 \end{figure}
+
+Hasil pengukuran menunjukkan bahwa arus yang mengalir pada modul Teseo-LIV3FL adalah sebesar 46,3 mA. Namun, hal yang menarik adalah nilai arus yang diukur jauh lebih kecil daripada nilai arus yang tertera pada \textit{datasheet}, yang mencapai 65 mA. Dalam mode \textit{stand by}, modul Teseo-LIV3FL berada dalam kondisi siap dan hanya menunggu untuk melakukan pencarian posisi kembali. Oleh karena itu, arus yang mengalir pada modul Teseo-LIV3FL sudah mendekati nilai \textit{datasheet} yang hanya 10 $\mu$A, yaitu sebesar 15 $\mu$A. Hal ini menunjukkan bahwa penggunaan mode daya rendah pada modul Teseo-LIV3FL dapat menurunkan konsumsi daya yang ditunjukan dengan penurunan jumlah arus ketika berada dalam mode \textit{stand by}. Gambar \ref{Fig: low-power-result} menunjukkan hasil pengukuran multimeter ketika modul Teseo-LIV3FL berada dalam mode akuisisi (kiri) dan mode \textit{stand by} (kanan). Hasil yang didapat menunjukkan perbedaan yang signifikan dalam tingkat konsumsi daya antara kedua mode tersebut.
 
 \section{Pengujian \textit{Rapid Static Survey}}
 Rapid Static Survey adalah pengujian yang dilakukan untuk meninjau performa modul GNSS dalam keadaan diam. Pengujian ini dapat dilakukan dalam rentang waktu 15 menit s.d. 2 jam \cite{lauer2019static}. Pengujian ini akan meninjau  dan presisi dari modul GNSS. Akurasi adalah tingkat kedekatan hasil pembacaan modul GNSS dengan posisi sebenarnya, sedangkan tingkat presisi menunjukan seberapa dekat hasil yang didapat dengan rata-rata dari seluruh sampel \cite{gnssca_apn029}.
@@ -120,14 +116,14 @@ Nilai HDOP (\textit{Horizontal Dilution of Precision}), VDOP (\textit{Vertical D
 \subsection{Skenario \textit{Basement}}
 Pengujian skenario \textit{basement} dilakukan dengan tujuan untuk memperoleh gambaran tentang performa modul Teseo-LIV3FL di dalam ruangan bawah tanah. Ruangan bawah tanah seringkali digunakan sebagai tempat parkir mobil, gudang, atau ruang penyimpanan yang berada di bawah gedung. Karena letaknya yang berada di bawah tanah, maka akses isyarat satelit GNSS menjadi terbatas. 
 
-Dalam pengujian ini, modul Teseo-LIV3FL diletakkan di tempat parkir bawah tanah yang berada di bawah gedung empat lantai dengan struktur beton. Pengujian dilakukan pada lingkungan yang sangat tertutup dan minim sinar matahari. Terdapat beberapa area terbuka kecil yang memungkinkan sedikit sinar matahari untuk masuk. Gambar \ref{Fig: basement-keadaan} menunjukkan kondisi lingkungan saat pengujian skenario \textit{basement}.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/1-skenario-basement/keadaan.jpg}
 	\caption{Keadaan Sekitar Pengujian Skenario \textit{Basement}}
 	\label{Fig: basement-keadaan}
 \end{figure}
+
+Dalam pengujian ini, modul Teseo-LIV3FL diletakkan di tempat parkir bawah tanah yang berada di bawah gedung empat lantai dengan struktur beton. Pengujian dilakukan pada lingkungan yang sangat tertutup dan minim sinar matahari. Terdapat beberapa area terbuka kecil yang memungkinkan sedikit sinar matahari untuk masuk. Gambar \ref{Fig: basement-keadaan} menunjukkan kondisi lingkungan saat pengujian skenario \textit{basement}.
 
 \begin{figure}[H]
 	\centering
@@ -138,7 +134,7 @@ Dalam pengujian ini, modul Teseo-LIV3FL diletakkan di tempat parkir bawah tanah 
 	\label{Fig:basement-distribution}
 \end{figure}
 
-Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distribution} menunjukkan bahwa koordinat garis lintang memiliki rentang tersebar antara -7,769728 hingga -7,768525 sedangkan untuk garis bujur memiliki rentang tersebar antara 110,379841 hingga 110,380314. Modus dari kedua koordinat berada pada titik -7.769356 dan 110.379952.Terlihat bahwa kedua koordinat tidak terdistribusi secara normal sehingga perlu dilakukan analisis statistik non-parametrik, yaitu MAD.
+Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distribution} menunjukkan bahwa koordinat garis lintang memiliki rentang tersebar antara -7,769728$^{\circ}$ hingga -7,768525$^{\circ}$ sedangkan untuk garis bujur memiliki rentang tersebar antara 110,379841$^{\circ}$ hingga 110,380314$^{\circ}$. Terlihat bahwa kedua koordinat tidak terdistribusi secara normal sehingga perlu dilakukan analisis statistik non-parametrik, yaitu MAD.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian Skenario \textit{Basement}}
@@ -164,14 +160,14 @@ Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distributio
 	\label{Tab: basement-table}
 \end{table}
 
-Pada skenario \textit{basement}, hasil pengukuran modul Teseo-LIV3FL menunjukkan hasil yang kurang akurat. Hal ini terlihat pada data yang dicatat pada Gambar \ref{Fig: basement-sats_dop}, yang menunjukkan adanya lonjakan nilai DOP. Selain itu, nilai maksimum PDOP yang dicatat pada Tabel \ref{Tab: basement-table} adalah sebesar 39,30. Nilai yang sangat tinggi ini mengindikasikan bahwa persebaran satelit di langit tidak mencakup seluruh lingkaran, seperti terlihat pada \textit{sky plot} pada Gambar \ref{Fig: basement-skyplot}. \textit{Sky plot} tersebut memperlihatkan bahwa persebaran satelit hanya mencakup setengah bagian dari lingkaransehingga dapat mempengaruhi akurasi keseluruhan dari hasil pengukuran modul Teseo-LIV3FL. Analisis MAD menunjukan bahwa tingkat kepresisian modul Teseo-LIV3Fl pada skenario \textit{basement} adalah 18,89 meter pada sumbu garis lintang, 14,99 pada sumbu garis bujur, dan 24,11 meter secara keseluruhan.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=11cm]{contents/chapter-4/1-skenario-basement/sky_plot.png}
 	\caption{\textit{Sky Plot} Pengujian Skenario \textit{Basement}}
 	\label{Fig: basement-skyplot}
 \end{figure}
+
+Pada skenario \textit{basement}, hasil pengukuran modul Teseo-LIV3FL menunjukkan hasil yang kurang akurat. Hal ini terlihat pada data yang dicatat pada Gambar \ref{Fig: basement-sats_dop}, yang menunjukkan adanya lonjakan nilai DOP. Selain itu, nilai maksimum PDOP yang dicatat pada Tabel \ref{Tab: basement-table} adalah sebesar 39,30. Nilai yang sangat tinggi ini mengindikasikan bahwa persebaran satelit di langit tidak mencakup seluruh lingkaran, seperti terlihat pada \textit{sky plot} pada Gambar \ref{Fig: basement-skyplot}. \textit{Sky plot} tersebut memperlihatkan bahwa persebaran satelit hanya mencakup setengah bagian dari lingkaransehingga dapat mempengaruhi akurasi keseluruhan dari hasil pengukuran modul Teseo-LIV3FL. Analisis MAD menunjukan bahwa tingkat kepresisian modul Teseo-LIV3Fl pada skenario \textit{basement} adalah 18,89 meter pada sumbu garis lintang, 14,99 pada sumbu garis bujur, dan 24,11 meter secara keseluruhan.
 
 \begin{figure}[H]
 	\centering
@@ -180,10 +176,6 @@ Pada skenario \textit{basement}, hasil pengukuran modul Teseo-LIV3FL menunjukkan
 	\label{Fig: basement-sats_dop}
 \end{figure}
 
-Selain MAD, tingkat presisi dari modul GNSS juga dapat ditinjau dengan menggunakan CEP atau \textit{Circular Error Probability}. Tren nilai CEP selama satu jam ditunjukan oleh Gambar \ref{Fig: basement-cep}. Dapat dilihat bahwa pada awal pengujian terjadi lonjakan nilai CEP hingga delapan puluh meter pada sepuluh hingga lima belas menit pertama. Hal tersebut sejalan dengan visibilitas satelit paling rendah yang juga terjadi pada rentang waktu tersebut. 
-
-Seiring berjalannya waktu, visibilitas satelit mulai membaik dan nilai CEP juga ikut menurun. Rata-rata CEP pada pengujian ini adalah 32,69 meter dengan standar deviasi 13,34 meter. Nilai tersebut menunjukan bahwa data memiliki tingkat variasi yang cukup besar. Tingkat variasi yang cukup besar menunjukan bahwa data koordinat yang dimiliki cenderung lebih jauh dari rata-ratanya.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/1-skenario-basement/cep.png}
@@ -191,7 +183,9 @@ Seiring berjalannya waktu, visibilitas satelit mulai membaik dan nilai CEP juga 
 	\label{Fig: basement-cep}
 \end{figure}
 
-Jika dilihat dari nilai SNR-nya, terlihat bahwa selain diakibatkan visibilitas satelit yang rendah, lonjakan nilai CEP pada 10 menit pertama pengamatan diakibatkan oleh nilai SNR pada konstelasi yang cenderung sangat rendah. Setelah SNR dari konstelasi membaik, nilai CEP juga ikut membaik. Bagian kosong pada konstelasi Galileo sejalan dengan visibilitas satelit dari konstelasi Galileo yang sangat rendah. Pada skenario ini, visibilitas satelit memiliki peran yang sangat penting untuk memperbaiki nilai CEP.
+Selain MAD, tingkat presisi dari modul GNSS juga dapat ditinjau dengan menggunakan CEP atau \textit{Circular Error Probability}. Tren nilai CEP selama satu jam ditunjukan oleh Gambar \ref{Fig: basement-cep}. Dapat dilihat bahwa pada awal pengujian terjadi lonjakan nilai CEP hingga delapan puluh meter pada sepuluh hingga lima belas menit pertama. Hal tersebut sejalan dengan visibilitas satelit paling rendah yang juga terjadi pada rentang waktu tersebut. 
+
+Seiring berjalannya waktu, visibilitas satelit mulai membaik dan nilai CEP juga ikut menurun. Rata-rata CEP pada pengujian ini adalah 32,69 meter dengan standar deviasi 13,34 meter. Nilai tersebut menunjukan bahwa data memiliki tingkat variasi yang cukup besar. Tingkat variasi yang cukup besar menunjukan bahwa data koordinat yang dimiliki cenderung lebih jauh dari rata-ratanya.
 
 \begin{figure}[H]
 	\centering
@@ -200,13 +194,13 @@ Jika dilihat dari nilai SNR-nya, terlihat bahwa selain diakibatkan visibilitas s
 	\label{Fig: basement-snr}
 \end{figure}
 
+Jika dilihat dari nilai SNR pada Gambar \ref{Fig: basement-snr}, terlihat bahwa selain diakibatkan visibilitas satelit yang rendah, lonjakan nilai CEP pada 10 menit pertama pengamatan diakibatkan oleh nilai SNR pada konstelasi yang cenderung sangat rendah. Setelah SNR dari konstelasi membaik, nilai CEP juga ikut membaik. Bagian kosong pada konstelasi Galileo sejalan dengan visibilitas satelit dari konstelasi Galileo yang sangat rendah. Pada skenario ini, visibilitas satelit memiliki peran yang sangat penting untuk memperbaiki nilai CEP.
+
 Meskipun modul Teseo-LIV3FL tertutup oleh struktur beton, modul tetap mampu menangkap isyarat dari keempat konstelasi Teseo-LIV3FL yang telah diatur. Dari hasil pengujian, terlihat bahwa konstelasi dengan jumlah satelit paling banyak adalah BeiDou milik Republik Rakyat Tiongkok. Namun, terjadi lonjakan nilai DOP pada awal pengujian saat jumlah satelit paling rendah. Hal ini menunjukkan bahwa jumlah satelit yang rendah akan meningkatkan ketiga nilai DOP, yang pada akhirnya akan menurunkan akurasi dari hasil pembacaan modul Teseo-LIV3FL.
 
 Angka 24,11 meter pada hasil analisis MAD menunjukan tingkat presisi masih rendah, tetapi nilai rata-rata HDOP yang menunjukan angka 8,27 tetap menunjukan bahwa hasil pengukuran posisi masih layak untuk digunakan. Perlu diingat bahwa pengujian ini dilakukan di lingkungan yang sangat sulit, yaitu ruangan bawah tanah dengan struktur beton yang menutupi sinyal dari satelit. Selain itu, terdapat sedikit bagian terbuka yang memungkinkan sinar matahari untuk memasuki ruangan. Meskipun demikian, pengujian ini menunjukan bahwa modul GNSS masih dapat digunakan untuk mendapatkan posisi \textit{fix} dalam kondisi lingkungan yang sulit.
 
 \subsection{Skenario Dalam Ruangan}
-Pengujian skenario dilakukan di dalam ruangan tertutup pada lantai 5 Gedung SGLC Fakultas Teknik. Ruangan pengujian dilengkapi dengan jendela besar yang memungkinkan lebih banyak sinar matahari untuk masuk ke dalam ruangansehingga menghasilkan kondisi lingkungan yang cukup berbeda dengan pengujian skenario di \textit{basement}. Gambar \ref{Fig: indoor-keadaan} menunjukkan pengujian skenario dalam ruangan yang dilakukan pada penelitian ini.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/2-skenario-indoor/keadaan.jpg}
@@ -214,7 +208,7 @@ Pengujian skenario dilakukan di dalam ruangan tertutup pada lantai 5 Gedung SGLC
 	\label{Fig: indoor-keadaan}
 \end{figure}
 
-Persebaran koordinat garis lintang dan garis bujur pada skenario dalam ruangan berada pada rentang -7,770949 hingga -7,770883 dan 110,377283 hingga 110,377315 seperti ditunjukan oleh Gambar \ref{Fig:indoor-distribution}. Modus dari kedua persebaran berada di titik (-7,765039; 110,72458). Namun, seperti halnya dengan skenario sebelumnya, distribusi koordinat pada pengujian ini tidak terdistribusi secara normalsehingga perlu dilakukan analisis pada nilai MAD-nya untuk mendapatkan pemahaman yang lebih baik mengenai data hasil pengujian.
+Pengujian skenario dilakukan di dalam ruangan tertutup pada lantai 5 Gedung SGLC Fakultas Teknik. Ruangan pengujian dilengkapi dengan jendela besar yang memungkinkan lebih banyak sinar matahari untuk masuk ke dalam ruangansehingga menghasilkan kondisi lingkungan yang cukup berbeda dengan pengujian skenario di \textit{basement}. Gambar \ref{Fig: indoor-keadaan} menunjukkan pengujian skenario dalam ruangan yang dilakukan pada penelitian ini.
 
 \begin{figure}[H]
 	\centering
@@ -225,7 +219,7 @@ Persebaran koordinat garis lintang dan garis bujur pada skenario dalam ruangan b
 	\label{Fig:indoor-distribution}
 \end{figure}
 
-Tabel \ref{Tab: indoor-table} menunjukan hasil pengujian pada skenario dalam ruangan. Penurunan nilai DOP menunjukan bahwa hasil pengukuran modul Teseo-LIV3FL lebih akurat jika dibandingkan dengan skenario \textit{basement}. Selain itu, nilai MAD pada skenario ini juga menjadi lebih baik, yaitu 7,39 meter pada koordinat garis lintangnya, 4,11 meter pada garis bujurnya, dan 8,46 meter secara keseluruhan.
+Persebaran koordinat garis lintang dan garis bujur pada skenario dalam ruangan berada pada rentang -7,770949$^{\circ}$ hingga -7,770883$^{\circ}$ dan 110,377283$^{\circ}$ hingga 110,377315$^{\circ}$ seperti ditunjukan oleh Gambar \ref{Fig:indoor-distribution}. Namun, seperti halnya dengan skenario sebelumnya, distribusi koordinat pada pengujian ini tidak terdistribusi secara normalsehingga perlu dilakukan analisis pada nilai MAD-nya untuk mendapatkan pemahaman yang lebih baik mengenai data hasil pengujian.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian Dalam Ruangan}
@@ -251,7 +245,7 @@ Tabel \ref{Tab: indoor-table} menunjukan hasil pengujian pada skenario dalam rua
 	\label{Tab: indoor-table}
 \end{table}
 
-Selain nilai MAD, grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: indoor-cep} juga menunjukan bahwa tingkat presisi modul Teseo-LIV3FL pada skenario ini lebih baik jika dibandingkan dengan percobaan sebelumnya. Nilai CEP terendah dapat mencapai 9,51 meter dan paling tinggi adalah sebesar 33,27 meter. Grafik nilai CEP pada skenario ini juga cenderung lebih stabil yang menyebabkan standar deviasi dari nilai CEP-nya menurun. 
+Tabel \ref{Tab: indoor-table} menunjukan hasil pengujian pada skenario dalam ruangan. Penurunan nilai DOP menunjukan bahwa hasil pengukuran modul Teseo-LIV3FL lebih akurat jika dibandingkan dengan skenario \textit{basement}. Selain itu, nilai MAD pada skenario ini juga menjadi lebih baik, yaitu 7,39 meter pada koordinat garis lintangnya, 4,11 meter pada garis bujurnya, dan 8,46 meter secara keseluruhan.
 
 \begin{figure}[H]
 	\centering
@@ -260,7 +254,7 @@ Selain nilai MAD, grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: indoor-
 	\label{Fig: indoor-cep}
 \end{figure}
 
-Pada akhir percobaan dapat dilihat bahwa terjadi lojakan nilai CEP meskipun jumlah visibilitas satelit pada periode waktu tersebut cenderung baik. Hal tersebut diakibatkan oleh penurunan nilai SNR yang cukup signifikan terjadi pada periode waktu tersebut. Grafik nilai SNR pada skenario ini ditunjukan oleh Gambar \ref{Fig: indoor-snr}. Konstelasi GPS cenderung mengalami penurunan seiring berjalannya waktu. Di sisi lain, konstelasi Galileo mengalami penurunan yang sangat signifikan hingga 5 dB. Selain itu, isyarat dari satelit konstelasi Galileo terkadang tidak dapat diterima oleh modul GNSS ditunjukan dengan beberapa titik yang kosong.
+Selain nilai MAD, grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: indoor-cep} juga menunjukan bahwa tingkat presisi modul Teseo-LIV3FL pada skenario ini lebih baik jika dibandingkan dengan percobaan sebelumnya. Nilai CEP terendah dapat mencapai 9,51 meter dan paling tinggi adalah sebesar 33,27 meter. Grafik nilai CEP pada skenario ini juga cenderung lebih stabil yang menyebabkan standar deviasi dari nilai CEP-nya menurun. 
 
 \begin{figure}[H]
 	\centering
@@ -269,7 +263,7 @@ Pada akhir percobaan dapat dilihat bahwa terjadi lojakan nilai CEP meskipun juml
 	\label{Fig: indoor-snr}
 \end{figure}
 
-Sama seperti pada pengujian skenario \textit{basement}, modul Teseo-LIV3FL juga dapat menerima isyarat dari keempat konstelasi yang telah diatur sebelumnya seperti ditunjukan pada Gambar \ref{Fig: indoor-sats_dop}. Dari hasil pengujian ini, terlihat bahwa konstelasi dengan jumlah satelit terbanyak adalah BeiDou dan GPS, yang dapat memberikan sinyal yang lebih kuat dan lebih akurat dalam mendukung navigasi satelit. Sementara itu, jumlah satelit pada konstelasi QZSS hampir selalu konstan pada dua buah satelit, sedangkan konstelasi Galileo dapat bervariasi antara nol hingga empat buah satelit tergantung pada kondisi lingkungan di sekitar pengujian. 
+Pada akhir percobaan dapat dilihat bahwa terjadi lojakan nilai CEP meskipun jumlah visibilitas satelit pada periode waktu tersebut cenderung baik. Hal tersebut diakibatkan oleh penurunan nilai SNR yang cukup signifikan terjadi pada periode waktu tersebut. Grafik nilai SNR pada skenario ini ditunjukan oleh Gambar \ref{Fig: indoor-snr}. Konstelasi GPS cenderung mengalami penurunan seiring berjalannya waktu. Di sisi lain, konstelasi Galileo mengalami penurunan yang sangat signifikan hingga 5 dB. Selain itu, isyarat dari satelit konstelasi Galileo terkadang tidak dapat diterima oleh modul GNSS ditunjukan dengan beberapa titik yang kosong.
 
 \begin{figure}[H]
 	\centering
@@ -279,7 +273,7 @@ Sama seperti pada pengujian skenario \textit{basement}, modul Teseo-LIV3FL juga 
 	\label{Fig: indoor-sats_dop}
 \end{figure}
 
-\textit{Sky plot} pada Gambar \ref{Fig: indoor-sky_plot} menunjukan bahwa persebaran satelit pada skenario ini lebih tersebar merata jika dibandingkan dengan skenario sebelumnya. Persebaran satelit yang lebih baik tentunya berpengaruh terhadap tingkat akurasi dari modul Teseo-LIV3FL. Tingkat persebaran satelit yang lebih tersebar juga sejalan dengan nilai PDOP pada Tabel \ref{Tab: indoor-table}. Hal tersebut dikarenakan nilai dari PDOP juga dipengaruhi oleh geometri dari satelit.
+Sama seperti pada pengujian skenario \textit{basement}, modul Teseo-LIV3FL juga dapat menerima isyarat dari keempat konstelasi yang telah diatur sebelumnya seperti ditunjukan pada Gambar \ref{Fig: indoor-sats_dop}. Dari hasil pengujian ini, terlihat bahwa konstelasi dengan jumlah satelit terbanyak adalah BeiDou dan GPS, yang dapat memberikan sinyal yang lebih kuat dan lebih akurat dalam mendukung navigasi satelit. Sementara itu, jumlah satelit pada konstelasi QZSS hampir selalu konstan pada dua buah satelit, sedangkan konstelasi Galileo dapat bervariasi antara nol hingga empat buah satelit tergantung pada kondisi lingkungan di sekitar pengujian. 
 
 \begin{figure}[H]
 	\centering
@@ -289,11 +283,11 @@ Sama seperti pada pengujian skenario \textit{basement}, modul Teseo-LIV3FL juga 
 	\label{Fig: indoor-sky_plot}
 \end{figure}
 
-Tingkat kepresisian modul Teseo-LIV3FL adalah sebesar 8,46 meter (MAD) dan 12,14 meter (CEP). Nilai tersebut menunjukan peningkatan sebesar 65,6\% untuk MAD dan 62,9\% untuk CEP jika dibandingkan pada skenario \textit{basement}. Rata-rata nilai HDOP pada pengujian ini adalah 2,79 yang menunjukan bahwa hasil pengukuran sudah baik dan tepat berada pada standar minimum pengukuran. Struktur beton yang lebih sedikit dapat membantu untuk meningkatkan performa GNSS terlihat pada semakin banyak satelit yang dapat digunakan dan penurunan pada nilai CEP dan ketiga nilai DOP.
+\textit{Sky plot} pada Gambar \ref{Fig: indoor-sky_plot} menunjukan bahwa persebaran satelit pada skenario ini lebih tersebar merata jika dibandingkan dengan skenario sebelumnya. Persebaran satelit yang lebih baik tentunya berpengaruh terhadap tingkat akurasi dari modul Teseo-LIV3FL. Tingkat persebaran satelit yang lebih tersebar juga sejalan dengan nilai PDOP pada Tabel \ref{Tab: indoor-table}. Hal tersebut dikarenakan nilai dari PDOP juga dipengaruhi oleh geometri dari satelit.
+
+Tingkat kepresisian modul Teseo-LIV3FL adalah sebesar 8,46 meter (MAD) dan 12,14 meter (CEP). Penurunan nilai CEP dan MAD pada skenario dalam ruangan jika dibandingkan pada skenario \textit{basement} menunjukan bahwa performa modul Teseo-LIV3FL pada skenario ini lebih baik jika dibandingkan dengan skenario \textit{basement}. Rata-rata nilai HDOP pada pengujian ini adalah 2,79 yang menunjukan bahwa hasil pengukuran sudah baik dan tepat berada pada standar minimum pengukuran. Struktur beton yang lebih sedikit dapat membantu untuk meningkatkan performa GNSS terlihat pada semakin banyak satelit yang dapat digunakan dan penurunan pada nilai CEP dan ketiga nilai DOP.
 
 \subsection{Skenario Ruangan Semi-Terbuka}
-Pengujian skenario ruangan semi-terbuka dilakukan untuk mengevaluasi performa modul Teseo-LIV3FL di luar ruangan dengan adanya penghalang seperti pohon, atap, dan lain sebagainya. Titik pengujian berada di Selasar Grha Sabha Pramana, sebuah ruangan semi-terbuka yang terdapat penghalang berupa tingkat dua Grha Sabha Pramana serta pepohonan yang berada di sekitar ruangan. Kondisi lingkungan yang ada pada pengujian ini jauh berbeda dengan pengujian dalam ruangan atau pengujian di \textit{basement}. Gambar \ref{Fig: semioutdoor-keadaan} menunjukan pengujian skenario ruangan semi terbuka.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg}
@@ -301,7 +295,7 @@ Pengujian skenario ruangan semi-terbuka dilakukan untuk mengevaluasi performa mo
 	\label{Fig: semioutdoor-keadaan}
 \end{figure}
 
-Sama seperti hasil pengujian pada dua skenario sebelumnya, data koordinat garis lintang dan garis bujur pada pengujian skenario ruang semi terbuka tidak terdistribusi normal seperti ditunjukan oleh \textit{kernel density estimator} Gambar \ref{Fig:semioutdoor-distribution}. Oleh karena itu, pada pengujian ini juga akan dilakukan analisis statistik non-parametrik terhadap nilai MAD-nya. Nilai koordinat garis lintang pada pengujian ini berada pada rentang -7,769902 hingga -7,769962 dan 110,377433 hingga 110,377460 untuk koordinat garis bujurnya.
+Pengujian skenario ruangan semi-terbuka dilakukan untuk mengevaluasi performa modul Teseo-LIV3FL di luar ruangan dengan adanya penghalang seperti pohon, atap, dan lain sebagainya. Titik pengujian berada di Selasar Grha Sabha Pramana, sebuah ruangan semi-terbuka yang terdapat penghalang berupa tingkat dua Grha Sabha Pramana serta pepohonan yang berada di sekitar ruangan. Kondisi lingkungan yang ada pada pengujian ini jauh berbeda dengan pengujian dalam ruangan atau pengujian di \textit{basement}. Gambar \ref{Fig: semioutdoor-keadaan} menunjukan pengujian skenario ruangan semi terbuka.
 
 \begin{figure}[H]
 	\centering
@@ -312,7 +306,7 @@ Sama seperti hasil pengujian pada dua skenario sebelumnya, data koordinat garis 
 	\label{Fig:semioutdoor-distribution}
 \end{figure}
 
-Pada hasil pengujian yang ditunjukan oleh Tabel \ref{Tab: outdoor-table}, ditemukan bahwa terjadi penurunan pada ketiga nilai DOP seiring dengan peningkatan jumlah satelit yang digunakan, yang menunjukkan bahwa akurasi dari modul Teseo-LIV3FL semakin meningkat. Selain itu, nilai MAD dari modul ini juga mengalami peningkatan yang signifikan, dengan nilai 2,29 meter pada koordinat garis lintang, 2,02 meter pada koordinat garis bujur, dan 3,06 meter untuk MAD secara keseluruhan.
+Sama seperti hasil pengujian pada dua skenario sebelumnya, data koordinat garis lintang dan garis bujur pada pengujian skenario ruang semi terbuka tidak terdistribusi normal seperti ditunjukan oleh \textit{kernel density estimator} Gambar \ref{Fig:semioutdoor-distribution}. Oleh karena itu, pada pengujian ini juga akan dilakukan analisis statistik non-parametrik terhadap nilai MAD-nya. Nilai koordinat garis lintang pada pengujian ini berada pada rentang -7,770036$^{\circ}$ hingga -7,-7,769936$^{\circ}$ dan 110,377427$^{\circ}$ hingga 110,377460$^{\circ}$ untuk koordinat garis bujurnya.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian di Ruangan Semi Terbuka}
@@ -322,23 +316,23 @@ Pada hasil pengujian yang ditunjukan oleh Tabel \ref{Tab: outdoor-table}, ditemu
 		\hline
 		& \textbf{Minima} & \textbf{Maxima} & \textbf{Rata-rata} & \textbf{Standar Deviasi}\\
 		\hline 
-		HDOP & 0,80 & 1,40 & 0,91 & 0,12\\
-		VDOP & 1,20	& 2,70 & 1,49 & 0,23\\
-		PDOP & 1,50	& 3,00 & 1,75 & 0,25\\
-		CEP (m) & 7,28	& 18,86 & 13,83 & 5,49\\
-		Jumlah Satelit & 10 & 18 & 14,32 & 1,41\\
+		HDOP & 0,70 & 1,30 & 0,83 & 0,06\\
+		VDOP & 1,10	& 2,10 & 1,35 & 0,13\\
+		PDOP & 1,30	& 2,30 & 1,58 & 0,13\\
+		CEP (m) & 7,09	& 19,09 & 7,60 & 0,96\\
+		Jumlah Satelit & 14 & 19 & 16,68 & 0,92\\
 		\hline
-		\textbf{MAD-x (m)} & & \multicolumn{2}{c}{\centering 2,29} & \\
+		\textbf{MAD-x (m)} & & \multicolumn{2}{c}{\centering 1,60} & \\
 		\hline
-		\textbf{MAD-y (m)} & & \multicolumn{2}{c}{\centering 2,02} & \\
+		\textbf{MAD-y (m)} & & \multicolumn{2}{c}{\centering 0,96} & \\
 		\hline
-		\textbf{MAD (m)} & & \multicolumn{2}{c}{\centering 3,06} & \\
+		\textbf{MAD (m)} & & \multicolumn{2}{c}{\centering 1,87} & \\
 		\hline
 	\end{tabular}
 	\label{Tab: semioutdoor-table}
 \end{table}
 
-Grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: semioutdoor-cep} juga menunjukan bahwa terjadi peningkatan tingkat kepresisian jika dibandingkan dengan dua skenario sebelumnya. Pada skenario ini, nilai CEP paling rendah dapat menyentuh angka 7,28 meter. Secara visual, grafik CEP pada skenario ini cenderung fluktuatif pada pukul 10.40.00 UTC. Meskipun lebih fluktuatif, standar deviasi nilai CEP pada skenario ini tetap lebih rendah jika dibandingkan dengan dua skenario sebelumnya. Hal tersebut diakibatkan karena lonjakan yang terjadi tidak sebesar dua skenario sebelumnya.
+Pada hasil pengujian yang ditunjukan oleh Tabel \ref{Tab: outdoor-table}, ditemukan bahwa terjadi penurunan pada ketiga nilai DOP seiring dengan peningkatan jumlah satelit yang digunakan, yang menunjukkan bahwa akurasi dari modul Teseo-LIV3FL semakin meningkat. Selain itu, nilai MAD dari modul ini juga mengalami penurunan yang signifikan, dengan nilai 1,60 meter pada koordinat garis lintang, 0,96 meter pada koordinat garis bujur, dan 1,87 meter untuk MAD secara keseluruhan.
 
 \begin{figure}[H]
 	\centering
@@ -347,7 +341,7 @@ Grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: semioutdoor-cep} juga men
 	\label{Fig: semioutdoor-cep}
 \end{figure}
 
-Jika dilihat pada grafik SNR-nya, lonjakan nilai CEP terjadi bersamaan dengan menurunnya SNR dari setiap konstelasi seperti ditunjukan oleh Gambar \ref{Fig: semioutdoor-snr}. Dapat dilihat bahwa pada konstelasi GPS dan BeiDou terjadi penurunan nilai SNR hingga 5 dB. Konstelasi QZSS mengalami penurunan nilai SNR sebanyak 5 s.d. 10 dB. Terakhir, konstelasi Galileo mengalami penurunan paling signifikan, yaitu dapat mencapai 5 dB dengan beberapa titik kosong yang menunjukan modul Teseo-LIV3FL tidak dapat menerima isyarat dari konstelasi Galileo.
+Grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: semioutdoor-cep} juga menunjukan bahwa terjadi peningkatan tingkat kepresisian jika dibandingkan dengan dua skenario sebelumnya. Pada skenario ini, nilai CEP paling rendah dapat menyentuh angka 7,09 meter. Secara visual, nilai CEP pada skenario ini sempat berada dalam titik tertingginya dan menurun hinggai mencapai \textit{steady state} pada pukul 02.55.00 UTC. Standar deviasi yang rendah menunjukan bahwa nilai CEP-nya sangat dekat dengan rata-ratanya.
 
 \begin{figure}[H]
 	\centering
@@ -356,7 +350,7 @@ Jika dilihat pada grafik SNR-nya, lonjakan nilai CEP terjadi bersamaan dengan me
 	\label{Fig: semioutdoor-snr}
 \end{figure}
 
-Pada pengujian ini, urutan konstelasi dengan jumlah satelit paling banyak hingga paling sedikit adalah GPS, BeiDou, QZSS, dan BeiDou. Rata-rata jumlah satelit yang digunakan adalah 14,32 dengan jumlah terbanyak 18 buah seperti ditunjukan pada Tabel \ref{Tab: semioutdoor-table}. Visibilitas satelit pada skenario ruangan semi terbuka lebih baik jika dibandingkan dengan dua skenario sebelumnya. Gambar \ref{Fig: semioutdoor-sats_dop} menunjukan bahwa konstelasi dengan visibilitas satelit paling banyak adalah konstelasi BeiDou dan GPS.
+Jika dilihat pada grafik SNR-nya, seluruh konstelasi GNSS selain Galileo memiliki nilai SNR yang relatif stabil seperti ditunjukan oleh Gambar \ref{Fig: semioutdoor-snr}. Dapat dilihat bahwa pada konstelasi QZSS menunjukan nilai SNR yang paling tinggi, tetapi karena visibilitas satelitnya tidak sebanyak GPS dan BeiDou maka tidak memberikan pengaruh yang cukup signifikan. Jika diperhatikan, SNR pada konstelasi Galileo sangatlah fluktuatif. Hal tersebut bersamaan dengan visibilitas satelitnya yang juga cenderung fluktuatif.
 
 \begin{figure}[H]
 	\centering
@@ -366,7 +360,7 @@ Pada pengujian ini, urutan konstelasi dengan jumlah satelit paling banyak hingga
 	\label{Fig: semioutdoor-sats_dop}
 \end{figure}
 
-Jika ditinjau dari nilai DOP, ketiga nilai DOP juga mengalami penurunan secara signifikan. Penurunan nilai HDOP menunjukan terdapat peningkatan akurasi pada hasil pembacaan di bidang horizontal, sedangkan penurunan nilai VDOP menunjukan peningkatan akurasi pada pembacaan ketinggian. Gambar \ref{Fig: semioutdoor-sky_plot} menunjukan persebaran satelit di langit sudah mencakup seluruh kuadran lingkaran. Hal tersebut juga didukung oleh nilai PDOP yang lebih rendah.
+Pada pengujian ini, urutan konstelasi dengan jumlah satelit paling banyak hingga paling sedikit adalah GPS, BeiDou, QZSS, dan BeiDou. Rata-rata jumlah satelit yang digunakan adalah 16,68 dengan jumlah terbanyak 19 buah seperti ditunjukan pada Tabel \ref{Tab: semioutdoor-table}. Visibilitas satelit pada skenario ruangan semi terbuka lebih baik jika dibandingkan dengan dua skenario sebelumnya. Gambar \ref{Fig: semioutdoor-sats_dop} menunjukan bahwa konstelasi dengan visibilitas satelit paling banyak adalah konstelasi BeiDou dan GPS.
 
 \begin{figure}[H]
 	\centering
@@ -376,11 +370,12 @@ Jika ditinjau dari nilai DOP, ketiga nilai DOP juga mengalami penurunan secara s
 	\label{Fig: semioutdoor-sky_plot}
 \end{figure}
 
-Berdasarkan hasil yang didapat, pada pengujian skenario ini dapat dilihat bahwa penempatan modul Teseo-LIV3FL pada lingkungan dengan penghalang yang lebih sedikit dapat meningkatkan tingkat akurasinya. Rata-rata nilai PDOP dan VDOP sudah berada dalam rentang sangat baik dan HDOP berada dalam rentang ideal yang artinya sudah dapat digunakan dalam aplikasi yang sensitif terhadap ketelitian. Selain itu, nilai MAD pada skenario ini adalah 3,06 meter dan 13,83 meter untuk CEP. Nilai tersebut menunjukan peningkatan sebesar 63,8\% untuk MAD dan 51,2\% untuk CEP.
+
+Jika ditinjau dari nilai DOP, ketiga nilai DOP juga mengalami penurunan secara signifikan. Penurunan nilai HDOP menunjukan terdapat peningkatan akurasi pada hasil pembacaan di bidang horizontal, sedangkan penurunan nilai VDOP menunjukan peningkatan akurasi pada pembacaan ketinggian. Gambar \ref{Fig: semioutdoor-sky_plot} menunjukan persebaran satelit di langit sudah mencakup seluruh kuadran lingkaran. Hal tersebut juga didukung oleh nilai PDOP yang lebih rendah.
+
+Berdasarkan hasil yang didapat, pada pengujian skenario ini dapat dilihat bahwa penempatan modul Teseo-LIV3FL pada lingkungan dengan penghalang yang lebih sedikit dapat meningkatkan tingkat akurasinya. Rata-rata nilai PDOP dan VDOP sudah berada dalam rentang sangat baik dan HDOP berada dalam rentang ideal yang artinya sudah dapat digunakan dalam aplikasi yang sensitif terhadap ketelitian. Selain itu, nilai MAD pada skenario ini adalah 1,87 meter dan 7,60 meter untuk CEP. Penurunan nilai CEP dan MAD menunjukan bahwa terjadi peningkatan pada tingkat kepresisiannya.
 
 \subsection{Skenario Ruangan Terbuka}
-Pengujian skenario ruangan terbuka bertujuan untuk meninjau performa modul Teseo-LIV3FL di ruangan terbuka. Titik pengujian berada di Lapangan Pancasila Universitas Gadjah Mada dengan kondisi langit cerah. Pemilihan lokasi Lapangan Pancasila bertujuan untuk meminimalisasi penghalang seperti gedung dan pepohonan. Gambar \ref{Fig: outdoor-keadaan} menunjukan pengujian skenasio ruangan terbuka. Berdasarkan penelitian \cite{Lu2018}, lingkungan dengan penghalang paling sedikit seperti skenario ruangan terbuka dapat meningkatkan ketelitian dan kepresisian dari modul GNSS.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/4-skenario-outdoor/keadaan.jpg}
@@ -388,7 +383,7 @@ Pengujian skenario ruangan terbuka bertujuan untuk meninjau performa modul Teseo
 	\label{Fig: outdoor-keadaan}
 \end{figure}
 
-Distribusi koordinat hasil pengujian luar ruangan ditunjukan oleh Gambar \ref{Fig:outdoor-distribution}. Koordinat garis lintang berada pada rentang -7,770949 hingga -7,770883, sedangkan koordinat garis bujur berada pada rentang 110,377283 hingga 110,377315. Sama seperti tiga pengujian sebelumnya, berdasarkan uji Shapiro-Wilk, koordinat pada hasil pengujian ruang terbuka tidak terdistribusi normal. Karena data koordinat tidak terdistribusi normal maka akan dilakukan analisis terhadap nilai MAD-nya juga.
+Pengujian skenario ruangan terbuka bertujuan untuk meninjau performa modul Teseo-LIV3FL di ruangan terbuka. Titik pengujian berada di Lapangan Pancasila Universitas Gadjah Mada dengan kondisi langit cerah. Pemilihan lokasi Lapangan Pancasila bertujuan untuk meminimalisasi penghalang seperti gedung dan pepohonan. Gambar \ref{Fig: outdoor-keadaan} menunjukan pengujian skenasio ruangan terbuka. Berdasarkan penelitian \cite{Lu2018}, lingkungan dengan penghalang paling sedikit seperti skenario ruangan terbuka dapat meningkatkan ketelitian dan kepresisian dari modul GNSS.
 
 \begin{figure}[H]
 	\centering
@@ -399,7 +394,7 @@ Distribusi koordinat hasil pengujian luar ruangan ditunjukan oleh Gambar \ref{Fi
 	\label{Fig:outdoor-distribution}
 \end{figure}
 
-Tabel \ref{Tab: outdoor-table} menunjukan bahwa pada skenario ruang terbuka memberikan hasil akurasi yang lebih tinggi. Rata-rata nilai DOP yang didapat berada pada rentang sangat baik s.d. ideal. Rata-rata nilai PDOP yang didapat adalah sebesar 1,12 dengan PDOP terkecil adalah 0,90 dan terbesarnya 1,60. Nilai PDOP yang kecil didukung oleh persebaran satelit di langit yang lebih banyak mencakup bagian lingkaran pada Gambar \ref{Fig: outdoor-skyplot}. Tingkat kepresisian pada skenario ini ditunjukan oleh nilai MAD-nya, yaitu 0,94 meter untuk koordinat garis lintang, 0,76 meter pada garis bujur, dan 1,21 meter untuk keseluruhannya.
+Distribusi koordinat hasil pengujian luar ruangan ditunjukan oleh Gambar \ref{Fig:outdoor-distribution}. Koordinat garis lintang berada pada rentang -7,770949 hingga -7,770883, sedangkan koordinat garis bujur berada pada rentang 110,377283 hingga 110,377315. Sama seperti tiga pengujian sebelumnya, berdasarkan uji Shapiro-Wilk, koordinat pada hasil pengujian ruang terbuka tidak terdistribusi normal. Karena data koordinat tidak terdistribusi normal maka akan dilakukan analisis terhadap nilai MAD-nya juga.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian Ruangan Terbuka}
@@ -432,7 +427,7 @@ Tabel \ref{Tab: outdoor-table} menunjukan bahwa pada skenario ruang terbuka memb
 	\label{Fig: outdoor-skyplot}
 \end{figure}
 
-Nilai CEP yang didapat pada pengujian ini adalah nilai CEP terbaik dari tiga skenario sebelumnya. Tren nilai CEP cenderung stabil dan tidak ada lonjakan yang signifikan seperti ditunjukan oleh Gambar \ref{Fig: outdoor-cep}. Hal tersebut sejalan dengan nilai standar deviasinya yang sangat rendah. Pada pengujian ini, nilai CEP dapat menyentuh nilai 5,22 meter dan paling tinggi sebesar 6,80 meter. Meskipun masih lebih tinggi dari \textit{datasheet} (1,50 meter), nilai tersebut sudah cukup untuk aplikasi pelacak Bus Trans Gadjah Mada.
+Tabel \ref{Tab: outdoor-table} menunjukan bahwa pada skenario ruang terbuka memberikan hasil akurasi yang lebih tinggi. Rata-rata nilai DOP yang didapat berada pada rentang sangat baik s.d. ideal. Rata-rata nilai PDOP yang didapat adalah sebesar 1,12 dengan PDOP terkecil adalah 0,90 dan terbesarnya 1,60. Nilai PDOP yang kecil didukung oleh persebaran satelit di langit yang lebih banyak mencakup bagian lingkaran pada Gambar \ref{Fig: outdoor-skyplot}. Tingkat kepresisian pada skenario ini ditunjukan oleh nilai MAD-nya, yaitu 0,94 meter untuk koordinat garis lintang, 0,76 meter pada garis bujur, dan 1,21 meter untuk keseluruhannya.
 
 \begin{figure}[H]
 	\centering
@@ -441,7 +436,7 @@ Nilai CEP yang didapat pada pengujian ini adalah nilai CEP terbaik dari tiga ske
 	\label{Fig: outdoor-cep}
 \end{figure}
 
-Jika meninjau nilai SNR-nya, terlihat bahwa nilai SNR pada skenario ini tidak berbeda jauh dengan skenario ruangan semi-terbuka. Seperti ditunjukan oleh Gambar \ref{Fig: outdoor-snr}, nilai SNR dari seluruh konstelasi mengalami peningkatan yang cukup signifikan, yaitu mencapai 5 dB. Jumlah data SNR pada konstelasi Galileo tidak berbeda jauh dengan skenario ruangan semi-terbuka, tetapi terjadi peningkatan terhadap nilai SNR terkecilnya, yaitu 10 dB. Selain itu, peningkatan visibilitas satelit yang sangat signifikan juga mempengaruhi nilai CEP pada skenario ini. 
+Nilai CEP yang didapat pada pengujian ini adalah nilai CEP terbaik dari tiga skenario sebelumnya. Tren nilai CEP cenderung stabil dan tidak ada lonjakan yang signifikan seperti ditunjukan oleh Gambar \ref{Fig: outdoor-cep}. Hal tersebut sejalan dengan nilai standar deviasinya yang sangat rendah. Pada pengujian ini, nilai CEP dapat menyentuh nilai 5,22 meter dan paling tinggi sebesar 6,80 meter. Meskipun masih lebih tinggi dari \textit{datasheet} (1,50 meter), nilai tersebut sudah cukup untuk aplikasi pelacak Bus Trans Gadjah Mada.
 
 \begin{figure}[H]
 	\centering
@@ -450,7 +445,7 @@ Jika meninjau nilai SNR-nya, terlihat bahwa nilai SNR pada skenario ini tidak be
 	\label{Fig: outdoor-snr}
 \end{figure}
 
-Gambar \ref{Fig: outdoor-dop_sats} menunjukan tren ketiga nilai DOP dan visibilitas satelit selama satu jam. Visibilitas satelit terkecil adalah tujuh belas satelit dan paling banyak adalah dua puluh lima satelit. Konstelasi GPS dan BeiDou masih menjadi konstelasi paling dominan, diikuti oleh konstelasi QZSS dengan visibilitas satelit stabil di antara dua sampai dengan lima satelit. Sementara itu, visibilitas satelit pada konstelasi Galileo bervariasi antara nol hingga dua satelit saja. Terdapat sedikit lonjakan pada nilai DOP, tetapi lonjakan tersebut tidak terlalu signifikan karena masih berada dalam kategori sangat baik.
+Jika meninjau nilai SNR-nya, terlihat bahwa nilai SNR pada skenario ini tidak berbeda jauh dengan skenario ruangan semi-terbuka. Seperti ditunjukan oleh Gambar \ref{Fig: outdoor-snr}, nilai SNR dari seluruh konstelasi mengalami peningkatan yang cukup signifikan, yaitu mencapai 5 dB. Jumlah data SNR pada konstelasi Galileo tidak berbeda jauh dengan skenario ruangan semi-terbuka, tetapi terjadi peningkatan terhadap nilai SNR terkecilnya, yaitu 10 dB. Selain itu, peningkatan visibilitas satelit yang sangat signifikan juga mempengaruhi nilai CEP pada skenario ini. 
 
 \begin{figure}[H]
 	\centering
@@ -459,15 +454,13 @@ Gambar \ref{Fig: outdoor-dop_sats} menunjukan tren ketiga nilai DOP dan visibili
 	\label{Fig: outdoor-dop_sats}
 \end{figure}
 
-Hasil pengujian menunjukkan bahwa skenario pengujian di ruang terbuka menghasilkan hasil pengukuran yang paling baik dibandingkan dengan tiga pengujian sebelumnya. Dari pengujian tersebut, didapatkan nilai MAD sebesar 1,21 meter dan CEP rata-rata sebesar 6,12 meter. Selain itu, jika dibandingkan dengan pengujian semi-terbuka, nilai MAD pada skenario ini meningkat sebesar 85,7\% untuk MAD dan 49,6\% untuk CEP. Hal ini menunjukkan bahwa pengujian di ruang terbuka memberikan hasiil yang lebih baik dan stabil bagi modul GNSS dalam pengukuran. 
+Gambar \ref{Fig: outdoor-dop_sats} menunjukan tren ketiga nilai DOP dan visibilitas satelit selama satu jam. Visibilitas satelit terkecil adalah tujuh belas satelit dan paling banyak adalah dua puluh lima satelit. Konstelasi GPS dan BeiDou masih menjadi konstelasi paling dominan, diikuti oleh konstelasi QZSS dengan visibilitas satelit stabil di antara dua sampai dengan lima satelit. Sementara itu, visibilitas satelit pada konstelasi Galileo bervariasi antara nol hingga dua satelit saja. Terdapat sedikit lonjakan pada nilai DOP, tetapi lonjakan tersebut tidak terlalu signifikan karena masih berada dalam kategori sangat baik.
+
+Hasil pengujian menunjukkan bahwa skenario pengujian di ruang terbuka menghasilkan hasil pengukuran yang paling baik dibandingkan dengan tiga pengujian sebelumnya. Dari pengujian tersebut, didapatkan nilai MAD sebesar 1,21 meter dan CEP rata-rata sebesar 6,12 meter. Jika dibandingkan dengan tiga skenario sebelumnya, skenario ruang terbuka menunjukkan hasil pengujian paling baik. Oleh karena itu, untuk mendapatkan hasil pengukuran terbaik maka modul Teseo-LIV3FL harus diletakan di ruangan terbuka.
 
 \section{Pengujian \textit{Geofencing}}
 \subsection{\textit{Geofencing} Wilayah Universitas Gadjah Mada}
 Tujuan dari pengujian fitur \textit{geofencing} di wilayah Universitas Gadjah Mada adalah untuk meninjau apakah fitur ini dapat berfungsi dengan baik untuk menentukan status \textit{geofencing} pengguna saat ini. Dalam pengujian ini, wilayah \textit{geofencing} didefinisikan sebagai lingkaran dengan jari-jari satu kilo meter dengan pusat di titik (-7,771376; 110,377493), dan delapan belas titik acak di sekitar Universitas Gadjah Mada digunakan sebagai titik pengujian.
-
-Dalam pengujian ini, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada sistem sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika sistem mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
-
-Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditunjukkan oleh simbol berwarna merah, dan titik berwarna hijau untuk kondisi sebaliknya. Hal ini menunjukkan bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada sudah berjalan dengan baik dan mampu mendeteksi status \textit{geofencing} bus di wilayah Universitas Gadjah Mada dengan baik.
 
 \begin{figure}[H]
 	\centering
@@ -476,28 +469,32 @@ Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditun
 	\label{Fig: geofencing-1}
 \end{figure}
 
-\subsection{\textit{Geofencing} Halte}
-Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh Bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
+Dalam pengujian ini, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada sistem sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika sistem mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
 
+Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditunjukkan oleh simbol berwarna merah, dan titik berwarna hijau untuk kondisi sebaliknya. Hal ini menunjukkan bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada sudah berjalan dengan baik dan mampu mendeteksi status \textit{geofencing} bus di wilayah Universitas Gadjah Mada dengan baik.
+
+\subsection{\textit{Geofencing} Halte}
 \begin{table}[H]
 	\caption{Koordinat Halte Pengujian \textit{Geofencing} Halte}
 	\vspace{0.5em}
 	\centering
-	\begin{tabular}{ccc}
+	\begin{tabular}{cc}
 		\hline
-		\textbf{Halte} &\textbf{Garis Lintang} & \textbf{Garis Bujur} \\
-		\hline 
-		6 & -7.769693& 110.373557 \\
-		8 &-7.766077&110.374062\\ 
-		11 &-7.766508&110.3706700\\
-		13 & -7.766407&110.3740824\\
-		17 &-7.769712&110.385479\\ 
-		20 & -7.771089&110.381336\\
-		21 & -7.772668&110.379638\\
+		\textbf{Halte} &\textbf{Koordinat} \\
+		\hline
+		6 & -7,769693; 110,373557 \\
+		8 &-7,766077; 110,374062\\ 
+		11 &-7,766508; 110,3706700\\
+		13 & -7,766407; 110,3740824\\
+		17 &-7,769712; 110,385479\\ 
+		20 & -7,771089; 110,381336\\
+		21 & -7,772668; 110,379638\\
 		\hline
 	\end{tabular}
 	\label{Tab: geofencing-2}
 \end{table}
+
+Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh Bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
 
 Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasilnya dicatat. Hasil pengujian \textit{geofencing} pada halte uji ditunjukan oleh Gambar \ref{Fig: geofencing-2}. Lingkaran berwarna merah pada gambar menunjukan wilayah \textit{geofencing} setiap halte yang berupa lingkaran dengan jari-jari sepuluh meter, sedangkan lingkaran biru merupakan posisi pengamatan. Adapun hasil yang didapat adalah sebagai berikut:
 
@@ -511,8 +508,6 @@ Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasi
 02:07:08,-7.772746,110.379647,170.95,13,1.0,1.6,1.9,21,1.0
 \end{lstlisting}
 
-Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah sesuai. Jika dilihat pada Gambar \ref{Fig: geofencing-2}, titik yang terbaca juga berada di dalam wilayah geofencing setiap halte. Oleh karena itu, dapat dlihat bahwa fitur \textit{geofencing} halte sudah dapat mendeteksi posisi bus jika sedang berhenti di halte dengan baik.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/geofencing/halte.png}
@@ -520,11 +515,9 @@ Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah ses
 	\label{Fig: geofencing-2}
 \end{figure}
 
+Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah sesuai. Jika dilihat pada Gambar \ref{Fig: geofencing-2}, titik yang terbaca juga berada di dalam wilayah geofencing setiap halte. Oleh karena itu, dapat dlihat bahwa fitur \textit{geofencing} halte sudah dapat mendeteksi posisi bus jika sedang berhenti di halte dengan baik.
+
 \section{Pengujian di Bus Trans Gadjah Mada}
-Pengujian secara langsung di Bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam. Peta rute 1B Trans Gadjah Mada dapat dilihat pada Gambar \ref{Fig: peta-1b}.
-
-Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacakan dengan rute yang telah diberikan, hubungan HDOP dengan visibilitas satelit, dan analisis korelasi setiap variabelnya. Hasil pelacakan mencakup hasil pengukuran sistem dalam mengidentifikasi lokasi kendaraan. Hubungan HDOP dengan visibilitas satelit dibahas untuk meninjau performa sistem di bawah kondisi yang berbeda-beda. Analisis korelasi akan dilakukan untuk mengetahui keterkaitan antara parameter yang diperoleh oleh sistem.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8.5cm]{contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg}
@@ -532,10 +525,11 @@ Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacaka
 	\label{Fig: peta-1b}
 \end{figure}
 
+Pengujian secara langsung di Bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam. Peta rute 1B Trans Gadjah Mada dapat dilihat pada Gambar \ref{Fig: peta-1b}.
+
+Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacakan dengan rute yang telah diberikan, hubungan HDOP dengan visibilitas satelit, dan analisis korelasi setiap variabelnya. Hasil pelacakan mencakup hasil pengukuran sistem dalam mengidentifikasi lokasi kendaraan. Hubungan HDOP dengan visibilitas satelit dibahas untuk meninjau performa sistem di bawah kondisi yang berbeda-beda. Analisis korelasi akan dilakukan untuk mengetahui keterkaitan antara parameter yang diperoleh oleh sistem.
+
 \subsection{Ikhtisar Data Hasil Pengujian}
-
-Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu waktu, koordinat garis lintang dan garis bujur, visibilitas satelit, ketinggian, HDOP, dan status \textit{geofencing} saat ini. Pengambilan data dilakukan setiap dua puluh detik sekalisehingga didapat seratus enam puluh lima baris data. Selanjutnya, dilakukan uji statistik Saphiro-Wilk terhadap seluruh parameter, kecuali waktu dan status \textit{geofencing} saat ini dan hasilnya menunjukkan bahwa nilai $p$ dari seluruh parameter tersebut bernilai kurang dari 0.05. Hal ini menunjukkan bahwa seluruh parameter tersebut tidak terdistribusi secara normal. Selain itu, dapat dilihat pada Gambar \ref{Fig: moving-distribusi} bahwa setiap parameter terdistribusi dengan berbagai macam pola distribusi yang berbeda-beda.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=14cm]{contents/chapter-4/pengujian-bergerak/distribusi.png}
@@ -543,7 +537,7 @@ Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu wak
 	\label{Fig: moving-distribusi}
 \end{figure}
 
-Setelah itu, parameter koordinat garis lintang dan garis bujur akan di-\textit{plot} pada peta. Plot setiap titik koordinat ditunjukan oleh simbol lingkaran hitam pada Gambar \ref{Fig: moving-tracked-route}. Titik berwarna merah menunjukan titik awal perjalanan bus, titik berwarna hijau menunjukan titik akhir perjalanan bus, dan titik hitam menunjukan posisi bus pada waktu yang berbeda selama perjalanan. Dapat dilihat bahwa hasil perhitungan lokasi sistem sudah mendekati rute yang dipublikasikan oleh Direktorat Pengelolaan dan Pemeliharaan Aset (DPPA) Universitas Gadjah Mada.
+Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu waktu, koordinat garis lintang dan garis bujur, visibilitas satelit, ketinggian, HDOP, dan status \textit{geofencing} saat ini. Pengambilan data dilakukan setiap dua puluh detik sekalisehingga didapat seratus enam puluh lima baris data. Selanjutnya, dilakukan uji statistik Saphiro-Wilk terhadap seluruh parameter, kecuali waktu dan status \textit{geofencing} saat ini dan hasilnya menunjukkan bahwa nilai $p$ dari seluruh parameter tersebut bernilai kurang dari 0.05. Hal ini menunjukkan bahwa seluruh parameter tersebut tidak terdistribusi secara normal. Selain itu, dapat dilihat pada Gambar \ref{Fig: moving-distribusi} bahwa setiap parameter terdistribusi dengan berbagai macam pola distribusi yang berbeda-beda.
 
 \begin{figure}[H]
 	\centering
@@ -552,7 +546,7 @@ Setelah itu, parameter koordinat garis lintang dan garis bujur akan di-\textit{p
 	\label{Fig: moving-tracked-route}
 \end{figure}
 
-Data yang tersedia selama perjalanan bus tidak hanya mencakup koordinat posisi, tetapi juga waktu kedatangan bus pada setiap halte. Hal ini dapat dilihat pada Tabel 4.7 yang membandingkan waktu kedatangan bus pada setiap halte berdasarkan jadwal dan pengujian.Terlihat bahwa waktu kedatangan bus selama pengujian cenderung lebih cepat dibandingkan dengan waktu pada jadwal, yaitu sekitar satu hingga enam menit lebih cepat.
+Setelah itu, parameter koordinat garis lintang dan garis bujur akan di-\textit{plot} pada peta. Plot setiap titik koordinat ditunjukan oleh simbol lingkaran hitam pada Gambar \ref{Fig: moving-tracked-route}. Titik berwarna merah menunjukan titik awal perjalanan bus, titik berwarna hijau menunjukan titik akhir perjalanan bus, dan titik hitam menunjukan posisi bus pada waktu yang berbeda selama perjalanan. Dapat dilihat bahwa hasil perhitungan lokasi sistem sudah mendekati rute yang dipublikasikan oleh Direktorat Pengelolaan dan Pemeliharaan Aset (DPPA) Universitas Gadjah Mada.
 
 \begin{longtblr}[
 	caption = {Waktu Kedatangan Bus Trans Gadjah Mada Rute 1B di Setiap Halte},
@@ -585,13 +579,12 @@ Data yang tersedia selama perjalanan bus tidak hanya mencakup koordinat posisi, 
 	10             & 09.52.00              & 09.50.00              & 2 menit          \\
 	11             & 09.54.00              & 09.51.00              & 3 menit          \\
 	12             & 09.55.00              & 09.52.00              & 3 menit          \\
-	13             & 09.57.0               & 09.52.00              & 5 menit          
+	13             & 09.57.00              & 09.52.00              & 5 menit          
 \end{longtblr}
 
+Data yang tersedia selama perjalanan bus tidak hanya mencakup koordinat posisi, tetapi juga waktu kedatangan bus pada setiap halte. Hal ini dapat dilihat pada Tabel 4.7 yang membandingkan waktu kedatangan bus pada setiap halte berdasarkan jadwal dan pengujian.Terlihat bahwa waktu kedatangan bus selama pengujian cenderung lebih cepat dibandingkan dengan waktu pada jadwal, yaitu sekitar satu hingga enam menit lebih cepat.
+
 \subsection{Analisis Kolerasi}
-
-Analisis korelasi dapat memberikan wawasan yang lebih dalam mengenai hubungan atau korelasi setiap parameter pada hasil pengujian. Berdasarkan uji statistik Saphiro-Wilk yang dilakukan pada bagian sebelumnya, didapat bahwa seluruh parameter hasil pengujian tidak terdistribusi normal. Oleh karena itu, dibutuhkan metode pengujian non-parametrik. Pada bagian ini digunakan uji korelasi Pearson untuk mengetahui korelasi antara setiap parameter. Uji korelasi Pearson dapat digunakan untuk data dengan data yang tidak terdistribusi normal dan lebih kuat terhadap pencilan \cite{Schober2018}. Klasifikasi nilai korelasi $r$ ditunjukan oleh Tabel \ref{Tab: korelasi-table}.
-
 \begin{table}[H]
 	\caption{Nilai Korelasi $r$ \cite{Carlton2012}}
 	\vspace{0.5em}
@@ -608,7 +601,7 @@ Analisis korelasi dapat memberikan wawasan yang lebih dalam mengenai hubungan at
 	\label{Tab: korelasi-table}
 \end{table}
 
-Nilai korelasi dari lima parameter, yaitu visibilitas satelit, ketinggian, HDOP, VDOP dan PDOP ditunjukan oleh Gambar \ref{Fig: moving-corr}. Korelasi ketinggian dengan empat parameter lainnya menunjukan tingkat korelasi yang rendahsehingga parameter ketinggian tidak berdampak dengan hasil pengujian.  Visibilitas satelit dengan HDOP, VDOP, dan PDOP memiliki hubungan korelasi negatif. Korelasi visibilitas satelit dengan HDOP menunjukan korelasi yang kuat, sedangkan korelasi visibilitas satelit dengan dua nilai DOP lainnya menunjukan tingkat korelasi sedang. Hal tersebut menunjukan bahwa semakin banyak visibilitas satelit maka ketiga nilai DOP akan cenderung menurun. Terakhir, parameter PDOP dengan HDOP dan VDOP memiliki tingkat korelasi yang tinggi. Hal tersebut diakibatkan karena nilai PDOP adalah tingkat akurasi pada tiga dimensisehingga nilai PDOP akan dipengaruhi oleh HDOP dan VDOP yang merupakan tingkat akurasi pada bidang horizontal dan vertikal.
+Analisis korelasi dapat memberikan wawasan yang lebih dalam mengenai hubungan atau korelasi setiap parameter pada hasil pengujian. Berdasarkan uji statistik Saphiro-Wilk yang dilakukan pada bagian sebelumnya, didapat bahwa seluruh parameter hasil pengujian tidak terdistribusi normal. Oleh karena itu, dibutuhkan metode pengujian non-parametrik. Pada bagian ini digunakan uji korelasi Pearson untuk mengetahui korelasi antara setiap parameter. Uji korelasi Pearson dapat digunakan untuk data dengan data yang tidak terdistribusi normal dan lebih kuat terhadap pencilan \cite{Schober2018}. Klasifikasi nilai korelasi $r$ ditunjukan oleh Tabel \ref{Tab: korelasi-table}.
 
 \begin{figure}[H]
 	\centering
@@ -617,14 +610,13 @@ Nilai korelasi dari lima parameter, yaitu visibilitas satelit, ketinggian, HDOP,
 	\label{Fig: moving-corr}
 \end{figure}
 
+Nilai korelasi dari lima parameter, yaitu visibilitas satelit, ketinggian, HDOP, VDOP dan PDOP ditunjukan oleh Gambar \ref{Fig: moving-corr}. Korelasi ketinggian dengan empat parameter lainnya menunjukan tingkat korelasi yang rendahsehingga parameter ketinggian tidak berdampak dengan hasil pengujian.  Visibilitas satelit dengan HDOP, VDOP, dan PDOP memiliki hubungan korelasi negatif. Korelasi visibilitas satelit dengan HDOP menunjukan korelasi yang kuat, sedangkan korelasi visibilitas satelit dengan dua nilai DOP lainnya menunjukan tingkat korelasi sedang. Hal tersebut menunjukan bahwa semakin banyak visibilitas satelit maka ketiga nilai DOP akan cenderung menurun. Terakhir, parameter PDOP dengan HDOP dan VDOP memiliki tingkat korelasi yang tinggi. Hal tersebut diakibatkan karena nilai PDOP adalah tingkat akurasi pada tiga dimensisehingga nilai PDOP akan dipengaruhi oleh HDOP dan VDOP yang merupakan tingkat akurasi pada bidang horizontal dan vertikal.
+
 Berdasarkan analisis korelasi di atas, parameter dengan korelasi paling tinggi adalah visibilitas satelit dengan ketiga nilai DOP dan antar ketiga nilai DOP. Oleh karena itu, pada bagian selanjutnya akan dibahas lebih lanjut mengenai HDOP, VDOP, PDOP, dan visibilitas satelit. 
 
 \subsection{HDOP, VDOP, PDOP, dan Visibilitas Satelit}
 
 Berdasarkan pembahasan pada bagian sebelumnya, pasangan variabel yang memiliki korelasi negatif adalah visibilitas satelit dengan HDOP, VDOP, dan PDOP dengan tingkat korelasi terhadap HDOP adalah tinggi, sedangkat untuk dua variabel lainnya tingkat korelasinya sedang. Di sisi lain, setiap pasangan variabel DOP memiliki korelasi positif yang kuat. Koreasi negatif menunjukan jika nilai dari salah satu variabel maka nilai dari variabel lainnya cenderung menurun dan hal sebaliknya untuk korelasi positif.
-
-Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP yang rendah menunjukkan tingkat ketelitian yang lebih baik pada bidang horizontal. Hal ini dapat dilihat pada Gambar \ref{Fig: moving-hdop} dengan setiap titik pada perjalanan Trans Gadjah Mada Rute 1B direpresentasikan dengan warna yang menunjukkan nilai HDOP pada titik tersebut. Semakin tinggi nilai HDOP, maka warna titiknya akan semakin mendekati warna merah, yang menunjukkan tingkat ketelitian yang lebih rendah. Sebaliknya, jika nilai HDOP semakin rendah, maka warna titiknya akan mendekati warna hijau, yang menunjukkan tingkat ketelitian yang lebih tinggi. Terlihat bahwa seluruh titik pada gambar tersebut direpresentasikan dengan warna hijau, yang menunjukkan bahwa tingkat akurasi pada bidang horizontalnya berada pada rentang yang baik.
-
 
 \begin{figure}[H]
 	\centering
@@ -633,7 +625,7 @@ Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP 
 	\label{Fig: moving-hdop}
 \end{figure}
 
-Selain HDOP, parameter akurasi lain yang dapat ditinjau adalah VDOP. Parameter ini digunakan untuk mengukur tingkat akurasi pada bidang vertikal atau ketinggian. Nilai VDOP pada hasil pengujian dapat dilihat pada Gambar \ref{Fig: moving-pdop}. Semakin rendah nilai VDOP, maka titik pada gambar akan berwarna hijau. Dari gambar tersebut, terlihat bahwa seluruh titik pengamatan berwarna hijau, yang menandakan bahwa nilai VDOP-nya berada dalam rentang yang baik. Meskipun beberapa tempat tertutup oleh pepohonan atau banyak penghalang berupa gedung-gedung, akurasi sistem di bidang vertikal juga tidak terganggu secara signifikan. Oleh karena itu, dapat dilihat bahwa akurasi hasil pengukuran sistem pada bidang vertikal sudah sangat akurat.
+Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP yang rendah menunjukkan tingkat ketelitian yang lebih baik pada bidang horizontal. Hal ini dapat dilihat pada Gambar \ref{Fig: moving-hdop} dengan setiap titik pada perjalanan Trans Gadjah Mada Rute 1B direpresentasikan dengan warna yang menunjukkan nilai HDOP pada titik tersebut. Semakin tinggi nilai HDOP, maka warna titiknya akan semakin mendekati warna merah, yang menunjukkan tingkat ketelitian yang lebih rendah. Sebaliknya, jika nilai HDOP semakin rendah, maka warna titiknya akan mendekati warna hijau, yang menunjukkan tingkat ketelitian yang lebih tinggi. Terlihat bahwa seluruh titik pada gambar tersebut direpresentasikan dengan warna hijau, yang menunjukkan bahwa tingkat akurasi pada bidang horizontalnya berada pada rentang yang baik.
 
 \begin{figure}[H]
 	\centering
@@ -642,7 +634,7 @@ Selain HDOP, parameter akurasi lain yang dapat ditinjau adalah VDOP. Parameter i
 	\label{Fig: moving-vdop}
 \end{figure}
 
-Parameter PDOP merupakan gabungan dari HDOP dan VDOP. Artinya, nilai dari PDOP akan merepresentasikan tingkat akurasi hasil perhitungan baik di bidang horizontal maupun vertikal. Selain itu, nilai PDOP juga menjelaskan persebaran satelit di langit. Sama seperti dua nilai DOP lainnya, semakin rendah nilai PDOP maka semakin baik. Hasil pengamatan yang ditunjukan oleh Gambar \ref{Fig: moving-pdop} menunjukan bahwa nilai PDOP pada setiap titik pengamatan sudah sangat baik. Hal tersebut merupakah hasil yang sudah diharapkan karena PDOP adalah gabungan dari VDOP dan HDOPsehingga jika nilai HDOP dan VDOP sudah sangat baik maka nilai PDOP-nya juga akan sangat baik. Karena nilai PDOP juga bergantung pada geometri satelit, nilai tersebut juga menunjukan bahwa persebaran satelit di langit selama pengamatan sudah tersebar dengan sangat baik. 
+Selain HDOP, parameter akurasi lain yang dapat ditinjau adalah VDOP. Parameter ini digunakan untuk mengukur tingkat akurasi pada bidang vertikal atau ketinggian. Nilai VDOP pada hasil pengujian dapat dilihat pada Gambar \ref{Fig: moving-pdop}. Semakin rendah nilai VDOP, maka titik pada gambar akan berwarna hijau. Dari gambar tersebut, terlihat bahwa seluruh titik pengamatan berwarna hijau, yang menandakan bahwa nilai VDOP-nya berada dalam rentang yang baik. Meskipun beberapa tempat tertutup oleh pepohonan atau banyak penghalang berupa gedung-gedung, akurasi sistem di bidang vertikal juga tidak terganggu secara signifikan. Oleh karena itu, dapat dilihat bahwa akurasi hasil pengukuran sistem pada bidang vertikal sudah sangat akurat.
 
 \begin{figure}[H]
 	\centering
@@ -651,7 +643,7 @@ Parameter PDOP merupakan gabungan dari HDOP dan VDOP. Artinya, nilai dari PDOP a
 	\label{Fig: moving-pdop}
 \end{figure}
 
-Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitungan posisi. Jumlah satelit yang digunakan tentunya akan mempengaruhi ketelitian hasil perhitungan posisi. Gambar \ref{Fig: moving-sats} menunjukan visibilitas satelit di setiap titik pada perjalanan Trans Gadjah Mada Rute 1B. Semakin tinggi visibilitas satelit maka warna titiknya akan mendekati warna hijau dan mendekati warna merah jika visibilitas satelitnya mendekati nol. Secara teoretis, visibilitas satelit yang dibutuhkan untuk mendapatkan 2D \textit{fix} adalah sebanyak tiga buah dan empat buah untuk mendapatkan 3D \textit{fix}. Visibilitas satelit lebih dari empat akan memperbaiki kualitas \textit{fix} yang ditunjukan dengan nilai HDOP yang menurun. 
+Parameter PDOP merupakan gabungan dari HDOP dan VDOP. Artinya, nilai dari PDOP akan merepresentasikan tingkat akurasi hasil perhitungan baik di bidang horizontal maupun vertikal. Selain itu, nilai PDOP juga menjelaskan persebaran satelit di langit. Sama seperti dua nilai DOP lainnya, semakin rendah nilai PDOP maka semakin baik. Hasil pengamatan yang ditunjukan oleh Gambar \ref{Fig: moving-pdop} menunjukan bahwa nilai PDOP pada setiap titik pengamatan sudah sangat baik. Hal tersebut merupakah hasil yang sudah diharapkan karena PDOP adalah gabungan dari VDOP dan HDOPsehingga jika nilai HDOP dan VDOP sudah sangat baik maka nilai PDOP-nya juga akan sangat baik. Karena nilai PDOP juga bergantung pada geometri satelit, nilai tersebut juga menunjukan bahwa persebaran satelit di langit selama pengamatan sudah tersebar dengan sangat baik. 
 
 \begin{figure}[H]
 	\centering
@@ -659,6 +651,8 @@ Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitu
 	\caption{Visibilitas Satelit Pengujian Trans Gadjah Mada Rute 1B}
 	\label{Fig: moving-sats}
 \end{figure}
+
+Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitungan posisi. Jumlah satelit yang digunakan tentunya akan mempengaruhi ketelitian hasil perhitungan posisi. Gambar \ref{Fig: moving-sats} menunjukan visibilitas satelit di setiap titik pada perjalanan Trans Gadjah Mada Rute 1B. Semakin tinggi visibilitas satelit maka warna titiknya akan mendekati warna hijau dan mendekati warna merah jika visibilitas satelitnya mendekati nol. Secara teoretis, visibilitas satelit yang dibutuhkan untuk mendapatkan 2D \textit{fix} adalah sebanyak tiga buah dan empat buah untuk mendapatkan 3D \textit{fix}. Visibilitas satelit lebih dari empat akan memperbaiki kualitas \textit{fix} yang ditunjukan dengan nilai HDOP yang menurun. 
 
 Pada hasil pengamatan dapat dilihat bahwa tidak semua titik memiliki visibilitas satelit lebih dari sepuluh atau direpresentasikan dengan titik berwarna hijau. Visibilitas satelit paling rendah pada pengujian ini adalah sebanyak enam buah satelit yang ditunjukan oleh titik berwarna merah. Salah satu titik dengan visibilitas terendah adalah di sekitar halte Rumah Sakit Dr. Sardjito. Hal tersebut dapat diakibatkan oleh banyaknya gedung dan pepohonan yang dapat menghalangi atau menyebabkan \textit{multipath} pada isyarat GNSS. Selain itu, lingkungan tersebut juga merupakan lingkungan yang padat dengan berbagai macam kendaraan dan orang-orang yang lalu-lalang.
 
