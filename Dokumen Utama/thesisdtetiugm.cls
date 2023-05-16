@@ -27,8 +27,6 @@
 \RequirePackage{calc}%Simple arithmetic lib
 \RequirePackage{pdfpages} %include pdf file in latex
 
-
-
 %======================================
 %% Option Declaration
 %======================================
@@ -96,6 +94,8 @@
 
 \usepackage[normalem]{ulem}
 \usepackage{tabularray}
+
+\usepackage{hyphenat}
 
 \DefTblrTemplate{contfoot-text}{default}{}
 \DefTblrTemplate{conthead-text}{default}{}
@@ -400,7 +400,7 @@
 					{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
 					{Proposed as A Requirement to Obtain}\\
 				\iftoggle{lang}
-					{Gelar Sarjana Teknik Program S-1}
+					{Gelar Sarjana Teknik Program Sarjana}
 					{Undergraduate Degree (\textit{Sarjana Teknik})}\\
 				\iftoggle{lang}
 					{pada \@departmentIna}
@@ -419,8 +419,9 @@
 				\iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
 				\vfill
 				\begin{center}
+					\hspace*{-1.1cm}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{0.5cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
+						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{0cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
 						\vspace{0.3cm} & \vspace{0.5cm} & \vspace{0.5cm}\\
 						\textbf{\underline{\getsupervisor{1}{1}}}& &
 						\textbf{\underline{\getsupervisor{2}{1}}} \\
