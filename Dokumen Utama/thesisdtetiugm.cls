@@ -95,8 +95,6 @@
 \usepackage[normalem]{ulem}
 \usepackage{tabularray}
 
-\usepackage{hyphenat}
-
 \DefTblrTemplate{contfoot-text}{default}{}
 \DefTblrTemplate{conthead-text}{default}{}
 \DefTblrTemplate{conthead}{default}{}
@@ -144,6 +142,7 @@
 	\renewcommand{\refname}{DAFTAR PUSTAKA}%
 	\renewcommand{\bibname}{DAFTAR PUSTAKA}%
 	\renewcommand{\indexname}{Indek}%
+	\renewcommand{\ALG@name}{Algoritma}%
 	\renewcommand{\figurename}{Gambar}%
 	\renewcommand{\tablename}{Tabel}%
 	\renewcommand{\pagename}{Halaman}%
@@ -164,6 +163,7 @@
 	\renewcommand{\refname}{REFERENCES}%
 	\renewcommand{\bibname}{REFERENCES}%
 	\renewcommand{\indexname}{Index}%
+	\renewcommand{\ALG@name}{Algorithm}%
 	\renewcommand{\figurename}{Figure}%
 	\renewcommand{\tablename}{Table}%
 	\renewcommand{\pagename}{Page}%
@@ -260,27 +260,28 @@
 % If Bachelor
 \iftoggle{bachelor}{
 	\newcommand{\printcover}[2]{
-		\newgeometry{top=4cm,bottom=3cm,left=3.2cm,right=2.2cm}
+		\newgeometry{top=2.54cm,bottom=2.54cm,left=3.54cm,right=2.54cm}
 		\thispagestyle{empty}
 		\setcounter{page}{1}
 		\pagenumbering{roman}
 		\begin{center}
 			\begin{singlespacing}
-				\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\textbf{\@title}}\\
 				\vspace{1.5cm}
-				\textbf{#2}\\
+				%\textbf{#2}\\
+				\fontsize{14pt}{16pt}SKRIPSI\\
 				\vfill
 				\includegraphics[width=0.5\textwidth]{#1}
 				\vfill
-				\iftoggle{lang}{Disusun oleh:}{Written by:}\\
+				\iftoggle{lang}{\textbf{Disusun oleh:}}{Written by:}\\
 				\vspace{0.4em}
-				\textbf{\@authorName \\ \@authorID \\}
+				\textbf{\underline{\@authorName} \\ \@authorID \\}
 				\vfill
 				\textbf{
 					\iftoggle{lang}
 					{\MakeUppercase{Program Studi \@program}}
 					{\MakeUppercase{\@program \vspace{1em} Program}}\\
-					\iftoggle{lang}{\MakeUppercase{\@departmentIna}}{\MakeUppercase{\@departmentEng}} \\
+					\iftoggle{lang}{\scalebox{1.0}[1.0]{\MakeUppercase{\@departmentIna}}}{\MakeUppercase{\@departmentEng}} \\
 					\iftoggle{lang}{\MakeUppercase{\@facultyIna}}{\MakeUppercase{\@facultyEng}}
 					\MakeUppercase{\@university} \\ 
 					\MakeUppercase{\@city} \\ 
@@ -392,7 +393,8 @@
 		\fancyfoot[C]{\thepage}
 		\begin{center}
 			\begin{singlespacing}
-				\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				%\MakeUppercase{\bfseries\fontsize{14pt}{16pt}\selectfont\@title}\\
+				\textbf{\MakeUppercase{\fontsize{14pt}{16pt}\selectfont\@title}}\\
 				\vspace{1cm}
 				\textbf{\iftoggle{lang}{SKRIPSI}{THESIS}}\\
 				\vspace{2cm}
@@ -400,7 +402,7 @@
 					{Diajukan Sebagai Salah Satu Syarat untuk Memperoleh}
 					{Proposed as A Requirement to Obtain}\\
 				\iftoggle{lang}
-					{Gelar Sarjana Teknik Program Sarjana}
+					{Gelar Sarjana Teknik}
 					{Undergraduate Degree (\textit{Sarjana Teknik})}\\
 				\iftoggle{lang}
 					{pada \@departmentIna}
@@ -416,13 +418,13 @@
 					{Telah disetujui dan disahkan}
 					{Has been approved and endorsed}\\
 				\vspace{0.5cm}
-				\iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
+				\iftoggle{lang}{Pada tanggal 26 Mei 2023}{on $\ldots\ldots$}\\
 				\vfill
 				\begin{center}
 					\hspace*{-1.1cm}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Pembimbing I}{Supervisor I} &\hspace{0cm} & \iftoggle{lang}{Pembimbing II}{Supervisor II} \\
-						\vspace{0.3cm} & \vspace{0.5cm} & \vspace{0.5cm}\\
+						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
+						\vspace{0.4cm} & \vspace{0.4cm} & \vspace{0.4cm}\\
 						\textbf{\underline{\getsupervisor{1}{1}}}& &
 						\textbf{\underline{\getsupervisor{2}{1}}} \\
 						\textbf{\getsupervisor{1}{2}} & & \textbf{\getsupervisor{2}{2}}\\

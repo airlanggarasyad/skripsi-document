@@ -2602,10 +2602,10 @@
 \def\contentsname{Contents}
 \def\listfigurename{List of Figures}
 \def\listtablename{List of Tables}
-\def\refname{References}
+\def\refname{Referensi}
 \def\indexname{Index}
-\def\figurename{Fig.}
-\def\tablename{TABLE}
+\def\figurename{Gambar}
+\def\tablename{TABEL}
 \@IEEEcompsocconfonly{\def\figurename{Figure}}
 \def\partname{Part}
 \def\appendixname{Appendix}

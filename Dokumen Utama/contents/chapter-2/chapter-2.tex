@@ -13,7 +13,7 @@ Sistem yang dirancang pada penelitian \cite{Widya2016} menggunakan modul GPS u-b
 
 Terakhir, penelitian \cite{Priono2017} membahas mengenai implementasi \textit{geofencing} untuk mengawasi pengiriman kendaraan pada perusahaan ekspedisi. Pada sistem yang dirancang, terdapat beberapa titik \textit{geofencing} di sepanjang rute perjalanan paket. Fitur serupa dapat diimplementasikan pada sistem pelacak Bus Trans Gadjah Mada. Sebagai contoh, sistem \textit{geofencing} untuk menentukan posisi halte saat ini.
 
-Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo-LIV3FL dan mikrokontroler STM32WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
+Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo\hyp{}LIV3FL dan mikrokontroler STM32WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
 
 \section{Dasar Teori}
 \subsection{\textit{Firmware}}
@@ -76,7 +76,7 @@ Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segm
 \subsubsection{Orbit GNSS}
 Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut mempengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
 
-\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit Planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
+\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
 
 \begin{enumerate}
 	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
@@ -84,9 +84,9 @@ Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbi
 	\item \textit{Super} LEO adalah sistem yang beroperasi pada Pita Ka dengan frekuensi 20 GHz sampai dengan 30 GHz.
 \end{enumerate}
 
-\textbf{\textit{Medium Earth Orbit} (MEO)} adalah jenis satelit buatan yang mengorbit Bumi pada ketinggian antara 10.000 hingga 20.000 km di atas permukaan Bumi. Satelit MEO memiliki ciri khas orbitnya yang berada di antara orbit satelit LEO dan GEO. Keuntungan dari satelit MEO adalah jangkauannya yang cukup luassehingga hanya membutuhkan jumlah satelit yang relatif lebih sedikit untuk memberikan layanan seluruh dunia.
+\textbf{\textit{Medium Earth Orbit} (MEO)} adalah jenis satelit buatan yang mengorbit Bumi pada ketinggian antara 10.000 hingga 20.000 km di atas permukaan Bumi. Satelit MEO memiliki ciri khas orbitnya yang berada di antara orbit satelit LEO dan GEO. Keuntungan dari satelit MEO adalah jangkauannya yang cukup luas sehingga hanya membutuhkan jumlah satelit yang relatif lebih sedikit untuk memberikan layanan seluruh dunia.
 
-\textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit Planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada Planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit GEO adalah secara teoretis hanya membutuhkan tiga hingga buah empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
+\textbf{\textit{Geosynchronous Equatorial Orbit} (GEO)} adalah satelit yang mengorbit planet Bumi pada ketinggian 35.786 km. Pada orbit GEO, satelit disinkronisasi terhadap rotasi pada planet Bumi pada arah yang sama. Jenis orbit ini memungkinkan untuk satelit tetap mempertahankan \textit{field of view} di atas permukaan Bumi selama dua puluh jam sehari. Keuntungan dari orbit GEO adalah secara teoretis hanya membutuhkan tiga hingga buah empat satelit untuk cakupan seluruh dunia. Kekurangan dari jenis orbit ini adalah biaya yang dibutuhkan lebih besar dan nilai penundaan waktunya semakin besar karena semakin jauh dari permukaan Bumi.
 
 \subsubsection{Penerima GNSS}
 Penerima GNSS adalah bagian dari segmen pengguna. Isyarat yang dikirimkan oleh satelit berisi efemeris, almanak, dan komponen lainnya seperti tanggal dan status satelit.
@@ -105,7 +105,7 @@ Standar NMEA 0813 adalah standar yang dimiliki oleh sebuah organisasi di Amerika
 
 Ide dasar dari standar NMEA 0183 adalah mengirimkan data sebanyak satu baris dalam bentuk teks ASCII termasuk dengan \textit{carriage return} dan \textit{line feed} yang dikirimkan dalam \textit{baudrate} tertentu. Setiap data dikirimkan dengan kalimat yang diawali oleh simbol dollar ('\$'), dua huruf sebagai \textit{talker} ID, tiga huruf \textit{sentence} ID, data yang dipisahkan oleh tanda koma, dan diakhiri oleh \textit{checksum} untuk integritas data. Bagian \textit{checksum} dipisahkan oleh tanda asteris ('*') dan dua digit heksadesimal yang ditunjukan dalam bentuk operasi XOR dari seluruh karakter di antara tanda dollar dan asteris.
 
-Seiring berjalannya waktu, standar ini sudah mengalami berbagai macam revisi. Berbagai merek juga memiliki kalimat \textit{proprietary}-nya masing-masing seperti \texttt{\$PSTM} pada modul GNSS Teseo-LIV3FL yang diproduksi oleh STMicroelectronics. Standar NMEA menyajikan data-data dari modul GNSS dalam berbagai format kalimat. Beberapa contoh kalimat NMEA adalah sebagai berikut:
+Seiring berjalannya waktu, standar ini sudah mengalami berbagai macam revisi. Berbagai merek juga memiliki kalimat \textit{proprietary}-nya masing-masing seperti \texttt{\$PSTM} pada modul GNSS Teseo\hyp{}LIV3FL yang diproduksi oleh STMicroelectronics. Standar NMEA menyajikan data-data dari modul GNSS dalam berbagai format kalimat. Beberapa contoh kalimat NMEA adalah sebagai berikut:
 \begin{enumerate}
 	\item \$GPRMC berisi data minimal yang direkomendasikan untuk disajikan oleh modul GNSS. Adapun data yang direkomendasikan adalah koordinat garis lintang dan garis bujur, ketinggian, kecepatan, dan waktu UTC.
 	\item \$GNGSA berisi mode navigasi saat ini (2D atau 3D) dan informasi satelit yang dilacak seperti SNR, PRN, \textit{elevation}, dan \textit{azimuth}.
@@ -135,7 +135,7 @@ Selain itu, lokalisasi juga dapat dibagi menjadi GNSS \textit{based} dan GNSS \t
 \subsubsection{Trilaterasi}
 Trilaterasi adalah proses menentukan posisi berdasarkan jarak dengan menggunakan setidaknya tiga buah satelit \cite{AmericanSocietyofCivilEngineers1994}. Ilustrasi dari trilaterasi sederhana dengan tiga buah satelit dapat dilihat pada Gambar \ref{Fig: Trilaterasi}. Misalkan titik merah, hijau, dan biru muda adalah letak dari tiga satelit dan lingkaran di sekitarnya adalah jangkauan dari masing-masing satelit pada bidang dua dimensi. Terlihat bahwa perkiraan lokasi pada objek adalah irisan dari ketiga lingkaran tersebut (titik berwarna biru tua). Perhitungan trilaterasi akan dibahas pada bagian selanjutnya \cite{Seo2012}.
 
-Posisi objek pada bidang dua dimensi dengan Trilaterasi 2D didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit. Posisi dari setiap satelit dapat dimodelkan seperti persamaan di bawah
+Posisi objek pada bidang dua dimensi dengan trilaterasi 2D didapatkan dengan menyelesaikan tiga persamaan lingkaran yang merepresentasikan dari setiap satelit. Posisi dari setiap satelit dapat dimodelkan seperti persamaan di bawah
 
 \begin{equation}
 	\left(x-x_1\right)^2 + \left(y-y_1\right)^2=d_1^2
@@ -297,7 +297,7 @@ CEP adalah metode yang untuk melakukan analisis data terkait dengan tingkat prob
 \subsubsection{\textit{Mean Absolute Deviation} (MAD)}
 Mean absolute deviation (MAD) adalah ukuran seberapa jauh data tersebar dari nilai rata-rata (\textit{mean}) dalam sebuah kumpulan data. MAD sering digunakan sebagai alternatif yang lebih \textit{robust} terhadap standar deviasi dalam analisis data, terutama ketika data tidak terdistribusi secara normal.
 
-MAD dihitung dengan cara menghitung selisih antara setiap data dengan \textit{mean}, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan \ref{eq:MAD}. MAD memiliki unit yang sama dengan datasehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
+MAD dihitung dengan cara menghitung selisih antara setiap data dengan \textit{mean}, kemudian menjumlahkan nilai absolut dari selisih tersebut, dan membaginya dengan jumlah data seperti ditunjukan oleh Persamaan \ref{eq:MAD}. MAD memiliki unit yang sama dengan data sehingga mudah untuk dipahami dan diinterpretasikan. Semakin kecil nilai MAD, semakin presisi hasil pengukuran modul GNSS.
 
 \begin{equation}
 	MAD = \frac{1}{n} \sum_{i=1}^{n} \left| x_i - m(X) \right|
@@ -325,7 +325,7 @@ Persamaan Haversine pertama kali diciptakan oleh Prof. James Inman pada tabun 18
 	\text{hav}(\theta) = \sin^2{\left(\frac{\theta}{2}\right)}
 	\label{eq:haversine}
 \end{equation}
-Asumsikan bahwa Planet Bumi berbentuk bola sempurna dengan jari-jari $R=6.367,45$km. Selain itu, efek elipsoidal dan ketinggian juga akan diabaikan. Misalkan dua titik di permukaan bumi dengan koordinat masing-masing adalah $(lat_1, lon_1)$ dan $(lat_2, lon_2)$ dalam satuan radian. Selisih dari titik koordinat garis bujur dan garis lintangnya adalah
+Asumsikan bahwa Planet Bumi berbentuk bola sempurna dengan jari-jari $R=6.367,45$km. Selain itu, efek elipsoidal dan ketinggian juga akan diabaikan. Misalkan dua titik di permukaan bumi dengan koordinat sebagai adalah $(lat_1, lon_1)$ dan $(lat_2, lon_2)$ dalam satuan radian. Selisih dari titik koordinat garis bujur dan garis lintangnya adalah
 
 \begin{equation}
 	\Delta lat = lat_1 - lat_2
@@ -421,7 +421,7 @@ STLINK-V3 dilengkapi dengan antarmuka USB 2.0 untuk melakukan \textit{software d
 	\item Mode \textit{Serial Wire Output} (SWO) dengan kecepatan 16 MHz.
 	\item Mode \textit{debug} JTAG atau SWD.
 	\item Komunikasi UART dengan antarmuka USB.
-	\item Pembaharuan \textit{firmware} dan konfigurasi dengan aplikasi STLINK \textit{Utility}.
+	\item Pembaruan \textit{firmware} dan konfigurasi dengan aplikasi STLINK \textit{Utility}.
 	\item Pengukuran profil sistem dengan \textit{energy profiling}.
 \end{enumerate}
 
@@ -447,21 +447,21 @@ Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupa
 
 Dalam pengembangan \textit{firmware} pada mikrokontroler STM32, STM32Cube IDE dapat membantu pengguna untuk memudahkan pengembangan \textit{firmware} dengan menggunakan berbagai alat pengembangan dan pustaka perangkat lunak yang lengkap sebagai referensi. Oleh karena itu, STM32Cube IDE menjadi pilihan yang tepat untuk melakukan pengembangan \textit{firmware} pada mikrokontroler STM32.
 
-\subsection{Teseo-LIV3FL}
-Teseo-LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
+\subsection{Teseo\hyp{}LIV3FL}
+Teseo\hyp{}LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/teseo_pinout.png}
-	\caption{\textit{Pinout} Teseo-LIV3FL \cite{STMicroelectronics2022}}
+	\caption{\textit{Pinout} Teseo\hyp{}LIV3FL \cite{STMicroelectronics2022}}
 	\label{Fig: teseo_pinout}
 \end{figure}
 
-Untuk mengoperasikan modul Teseo-LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Antarmuka UART (Gambar \ref{Fig: teseo_pinout}) pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
+Untuk mengoperasikan modul Teseo\hyp{}LIV3FL, dibutuhkan tegangan sebesar 3,3 V. Antarmuka UART (Gambar \ref{Fig: teseo_pinout}) pada modul ini memungkinkan pengguna untuk berkomunikasi dengan perangkat lain seperti mikrokontroler. Selain itu, modul ini juga dilengkapi dengan fitur \textit{anti-jamming} yang sangat berguna untuk mengurangi interferensi yang mungkin terjadi, seperti \textit{jamming} atau isyarat radio.
 
-Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi dengan tetap mempertahankan akurasinya. Modul Teseo-LIV3FL dapat dioperasikan dengan efisien dan hemat energi, karena hanya membutuhkan daya rendah yaitu 8 $\mu$A pada mode standby dan 45 mA pada mode akuisisi.
+Keping GNSS Teseo-III pada modul ini memungkinkan modul ini untuk beroperasi dengan akurasi tinggi, tetapi dengan tetap mempertahankan akurasinya. Modul Teseo\hyp{}LIV3FL dapat dioperasikan dengan efisien dan hemat energi, karena hanya membutuhkan daya rendah yaitu 8 $\mu$A pada mode \textit{standby} dan 45 $mA$ pada mode akuisisi.
 
-Salah satu keunggulan modul Teseo-LIV3FL adalah kustomisasi yang sangat luas. Pengguna dapat memodifikasi pengaturan modul GNSS melalui serial port atau dengan bantuan aplikasi Teeo-Suite. Hal ini memungkinkan pengguna untuk menyesuaikan modul GNSS sesuai dengan kebutuhan mereka.
+Salah satu keunggulan modul Teseo\hyp{}LIV3FL adalah kustomisasi yang sangat luas. Pengguna dapat memodifikasi pengaturan modul GNSS melalui \textit{serial port} atau dengan bantuan aplikasi Teseo-Suite. Hal ini memungkinkan pengguna untuk menyesuaikan modul GNSS sesuai dengan kebutuhan mereka.
 
 \subsubsection{Teseo-Suite}
 Teseo-Suite adalah aplikasi yang dikembangkan khusus untuk mengatur dan memanfaatkan fitur yang terdapat pada perangkat GNSS Teseo buatan STMicroelectronics. Aplikasi ini memiliki kemampuan untuk membaca, menyunting, dan menyimpan konfigurasi pada perangkat GNSS Teseo dengan mudah dan cepat. Dalam pengaturan konfigurasi, Teseo-Suite dapat mengatur berbagai parameter seperti pemilihan satelit, algoritma daya rendah, konfigurasi CDB-ID, dan sebagainya. Dengan fitur ini, pengguna dapat melakukan konfigurasi secara efisien dan akurat untuk memaksimalkan kinerja perangkat GNSS Teseo.
@@ -506,14 +506,14 @@ Pada komunikasi UART, dua perangkat dapat saling terhubung oleh dua pin TX (peng
 \subsection{Pengolahan dan Analisis Data}
 
 \subsubsection{Python}
-Python merupakan salah satu bahasa pemrograman tingkat yang paling populer. Kepopuleran dari bahasa pemrograman Python diakibatkan bahasa pemrograman Python memiliki sintaks yang mudah dipahami. Bahasa ini dikembangkan oleh Guido van Rossum pada tahun 1991. Python dapat digunakan untuk berbagai hal seperti pengembangan web, kecerdasan buatan, dan analisis data. Selain itu Python memiliki banyak pustaka dan kerangka kerja seperti NumPy dan Matplotlib yang dapat digunakan untuk mengakselerasi pengembangan. Selain itu, bahasa ini mendukung berbagai paradigma pemrograman berorientasi objek, prosedural, maupun fungsional.
+Python merupakan salah satu bahasa pemrograman tingkat yang paling populer. Kepopuleran dari bahasa pemrograman Python diakibatkan bahasa pemrograman Python memiliki sintaksis yang mudah dipahami. Bahasa ini dikembangkan oleh Guido van Rossum pada tahun 1991. Python dapat digunakan untuk berbagai hal seperti pengembangan web, kecerdasan buatan, dan analisis data. Selain itu Python memiliki banyak pustaka dan kerangka kerja seperti NumPy dan Matplotlib yang dapat digunakan untuk mengakselerasi pengembangan. Selain itu, bahasa ini mendukung berbagai paradigma pemrograman berorientasi objek, prosedural, maupun fungsional.
 
 Kelebihan lain dari Python adalah kemudahan melakukan \textit{debugging} kode karena adanya kemampuan untuk mengeksekusi kode baris per baris dengan menggunakan \textit{interpreter} Python. Selain itu, Python memiliki komunitas pengguna yang besar dan aktif sehingga memudahkan pengguna Python dalam mencari bantuan dan solusi dari masalah-masalah yang dihadapi. Oleh karena itu, Python dapat menjadi bahasa yang sangat populer di kalangan pengembang dan peneliti di berbagai bidang, terutama dalam bidang analisis dan visualisasi data.
 
 \subsubsection{Pandas}
-Pustaka Pandas merupakan alat bantu yang sangat berguna dalam mengolah dan menganalisis data. Pustaka ini dilengkapi dengan fitur-fitur struktur data yang fleksibel dan efisien seperti \textit{DataFrame} dan \textit{series}, yang memungkinkan pengguna untuk melakukan operasi pada data dengan mudah dan cepat. Selain itu, pustaka Pandas juga mendukung berbagai format file populer seperti CSV, Excel, dan basis data SQL sehingga memudahkan pengguna untuk memproses data dari berbagai sumber.
+Pustaka Pandas merupakan alat bantu yang sangat berguna dalam mengolah dan menganalisis data. Pustaka ini dilengkapi dengan fitur-fitur struktur data yang fleksibel dan efisien seperti \textit{DataFrame} dan \textit{series}, yang memungkinkan pengguna untuk melakukan operasi pada data dengan mudah dan cepat. Selain itu, pustaka Pandas juga mendukung berbagai format \textit{file} populer seperti CSV, Excel, dan basis data SQL sehingga memudahkan pengguna untuk memproses data dari berbagai sumber.
 
-Secara khusus, struktur data Pandas yang disebut sebagai \textit{DataFrame} merupakan kumpulan kolom data yang diberi nama dan jenis tertentu. Dengan adanya fitur \textit{DataFrame}, pengguna dapat dengan mudah membaca file dan mengubahnya menjadi sebuah tabel. Data frame juga memungkinkan pengguna untuk melakukan operasi seperti \texttt{join}, \texttt{distinct}, \texttt{group by}, dan fitur lainnya yang biasa ditemukan pada SQL. Pustaka Pandas juga mendukung berbagai format file seperti .txt, .csv, .tsv, dan lainnyasehingga memudahkan pengguna dalam mengakses berbagai jenis data.
+Secara khusus, struktur data Pandas yang disebut sebagai \textit{DataFrame} merupakan kumpulan kolom data yang diberi nama dan jenis tertentu. Dengan adanya fitur \textit{DataFrame}, pengguna dapat dengan mudah membaca \textit{file} dan mengubahnya menjadi sebuah tabel. Data frame juga memungkinkan pengguna untuk melakukan operasi seperti \texttt{join}, \texttt{distinct}, \texttt{group by}, dan fitur lainnya yang biasa ditemukan pada SQL. Pustaka Pandas juga mendukung berbagai format \textit{file} seperti .txt, .csv, .tsv, dan lainnya sehingga memudahkan pengguna dalam mengakses berbagai jenis data.
 
 \subsubsection{NumPy}
 Selain pustaka Pandas, NumPy (\textit{Numerical Python}) juga memainkan peran penting dalam pengolahan data. NumPy terutama digunakan untuk operasi numerik pada data dan menyediakan berbagai struktur data seperti larik dan matriks multidimensi, serta berbagai fungsi matematika yang sangat penting dalam pengolahan data. NumPy dikembangkan menggunakan bahasa pemrograman C, yang memungkinkan komputasi yang cepat dan optimal pada pengolahan data yang kompleks.
@@ -521,9 +521,9 @@ Selain pustaka Pandas, NumPy (\textit{Numerical Python}) juga memainkan peran pe
 NumPy sangat berguna dalam bidang ilmu data dan analisis data. Dalam analisis data, NumPy memungkinkan pengolahan data yang efisien dan cepat, seperti pengolahan gambar, pemrosesan isyarat, dan analisis numerik lainnya. Struktur data seperti larik dan matriks multidimensi yang disediakan oleh NumPy sangat membantu dalam pengolahan data. Kinerja yang cepat dan efisien dari NumPy memungkinkan analisis data yang lebih cepat dan akurat.
 
 \subsubsection{PyNMEA2}
-Pustaka PyNMEA2 merupakan pustaka Python yang berguna dalam melakukan pengolahan data yang dihasilkan oleh modul GNSS seperti Teseo-LIV3FL. Modul GNSS ini sangat umum digunakan dalam kegiatan navigasi dan survei di berbagai sektor seperti industri, pertanian, kelautan, dan lain-lain. Dalam kegiatan tersebut, data yang dihasilkan oleh modul GNSS harus diproses lebih lanjut agar dapat memberikan informasi yang akurat dan bermanfaat.
+Pustaka PyNMEA2 merupakan pustaka Python yang berguna dalam melakukan pengolahan data yang dihasilkan oleh modul GNSS seperti Teseo\hyp{}LIV3FL. Modul GNSS ini sangat umum digunakan dalam kegiatan navigasi dan survei di berbagai sektor seperti industri, pertanian, kelautan, dan lain-lain. Dalam kegiatan tersebut, data yang dihasilkan oleh modul GNSS harus diproses lebih lanjut agar dapat memberikan informasi yang akurat dan bermanfaat.
 
-PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis kalimat NMEA yang dihasilkan oleh modul GNSS, seperti GPGGA, GNGSA, GPRMC, dan lain-lain. Dalam proses pengolahan data, PyNMEA2 dapat mempermudah proses ekstrasi data dari hasil pengamatan.Dengan menggunakan pustaka ini, data dari setiap kalimat NMEA dapat diekstraksi dan diproses lebih lanjut.
+PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis kalimat NMEA yang dihasilkan oleh modul GNSS, seperti GPGGA, GNGSA, GPRMC, dan lain-lain. Dalam proses pengolahan data, PyNMEA2 dapat mempermudah proses ekstrasi data dari hasil pengamatan. Dengan menggunakan pustaka ini, data dari setiap kalimat NMEA dapat diekstraksi dan diproses lebih lanjut.
 
 \subsubsection{Matplotlib}
 Untuk melakukan visualisasi data yang telah diolah akan digunakan pustaka Matplotlib. Pustaka ini adalah pustaka paling populer dalam bidang visualisasi data. Secara bawaan, Matplotlib menyediakan berbagai jenis visualisasi data seperti \textit{line plot}, \textit{scatter plot}, \textit{histogram}, \textit{bar plot}, dan lain-lain secara bawaan. Seluruh jenis visualisasi tersebut dapat dikustomisasi sesuai dengan kebutuhan pengguna, mulai dari mengubah warna, ukuran, jenis garis, dan sebagainya. Bahkan pengguna dapat menambahkan elemen visual seperti judul, label sumbu, dan legenda dengan mudah.
