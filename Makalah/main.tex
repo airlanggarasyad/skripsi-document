@@ -26,11 +26,7 @@ fairlanggarasyad@mail.ugm.ac.id \{wmustika, agusbj\}@ugm.ac.id}
 \maketitle
 
 \begin{abstract}
-	Penelitian ini bertujuan untuk mengevaluasi performa modul GNSS Teseo-LIV3FL dan mengembangkan \textit{firmware} pelacak Bus Trans Gadjah Mada menggunakan platform STM32. Evaluasi dilakukan dengan mengatur modul untuk menerima isyarat dari berbagai konstelasi GNSS seperti GPS, BeiDou, Galileo, dan QZSS. Hasil pengujian menunjukkan bahwa skenario terbaik adalah pada ruang terbuka, dengan nilai HDOP dalam rentang ideal dan nilai VDOP dan PDOP dalam rentang sangat baik.
-
-	Selain itu, penelitian ini juga menguji performa algoritma mode daya rendah pada modul GNSS. Algoritma tersebut memungkinkan modul untuk beroperasi dengan arus 15 $\mu A$ dalam keadaan \textit{standby}, dengan waktu \textit{standby} maksimum adalah 5 menit sebelum modul tidak mendapatkan fiksasi sama sekali.
-	
-	\textit{Firmware} yang dikembangkan diuji langsung pada Rute 1B Trans Gadjah Mada. Berdasarkan pengujian, sistem mampu menentukan posisi bus dengan baik dan fitur \textit{geofencing} juga berjalan dengan baik.
+	Penelitian ini bertujuan untuk mengevaluasi performa modul GNSS Teseo-LIV3FL dan mengembangkan \textit{firmware} pelacak Bus Trans Gadjah Mada menggunakan platform STM32. Evaluasi dilakukan dengan mengatur modul untuk menerima isyarat dari berbagai konstelasi GNSS seperti GPS, BeiDou, Galileo, dan QZSS. Hasil pengujian menunjukkan bahwa skenario terbaik adalah pada ruang terbuka, dengan nilai HDOP dalam rentang ideal dan nilai VDOP dan PDOP dalam rentang sangat baik. Selain itu, penelitian ini juga menguji performa algoritma mode daya rendah pada modul GNSS. Algoritma tersebut memungkinkan modul untuk beroperasi dengan arus 15 $\mu A$ dalam keadaan \textit{standby}, dengan waktu \textit{standby} maksimum adalah 5 menit sebelum modul tidak mendapatkan fiksasi sama sekali. Terakhir, \textit{firmware} yang dikembangkan diuji langsung pada Rute 1B Trans Gadjah Mada. Berdasarkan pengujian, sistem mampu menentukan posisi bus dengan baik dan fitur \textit{geofencing} juga berjalan dengan baik.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -56,7 +52,7 @@ Namun, penelitian-penelitian sebelumnya hanya menggunakan satu konstelasi GNSS, 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=6cm]{Peta-Jalur-Rute-1B.jpg}
-	\caption{Rute 1B Trans Gadjah Mada}
+	\caption{Rute 1B bus Trans Gadjah Mada}
 	\label{Fig: tgm-1b}
 \end{figure}
 
@@ -137,7 +133,7 @@ Skenario 3 dilakukan di selasar Grha Sabha Pramana Universitas Gadjah Mada. Peng
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=8cm]{skyplot.jpg}
-	\caption{\textit{Sky Plot} Hasil \textit{Rapid Static Survey} (Biru: GPS; Merah: BeiDou; Hijau: Galileo; dan Oranye: QZSS)}
+	\caption{\textit{Sky plot} Hasil \textit{rapid static survey} (biru: GPS; merah: BeiDou; hijau: Galileo; dan oranye: QZSS)}
 	\label{fig: 4-skyplot}
 \end{figure}
 
@@ -149,7 +145,7 @@ Modul Teseo-LIV3FL memiliki fitur yang memungkinkan modul untuk bekerja dalam mo
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=8.7cm]{low-power-result.jpg}
-	\caption{Pembacaan Multimeter pada Mode Akuisisi (Kiri) dan Mode \textit{Standby} (Kanan)}
+	\caption{Pembacaan multimeter pada mode akuisisi (kiri) dan mode \textit{standby} (kanan)}
 	\label{Fig: 4-low-power-result}
 \end{figure}
 
@@ -181,13 +177,13 @@ Hal tersebut diakibatkan ketika modul GNSS dalam keadaan \textit{standby} yang c
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=7cm]{tracked-route.png}
-	\caption{Hasil Pelacakan Sistem di Bus Trans Gadjah Mada Rute 1B}
+	\caption{Hasil pelacakan sistem di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: 4-tgm-tracked}
 \end{figure}
 
 \subsection{Pengujian pada Bus Trans Gadjah Mada}
 \begin{table}[H]
-	\caption{Rangkuman Performa Hasil Pengujian Trans Gadjah Mada Rute 1B}
+	\caption{Rangkuman performa hasil pengujian di bus Trans Gadjah Mada rute 1B}
 	\centering
 	\renewcommand{\arraystretch}{1.5}
 	\begin{tabular}{cc}
@@ -207,7 +203,7 @@ Pengujian di Bus Trans Gadjah Mada dilakukan untuk meninjau performa sistem jika
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=7cm]{moving-HDOP.jpg}
-	\caption{Nilai HDOP Pengujian Bus Trans Gadjah Mada Rute 1B}
+	\caption{Nilai HDOP pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: 4-tgm-hdop}
 \end{figure}
 
@@ -216,7 +212,7 @@ Kualitas hasil pelacakan pada pengujian ini dapat ditinjau dari nilai HDOP-nya. 
 \begin{figure}[htb!]
 	\centering
 	\includegraphics[width=7cm]{moving-SATS.jpg}
-	\caption{Visibilitas Satelit Pengujian Bus Trans Gadjah Mada Rute 1B}
+	\caption{Visibilitas satelit pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: 4-tgm-sats}
 \end{figure}
 

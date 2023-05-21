@@ -7,7 +7,7 @@ Untuk mengevaluasi hasil penelitian maka perlu dilakukan uji coba untuk meninjau
 	\item Pengujian daya rendah untuk meninjau bagaimana performa sistem ketika mode daya rendah pada modul Teseo\hyp{}LIV3FL diaktifkan. Algoritma daya rendah yang digunakan adalah \textit{cyclic periodic mode}.
 	\item Pengujian \textit{geofencing} dilakukan untuk melihat bagaimana performa algoritma \textit{geofencing} ketika sistem berada di luar dan di dalam lingkungan Universitas Gadjah Mada.
 	\item Pengujian \textit{rapid static survey} akan menguji performa modul Teseo\hyp{}LIV3FL dalam keadaan diam selama satu jam dengan empat skenario berbeda.
-	\item Pengujian di Bus Trans Gadjah Mada dilakukan untuk meninjau performa sistem ketika digunakan di dalam Bus Trans Gadjah Mada.
+	\item Pengujian di bus Trans Gadjah Mada dilakukan untuk meninjau performa sistem ketika digunakan di dalam bus Trans Gadjah Mada.
 \end{enumerate}
 
 Sebelum dilakukan pengujian perlu dilakukan perancangan purwarupa sistem yang meliputi perangkat keras dan perangkat lunak (\textit{firmware}) terlebih dahulu. Bagian perangkat keras terdiri dari modul Teseo\hyp{}LIV3FL dan antena Abracon APARM1804-SG3. Modul Teseo\hyp{}LIV3FL dihubungkan dengan \textit{development board} STM32 Nucleo-WL55JC1 dengan komunikasi UART.
@@ -17,7 +17,7 @@ Setelah purwarupa sistem berhasil dirakit, maka langkah selanjutnya adalah mengh
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/low-power.jpg}
-	\caption{Modul GNSS yang telah Terangkai dengan Multimeter}
+	\caption{Modul GNSS yang telah terangkai dengan multimeter}
 	\label{Fig: low-power-connected}
 \end{figure}
 
@@ -93,7 +93,7 @@ Perintah tersebut akan mengaktifkan mode daya rendah periodik pada modul Teseo\h
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=14cm]{contents/chapter-4/low-power-result.jpg}
-	\caption{Pembacaan Multimeter pada Mode Akuisisi (Kiri) dan Mode \textit{Standby} (Kanan)}
+	\caption{Pembacaan multimeter pada mode akuisisi (kiri) dan mode \textit{standby} (kanan)}
 	\label{Fig: low-power-result}
 \end{figure}
 
@@ -139,7 +139,7 @@ Nilai HDOP (\textit{Horizontal Dilution of Precision}), VDOP (\textit{Vertical D
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/1-skenario-basement/keadaan.jpg}
-	\caption{Keadaan Sekitar Pengujian Skenario \textit{Basement}}
+	\caption{Keadaan sekitar pengujian skenario \textit{basement}}
 	\label{Fig: basement-keadaan}
 \end{figure}
 
@@ -151,7 +151,7 @@ Pengujian skenario \textit{basement} dilakukan dengan tujuan untuk memperoleh ga
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/1-skenario-basement/distribution.png}
 	\end{adjustbox}
-	\caption{Distribusi Data Koordinat Skenario \textit{Basement}}
+	\caption{Distribusi data koordinat skenario \textit{basement}}
 	\label{Fig:basement-distribution}
 \end{figure}
 
@@ -160,7 +160,7 @@ Dalam pengujian ini, modul Teseo\hyp{}LIV3FL diletakkan di tempat parkir bawah t
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/1-skenario-basement/sky_plot.png}
-	\caption{\textit{Sky Plot} Pengujian Skenario \textit{Basement}}
+	\caption{\textit{Sky plot} pengujian skenario \textit{basement}}
 	\label{Fig: basement-skyplot}
 \end{figure}
 
@@ -195,7 +195,7 @@ Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distributio
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/1-skenario-basement/sats_dop.png}
 	\end{adjustbox}
-	\caption{DOP dan Visibilitas Satelit Pengujian Skenario \textit{Basement}}
+	\caption{DOP dan visibilitas satelit pengujian skenario \textit{basement}}
 	\label{Fig: basement-sats_dop}
 \end{figure}
 
@@ -204,7 +204,7 @@ Pada skenario \textit{basement}, hasil pengukuran modul Teseo\hyp{}LIV3FL menunj
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/1-skenario-basement/cep.png}
-	\caption{CEP Pengujian Skenario \textit{Basement}}
+	\caption{CEP pengujian skenario \textit{basement}}
 	\label{Fig: basement-cep}
 \end{figure}
 
@@ -215,7 +215,7 @@ Seiring berjalannya waktu, visibilitas satelit mulai membaik dan nilai CEP juga 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/1-skenario-basement/snr.png}
-	\caption{SNR Setiap Konstelasi pada Pengujian Skenario Ruang Terbuka}
+	\caption{SNR setiap konstelasi pada pengujian skenario ruang terbuka}
 	\label{Fig: basement-snr}
 \end{figure}
 
@@ -228,7 +228,7 @@ Angka 24,11 meter pada hasil analisis MAD menunjukan tingkat presisi masih renda
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/2-skenario-indoor/keadaan.jpg}
-	\caption{Keadaan Sekitar Pengujian Skenario Dalam Ruangan}
+	\caption{Keadaan sekitar pengujian skenario dalam ruangan}
 	\label{Fig: indoor-keadaan}
 \end{figure}
 
@@ -240,7 +240,7 @@ Pengujian skenario dilakukan di dalam ruangan tertutup pada lantai 5 Gedung SGLC
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/2-skenario-indoor/distribution.png}
 	\end{adjustbox}
-	\caption{Distribusi Data Koordinat Skenario Dalam Ruangan}
+	\caption{Distribusi data koordinat skenario dalam ruangan}
 	\label{Fig:indoor-distribution}
 \end{figure}
 
@@ -275,7 +275,7 @@ Tabel \ref{Tab: indoor-table} menunjukan hasil pengujian pada skenario dalam rua
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/2-skenario-indoor/cep.png}
-	\caption{CEP Pengujian Skenario Dalam Ruangan}
+	\caption{CEP pengujian skenario dalam ruangan}
 	\label{Fig: indoor-cep}
 \end{figure}
 
@@ -284,7 +284,7 @@ Selain nilai MAD, grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: indoor-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/2-skenario-indoor/snr.png}
-	\caption{SNR Setiap Konstelasi pada Pengujian Skenario Dalam Ruangan}
+	\caption{SNR setiap konstelasi pada pengujian skenario dalam ruangan}
 	\label{Fig: indoor-snr}
 \end{figure}
 
@@ -296,7 +296,7 @@ Pada akhir percobaan dapat dilihat bahwa terjadi lojakan nilai CEP meskipun juml
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/2-skenario-indoor/sats_dop.png}
 	\end{adjustbox}
-	\caption{DOP dan Visibilitas Satelit Pengujian Skenario Dalam Ruangan Tertutup}
+	\caption{DOP dan visibilitas satelit pengujian skenario dalam ruangan tertutup}
 	\label{Fig: indoor-sats_dop}
 \end{figure}
 
@@ -306,7 +306,7 @@ Sama seperti pada pengujian skenario \textit{basement}, modul Teseo\hyp{}LIV3FL 
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=12cm]{contents/chapter-4/2-skenario-indoor/sky_plot.png}
-	\caption{\textit{Sky Plot} Skenario Dalam Ruangan}
+	\caption{\textit{Sky plot} skenario dalam ruangan}
 	\label{Fig: indoor-sky_plot}
 \end{figure}
 
@@ -317,7 +317,7 @@ Tingkat kepresisian modul Teseo\hyp{}LIV3FL adalah sebesar 8,46 meter (MAD) dan 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/3-skenario-semioutdoor/keadaan.jpeg}
-	\caption{Keadaan Sekitar Pengujian Skenario Ruangan Semi-Terbuka}
+	\caption{Keadaan sekitar pengujian skenario ruangan semi-terbuka}
 	\label{Fig: semioutdoor-keadaan}
 \end{figure}
 
@@ -329,7 +329,7 @@ Pengujian skenario ruangan semi-terbuka dilakukan untuk mengevaluasi performa mo
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/3-skenario-semioutdoor/distribution.png}
 	\end{adjustbox}
-	\caption{Distribusi Data Koordinat Skenario Ruangan Semi-Terbuka}
+	\caption{Distribusi data koordinat skenario ruangan semi-terbuka}
 	\label{Fig:semioutdoor-distribution}
 \end{figure}
 
@@ -364,7 +364,7 @@ Pada hasil pengujian yang ditunjukan oleh Tabel \ref{Tab: outdoor-table}, ditemu
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/3-skenario-semioutdoor/cep.png}
-	\caption{CEP Pengujian Skenario Ruang Semi-Terbuka}
+	\caption{CEP pengujian skenario ruang semi-terbuka}
 	\label{Fig: semioutdoor-cep}
 \end{figure}
 
@@ -374,7 +374,7 @@ Grafik nilai CEP yang ditunjukan oleh Gambar \ref{Fig: semioutdoor-cep} juga men
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=13cm]{contents/chapter-4/3-skenario-semioutdoor/snr.png}
-	\caption{SNR Setiap Konstelasi pada Pengujian Skenario Ruang Semi-Terbuka}
+	\caption{SNR setiap konstelasi pada pengujian skenario ruang semi-terbuka}
 	\label{Fig: semioutdoor-snr}
 \end{figure}
 
@@ -386,7 +386,7 @@ Jika dilihat pada grafik SNR-nya, seluruh konstelasi GNSS selain Galileo memilik
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/3-skenario-semioutdoor/sats_dop.png}
 	\end{adjustbox}
-	\caption{DOP dan Visibilitas Satelit Pengujian Skenario Ruangan Semi-Terbuka}
+	\caption{DOP dan visibilitas satelit pengujian skenario ruangan semi-terbuka}
 	\label{Fig: semioutdoor-sats_dop}
 \end{figure}
 
@@ -396,7 +396,7 @@ Pada pengujian ini, urutan konstelasi dengan jumlah satelit paling banyak hingga
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=12cm]{contents/chapter-4/3-skenario-semioutdoor/sky_plot.png}
-	\caption{\textit{Sky Plot} Skenario Ruangan Semi-Terbuka}
+	\caption{\textit{Sky plot} skenario ruangan semi-terbuka}
 	\label{Fig: semioutdoor-sky_plot}
 \end{figure}
 
@@ -408,7 +408,7 @@ Berdasarkan hasil yang didapat, pada pengujian skenario ini dapat dilihat bahwa 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-4/4-skenario-outdoor/keadaan.jpg}
-	\caption{Keadaan Sekitar Pengujian Skenario Ruang Terbuka}
+	\caption{Keadaan sekitar pengujian skenario ruang terbuka}
 	\label{Fig: outdoor-keadaan}
 \end{figure}
 
@@ -420,7 +420,7 @@ Pengujian skenario ruangan terbuka bertujuan untuk meninjau performa modul Teseo
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/4-skenario-outdoor/distribution.png}
 	\end{adjustbox}
-	\caption{Distribusi Data Koordinat Skenario Ruang Terbuka}
+	\caption{Distribusi data koordinat skenario ruang terbuka}
 	\label{Fig:outdoor-distribution}
 \end{figure}
 
@@ -453,7 +453,7 @@ Distribusi koordinat hasil pengujian luar ruangan ditunjukan oleh Gambar \ref{Fi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/4-skenario-outdoor/sky_plot.png}
-	\caption{\textit{Sky Plot} Pengujian Ruang Terbuka}
+	\caption{\textit{Sky plot} pengujian ruang terbuka}
 	\label{Fig: outdoor-skyplot}
 \end{figure}
 
@@ -462,16 +462,16 @@ Tabel \ref{Tab: outdoor-table} menunjukan bahwa pada skenario ruang terbuka memb
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/4-skenario-outdoor/cep.png}
-	\caption{CEP Pengujian Skenario Ruang Terbuka}
+	\caption{CEP pengujian skenario ruang terbuka}
 	\label{Fig: outdoor-cep}
 \end{figure}
 
-Nilai CEP yang didapat pada pengujian ini adalah nilai CEP terbaik dari tiga skenario sebelumnya. Tren nilai CEP cenderung stabil dan tidak ada lonjakan yang signifikan seperti ditunjukan oleh Gambar \ref{Fig: outdoor-cep}. Hal tersebut sejalan dengan nilai standar deviasinya yang sangat rendah. Pada pengujian ini, nilai CEP dapat menyentuh nilai 5,22 meter dan paling tinggi sebesar 6,80 meter. Meskipun masih lebih tinggi dari \textit{datasheet} (1,50 meter), nilai tersebut sudah cukup untuk aplikasi pelacak Bus Trans Gadjah Mada.
+Nilai CEP yang didapat pada pengujian ini adalah nilai CEP terbaik dari tiga skenario sebelumnya. Tren nilai CEP cenderung stabil dan tidak ada lonjakan yang signifikan seperti ditunjukan oleh Gambar \ref{Fig: outdoor-cep}. Hal tersebut sejalan dengan nilai standar deviasinya yang sangat rendah. Pada pengujian ini, nilai CEP dapat menyentuh nilai 5,22 meter dan paling tinggi sebesar 6,80 meter. Meskipun masih lebih tinggi dari \textit{datasheet} (1,50 meter), nilai tersebut sudah cukup untuk aplikasi pelacak bus Trans Gadjah Mada.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-4/4-skenario-outdoor/snr.png}
-	\caption{SNR Setiap Konstelasi pada Pengujian Skenario Ruang Terbuka}
+	\caption{SNR setiap konstelasi pada pengujian skenario ruang terbuka}
 	\label{Fig: outdoor-snr}
 \end{figure}
 
@@ -482,7 +482,7 @@ Jika meninjau nilai SNR-nya, terlihat bahwa nilai SNR pada skenario ini tidak be
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/4-skenario-outdoor/sats_dop.png}
 	\end{adjustbox}
-	\caption{DOP dan Visibilitas Satelit Pengujian Pengujian Ruang Terbuka}
+	\caption{DOP dan visibilitas satelit pengujian ruang terbuka}
 	\label{Fig: outdoor-dop_sats}
 \end{figure}
 
@@ -519,7 +519,7 @@ Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditun
 \end{table}
 
 \subsection{\textit{Geofencing} Halte}
-Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh Bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
+Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
 
 \begin{figure}[H]
 	\centering
@@ -544,7 +544,7 @@ Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/geofencing/halte.png}
-	\caption{Hasil Pengujian \textit{Geofencing}  Halte Bus Trans Gadjah Mada}
+	\caption{Hasil pengujian \textit{geofencing} halte bus Trans Gadjah Mada}
 	\label{Fig: geofencing-2}
 \end{figure}
 
@@ -553,12 +553,12 @@ Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah ses
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=8.5cm]{contents/chapter-4/pengujian-bergerak/Peta-Jalur-Rute-1B.jpg}
-	\caption{Peta Jalur Trans Gadjah Mada Rute 1B}
+	\caption{Peta jalur Trans Gadjah Mada rute 1B}
 	\label{Fig: peta-1b}
 \end{figure}
 
 \section{Pengujian di Bus Trans Gadjah Mada}
-Pengujian secara langsung di Bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam.
+Pengujian secara langsung di bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam.
 
 Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacakan dengan rute yang telah diberikan pada Gambar \ref{Fig: peta-1b}, hubungan HDOP dengan visibilitas satelit, dan analisis korelasi setiap variabelnya. Hasil pelacakan mencakup hasil pengukuran sistem dalam mengidentifikasi lokasi kendaraan. Hubungan HDOP dengan visibilitas satelit dibahas untuk meninjau performa sistem di bawah kondisi yang berbeda-beda. Analisis korelasi akan dilakukan untuk mengetahui keterkaitan antara parameter yang diperoleh oleh sistem.
 
@@ -567,7 +567,7 @@ Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacaka
 	\begin{adjustbox}{width=\textwidth}
 		\includegraphics{contents/chapter-4/pengujian-bergerak/distribusi.png}
 	\end{adjustbox}
-	\caption{Distribusi Setiap Parameter Pengujian Bus Trans Gadjah Mada}
+	\caption{Distribusi setiap parameter pengujian bus Trans Gadjah Mada}
 	\label{Fig: moving-distribusi}
 \end{figure}
 
@@ -577,7 +577,7 @@ Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu wak
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/tracked-route.png}
-	\caption{Hasil Pelacakan Bus Trans Gadjah Mada}
+	\caption{Hasil pelacakan Bus Trans Gadjah Mada}
 	\label{Fig: moving-tracked-route}
 \end{figure}
 
@@ -586,7 +586,7 @@ Setelah itu, parameter koordinat garis lintang dan garis bujur akan di-\textit{p
 \newpage
 
 \begin{longtblr}[
-	caption = {Waktu Kedatangan Bus Trans Gadjah Mada Rute 1B di Setiap Halte},
+	caption = {Waktu Kedatangan Bus Trans Gadjah Mada rute 1B di Setiap Halte},
 	]{
 		width = \linewidth,
 		colspec = {Q[129]Q[312]Q[298]Q[165]},
@@ -643,7 +643,7 @@ Analisis korelasi dapat memberikan wawasan yang lebih dalam mengenai hubungan at
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=11cm]{contents/chapter-4/pengujian-bergerak/corr.png}
-	\caption{Korelasi Setiap Parameter Pengujian Trans Gadjah Mada}
+	\caption{Korelasi setiap parameter pengujian di bus Trans Gadjah Mada}
 	\label{Fig: moving-corr}
 \end{figure}
 
@@ -658,16 +658,16 @@ Berdasarkan pembahasan pada bagian sebelumnya, pasangan variabel yang memiliki k
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-HDOP.jpg}
-	\caption{Nilai HDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\caption{Nilai HDOP pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: moving-hdop}
 \end{figure}
 
-Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP yang rendah menunjukkan tingkat ketelitian yang lebih baik pada bidang horizontal. Hal ini dapat dilihat pada Gambar \ref{Fig: moving-hdop} dengan setiap titik pada perjalanan Trans Gadjah Mada Rute 1B direpresentasikan dengan warna yang menunjukkan nilai HDOP pada titik tersebut. Semakin tinggi nilai HDOP, maka warna titiknya akan semakin mendekati warna merah, yang menunjukkan tingkat ketelitian yang lebih rendah. Sebaliknya, jika nilai HDOP semakin rendah, maka warna titiknya akan mendekati warna hijau, yang menunjukkan tingkat ketelitian yang lebih tinggi. Terlihat bahwa seluruh titik pada gambar tersebut direpresentasikan dengan warna hijau, yang menunjukkan bahwa tingkat akurasi pada bidang horizontalnya berada pada rentang yang baik.
+Berdasarkan pembahasan pada bagian sebelumnya, dapat diketahui bahwa nilai HDOP yang rendah menunjukkan tingkat ketelitian yang lebih baik pada bidang horizontal. Hal ini dapat dilihat pada Gambar \ref{Fig: moving-hdop} dengan setiap titik pada perjalanan Trans Gadjah Mada rute 1B direpresentasikan dengan warna yang menunjukkan nilai HDOP pada titik tersebut. Semakin tinggi nilai HDOP, maka warna titiknya akan semakin mendekati warna merah, yang menunjukkan tingkat ketelitian yang lebih rendah. Sebaliknya, jika nilai HDOP semakin rendah, maka warna titiknya akan mendekati warna hijau, yang menunjukkan tingkat ketelitian yang lebih tinggi. Terlihat bahwa seluruh titik pada gambar tersebut direpresentasikan dengan warna hijau, yang menunjukkan bahwa tingkat akurasi pada bidang horizontalnya berada pada rentang yang baik.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-VDOP.jpg}
-	\caption{Nilai VDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\caption{Nilai VDOP pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: moving-vdop}
 \end{figure}
 
@@ -676,7 +676,7 @@ Selain HDOP, parameter akurasi lain yang dapat ditinjau adalah VDOP. Parameter i
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-PDOP.jpg}
-	\caption{Nilai PDOP Pengujian Trans Gadjah Mada Rute 1B}
+	\caption{Nilai PDOP pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: moving-pdop}
 \end{figure}
 
@@ -685,11 +685,11 @@ Parameter PDOP merupakan gabungan dari HDOP dan VDOP. Artinya, nilai dari PDOP a
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-4/pengujian-bergerak/moving-SATS.jpg}
-	\caption{Visibilitas Satelit Pengujian Trans Gadjah Mada Rute 1B}
+	\caption{Visibilitas satelit pengujian di bus Trans Gadjah Mada rute 1B}
 	\label{Fig: moving-sats}
 \end{figure}
 
-Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitungan posisi. Jumlah satelit yang digunakan tentunya akan mempengaruhi ketelitian hasil perhitungan posisi. Gambar \ref{Fig: moving-sats} menunjukan visibilitas satelit di setiap titik pada perjalanan Trans Gadjah Mada Rute 1B. Semakin tinggi visibilitas satelit maka warna titiknya akan mendekati warna hijau dan mendekati warna merah jika visibilitas satelitnya mendekati nol. Secara teoretis, visibilitas satelit yang dibutuhkan untuk mendapatkan fiksasi 2D adalah sebanyak tiga buah dan empat buah untuk mendapatkan fiksasi 3D. Visibilitas satelit lebih dari empat akan memperbaiki kualitas fiksasi yang ditunjukan dengan nilai HDOP yang menurun. 
+Visibilitas satelit adalah jumlah satelit yang digunakan untuk melakukan perhitungan posisi. Jumlah satelit yang digunakan tentunya akan mempengaruhi ketelitian hasil perhitungan posisi. Gambar \ref{Fig: moving-sats} menunjukan visibilitas satelit di setiap titik pada perjalanan Trans Gadjah Mada rute 1B. Semakin tinggi visibilitas satelit maka warna titiknya akan mendekati warna hijau dan mendekati warna merah jika visibilitas satelitnya mendekati nol. Secara teoretis, visibilitas satelit yang dibutuhkan untuk mendapatkan fiksasi 2D adalah sebanyak tiga buah dan empat buah untuk mendapatkan fiksasi 3D. Visibilitas satelit lebih dari empat akan memperbaiki kualitas fiksasi yang ditunjukan dengan nilai HDOP yang menurun. 
 
 Pada hasil pengamatan dapat dilihat bahwa tidak semua titik memiliki visibilitas satelit lebih dari sepuluh atau direpresentasikan dengan titik berwarna hijau. Visibilitas satelit paling rendah pada pengujian ini adalah sebanyak enam buah satelit yang ditunjukan oleh titik berwarna merah. Salah satu titik dengan visibilitas terendah adalah di sekitar halte Rumah Sakit Dr. Sardjito. Hal tersebut dapat diakibatkan oleh banyaknya gedung dan pepohonan yang dapat menghalangi atau menyebabkan \textit{multipath} pada isyarat GNSS. Selain itu, lingkungan tersebut juga merupakan lingkungan yang padat dengan berbagai macam kendaraan dan orang-orang yang lalu-lalang.
 

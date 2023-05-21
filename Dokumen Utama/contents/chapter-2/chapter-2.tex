@@ -1,7 +1,7 @@
 \chapter{TINJAUAN PUSTAKA}
 
 \section{Tinjauan Pustaka}
-Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak untuk berbagai aplikasi dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}. Selain itu pelacak GPS juga dapat digunakan untuk aplikasi pada kapal kargo dan juga pada alat berat \cite{Zhang2013}\cite{Rani2021}. Pada penelitian ini, firmware GNSS \textit{tracker} yang dikembang difokuskan untuk melacak posisi bus kampus Trans Gadjah Mada.
+Penelitian sebelumnya telah mengembangkan berbagai sistem pelacak untuk berbagai aplikasi dengan berbagai macam pendekatan pada perangkat keras maupun perangkat lunak untuk berbagai aplikasi. Sebagai contoh, \cite{Ekhsan2022} merancang suatu sistem untuk melacak dompet dengan menggunakan TK-102 GPS \textit{Tracker}. Selain itu pelacak GPS juga dapat digunakan untuk aplikasi pada kapal kargo dan juga pada alat berat \cite{Zhang2013, Rani2021}. Pada penelitian ini, firmware GNSS \textit{tracker} yang dikembang difokuskan untuk melacak posisi bus kampus Trans Gadjah Mada.
 
 Tim peneliti dari \textit{Vidyalankar Institute of Technology} telah merancang suatu sistem yang dapat mendeteksi lokasi dari kendaraan dan juga emisi \ce{CO} yang dihasilkan. Pada sistem yang dirancang, digunakan \textit{development board} Arduino Uno yang berbasis mikrokontroler ATmega328. Ketika kandungan gas \ce{CO} sudah melebihi ambang batas, sistem akan memutus pengiriman bahan bakar dan kemudian mengirimkan data koordinat dari modul GPS ke \textit{server} Apache yang telah dirancang \cite{Asha2022}.
 
@@ -11,7 +11,7 @@ Penelitian yang dilakukan oleh \cite{Mukhtar2015} dari \textit{University of Lon
 
 Sistem yang dirancang pada penelitian \cite{Widya2016} menggunakan modul GPS u-blox NEO-6M. Penelitian ini memiliki kesamaan, yaitu objek yang akan dilacak adalah kendaraan bus. Sama seperti penelitian-penelitian sebelumnya, pada penelitian ini hanya digunakan satu buah konstelasi GNSS, yaitu GPS.
 
-Terakhir, penelitian \cite{Priono2017} membahas mengenai implementasi \textit{geofencing} untuk mengawasi pengiriman kendaraan pada perusahaan ekspedisi. Pada sistem yang dirancang, terdapat beberapa titik \textit{geofencing} di sepanjang rute perjalanan paket. Fitur serupa dapat diimplementasikan pada sistem pelacak Bus Trans Gadjah Mada. Sebagai contoh, sistem \textit{geofencing} untuk menentukan posisi halte saat ini.
+Terakhir, penelitian \cite{Priono2017} membahas mengenai implementasi \textit{geofencing} untuk mengawasi pengiriman kendaraan pada perusahaan ekspedisi. Pada sistem yang dirancang, terdapat beberapa titik \textit{geofencing} di sepanjang rute perjalanan paket. Fitur serupa dapat diimplementasikan pada sistem pelacak bus Trans Gadjah Mada. Sebagai contoh, sistem \textit{geofencing} untuk menentukan posisi halte saat ini.
 
 Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo\hyp{}LIV3FL dan mikrokontroler STM32WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
 
@@ -49,12 +49,12 @@ Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segm
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{contents/chapter-2/alt-comp.png}
-	\caption{Orbit Satelit GNSS}
+	\caption{Orbit satelit GNSS}
 	\label{Fig: alt-comp}
 \end{figure}
 
 \begin{table}[H]
-	\caption{Orbit dan Ketinggian Setiap Konstelasi GNSS \cite{Li2019} \cite{Bury2019}}
+	\caption{Orbit dan Ketinggian Setiap Konstelasi GNSS \cite{Li2019, Bury2019}}
 	\vspace{0.5em}
 	\centering
 	\begin{tabular}{ccccc}
@@ -229,7 +229,7 @@ Dalam aplikasi navigasi, akurasi dan presisi yang tinggi sangatlah penting. Deng
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/acc.png}
-	\caption{Perbedaan Tingkat Akurasi dan Presisi}
+	\caption{Perbedaan tingkat akurasi dan presisi}
 	\label{Fig: acc-and-prec-diff}
 \end{figure}
 
@@ -319,7 +319,7 @@ Dalam konteks pengukuran posisi menggunakan modul GNSS, MAD dapat digunakan untu
 Pada teknik \textit{point of interest}, jarak antara koordinat titik pusat lingkaran ke satu titik lainnya dapat dihitung menggunakan Persamaan Haversine  \cite{Pratama2020}. Persamaan Haversine digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola seperti Bumi. Persamaan ini sangat berguna dalam aplikasi \textit{geofence} untuk menghitung jarak objek dari titik pusat lingkaran.
 
 \subsubsection{Persamaan Haversine}
-Persamaan Haversine pertama kali diciptakan oleh Prof. James Inman pada tabun 1835 untuk persamaan astronomi \textit{nautical} dan menghitung jarak antara dua bintang. Persamaan ini adalah salah satu persamaan matematika paling penting dalam bidang navigasi. Persamaan ini digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola, khususnya pada Planet Bumi \cite{Hofmann-Wellenhof2008}\cite{Feng2013}. Persamaan Haversine menggunakan dua titik koordinat garis lintang dan garis bujur dari kedua titik tersebut. Jika sudut pusat antara kedua titik adalah $\theta = \frac{d}{r}$, maka fungsi Haversine dapat didefinisikan sebagai:
+Persamaan Haversine pertama kali diciptakan oleh Prof. James Inman pada tabun 1835 untuk persamaan astronomi \textit{nautical} dan menghitung jarak antara dua bintang. Persamaan ini adalah salah satu persamaan matematika paling penting dalam bidang navigasi. Persamaan ini digunakan untuk menghitung jarak antara dua titik koordinat pada permukaan bola, khususnya pada Planet Bumi \cite{Hofmann-Wellenhof2008,Feng2013}. Persamaan Haversine menggunakan dua titik koordinat garis lintang dan garis bujur dari kedua titik tersebut. Jika sudut pusat antara kedua titik adalah $\theta = \frac{d}{r}$, maka fungsi Haversine dapat didefinisikan sebagai:
 
 \begin{equation}
 	\text{hav}(\theta) = \sin^2{\left(\frac{\theta}{2}\right)}
@@ -360,7 +360,7 @@ Metode komputasi menggunakan Persamaan Haversine terbukti lebih sederhana dan ri
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=11cm]{contents/chapter-2/stm-32-groups.png}
-	\caption{Pembagian Mikrokontroler STM32 \cite{STMicroelectronics2023}}
+	\caption{Pembagian mikrokontroler STM32 \cite{STMicroelectronics2023}}
 	\label{Fig: stm32-groups}
 \end{figure}
 \subsection{STM32}
@@ -395,7 +395,7 @@ STM32 Nucleo-WL55JC1 adalah sebuah \textit{development board} yang menggunakan m
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=5cm]{contents/chapter-2/stm32-wl55jc1.jpg}
-	\caption{\textit{Development Board} STM32 Nucleo-WL55JC1}
+	\caption{\textit{Development board} STM32 Nucleo-WL55JC1}
 	\label{Fig: STM32 Nucleo-WL55JC1}
 \end{figure}
 
@@ -439,7 +439,7 @@ STM32Cube IDE merupakan sebuah \textit{platform} yang digunakan untuk pengembang
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/stm32-mx.png}
-	\caption{Konfigurasi Periferal pada STM32Cube IDE}
+	\caption{Konfigurasi periferal pada STM32Cube IDE}
 	\label{Fig: stm32-mx}
 \end{figure}
 
@@ -469,7 +469,7 @@ Teseo-Suite adalah aplikasi yang dikembangkan khusus untuk mengatur dan memanfaa
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{contents/chapter-2/teseo-suite.jpeg}
-	\caption{Tampilan dari Aplikasi Teseo-Suite}
+	\caption{Tampilan dari aplikasi Teseo-Suite}
 	\label{Fig: teseo-suite-ss}
 \end{figure}
 
@@ -478,7 +478,7 @@ Tampilan dari aplikasi Teseo-Suite ditunjukkan pada Gambar \ref{Fig: teseo-suite
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/patch-antena.jpg}
-	\caption{Struktur dari Antena \textit{Patch} \cite{Chowdhury2019}}
+	\caption{Struktur dari antena \textit{patch} \cite{Chowdhury2019}}
 	\label{Fig: patch-antenna}
 \end{figure}
 
@@ -495,7 +495,7 @@ Antena \textit{patch} adalah salah satu antena yang paling populer untuk aplikas
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{contents/chapter-2/uart-format.png}
-	\caption{Format Data pada Komunikasi UART \cite{ti2010}}
+	\caption{Format data pada komunikasi UART \cite{ti2010}}
 	\label{Fig: uart-format}
 \end{figure}
 
@@ -529,7 +529,7 @@ PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis ka
 Untuk melakukan visualisasi data yang telah diolah akan digunakan pustaka Matplotlib. Pustaka ini adalah pustaka paling populer dalam bidang visualisasi data. Secara bawaan, Matplotlib menyediakan berbagai jenis visualisasi data seperti \textit{line plot}, \textit{scatter plot}, \textit{histogram}, \textit{bar plot}, dan lain-lain secara bawaan. Seluruh jenis visualisasi tersebut dapat dikustomisasi sesuai dengan kebutuhan pengguna, mulai dari mengubah warna, ukuran, jenis garis, dan sebagainya. Bahkan pengguna dapat menambahkan elemen visual seperti judul, label sumbu, dan legenda dengan mudah.
 
 \subsubsection{Seaborn}
-Terakhir, Seaborn adalah pustaka Python yang digunakan untuk membuat plot statistik yang menarik dan informatif. Pustaka ini dibangun di atas Matplotlibsehingga menggabungkan kekuatan dari kedua pustaka tersebut dapat menghasilkan plot yang lebih baik secara visual dan informasi. Dalam implementasinya, Seaborn dapat digabungkan dengan Matplotlib untuk menghasilkan plot yang lebih baik secara visual dan informatif. Penggunaan Seaborn dapat digunakan untuk memperbaiki plot Matplotlib standar dengan memberikan warna bawaan yang lebih baik dan meningkatkan aspek visual dari grafik.
+Terakhir, Seaborn adalah pustaka Python yang digunakan untuk membuat plot statistik yang menarik dan informatif. Pustaka ini dibangun di atas Matplotlib sehingga menggabungkan kekuatan dari kedua pustaka tersebut dapat menghasilkan plot yang lebih baik secara visual dan informasi. Dalam implementasinya, Seaborn dapat digabungkan dengan Matplotlib untuk menghasilkan plot yang lebih baik secara visual dan informatif. Penggunaan Seaborn dapat digunakan untuk memperbaiki plot Matplotlib standar dengan memberikan warna bawaan yang lebih baik dan meningkatkan aspek visual dari grafik.
 
 \iffalse
 \subsection{LoRa}
