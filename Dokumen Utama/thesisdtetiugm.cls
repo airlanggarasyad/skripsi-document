@@ -418,13 +418,13 @@
 					{Telah disetujui dan disahkan}
 					{Has been approved and endorsed}\\
 				\vspace{0.5cm}
-				\iftoggle{lang}{Pada tanggal 26 Mei 2023}{on $\ldots\ldots$}\\
+				\iftoggle{lang}{Pada tanggal 27 Mei 2023}{on $\ldots\ldots$}\\
 				\vfill
 				\begin{center}
 					\hspace*{-1.1cm}
 					\begin{tabular}{ccc}
-						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{2cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
-						\vspace{0.4cm} & \vspace{0.4cm} & \vspace{0.4cm}\\
+						\iftoggle{lang}{Dosen Pembimbing I}{Supervisor I} &\hspace{1.3cm} & \iftoggle{lang}{Dosen Pembimbing II}{Supervisor II} \\
+						\vspace{0.75cm} & \vspace{0.75cm} & \vspace{0.75cm}\\
 						\textbf{\underline{\getsupervisor{1}{1}}}& &
 						\textbf{\underline{\getsupervisor{2}{1}}} \\
 						\textbf{\getsupervisor{1}{2}} & & \textbf{\getsupervisor{2}{2}}\\
@@ -804,6 +804,8 @@
 {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@figure}
 \renewcommand \thetable
 {\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@table}
+\renewcommand \thealgorithm
+{\ifnum \c@chapter>\z@ \@arabic\c@chapter.\fi \@arabic\c@algorithm}
 
 % Section style
 \titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}

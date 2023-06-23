@@ -1,18 +1,18 @@
 \chapter{HASIL DAN PEMBAHASAN}
 
 \section{Persiapan Pengujian}
-Untuk mengevaluasi hasil penelitian maka perlu dilakukan uji coba untuk meninjau performa dari sistem yang telah dirancang. Pengujian hasil penelitian akan dibagi menjadi empat tahapan berbeda, yaitu:
+Untuk mengevaluasi hasil penelitian maka perlu dilakukan uji coba untuk meninjau performa dari \textit{firmware} yang telah dirancang. Pengujian hasil penelitian akan dibagi menjadi empat tahapan berbeda, yaitu:
 
 \begin{enumerate}
 	\item Pengujian daya rendah untuk meninjau bagaimana performa sistem ketika mode daya rendah pada modul Teseo\hyp{}LIV3FL diaktifkan. Algoritma daya rendah yang digunakan adalah \textit{cyclic periodic mode}.
 	\item Pengujian \textit{geofencing} dilakukan untuk melihat bagaimana performa algoritma \textit{geofencing} ketika sistem berada di luar dan di dalam lingkungan Universitas Gadjah Mada.
 	\item Pengujian \textit{rapid static survey} akan menguji performa modul Teseo\hyp{}LIV3FL dalam keadaan diam selama satu jam dengan empat skenario berbeda.
-	\item Pengujian di bus Trans Gadjah Mada dilakukan untuk meninjau performa sistem ketika digunakan di dalam bus Trans Gadjah Mada.
+	\item Pengujian di bus Trans Gadjah Mada dilakukan untuk meninjau performa \textit{firmware} ketika digunakan di dalam bus Trans Gadjah Mada.
 \end{enumerate}
 
 Sebelum dilakukan pengujian perlu dilakukan perancangan purwarupa sistem yang meliputi perangkat keras dan perangkat lunak (\textit{firmware}) terlebih dahulu. Bagian perangkat keras terdiri dari modul Teseo\hyp{}LIV3FL dan antena Abracon APARM1804-SG3. Modul Teseo\hyp{}LIV3FL dihubungkan dengan \textit{development board} STM32 Nucleo-WL55JC1 dengan komunikasi UART.
 
-Setelah purwarupa sistem berhasil dirakit, maka langkah selanjutnya adalah menghubungkan \textit{development board} ke komputer dengan menggunakan kabel USB dan mengatur \textit{baud rate} sebesar 115200 Bps. Aplikasi yang digunakan untuk melakukan \textit{logging} dan perekaman data adalah CoolTerm. Selanjutnya, sistem akan diuji coba dengan menggunakan empat tahapan pengujian yang telah disebutkan sebelumnya untuk mengevaluasi performa dari sistem yang telah dirancang dan dirakit.
+Setelah purwarupa sistem berhasil dirakit, maka langkah selanjutnya adalah menghubungkan \textit{development board} ke komputer dengan menggunakan kabel USB dan mengatur \textit{baud rate} sebesar 115.200 bps. Aplikasi yang digunakan untuk melakukan \textit{logging} dan perekaman data adalah CoolTerm. Selanjutnya, \textit{firmware} akan diuji coba dengan menggunakan empat tahapan pengujian yang telah disebutkan sebelumnya untuk mengevaluasi performa dari \textit{firmware} yang telah dirancang dan dirakit.
 
 \begin{figure}[H]
 	\centering
@@ -93,11 +93,11 @@ Perintah tersebut akan mengaktifkan mode daya rendah periodik pada modul Teseo\h
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=14cm]{contents/chapter-4/low-power-result.jpg}
-	\caption{Pembacaan multimeter pada mode akuisisi (kiri) dan mode \textit{standby} (kanan)}
+	\caption{Pembacaan multimeter pada. (a) Mode akuisisi. (b) Mode \textit{standby}}
 	\label{Fig: low-power-result}
 \end{figure}
 
-Hasil pengukuran menunjukkan bahwa arus yang mengalir pada modul Teseo\hyp{}LIV3FL adalah sebesar 46,3 mA. Namun, hal yang menarik adalah nilai arus yang diukur jauh lebih kecil daripada nilai arus yang tertera pada \textit{datasheet}, yang mencapai 65 mA. Dalam mode akuisisi, modul Teseo\hyp{}LIV3FL berada dalam kondisi siap dan hanya menunggu untuk melakukan pencarian posisi kembali. Oleh karena itu, arus yang mengalir pada modul Teseo\hyp{}LIV3FL sudah sama dengan nilai \textit{datasheet}, yaitu sebesar 10 $\mu$A. Hal ini menunjukkan bahwa penggunaan mode daya rendah pada modul Teseo\hyp{}LIV3FL dapat menurunkan konsumsi daya yang ditunjukan dengan penurunan jumlah arus ketika berada dalam mode \textit{standby}. Gambar \ref{Fig: low-power-result} menunjukkan hasil pengukuran multimeter ketika modul Teseo\hyp{}LIV3FL berada dalam mode akuisisi (kiri) dan mode daya rendah (kanan). Hasil yang didapat menunjukkan perbedaan yang signifikan dalam tingkat konsumsi daya antara kedua mode tersebut.
+Hasil pengukuran menunjukkan bahwa arus yang mengalir pada modul Teseo\hyp{}LIV3FL adalah sebesar 46,3 mA. Namun, hal yang menarik adalah nilai arus yang diukur jauh lebih kecil daripada nilai arus yang tertera pada \textit{datasheet}, yang mencapai 65 mA. Dalam mode akuisisi, modul Teseo\hyp{}LIV3FL berada dalam kondisi siap dan hanya menunggu untuk melakukan pencarian posisi kembali. Oleh karena itu, arus yang mengalir pada modul Teseo\hyp{}LIV3FL sudah sama dengan nilai \textit{datasheet}, yaitu sebesar 10 $\mu$A. Hal ini menunjukkan bahwa penggunaan mode daya rendah pada modul Teseo\hyp{}LIV3FL dapat menurunkan konsumsi daya yang ditunjukan dengan penurunan jumlah arus ketika berada dalam mode \textit{standby}. Gambar \ref{Fig: low-power-result}a menunjukkan hasil pengukuran multimeter ketika modul Teseo\hyp{}LIV3FL berada dalam mode akuisisi dan Gambar \ref{Fig: low-power-result}b untuk mode daya rendah (kanan). Hasil yang didapat menunjukkan perbedaan yang signifikan dalam tingkat konsumsi daya antara kedua mode tersebut.
 
 \begin{table}[H]
 	\caption{Performa Modul GNSS dengan Variasi Waktu \textit{Standby}}
@@ -188,7 +188,7 @@ Dalam pengujian ini, modul Teseo\hyp{}LIV3FL diletakkan di tempat parkir bawah t
 	\label{Tab: basement-table}
 \end{table}
 
-Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distribution} menunjukkan bahwa koordinat garis lintang memiliki rentang tersebar antara -7,769728$^{\circ}$ hingga -7,768525$^{\circ}$ sedangkan untuk garis bujur memiliki rentang tersebar antara 110,379841$^{\circ}$ hingga 110,380314$^{\circ}$. Terlihat bahwa kedua koordinat tidak terdistribusi secara normal sehingga perlu dilakukan analisis statistik non-parametrik, yaitu MAD.
+Grafik persebaran distribusi koordinat pada Gambar \ref{Fig:basement-distribution} menunjukkan bahwa koordinat garis lintang memiliki rentang tersebar antara -7,769728 hingga -7,768525 sedangkan untuk garis bujur memiliki rentang tersebar antara 110,379841 hingga 110,380314. Terlihat bahwa kedua koordinat tidak terdistribusi secara normal sehingga perlu dilakukan analisis statistik non-parametrik, yaitu MAD.
 
 \begin{figure}[H]
 	\centering
@@ -244,7 +244,7 @@ Pengujian skenario dilakukan di dalam ruangan tertutup pada lantai 5 Gedung SGLC
 	\label{Fig:indoor-distribution}
 \end{figure}
 
-Persebaran koordinat garis lintang dan garis bujur pada skenario dalam ruangan berada pada rentang -7,770949$^{\circ}$ hingga -7,770883$^{\circ}$ dan 110,377283$^{\circ}$ hingga 110,377315$^{\circ}$ seperti ditunjukan oleh Gambar \ref{Fig:indoor-distribution}. Namun, seperti halnya dengan skenario sebelumnya, distribusi koordinat pada pengujian ini tidak terdistribusi secara normalsehingga perlu dilakukan analisis pada nilai MAD-nya untuk mendapatkan pemahaman yang lebih baik mengenai data hasil pengujian.
+Persebaran koordinat garis lintang dan garis bujur pada skenario dalam ruangan berada pada rentang -7,770949 hingga -7,770883 dan 110,377283 hingga 110,377315 seperti ditunjukan oleh Gambar \ref{Fig:indoor-distribution}. Namun, seperti halnya dengan skenario sebelumnya, distribusi koordinat pada pengujian ini tidak terdistribusi secara normalsehingga perlu dilakukan analisis pada nilai MAD-nya untuk mendapatkan pemahaman yang lebih baik mengenai data hasil pengujian.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian Dalam Ruangan}
@@ -333,7 +333,7 @@ Pengujian skenario ruangan semi-terbuka dilakukan untuk mengevaluasi performa mo
 	\label{Fig:semioutdoor-distribution}
 \end{figure}
 
-Sama seperti hasil pengujian pada dua skenario sebelumnya, data koordinat garis lintang dan garis bujur pada pengujian skenario ruang semi terbuka tidak terdistribusi normal seperti ditunjukan oleh \textit{kernel density estimator} Gambar \ref{Fig:semioutdoor-distribution}. Oleh karena itu, pada pengujian ini juga akan dilakukan analisis statistik non-parametrik terhadap nilai MAD-nya. Nilai koordinat garis lintang pada pengujian ini berada pada rentang -7,770036$^{\circ}$ hingga -7,-7,769936$^{\circ}$ dan 110,377427$^{\circ}$ hingga 110,377460$^{\circ}$ untuk koordinat garis bujurnya.
+Sama seperti hasil pengujian pada dua skenario sebelumnya, data koordinat garis lintang dan garis bujur pada pengujian skenario ruang semi terbuka tidak terdistribusi normal seperti ditunjukan oleh \textit{kernel density estimator} Gambar \ref{Fig:semioutdoor-distribution}. Oleh karena itu, pada pengujian ini juga akan dilakukan analisis statistik non-parametrik terhadap nilai MAD-nya. Nilai koordinat garis lintang pada pengujian ini berada pada rentang -7,770036 hingga -7,769936 dan 110,377427 hingga 110,377460 untuk koordinat garis bujurnya.
 
 \begin{table}[H]
 	\caption{Hasil Pengujian di Ruangan Semi Terbuka}
@@ -492,9 +492,16 @@ Hasil pengujian menunjukkan bahwa skenario pengujian di ruang terbuka menghasilk
 
 \section{Pengujian \textit{Geofencing}}
 \subsection{\textit{Geofencing} Wilayah Universitas Gadjah Mada}
-Tujuan dari pengujian fitur \textit{geofencing} di wilayah Universitas Gadjah Mada adalah untuk meninjau apakah fitur ini dapat berfungsi dengan baik untuk menentukan status \textit{geofencing} pengguna saat ini. Dalam pengujian ini, wilayah \textit{geofencing} didefinisikan sebagai lingkaran dengan jari-jari satu kilo meter dengan pusat di titik (-7,771376; 110,377493), dan delapan belas titik acak di sekitar Universitas Gadjah Mada digunakan sebagai titik pengujian.
+Tujuan dari pengujian fitur \textit{geofencing} di wilayah Universitas Gadjah Mada adalah untuk meninjau apakah fitur ini dapat berfungsi dengan baik untuk menentukan status \textit{geofencing} pengguna saat ini. Dalam pengujian ini, wilayah \textit{geofencing} didefinisikan sebagai lingkaran dengan jari-jari satu kilo meter dengan pusat di titik (-7,771376; 110,377493) dan delapan belas titik acak di sekitar Universitas Gadjah Mada digunakan sebagai titik pengujian.
 
-Dalam pengujian ini, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada sistem sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika sistem mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{contents/chapter-4/geofencing/wilayah-ugm.jpg}
+	\caption{Hasil Pengujian \textit{Geofencing} di Wilayah Universitas Gadjah Mada}
+	\label{Fig: geofencing-1}
+\end{figure}
+
+Dalam pengujian ini, fitur \textit{geofencing} dijalankan pada setiap titik pengujian dan hasilnya dicatat. Hasil pengujian tersebut kemudian dianalisis untuk menentukan apakah hasil algoritma \textit{geofencing} pada \textit{firmware} sudah tepat atau belum. Gambar \ref{Fig: geofencing-1} menunjukkan hasil dari pengujian tersebut dengan wilayah \textit{geofencing} ditandai oleh lingkaran berwarna hijau. Simbol berwarna merah merepresentasikan jika \textit{firmware} mendeteksi bahwa posisi saat ini berada di luar wilayah \textit{geofencing} dan sebaliknya untuk simbol berwarna hijau.
 
 Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditunjukkan oleh simbol berwarna merah, dan titik berwarna hijau untuk kondisi sebaliknya. Hal ini menunjukkan bahwa fitur \textit{geofencing} di wilayah Universitas Gadjah Mada sudah berjalan dengan baik dan mampu mendeteksi status \textit{geofencing} bus di wilayah Universitas Gadjah Mada dengan baik.
 
@@ -521,34 +528,27 @@ Dari hasil pengujian, terlihat bahwa seluruh titik di luar lingkaran hijau ditun
 \subsection{\textit{Geofencing} Halte}
 Pengujian fitur \textit{geofencing} pada setiap halte bertujuan untuk meninjau apakah fitur \textit{geofencing} untuk mendeteksi halte saat ini sudah berjalan dengan baik. Pengujian ini dilakukan pada tujuh dari dua puluh empat halte yang akan disinggahi oleh bus Trans Gadjah Mada. Setiap wilayah \textit{geofencing} halte memiliki jari-jari sebesar sepuluh meter. Tabel \ref{Tab: geofencing-2} menunjukan koordinat dari tujuh halte yang dijadikan sampel pada pengujian ini.
 
-\begin{figure}[H]
+\begin{table}[H]
+	\caption{Hasil Pengujian \textit{Geofencing} Halte Bus Trans Gadjah Mada}
+	\vspace{0.5em}
 	\centering
-	\includegraphics[width=10cm]{contents/chapter-4/geofencing/wilayah-ugm.jpg}
-	\caption{Hasil Pengujian \textit{Geofencing} di Wilayah Universitas Gadjah Mada}
-	\label{Fig: geofencing-1}
-\end{figure}
+	\begin{tabular}{ccc}
+		\hline
+		\textbf{Koordinat} &\textbf{Halte pada \textit{Firmware}} & \textbf{Halte Aktual}\\
+		\hline 
+		-7,769638; 110,373497 & 6 & 6 \\
+		-7,766024; 110,374046 & 8 & 8 \\
+		-7,766489; 110,370709 & 11 & 11 \\
+		-7,766449; 110,374107 & 13 & 13 \\
+		-7,769756; 110,385509 & 17 & 17 \\
+		-7,771065; 110,381348 & 20 & 20 \\
+		-7,772746; 110,379647 & 21 & 21 \\
+		\hline
+	\end{tabular}
+	\label{Tab: geofencing-3}
+\end{table}
 
-Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasilnya dicatat. Hasil pengujian \textit{geofencing} pada halte uji ditunjukan oleh Gambar \ref{Fig: geofencing-2}. Lingkaran berwarna merah pada gambar menunjukan wilayah \textit{geofencing} setiap halte yang berupa lingkaran dengan jari-jari sepuluh meter, sedangkan lingkaran biru merupakan posisi pengamatan. Adapun hasil yang didapat adalah sebagai berikut:
-
-\vspace{0.3cm}
-\begin{lstlisting}[language=c]
-02:42:05,-7.769638,110.373497,198.8,12.0,0.9,1.6,1.8,6,1.0
-02:44:50,-7.766024,110.374046,180.5,9.0,1.4,2.4,2.5,8,1.0
-02:49:50,-7.766489,110.370709,161.2,11.0,1.3,2.4,2.3,11,1.0
-02:52:05,-7.766449,110.374107,159.1,9.0,1.4,2.0,1.9,13,1.0
-02:02:20,-7.769756,110.385509,191.91,14,0.8,1.2,1.5,17,1.0
-02:05:48,-7.771065,110.381348,164.69,12,1.1,1.4,1.8,20,1.0
-02:07:08,-7.772746,110.379647,170.95,13,1.0,1.6,1.9,21,1.0
-\end{lstlisting}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=12cm]{contents/chapter-4/geofencing/halte.png}
-	\caption{Hasil pengujian \textit{geofencing} halte bus Trans Gadjah Mada}
-	\label{Fig: geofencing-2}
-\end{figure}
-
-Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah sesuai. Visualisasi dari hasil pengujian ditunjukan oleh Gambar \ref{Fig: geofencing-2}. Titik berwarna biru merupakan posisi saat ini dan lingkaran berwarna merah merupakan wilayah \textit{goefencing} halte yang menjadi titik uji. Dapat dilihat bahwa seluruh titik biru berada di dalam wilayah geofencing setiap halte. Oleh karena itu, dapat dlihat bahwa fitur \textit{geofencing} halte sudah dapat mendeteksi posisi bus jika sedang berhenti di halte dengan baik.
+Fitur \textit{geofencing} akan diuji di keenam halte pengujian dan kemudian hasilnya dicatat. Pengujian dilakukan dengan meletakan sistem di dalam wilayah \textit{geofencing} setiap halte uji. Hasil pengujian \textit{geofencing} pada halte uji ditunjukan oleh Tabel \ref{Tab: geofencing-3}. Dapat dilihat bahwa \textit{firmware} sudah bisa memprediksi halte tempat bus berhenti saat ini. Bahkan, \textit{firmware} dapat memprediksi lokasi halte saat ini dengan tepat meskipun wilayah \textit{geofencing}-nya berdekatan seperti pada halte ke-13 dengan halte ke-8.
 
 \begin{figure}[H]
 	\centering
@@ -558,7 +558,7 @@ Berdasarkan hasil yang didapat, nomor halte yang dideteksi oleh sistem sudah ses
 \end{figure}
 
 \section{Pengujian di Bus Trans Gadjah Mada}
-Pengujian secara langsung di bus Trans Gadjah Mada bertujuan untuk meninjau performa sistem dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam.
+Pengujian secara langsung di bus Trans Gadjah Mada bertujuan untuk meninjau performa \textit{firmware} dalam keadaan bergerak. Dalam pengujian ini, sistem dipasang di dalam kendaraan bus listrik yang terbuat dari logam. Rute pengujian mengikuti rute 1B Trans Gadjah Mada yang dimulai dari Halte Grha Sabha Pramana hingga kembali lagi ke Halte Grha Sabha Pramana dengan durasi waktu satu jam.
 
 Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacakan dengan rute yang telah diberikan pada Gambar \ref{Fig: peta-1b}, hubungan HDOP dengan visibilitas satelit, dan analisis korelasi setiap variabelnya. Hasil pelacakan mencakup hasil pengukuran sistem dalam mengidentifikasi lokasi kendaraan. Hubungan HDOP dengan visibilitas satelit dibahas untuk meninjau performa sistem di bawah kondisi yang berbeda-beda. Analisis korelasi akan dilakukan untuk mengetahui keterkaitan antara parameter yang diperoleh oleh sistem.
 
@@ -572,7 +572,7 @@ Pada pengujian ini akan dibahas pada tiga hal, yaitu perbandingan hasil pelacaka
 \end{figure}
 
 \subsection{Ikhtisar Data Hasil Pengujian}
-Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu waktu, koordinat garis lintang dan garis bujur, visibilitas satelit, ketinggian, HDOP, dan status \textit{geofencing} saat ini. Pengambilan data dilakukan setiap dua puluh detik sekali sehingga didapat seratus enam puluh lima baris data. Selanjutnya, dilakukan uji statistik Saphiro-Wilk terhadap seluruh parameter, kecuali waktu dan status \textit{geofencing} saat ini dan hasilnya menunjukkan bahwa nilai $p$ dari seluruh parameter tersebut bernilai kurang dari 0.05. Hal ini menunjukkan bahwa seluruh parameter tersebut tidak terdistribusi secara normal. Selain itu, dapat dilihat pada Gambar \ref{Fig: moving-distribusi} bahwa setiap parameter terdistribusi dengan berbagai macam pola distribusi yang berbeda-beda.
+Data hasil pengujian yang didapat terdiri dari delapan buah parameter, yaitu waktu, koordinat garis lintang dan garis bujur, visibilitas satelit, ketinggian, HDOP, dan status \textit{geofencing} saat ini. Pengambilan data dilakukan setiap dua puluh detik sekali sehingga didapat seratus enam puluh lima baris data. Selanjutnya, dilakukan uji statistik Saphiro-Wilk terhadap seluruh parameter, kecuali waktu dan status \textit{geofencing} saat ini dan hasilnya menunjukkan bahwa nilai $p$ dari seluruh parameter tersebut bernilai kurang dari 0,05. Hal ini menunjukkan bahwa seluruh parameter tersebut tidak terdistribusi secara normal. Selain itu, dapat dilihat pada Gambar \ref{Fig: moving-distribusi} bahwa setiap parameter terdistribusi dengan berbagai macam pola distribusi yang berbeda-beda.
 
 \begin{figure}[H]
 	\centering

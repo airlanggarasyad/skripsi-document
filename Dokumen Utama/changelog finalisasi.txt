@@ -1,0 +1,19 @@
+BAB II
+Penulisan Beidou -> BeiDou (Hal. 9)
+Memperbaiki overflow pada Tabel 2.1 (Hal. 9)
+Penggunaan desimal disesuaikan dengan PUEBI (Hal. 26)
+Menyesuaikan penulisan ribuan dengan PUEBI (Hal. 29)
+
+Bab III
+Menyesuaikan antena Taoglas menjadi Abracon (Hal. 35)
+Caption Gambar 3.4 dan 3.7 dibuat centering (Hal. 40, 42)
+Typo pada diagram alir geofencing UGM (Hal. 44)
+
+Bab IV
+Mengubah typo Bps menjadi bps (Hal. 69)
+Penulisan ribuan disesuaikan dengan PUEBI (Hal. 69)
+Typo pada koordinat: -7,-7,7699 -> -7,7699 (Hal. 86)
+
+- Menyesuaikan tujuan penelitian dengan kesimpulan (Slide 4)
+- Menambahkan keunggulan dari STM32 terkait kustomisasi yang lebih luas (Slide 10)
+- Memperbaiki typo pada diagram alir (Slide 15)

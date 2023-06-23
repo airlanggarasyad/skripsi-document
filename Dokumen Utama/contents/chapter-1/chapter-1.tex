@@ -9,9 +9,9 @@ Saat ini, civitas akademika Universitas Gadjah Mada hanya dapat bergantung terha
 
 Berdasarkan penelitian \cite{Sutar2016}, masalah serupa juga dialami oleh masyarakat India. Mereka hanya mengetahui waktu kedatangan bus berdasarkan jadwal saja tanpa mengetahui posisi terbaru dari bus yang akan ditumpangi. Seringkali terdapat beberapa ketidakpastian yang menyebabkan bus datang tidak sesuai dengan waktu pada jadwal, seperti terjadi kendala mekanik. Hal tersebut tentunya menyebabkan waktu tempuh dengan menggunakan bus menjadi lebih lama.
 
-Masalah ketidakpastian waktu kedatangan bus Trans Gadjah Mada dapat diselesaikan dengan suatu sistem pelacakan yang akurat dan dapat diandalkan. Sistem pelacak tersebut diharapkan dapat memberikan informasi terbaru mengenai posisi bus saat ini. Salah satu teknologi sistem navigasi berbasis satelit yang dapat menunjukkan posisi saat ini secara akurat adalah \textit{Global Navigation Satellite System} (GNSS).
+Masalah ketidakpastian waktu kedatangan bus Trans Gadjah Mada dapat diselesaikan dengan suatu sistem pelacakan yang akurat dan dapat diandalkan. \textit{Firmware} pada sistem pelacak tersebut diharapkan dapat memberikan informasi terbaru mengenai posisi bus saat ini. Salah satu teknologi sistem navigasi berbasis satelit yang dapat menunjukkan posisi saat ini secara akurat adalah \textit{Global Navigation Satellite System} (GNSS).
 
-Untuk mewujudkan sistem pelacak yang akurat dan dapat diandalkan maka dibutuhkan modul GNSS dengan kualitas yang baik. Berbagai perusahaan telah merancang modul GNSS dengan berbagai inovasinya. Sebagai contoh, STMicroelectronics adalah pemilik dari merek dagang Teseo, sebuah modul GNSS yang mendukung \textit{multi-constellation}. Sebelum dilakukan pengembangan \textit{firmware} lebih jauh, perlu dilakukan evaluasi terhadap performa modul GNSS yang akan digunakan pada sistem.
+Untuk mewujudkan \textit{firmware} sistem pelacak yang akurat dan dapat diandalkan maka dibutuhkan modul GNSS dengan kualitas yang baik. Berbagai perusahaan telah merancang modul GNSS dengan berbagai inovasinya. Sebagai contoh, STMicroelectronics adalah pemilik dari merek dagang Teseo, sebuah modul GNSS yang mendukung \textit{multi-constellation}. Sebelum dilakukan pengembangan \textit{firmware} lebih jauh, perlu dilakukan evaluasi terhadap performa modul GNSS yang akan digunakan pada sistem.
 
 Dengan dilakukannya evaluasi performa modul GNSS dan pengembangan \textit{firmware} sistem pelacak lokasi bus Trans Gadjah Mada, diharapkan dapat membantu untuk melacak posisi bus secara akurat dan dapat diandalkan. Hasil pelacakan tersebut dapat digunakan untuk meningkatkan pengalaman civitas akademika Universitas Gadjah Mada dalam menggunakan bus Trans Gadjah Mada.
 
@@ -20,7 +20,7 @@ Adapun rumusan masalah dari penelitian ini sebagai berikut:
 \begin{enumerate}
 	\item Bagaimana pengaruh performa modul GNSS Teseo\hyp{}LIV3FL dengan konfigurasi \textit{multi-constellation} terhadap berbagai skenario pengujian?
 	\item Bagaimana pengaruh dari hasil pembacaan modul Teseo\hyp{}LIV3FL jika algoritma mode daya rendah diaktifkan?
-	\item Bagaimana performa dari sistem dalam menentukan letak posisi bus Trans Gadjah Mada?
+	\item Bagaimana performa dari \textit{firmware} dalam menentukan letak posisi bus Trans Gadjah Mada?
 \end{enumerate}
 
 \section{Tujuan Penelitian}
@@ -48,15 +48,15 @@ Bab ini membahas mengenai latar belakang, rumusan masalah, batasan masalah, tuju
 
 \textbf{BAB II}
 
-Bab ini membahas hasil tinjauan pustaka dan landasan teori yang relevan dengan penelitian ini. Tinjauan pustaka menjelaskan penelitian-penelitian sebelumnya yang terkait dengan penelitian ini, serta teori-teori yang digunakan dalam pengembangan sistem.
+Bab ini membahas hasil tinjauan pustaka dan landasan teori yang relevan dengan penelitian ini. Tinjauan pustaka menjelaskan penelitian-penelitian sebelumnya yang terkait dengan penelitian ini, serta teori-teori yang digunakan dalam pengembangan \textit{firmware}.
 
 \textbf{BAB III}
 
-Bab ini membahas metode penelitian yang digunakan dalam penelitian ini, termasuk alat dan bahan yang digunakan, perancangan awal sistem, dan pengembangan sistem mulai dari akuisisi kalimat NMEA dari modul GNSS hingga ekstraksi data dari kalimat NMEA yang didapat. Bab ini juga menjelaskan tahapan pengembangan sistem, seperti perancangan sistem, implementasi sistem, hingga pengujian sistem. Metode pengolahan data hasil pengujian juga dibahas dalam bab ini.  
+Bab ini membahas metode penelitian yang digunakan dalam penelitian ini, termasuk alat dan bahan yang digunakan, perancangan awal \textit{firmware}, dan pengembangan \textit{firmware} mulai dari akuisisi kalimat NMEA dari modul GNSS hingga ekstraksi data dari kalimat NMEA yang didapat. Bab ini juga menjelaskan tahapan pengembangan \textit{firmware}, seperti perancangan \textit{firmware}, implementasi \textit{firmware}, hingga pengujian \textit{firmware}. Metode pengolahan data hasil pengujian juga dibahas dalam bab ini.  
 
 \textbf{BAB IV}
 
-Bab ini membahas hasil pengujian sistem yang telah dilakukan, meliputi pengujian mode daya rendah, pengujian \textit{rapid static survey}, pengujian \textit{geofencing} dan pengujian bergerak pada bus Trans Gadjah Mada. Selain itu, pada bab ini juga dilakukan analisis terhadap hasil pengujian dan evaluasi terhadap sistem yang telah dikembangkan.
+Bab ini membahas hasil pengujian \textit{firmware} yang telah dilakukan, meliputi pengujian mode daya rendah, pengujian \textit{rapid static survey}, pengujian \textit{geofencing} dan pengujian bergerak pada bus Trans Gadjah Mada. Selain itu, pada bab ini juga dilakukan analisis terhadap hasil pengujian dan evaluasi terhadap \textit{firmware} yang telah dikembangkan.
 
 \textbf{BAB V}
 

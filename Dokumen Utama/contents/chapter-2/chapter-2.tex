@@ -13,7 +13,7 @@ Sistem yang dirancang pada penelitian \cite{Widya2016} menggunakan modul GPS u-b
 
 Terakhir, penelitian \cite{Priono2017} membahas mengenai implementasi \textit{geofencing} untuk mengawasi pengiriman kendaraan pada perusahaan ekspedisi. Pada sistem yang dirancang, terdapat beberapa titik \textit{geofencing} di sepanjang rute perjalanan paket. Fitur serupa dapat diimplementasikan pada sistem pelacak bus Trans Gadjah Mada. Sebagai contoh, sistem \textit{geofencing} untuk menentukan posisi halte saat ini.
 
-Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang sistem pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo\hyp{}LIV3FL dan mikrokontroler STM32WL55JC. Selain itu, sistem \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
+Namun, pada penelitian-penelitian di atas hanya digunakan satu buah konstelasi GNSS, yaitu GPS. Oleh karena itu, pada penelitian ini akan dirancang \textit{firmware} pelacak kendaraan berbasis GNSS \textit{multi-constellation} dengan menggunakan modul GNSS Teseo\hyp{}LIV3FL dan mikrokontroler STM32WL55JC. Selain itu, \textit{firmware} \textit{geofencing} yang telah ada dapat dikembangkan lebih lanjut seperti dapat mendeteksi apakah kendaraan sedang berhenti di halte atau tidak.
 
 \section{Dasar Teori}
 \subsection{\textit{Firmware}}
@@ -64,10 +64,10 @@ Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segm
 		\textbf{GPS} & MEO & 20.180 & 24 & 24\\
 		\textbf{GLONASS} & MEO & 19.100 & 24 & 24\\
 		\textbf{GALILEO} & MEO & 23.220 & 30 & 30\\
-		\textbf{Beidou} & GEO & 35.786 & 3\\
+		\textbf{BeiDou} & GEO & 35.786 & 3\\
 		& IGSO & 35.786 & 3 & 30\\
 		& MEO& 21.528 & 24\\
-		\textbf{QZSS} & IGSO &32.000 sampai dengan 40.000 & 5 & 5\\
+		\textbf{QZSS} & IGSO &32.000 s.d. 40.000 & 5 & 5\\
 		\hline
 	\end{tabular}
 	\label{Tab: gnss-orbit}
@@ -76,7 +76,7 @@ Sistem GNSS memiliki tiga segmen yang saling terkait, yaitu segmen satelit, segm
 \subsubsection{Orbit GNSS}
 Ketinggian orbit dari setiap konstelasi GNSS adalah parameter untuk membagi orbit GNSS menjadi tiga kategori utama. Karakteristik tersebut mempengaruhi penundaan waktu antara isyarat yang dipancarkan dan diterima yang ditunjukan oleh Gambar \ref{Fig: alt-comp}. Waktu penundaan didapat dari persamaan $t_d = \frac{2d}{c}$ dengan $d$ adalah ketinggian orbit satelit dan $c$ adalah kecepatan cahaya. Pengelompokan jenis orbit untuk setiap konstelasi GNSS ditunjukan oleh Tabel \ref{Tab: gnss-orbit}.
 
-\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
+\textbf{\textit{Low Earth Orbit} (LEO)} adalah satelit yang mengorbit planet Bumi dengan ketinggian 500 sampai dengan 2000 km. Keuntungan yang dimiliki oleh satelit dengan orbit LEO adalah waktu penundaan antara isyarat dipancarkan dengan diterima tergolong sebentar, dapat beroperasi dengan daya rendah, dan biaya pemeliharaan yang murah. Kekurangan dari satelit dengan orbit LEO adalah dibutuhkan lebih banyak satelit untuk mencakup daerah operasi yang lebih luas. Sistem LEO dapat dikelompokan lebih lanjut berdasarkan frekuensi isyaratnya, yaitu:
 
 \begin{enumerate}
 	\item \textit{Little} LEO adalah sistem yang beroperasi di bawah frekuensi 1 GHz dengan kapabilitas untuk aplikasi pesan dan suara.
@@ -184,7 +184,6 @@ Persamaan \ref{eq:2-7} dan Persamaan \ref{eq:2-8} dapat dituliskan kembali sebag
 	Ax + By = C
 	\label{eq:2-9}
 \end{equation}
-
 \begin{equation}
 	Dx + Ey = F
 	\label{eq:2-10}
@@ -214,7 +213,6 @@ Maka didapat solusi berupa koordinat posisi di bidang horizontal $\left(x\right)
 	x = \frac{CE-FB}{EA-BD}
 	\label{eq:2-12}
 \end{equation}
-
 \begin{equation}
 	y = \frac{CD-AF}{EA-BD}
 	\label{eq:2-13}
@@ -331,7 +329,6 @@ Asumsikan bahwa Planet Bumi berbentuk bola sempurna dengan jari-jari $R=6.367,45
 	\Delta lat = lat_1 - lat_2
 	\label{eq:delt-lat}
 \end{equation}
-
 \begin{equation}
 	\Delta lon = lon_1 - lon_2
 	\label{eq:delt-lon}
@@ -399,7 +396,7 @@ STM32 Nucleo-WL55JC1 adalah sebuah \textit{development board} yang menggunakan m
 	\label{Fig: STM32 Nucleo-WL55JC1}
 \end{figure}
 
-Keunggulan dari \textit{development board} ini adalah sudah dilengkapi dengan STLINK-V3E yang terintegrasi sehingga tidak memerlukan perangkat tambahan untuk melakukan pemrograman dan \textit{debugging} pada perangkat \cite{STMicroelectronics2022}. Selain itu, \textit{development board} ini juga mendukung penggunaan \textit{expansion board} Arduino dan ST morpho. Tampilan \textit{development board} STM32 Nucleo-WL55JC1 dapat dilihat pada Gambar \ref{Fig: STM32 Nucleo-WL55JC1}.
+Keunggulan dari \textit{development board} ini adalah sudah dilengkapi dengan STLINK-V3E yang terintegrasi sehingga tidak memerlukan perangkat tambahan untuk melakukan pemrograman dan \textit{debugging} pada perangkat \cite{STMicroelectronics2022}. Selain itu, \textit{development board} ini juga mendukung penggunaan \textit{expansion board} Arduino dan ST Morpho. Tampilan \textit{development board} STM32 Nucleo-WL55JC1 dapat dilihat pada Gambar \ref{Fig: STM32 Nucleo-WL55JC1}.
 
 Mikrokontroler STM32WL55 memiliki kecepatan \textit{clock} yang lebih cepat dibandingkan dengan kecepatan \textit{clock} pada Arduino Mega yang hanya sebesar 16 MHz. Selain itu, STM32WL55 juga memiliki SRAM dengan kapasitas yang lebih besar, yaitu sebesar 64 KB atau delapan kali lipat lebih besar daripada kapasitas SRAM pada Arduino Mega \cite{STMicroelectronics2022b}.
 
@@ -443,12 +440,12 @@ STM32Cube IDE merupakan sebuah \textit{platform} yang digunakan untuk pengembang
 	\label{Fig: stm32-mx}
 \end{figure}
 
-Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupakan perangkat lunak yang digunakan untuk mempermudah dalam melakukan konfigurasi pada mikrokontroler STM32. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}. Konfigurasi tersebut akan disimpan dalam berkas dengan ekstensi \textit{ioc}. File \textit{ioc} dapat digunakan untuk \textit{generate} kerangka kerja yang siap untuk digunakan sehingga pengguna hanya perlu memikirkan pada sisi aplikasinya saja.
+Konfigurasi periferal pada STM32Cube IDE berbasis dari STM32Cube MX, yang merupakan perangkat lunak yang digunakan untuk mempermudah dalam melakukan konfigurasi pada mikrokontroler STM32. Tampilan dari bagian konfigurasi periferal ditunjukan oleh Gambar \ref{Fig: stm32-mx}. Konfigurasi tersebut akan disimpan dalam berkas dengan ekstensi \textit{ioc}. \textit{File} \textit{ioc} dapat digunakan untuk \textit{generate} kerangka kerja yang siap untuk digunakan sehingga pengguna hanya perlu memikirkan pada sisi aplikasinya saja.
 
 Dalam pengembangan \textit{firmware} pada mikrokontroler STM32, STM32Cube IDE dapat membantu pengguna untuk memudahkan pengembangan \textit{firmware} dengan menggunakan berbagai alat pengembangan dan pustaka perangkat lunak yang lengkap sebagai referensi. Oleh karena itu, STM32Cube IDE menjadi pilihan yang tepat untuk melakukan pengembangan \textit{firmware} pada mikrokontroler STM32.
 
 \subsection{Teseo\hyp{}LIV3FL}
-Teseo\hyp{}LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9.7 x 10.1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
+Teseo\hyp{}LIV3FL adalah modul GNSS yang sangat efisien dan dapat diandalkan. Diproduksi oleh STMicroelectronics, modul ini menawarkan dukungan untuk berbagai konstelasi seperti GPS, GLONASS, Galileo, QZSS, dan BeiDou \cite{STMicroelectronics2022}. Ukuran dari modul ini adalah 9,7 x 10,1 mm dengan osilator RTC yang dapat mengurangi TTFF, menjadikannya ideal untuk aplikasi yang memerlukan respons cepat dan akurasi yang tinggi.
 
 \begin{figure}[H]
 	\centering
@@ -490,7 +487,7 @@ Keunggulan dari antena \textit{patch} adalah bentuknya ringkas dan ringan sehing
 Antena \textit{patch} adalah salah satu antena yang paling populer untuk aplikasi GNSS seperti pelacak, peta digital, dan navigasi kendaraan bermotor. Penggunaan antena \textit{patch} bertujuan untuk mendapatkan informasi isyarat satelit GNSS untuk kemudian diolah pada modul GNSS dengan akurasi yang tinggi.
 
 \subsection{\textit{Universal Asynchronous Receiver Transmitter} (UART)}
-\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. IC tesebut dirancang khusus untuk mengubah data paralel menjadi data serial dan menerima data serial yang dikonversi kembali menjadi data paralel. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. \textit{Baud rate} tersebut dapat dipilih dalam suatu rentang tertentu. \textit{Baud rate} yang umum dipakai adalah 110, 135, 150, 300, 600, 1200, 2400, 9600, dan 115200 (bit per detik). Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk melakukan komunikasi dengan protokol ini.
+\textit{Universital Asynchronous Receiver Transmitter} adalah suatu \textit{integrated circuit} (IC) yang memberikan fungsi komunikasi serial asinkron \cite{ti2010}. IC tesebut dirancang khusus untuk mengubah data paralel menjadi data serial dan menerima data serial yang dikonversi kembali menjadi data paralel. Pada komunikasi UART dibutuhkan isyarat \textit{clock} untuk sinkronisasi dan juga merupakan \textit{baud rate} dari komunikasi data yang dibangkitkan oleh masing-masing perangkat. \textit{Baud rate} tersebut dapat dipilih dalam suatu rentang tertentu. \textit{Baud rate} yang umum dipakai adalah 110, 135, 150, 300, 600, 1.200, 2.400, 9.600, dan 115.200 (bit per detik). Nilai \textit{baud rate} pada kedua perangkat harus disamakan untuk melakukan komunikasi dengan protokol ini.
 
 \begin{figure}[H]
 	\centering
@@ -523,7 +520,7 @@ NumPy sangat berguna dalam bidang ilmu data dan analisis data. Dalam analisis da
 \subsubsection{PyNMEA2}
 Pustaka PyNMEA2 merupakan pustaka Python yang berguna dalam melakukan pengolahan data yang dihasilkan oleh modul GNSS seperti Teseo\hyp{}LIV3FL. Modul GNSS ini sangat umum digunakan dalam kegiatan navigasi dan survei di berbagai sektor seperti industri, pertanian, kelautan, dan lain-lain. Dalam kegiatan tersebut, data yang dihasilkan oleh modul GNSS harus diproses lebih lanjut agar dapat memberikan informasi yang akurat dan bermanfaat.
 
-PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis kalimat NMEA yang dihasilkan oleh modul GNSS, seperti GPGGA, GNGSA, GPRMC, dan lain-lain. Dalam proses pengolahan data, PyNMEA2 dapat mempermudah proses ekstrasi data dari hasil pengamatan. Dengan menggunakan pustaka ini, data dari setiap kalimat NMEA dapat diekstraksi dan diproses lebih lanjut.
+PyNMEA2 memiliki kemampuan untuk melakukan penguraian terhadap berbagai jenis kalimat NMEA yang dihasilkan oleh modul GNSS, seperti \$GPGGA, \$GNGSA, \$GPRMC, dan lain-lain. Dalam proses pengolahan data, PyNMEA2 dapat mempermudah proses ekstrasi data dari hasil pengamatan. Dengan menggunakan pustaka ini, data dari setiap kalimat NMEA dapat diekstraksi dan diproses lebih lanjut.
 
 \subsubsection{Matplotlib}
 Untuk melakukan visualisasi data yang telah diolah akan digunakan pustaka Matplotlib. Pustaka ini adalah pustaka paling populer dalam bidang visualisasi data. Secara bawaan, Matplotlib menyediakan berbagai jenis visualisasi data seperti \textit{line plot}, \textit{scatter plot}, \textit{histogram}, \textit{bar plot}, dan lain-lain secara bawaan. Seluruh jenis visualisasi tersebut dapat dikustomisasi sesuai dengan kebutuhan pengguna, mulai dari mengubah warna, ukuran, jenis garis, dan sebagainya. Bahkan pengguna dapat menambahkan elemen visual seperti judul, label sumbu, dan legenda dengan mudah.
